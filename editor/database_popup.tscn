@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://addons/galatea_databases/editor/database_editor.tscn" type="PackedScene" id=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "var galatea_databases = null\n\nfunc set_galatea_databases(p_galatea_database):\n\tprint(\"XXX\")\n\tgalatea_databases = p_galatea_database"
+
+[node name="DatabasePopup" type="AcceptDialog"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 50.0
+margin/top = 50.0
+margin/right = 50.0
+margin/bottom = 50.0
+popup/exclusive = true
+window/title = "Database Editor"
+dialog/hide_on_ok = true
+script/script = SubResource( 1 )
+
+[node name="DatabaseEditor" parent="." instance=ExtResource( 1 )]
+
+margin/left = 10.0
+margin/right = 10.0
+margin/bottom = 40.0
+
+

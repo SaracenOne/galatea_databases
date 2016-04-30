@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.gd" type="Script" id=1]
+
+[node name="FilePathControl" type="VBoxContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 522.0
+margin/bottom = 40.0
+alignment = 1
+script/script = ExtResource( 1 )
+label = ""
+file_path = ""
+file_browser_title = ""
+file_type = ""
+disabled = false
+
+[node name="FileLabel" type="Label" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 522.0
+margin/bottom = 13.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Container" type="HBoxContainer" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 17.0
+margin/right = 522.0
+margin/bottom = 40.0
+alignment = 0
+
+[node name="FilePath" type="LineEdit" parent="Container"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 500.0
+margin/bottom = 23.0
+text = ""
+max_length = 0
+editable = false
+secret = false
+
+[node name="LoadButton" type="Button" parent="Container"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 504.0
+margin/top = 0.0
+margin/right = 522.0
+margin/bottom = 23.0
+disabled = true
+toggle_mode = false
+text = ".."
+flat = false
+
+[connection signal="pressed" from="Container/LoadButton" to="." method="_on_LoadButton_pressed"]
+
+
