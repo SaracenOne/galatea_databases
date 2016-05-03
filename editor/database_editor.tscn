@@ -1,18 +1,20 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_editor.gd" type="Script" id=1]
-[ext_resource path="res://addons/galatea_databases/editor/database_actor_panel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/galatea_databases/editor/database_actor_group_panel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/galatea_databases/editor/database_ai_package_panel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/galatea_databases/editor/database_item_panel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://addons/galatea_databases/editor/database_location_panel.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/galatea_databases/editor/database_material_type_panel.tscn" type="PackedScene" id=7]
-[ext_resource path="res://addons/galatea_databases/editor/database_music_track_panel.tscn" type="PackedScene" id=8]
-[ext_resource path="res://addons/galatea_databases/editor/database_quest_panel.tscn" type="PackedScene" id=9]
-[ext_resource path="res://addons/galatea_databases/editor/database_readable_panel.tscn" type="PackedScene" id=10]
-[ext_resource path="res://addons/galatea_databases/editor/database_status_effect_panel.tscn" type="PackedScene" id=11]
-[ext_resource path="res://addons/galatea_databases/editor/database_trait_panel.tscn" type="PackedScene" id=12]
-[ext_resource path="res://addons/galatea_databases/editor/database_weather_panel.tscn" type="PackedScene" id=13]
+[ext_resource path="res://addons/galatea_databases/editor/database_activity_panel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/galatea_databases/editor/database_actor_panel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/galatea_databases/editor/database_actor_group_panel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/galatea_databases/editor/database_ai_package_panel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/galatea_databases/editor/database_calendar_event_panel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/galatea_databases/editor/database_item_panel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/galatea_databases/editor/database_location_panel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/galatea_databases/editor/database_material_type_panel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/galatea_databases/editor/database_music_track_panel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://addons/galatea_databases/editor/database_quest_panel.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/galatea_databases/editor/database_readable_panel.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/galatea_databases/editor/database_status_effect_panel.tscn" type="PackedScene" id=13]
+[ext_resource path="res://addons/galatea_databases/editor/database_trait_panel.tscn" type="PackedScene" id=14]
+[ext_resource path="res://addons/galatea_databases/editor/database_weather_panel.tscn" type="PackedScene" id=15]
 
 [node name="DatabaseEditor" type="Panel"]
 
@@ -45,8 +47,25 @@ margin/bottom = 0.0
 tab_align = 1
 tabs_visible = true
 
+[node name="Activities" type="Control" parent="DatabaseEditorTabs"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="ActivityPanel" parent="DatabaseEditorTabs/Activities" instance=ExtResource( 2 )]
+
 [node name="Actors" type="Control" parent="DatabaseEditorTabs"]
 
+visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
 anchor/bottom = 1
@@ -60,7 +79,7 @@ margin/right = 4.0
 margin/bottom = 4.0
 __meta__ = { "_editor_collapsed":true }
 
-[node name="ActorPanel" parent="DatabaseEditorTabs/Actors" instance=ExtResource( 2 )]
+[node name="ActorPanel" parent="DatabaseEditorTabs/Actors" instance=ExtResource( 3 )]
 
 [node name="Actor Groups" type="Control" parent="DatabaseEditorTabs"]
 
@@ -76,8 +95,9 @@ margin/left = 4.0
 margin/top = 31.0
 margin/right = 4.0
 margin/bottom = 4.0
+__meta__ = { "_editor_collapsed":true }
 
-[node name="ActorGroupPanel" parent="DatabaseEditorTabs/Actor Groups" instance=ExtResource( 3 )]
+[node name="ActorGroupPanel" parent="DatabaseEditorTabs/Actor Groups" instance=ExtResource( 4 )]
 
 [node name="AI Packages" type="Control" parent="DatabaseEditorTabs"]
 
@@ -95,7 +115,24 @@ margin/right = 4.0
 margin/bottom = 4.0
 __meta__ = { "_editor_collapsed":true }
 
-[node name="AIPackagePanel" parent="DatabaseEditorTabs/AI Packages" instance=ExtResource( 4 )]
+[node name="AIPackagePanel" parent="DatabaseEditorTabs/AI Packages" instance=ExtResource( 5 )]
+
+[node name="CalendarEvent" type="Control" parent="DatabaseEditorTabs"]
+
+visibility/visible = false
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="CalendarEventPanel" parent="DatabaseEditorTabs/CalendarEvent" instance=ExtResource( 6 )]
 
 [node name="Items" type="Control" parent="DatabaseEditorTabs"]
 
@@ -113,7 +150,7 @@ margin/right = 4.0
 margin/bottom = 4.0
 __meta__ = { "_editor_collapsed":true }
 
-[node name="ItemPanel" parent="DatabaseEditorTabs/Items" instance=ExtResource( 5 )]
+[node name="ItemPanel" parent="DatabaseEditorTabs/Items" instance=ExtResource( 7 )]
 
 [node name="Locations" type="Control" parent="DatabaseEditorTabs"]
 
@@ -131,7 +168,7 @@ margin/right = 4.0
 margin/bottom = 4.0
 __meta__ = { "_editor_collapsed":true }
 
-[node name="LocationPanel" parent="DatabaseEditorTabs/Locations" instance=ExtResource( 6 )]
+[node name="LocationPanel" parent="DatabaseEditorTabs/Locations" instance=ExtResource( 8 )]
 
 [node name="Material Types" type="Control" parent="DatabaseEditorTabs"]
 
@@ -149,7 +186,7 @@ margin/right = 4.0
 margin/bottom = 4.0
 __meta__ = { "_editor_collapsed":true }
 
-[node name="MaterialTypePanel" parent="DatabaseEditorTabs/Material Types" instance=ExtResource( 7 )]
+[node name="MaterialTypePanel" parent="DatabaseEditorTabs/Material Types" instance=ExtResource( 9 )]
 
 [node name="Music Tracks" type="Control" parent="DatabaseEditorTabs"]
 
@@ -167,7 +204,7 @@ margin/right = 4.0
 margin/bottom = 4.0
 __meta__ = { "_editor_collapsed":true }
 
-[node name="MusicTrackPanel" parent="DatabaseEditorTabs/Music Tracks" instance=ExtResource( 8 )]
+[node name="MusicTrackPanel" parent="DatabaseEditorTabs/Music Tracks" instance=ExtResource( 10 )]
 
 [node name="Quests" type="Control" parent="DatabaseEditorTabs"]
 
@@ -184,7 +221,7 @@ margin/top = 31.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="QuestPanel" parent="DatabaseEditorTabs/Quests" instance=ExtResource( 9 )]
+[node name="QuestPanel" parent="DatabaseEditorTabs/Quests" instance=ExtResource( 11 )]
 
 [node name="Readables" type="Control" parent="DatabaseEditorTabs"]
 
@@ -201,7 +238,7 @@ margin/top = 31.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="ReadablePanel" parent="DatabaseEditorTabs/Readables" instance=ExtResource( 10 )]
+[node name="ReadablePanel" parent="DatabaseEditorTabs/Readables" instance=ExtResource( 12 )]
 
 [node name="Status Effects" type="Control" parent="DatabaseEditorTabs"]
 
@@ -219,7 +256,7 @@ margin/right = 4.0
 margin/bottom = 4.0
 __meta__ = { "_editor_collapsed":true }
 
-[node name="StatusEffectPanel" parent="DatabaseEditorTabs/Status Effects" instance=ExtResource( 11 )]
+[node name="StatusEffectPanel" parent="DatabaseEditorTabs/Status Effects" instance=ExtResource( 13 )]
 
 [node name="Traits" type="Control" parent="DatabaseEditorTabs"]
 
@@ -237,7 +274,7 @@ margin/right = 4.0
 margin/bottom = 4.0
 __meta__ = { "_editor_collapsed":true }
 
-[node name="TraitPanel" parent="DatabaseEditorTabs/Traits" instance=ExtResource( 12 )]
+[node name="TraitPanel" parent="DatabaseEditorTabs/Traits" instance=ExtResource( 14 )]
 
 [node name="Weather" type="Control" parent="DatabaseEditorTabs"]
 
@@ -254,7 +291,7 @@ margin/top = 31.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="WeatherPanel" parent="DatabaseEditorTabs/Weather" instance=ExtResource( 13 )]
+[node name="WeatherPanel" parent="DatabaseEditorTabs/Weather" instance=ExtResource( 15 )]
 
 [node name="Panel" type="PanelContainer" parent="."]
 

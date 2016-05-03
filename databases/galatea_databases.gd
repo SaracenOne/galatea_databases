@@ -4,6 +4,7 @@ const ai_package_database_const = preload("ai_package_database.gd")
 const actor_database_const = preload("actor_database.gd")
 const actor_group_database_const = preload("actor_group_database.gd")
 const body_scaler_database_const = preload("body_scaler_database.gd")
+const calendar_event_database_const = preload("calendar_event_database.gd")
 const hair_database_const = preload("hair_database.gd")
 const item_database_const = preload("item_database.gd")
 const clothing_set_database_const = preload("clothing_set_database.gd")
@@ -21,6 +22,7 @@ var ai_package_database = null
 var actor_database = null
 var actor_group_database = null
 var body_scaler_database = null
+var calendar_event_database = null
 var hair_database = null
 var item_database = null
 var clothing_set_database = null
@@ -90,6 +92,10 @@ func init_databases():
 	body_scaler_database = body_scaler_database_const.BodyScalerDatabase.new(self)
 	assert(body_scaler_database)
 	database_list.push_back(body_scaler_database)
+	
+	calendar_event_database = calendar_event_database_const.CalendarEventDatabase.new(self)
+	assert(calendar_event_database)
+	database_list.push_back(calendar_event_database)
 	
 	hair_database = hair_database_const.HairDatabase.new(self)
 	assert(hair_database)
