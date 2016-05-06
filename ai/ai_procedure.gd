@@ -1,3 +1,5 @@
+extends Reference
+
 const PROCEDURE_TYPE_TRAVEL = 0
 const PROCEDURE_TYPE_WAIT = 1
 const PROCEDURE_TYPE_WANDER = 2

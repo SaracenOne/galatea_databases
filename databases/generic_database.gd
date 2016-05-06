@@ -1,5 +1,9 @@
 class GenericRecord extends Reference:
-	var id=""
+	const MAX_ID_SIZE = 32
+	var id = ""
+	
+	func get_raw_id():
+		RawArray(id).resize(MAX_ID_SIZE)
 
 class GenericDatabase extends Reference:
 	var databases = null
@@ -14,7 +18,9 @@ class GenericDatabase extends Reference:
 		pass
 		
 	func _load_record(p_dictionary_record, p_database_record):
-		pass
+		if(p_dictionary_record.has("metadata")):
+			for meta in p_dictionary_record.metadata.keys():
+				p_database_record.set_meta(meta, p_dictionary_record[meta])
 		
 	func _load_database_values(p_database_path, p_records_name):
 		if(cached_dictionary != null):
@@ -37,6 +43,10 @@ class GenericDatabase extends Reference:
 		
 	func _save_record(p_database_record, p_dictionary_record):
 		p_dictionary_record.id = p_database_record.id
+		p_dictionary_record.metadata = {}
+		
+		for meta in p_database_record.get_meta_list():
+			p_dictionary_record.metadata[meta] = p_database_record.get_meta(meta)
 		
 	func _save_database(p_filepath, p_records_name):
 		var dictionary = {}

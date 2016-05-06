@@ -13,10 +13,10 @@ class CalendarEventDatabase:
 		var calendar_icon_path = ""
 		
 		var start_date_day = 1
-		var start_date_month = date_and_time_const.MONTH_JANUARY
+		var start_date_month = OS.MONTH_JANUARY
 		
 		var end_date_day = 1
-		var end_date_month = date_and_time_const.MONTH_JANUARY
+		var end_date_month = OS.MONTH_JANUARY
 		
 		var is_school_holiday = false
 		
