@@ -1,6 +1,8 @@
 tool
 extends Control
 
+const generic_database_const = preload("../databases/generic_database.gd")
+
 var record_tree = null
 
 var database_new_edit_record_popup = null
@@ -36,8 +38,14 @@ func add_record_dismissed_callback():
 	database_new_edit_record_popup.disconnect("popup_hide", self, "add_record_dismissed_callback")
 	
 func add_record_name_received(p_string):
-	if(p_string.length() == 0):
+	var ascii_string = p_string.to_ascii()
+	
+	if(ascii_string.size() == 0):
 		error_dialog.set_text("Please input a valid name...")
+		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
+		error_dialog.popup_centered_minsize(Vector2(200, 100))
+	elif(ascii_string.size() > generic_database_const.GenericRecord.MAX_ID_SIZE):
+		error_dialog.set_text("Record name exeeds maximum string length!")
 		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
 		error_dialog.popup_centered_minsize(Vector2(200, 100))
 	else:
@@ -53,8 +61,14 @@ func rename_record_dismissed_callback():
 	database_new_edit_record_popup.disconnect("popup_hide", self, "rename_record_dismissed_callback")
 		
 func rename_record_name_received(p_string):
-	if(p_string.length() == 0):
+	var ascii_string = p_string.to_ascii()
+	
+	if(ascii_string.size() == 0):
 		error_dialog.set_text("Please input a valid id...")
+		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
+		error_dialog.popup_centered_minsize(Vector2(200, 100))
+	elif(ascii_string.size() > generic_database_const.GenericRecord.MAX_ID_SIZE):
+		error_dialog.set_text("Record name exeeds maximum string length!")
 		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
 		error_dialog.popup_centered_minsize(Vector2(200, 100))
 	else:
@@ -82,8 +96,7 @@ func _on_EraseButton_pressed():
 func _on_RenameButton_pressed():
 	var tree_item = record_tree.get_selected()
 	if(tree_item):
-		database_new_edit_record_popup.set_instructions_text(str("Please give a new id for the record %s...", tree_item.get_text(0)))
-		
+		database_new_edit_record_popup.set_instructions_text(str("Please give a new id for the record '%s'...") % (tree_item.get_text(0)))
 		database_new_edit_record_popup.connect("name_entry_commit", self, "rename_record_name_received")
 		database_new_edit_record_popup.connect("popup_hide", self, "rename_record_dismissed_callback")
 		
