@@ -7,7 +7,9 @@ const ai_procedure_tree_const = preload("../ai/ai_procedure_tree.gd")
 class AIPackageDatabase:
 	extends "generic_database.gd".GenericDatabase
 	
+	const DATABASE_IDENT = "AIPK"
 	const DATABASE_NAME = "ai_package_database.json"
+	const DATABASE_NAME_BINARY = "ai_package_database.gbd"
 	const RECORDS_NAME = "ai_package_records"
 	
 	class AIPackageRecord:

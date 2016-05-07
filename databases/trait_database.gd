@@ -2,8 +2,10 @@ const generic_database_const = preload("generic_database.gd")
 
 class TraitDatabase:
 	extends "generic_database.gd".GenericDatabase
-
+	
+	const DATABASE_IDENT = "TRAT"
 	const DATABASE_NAME = "trait_database.json"
+	const DATABASE_NAME_BINARY = "trait_database.gbd"
 	const RECORDS_NAME = "trait_records"
 	
 	class TraitRecord:

@@ -3,7 +3,9 @@ const generic_database_const = preload("generic_database.gd")
 class MaterialTypeDatabase:
 	extends "generic_database.gd".GenericDatabase
 
+	const DATABASE_IDENT = "MATT"
 	const DATABASE_NAME = "material_type_database.json"
+	const DATABASE_NAME_BINARY = "material_type_database.gbd"
 	const RECORDS_NAME = "material_type_records"
 	
 	class MaterialTypeRecord:

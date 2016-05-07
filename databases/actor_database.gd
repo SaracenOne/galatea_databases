@@ -11,7 +11,9 @@ class ActorDatabase:
 	const BLOODTYPE_AB = 2
 	const BLOODTYPE_O = 3
 	
+	const DATABASE_IDENT = "ACTR"
 	const DATABASE_NAME = "actor_database.json"
+	const DATABASE_NAME_BINARY = "actor_database.gbd"
 	const RECORDS_NAME = "actor_records"
 	
 	static func get_bloodtype_from_string(p_string):

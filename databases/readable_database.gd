@@ -3,7 +3,9 @@ const item_database_const = preload("item_database.gd")
 class ReadableDatabase:
 	extends "item_database.gd".ItemDatabase
 	
+	const DATABASE_IDENT = "READ"
 	const DATABASE_NAME = "readable_database.json"
+	const DATABASE_NAME_BINARY = "readable_database.gbd"
 	const RECORDS_NAME = "readable_records"
 	
 	class ReadableRecord:

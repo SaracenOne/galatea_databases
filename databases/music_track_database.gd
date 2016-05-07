@@ -3,8 +3,9 @@ const generic_database_const = preload("generic_database.gd")
 class MusicTrackDatabase:
 	extends "generic_database.gd".GenericDatabase
 
-	
+	const DATABASE_IDENT = "MUTK"
 	const DATABASE_NAME = "music_track_database.json"
+	const DATABASE_NAME_BINARY = "music_track_database.gbd"
 	const RECORDS_NAME = "music_track_records"
 	
 	class MusicTrackRecord:

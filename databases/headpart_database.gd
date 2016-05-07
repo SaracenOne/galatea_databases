@@ -3,7 +3,9 @@ const generic_database_const = preload("generic_database.gd")
 class HeadPartDatabase:
 	extends "generic_database.gd".GenericDatabase
 
+	const DATABASE_IDENT = "HPRT"
 	const DATABASE_NAME = "headpart_database.json"
+	const DATABASE_NAME_BINARY = "headpart_database.gbd"
 	const RECORDS_NAME = "headpart_records"
 	
 	class HeadPartRecord:

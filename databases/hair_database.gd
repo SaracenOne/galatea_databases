@@ -3,7 +3,9 @@ const generic_database_const = preload("generic_database.gd")
 class HairDatabase:
 	extends "generic_database.gd".GenericDatabase
 
+	const DATABASE_IDENT = "HAIR"
 	const DATABASE_NAME = "hair_database.json"
+	const DATABASE_NAME_BINARY = "hair_database.gbd"
 	const RECORDS_NAME = "hair_records"
 	
 	class HairRecord:

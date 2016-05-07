@@ -3,7 +3,9 @@ const generic_database_const = preload("generic_database.gd")
 class ActivityDatabase:
 	extends "generic_database.gd".GenericDatabase
 
+	const DATABASE_IDENT = "ACTV"
 	const DATABASE_NAME = "activity_database.json"
+	const DATABASE_NAME_BINARY = "activity_database.gbd"
 	const RECORDS_NAME = "activity_records"
 	
 	class ActivityRecord:

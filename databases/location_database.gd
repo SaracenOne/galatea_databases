@@ -4,7 +4,9 @@ const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd
 class LocationDatabase:
 	extends "generic_database.gd".GenericDatabase
 	
+	const DATABASE_IDENT = "LOCT"
 	const DATABASE_NAME = "location_database.json"
+	const DATABASE_NAME_BINARY = "location_database.gbd"
 	const RECORDS_NAME = "location_records"
 	
 	class LocationRecord:

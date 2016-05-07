@@ -2,8 +2,10 @@ const generic_database_const = preload("generic_database.gd")
 
 class ActorGroupDatabase:
 	extends "generic_database.gd".GenericDatabase
-
+	
+	const DATABASE_IDENT = "AGRP"
 	const DATABASE_NAME = "actor_group_database.json"
+	const DATABASE_NAME_BINARY = "actor_group_database.gbd"
 	const RECORDS_NAME = "actor_group_records"
 	
 	class ActorGroupRecord:

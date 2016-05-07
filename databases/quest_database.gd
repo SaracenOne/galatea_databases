@@ -2,8 +2,10 @@ const generic_database_const = preload("generic_database.gd")
 
 class QuestDatabase:
 	extends "generic_database.gd".GenericDatabase
-
+	
+	const DATABASE_IDENT = "QUST"
 	const DATABASE_NAME = "quest_database.json"
+	const DATABASE_NAME_BINARY = "quest_database.gbd"
 	const RECORDS_NAME = "quest_records"
 		
 	class QuestRecord:

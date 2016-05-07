@@ -4,9 +4,11 @@ const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd
 class CalendarEventDatabase:
 	extends "generic_database.gd".GenericDatabase
 	
+	const DATABASE_IDENT = "CALE"
 	const DATABASE_NAME = "calendar_event_database.json"
+	const DATABASE_NAME_BINARY = "calendar_event_database.gbd"
 	const RECORDS_NAME = "calendar_event_records"
-
+	
 	class CalendarEventRecord:
 		extends "generic_database.gd".GenericRecord
 		var printed_name = ""

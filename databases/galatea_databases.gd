@@ -1,4 +1,3 @@
-
 const activity_database_const = preload("activity_database.gd")
 const ai_package_database_const = preload("ai_package_database.gd")
 const actor_database_const = preload("actor_database.gd")
@@ -36,6 +35,8 @@ var trait_database = null
 var weather_database = null
 
 var path = "res://assets/databases"
+
+const DATABASE_NAME_BINARY = "databases.gbd"
 
 var database_list = []
 var database_dirty_list = []

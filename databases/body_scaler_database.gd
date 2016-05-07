@@ -3,7 +3,9 @@ const generic_database_const = preload("generic_database.gd")
 class BodyScalerDatabase:
 	extends "generic_database.gd".GenericDatabase
 	
+	const DATABASE_IDENT = "BSCL"
 	const DATABASE_NAME = "body_scaler_database.json"
+	const DATABASE_NAME_BINARY = "body_scaler_database.gbd"
 	const RECORDS_NAME = "body_scaler_records"
 	
 	class BodyScalerRecord:

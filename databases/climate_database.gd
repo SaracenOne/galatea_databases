@@ -3,7 +3,9 @@ const generic_database_const = preload("generic_database.gd")
 class ClimateDatabase:
 	extends "generic_database.gd".GenericDatabase
 	
+	const DATABASE_IDENT = "CLIM"
 	const DATABASE_NAME = "climate_database.json"
+	const DATABASE_NAME_BINARY = "climate_database.gbd"
 	const RECORDS_NAME = "climate_set_records"
 
 	class ClimateRecord:

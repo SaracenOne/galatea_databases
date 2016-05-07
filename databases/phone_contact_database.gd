@@ -3,6 +3,11 @@ const generic_database_const = preload("generic_database.gd")
 class PhoneContactDatabase:
 	extends "generic_database.gd".GenericDatabase
 	
+	const DATABASE_IDENT = "PCON"
+	const DATABASE_NAME = "phone_contact_database.json"
+	const DATABASE_NAME_BINARY = "phone_contact_database.gbd"
+	const RECORDS_NAME = "phone_contact_records"
+	
 	class PhoneContactRecord:
 		extends "generic_database.gd".GenericRecord
 		

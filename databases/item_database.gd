@@ -16,7 +16,9 @@ class ItemRecord:
 class ItemDatabase:
 	extends "generic_database.gd".GenericDatabase
 	
+	const DATABASE_IDENT = "ITEM"
 	const DATABASE_NAME = "item_database.json"
+	const DATABASE_NAME_BINARY = "item_database.gbd"
 	const RECORDS_NAME = "item_records"
 	
 	func load_database_ids():

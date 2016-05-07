@@ -3,7 +3,9 @@ const generic_database_const = preload("generic_database.gd")
 class ClothingDatabase:
 	extends "generic_database.gd".GenericDatabase
 	
+	const DATABASE_IDENT = "CLOT"
 	const DATABASE_NAME = "clothing_database.json"
+	const DATABASE_NAME_BINARY = "clothing_database.gbd"
 	const RECORDS_NAME = "clothing_set_records"
 
 	class ClothingRecord:

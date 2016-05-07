@@ -2,8 +2,10 @@ const generic_database_const = preload("generic_database.gd")
 
 class StatusEffectDatabase:
 	extends "generic_database.gd".GenericDatabase
-
+	
+	const DATABASE_IDENT = "SEFC"
 	const DATABASE_NAME = "status_effect_database.json"
+	const DATABASE_NAME_BINARY = "status_effect_database.gbd"
 	const RECORDS_NAME = "status_effect_records"
 	
 	class StatusEffectRecord:
