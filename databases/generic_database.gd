@@ -3,7 +3,9 @@ class GenericRecord extends Reference:
 	var id = ""
 	
 	func get_raw_id():
-		RawArray(id).resize(MAX_ID_SIZE)
+		var raw_id = id.to_ascii()
+		raw_id.resize(MAX_ID_SIZE)
+		return raw_id
 
 class GenericDatabase extends Reference:
 	var databases = null
