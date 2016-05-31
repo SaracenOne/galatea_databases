@@ -72,7 +72,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Family Name:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -86,13 +86,10 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 244.0
-margin/bottom = 40.0
-text = ""
-max_length = 0
+margin/bottom = 43.0
 editable = false
-secret = false
 
 [node name="GivenNameVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -116,7 +113,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Given Name:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -130,13 +127,10 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 244.0
-margin/bottom = 40.0
-text = ""
-max_length = 0
+margin/bottom = 43.0
 editable = false
-secret = false
 
 [node name="NicknameVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -160,7 +154,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Nickname:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -174,13 +168,10 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 244.0
-margin/bottom = 40.0
-text = ""
-max_length = 0
+margin/bottom = 43.0
 editable = false
-secret = false
 
 [node name="GenderVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -204,7 +195,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Gender:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -218,9 +209,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 244.0
-margin/bottom = 36.0
+margin/bottom = 39.0
 disabled = true
 toggle_mode = false
 text = "Male"
@@ -251,7 +242,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Date of Birth:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -265,9 +256,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 244.0
-margin/bottom = 40.0
+margin/bottom = 43.0
 alignment = 0
 
 [node name="Day" type="SpinBox" parent="RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions"]
@@ -333,7 +324,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Age:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -347,9 +338,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 244.0
-margin/bottom = 40.0
+margin/bottom = 43.0
 range/min = 0.0
 range/max = 999.0
 range/step = 1.0
@@ -383,7 +374,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Blood Type"
 percent_visible = 1.0
 lines_skipped = 0
@@ -397,9 +388,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 244.0
-margin/bottom = 36.0
+margin/bottom = 39.0
 disabled = true
 toggle_mode = false
 text = "A"
@@ -430,7 +421,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Actor Groups:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -441,7 +432,7 @@ max_lines_visible = -1
 anchor/right = 0
 anchor/bottom = 0
 size_flags/vertical = 3
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 244.0
 margin/bottom = 153.0
 
@@ -467,7 +458,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Traits:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -478,7 +469,7 @@ max_lines_visible = -1
 anchor/right = 0
 anchor/bottom = 0
 size_flags/vertical = 3
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 244.0
 margin/bottom = 153.0
 disabled = true
@@ -487,9 +478,9 @@ disabled = true
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
-
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
+
+[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
 
 [connection signal="text_changed" from="RightSide/FamilyNameVBoxContainer/FamilyNameLineEdit" to="." method="_on_FamilyNameLineEdit_text_changed"]
 

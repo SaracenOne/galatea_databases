@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_item_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
 
 [node name="ItemPanel" type="Control"]
 
@@ -17,6 +18,14 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
+printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameLineEdit")
+description_control = NodePath("RightSide/DescriptionContainer/DescriptionTextEdit")
+value_control = NodePath("RightSide/ValueContainer/ValueSpinBox")
+item_type_control = NodePath("RightSide/ItemTypeContainer/ItemTypeOptionButton")
+icon_file_control = NodePath("RightSide/IconFilePathControl")
+pickup_sfx_control = NodePath("RightSide/PickupSFXPathControl")
+putdown_sfx_control = NodePath("RightSide/PutdownSFXPathControl")
+can_gift_control = NodePath("RightSide/CanGiftContainer/CanGiftCheckBox")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -31,6 +40,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.2
 margin/bottom = 0.0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
@@ -49,12 +59,283 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
+[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 254.0
+margin/bottom = 53.0
+alignment = 0
+
+[node name="PrintedNameLabel" type="Label" parent="RightSide/PrintedNameContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 244.0
+margin/bottom = 16.0
+text = "Printed Name:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/PrintedNameContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 20.0
+margin/right = 244.0
+margin/bottom = 43.0
+
+[node name="DescriptionContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 70.0
+margin/right = 254.0
+margin/bottom = 229.0
+alignment = 0
+
+[node name="DescriptionLabel" type="Label" parent="RightSide/DescriptionContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 244.0
+margin/bottom = 16.0
+text = "Description:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DescriptionTextEdit" type="TextEdit" parent="RightSide/DescriptionContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 20.0
+margin/right = 244.0
+margin/bottom = 159.0
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="ValueContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 240.0
+margin/right = 254.0
+margin/bottom = 283.0
+alignment = 0
+
+[node name="ValueLabel" type="Label" parent="RightSide/ValueContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 244.0
+margin/bottom = 16.0
+text = "Value:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ValueSpinBox" type="SpinBox" parent="RightSide/ValueContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 20.0
+margin/right = 244.0
+margin/bottom = 43.0
+range/min = 0.0
+range/max = 1.21575e+009
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = true
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="ItemTypeContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 290.0
+margin/right = 254.0
+margin/bottom = 333.0
+alignment = 0
+
+[node name="ItemTypeLabel" type="Label" parent="RightSide/ItemTypeContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 244.0
+margin/bottom = 16.0
+text = "Item Type:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ItemTypeOptionButton" type="OptionButton" parent="RightSide/ItemTypeContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 20.0
+margin/right = 244.0
+margin/bottom = 39.0
+disabled = true
+toggle_mode = false
+text = "Misc"
+flat = false
+align = 0
+selected = 0
+items = [ "Misc", null, false, 1, null, "Key", null, false, 2, null, "Consumable", null, false, 3, null ]
+
+[node name="IconFilePathControl" parent="RightSide" instance=ExtResource( 3 )]
+
+margin/left = 10.0
+margin/top = 340.0
+margin/right = 532.0
+margin/bottom = 383.0
+label = "Icon File:"
+file_browser_title = "Open Image"
+file_type = "Image"
+disabled = true
+
+[node name="PickupSFXPathControl" parent="RightSide" instance=ExtResource( 3 )]
+
+margin/left = 10.0
+margin/top = 390.0
+margin/right = 532.0
+margin/bottom = 433.0
+label = "Pickup SFX:"
+file_browser_title = "Open Sample"
+file_type = "Sample"
+disabled = true
+
+[node name="PutdownSFXPathControl" parent="RightSide" instance=ExtResource( 3 )]
+
+margin/left = 10.0
+margin/top = 450.0
+margin/right = 532.0
+margin/bottom = 493.0
+label = "Putdown SFX:"
+file_browser_title = "Open Sample"
+file_type = "Sample"
+disabled = true
+
+[node name="CanGiftContainer" type="HBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 510.0
+margin/right = 89.0
+margin/bottom = 532.0
+alignment = 0
+
+[node name="CanGiftLabel" type="Label" parent="RightSide/CanGiftContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+margin/left = 0.0
+margin/top = 3.0
+margin/right = 49.0
+margin/bottom = 19.0
+text = "Can Gift:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CanGiftCheckBox" type="CheckBox" parent="RightSide/CanGiftContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 53.0
+margin/top = 0.0
+margin/right = 79.0
+margin/bottom = 22.0
+disabled = true
+toggle_mode = true
+flat = false
+
+[connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
+
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
-[connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
-
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+
+[connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
+
+[connection signal="text_changed" from="RightSide/DescriptionContainer/DescriptionTextEdit" to="." method="_on_DescriptionTextEdit_text_changed"]
+
+[connection signal="value_changed" from="RightSide/ValueContainer/ValueSpinBox" to="." method="_on_ValueSpinBox_value_changed"]
+
+[connection signal="item_selected" from="RightSide/ItemTypeContainer/ItemTypeOptionButton" to="." method="_on_ItemTypeOptionButton_item_selected"]
+
+[connection signal="file_selected" from="RightSide/IconFilePathControl" to="." method="_on_IconFilePathControl_file_selected"]
+
+[connection signal="file_selected" from="RightSide/PickupSFXPathControl" to="." method="_on_PickupSFXPathControl_file_selected"]
+
+[connection signal="file_selected" from="RightSide/PutdownSFXPathControl" to="." method="_on_PutdownSFXPathControl_file_selected"]
+
+[connection signal="toggled" from="RightSide/CanGiftContainer/CanGiftCheckBox" to="." method="_on_CanGiftCheckBox_toggled"]
 
 

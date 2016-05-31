@@ -10,16 +10,16 @@ var playable_on_phone_music_app_control = null
 var database_records = null
 
 func _ready():
-	track_title_control = get_node("RightSide/TrackTitleVBoxContainer/TrackTitleControl")
+	track_title_control = get_node("RightSide/TrackTitleContainer/TrackTitleControl")
 	assert(track_title_control)
 	
-	track_artist_control = get_node("RightSide/TrackArtistVBoxContainer/TrackArtistControl")
+	track_artist_control = get_node("RightSide/TrackArtistContainer/TrackArtistControl")
 	assert(track_artist_control)
 	
 	track_file_path_control = get_node("RightSide/TrackFilePathControl")
 	assert(track_file_path_control)
 	
-	playable_on_phone_music_app_control = get_node("RightSide/PlayableOnPhoneMusicAppVBoxContainer/PlayableOnPhoneMusicAppControlContainer/PlayableOnPhoneMusicAppControl")
+	playable_on_phone_music_app_control = get_node("RightSide/PlayableOnPhoneMusicAppContainer/PlayableOnPhoneMusicAppControlContainer/PlayableOnPhoneMusicAppControl")
 	assert(playable_on_phone_music_app_control)
 	
 func galatea_databases_assigned():

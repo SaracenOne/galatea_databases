@@ -50,7 +50,7 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
-[node name="TrackTitleVBoxContainer" type="VBoxContainer" parent="RightSide"]
+[node name="TrackTitleContainer" type="VBoxContainer" parent="RightSide"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -63,7 +63,7 @@ margin/right = 254.0
 margin/bottom = 50.0
 alignment = 1
 
-[node name="TrackTitleDescription" type="Label" parent="RightSide/TrackTitleVBoxContainer"]
+[node name="TrackTitleDescription" type="Label" parent="RightSide/TrackTitleContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
@@ -72,13 +72,13 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Track Title:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="TrackTitleControl" type="LineEdit" parent="RightSide/TrackTitleVBoxContainer"]
+[node name="TrackTitleControl" type="LineEdit" parent="RightSide/TrackTitleContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -86,15 +86,12 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 244.0
-margin/bottom = 40.0
-text = ""
-max_length = 0
+margin/bottom = 43.0
 editable = false
-secret = false
 
-[node name="TrackArtistVBoxContainer" type="VBoxContainer" parent="RightSide"]
+[node name="TrackArtistContainer" type="VBoxContainer" parent="RightSide"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -107,7 +104,7 @@ margin/right = 254.0
 margin/bottom = 100.0
 alignment = 1
 
-[node name="TrackArtistDescription" type="Label" parent="RightSide/TrackArtistVBoxContainer"]
+[node name="TrackArtistDescription" type="Label" parent="RightSide/TrackArtistContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
@@ -116,13 +113,13 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Track Artist:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="TrackArtistControl" type="LineEdit" parent="RightSide/TrackArtistVBoxContainer"]
+[node name="TrackArtistControl" type="LineEdit" parent="RightSide/TrackArtistContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -130,13 +127,10 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 244.0
-margin/bottom = 40.0
-text = ""
-max_length = 0
+margin/bottom = 43.0
 editable = false
-secret = false
 
 [node name="TrackFilePathControl" parent="RightSide" instance=ExtResource( 3 )]
 
@@ -148,7 +142,7 @@ label = "Track Path:"
 file_browser_title = "Select Music Track..."
 file_type = "AudioStream"
 
-[node name="PlayableOnPhoneMusicAppVBoxContainer" type="VBoxContainer" parent="RightSide"]
+[node name="PlayableOnPhoneMusicAppContainer" type="HBoxContainer" parent="RightSide"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -161,34 +155,35 @@ margin/right = 181.0
 margin/bottom = 198.0
 alignment = 1
 
-[node name="PlayableOnPhoneMusicAppDescription" type="Label" parent="RightSide/PlayableOnPhoneMusicAppVBoxContainer"]
+[node name="PlayableOnPhoneMusicAppDescription" type="Label" parent="RightSide/PlayableOnPhoneMusicAppContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 margin/left = 0.0
-margin/top = 0.0
+margin/top = 11.0
 margin/right = 171.0
-margin/bottom = 13.0
+margin/bottom = 27.0
 text = "Playable on Phone Music App:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="PlayableOnPhoneMusicAppControlContainer" type="Control" parent="RightSide/PlayableOnPhoneMusicAppVBoxContainer"]
+[node name="PlayableOnPhoneMusicAppControlContainer" type="Control" parent="RightSide/PlayableOnPhoneMusicAppContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 17.0
-margin/right = 171.0
+margin/left = 175.0
+margin/top = 0.0
+margin/right = 175.0
 margin/bottom = 38.0
+__meta__ = { "_editor_collapsed":true }
 
-[node name="PlayableOnPhoneMusicAppControl" type="CheckButton" parent="RightSide/PlayableOnPhoneMusicAppVBoxContainer/PlayableOnPhoneMusicAppControlContainer"]
+[node name="PlayableOnPhoneMusicAppControl" type="CheckButton" parent="RightSide/PlayableOnPhoneMusicAppContainer/PlayableOnPhoneMusicAppControlContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/bottom = 1
@@ -199,25 +194,25 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 76.0
-margin/bottom = 0.0
+margin/bottom = -3.0
 toggle_mode = true
 flat = false
 align = 0
 
-[connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
-
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
 
-[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+[connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
-[connection signal="text_changed" from="RightSide/TrackTitleVBoxContainer/TrackTitleControl" to="." method="_on_TrackTitleControl_text_changed"]
+[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
 
-[connection signal="text_changed" from="RightSide/TrackArtistVBoxContainer/TrackArtistControl" to="." method="_on_TrackArtistControl_text_changed"]
+[connection signal="text_changed" from="RightSide/TrackTitleContainer/TrackTitleControl" to="." method="_on_TrackTitleControl_text_changed"]
+
+[connection signal="text_changed" from="RightSide/TrackArtistContainer/TrackArtistControl" to="." method="_on_TrackArtistControl_text_changed"]
 
 [connection signal="file_selected" from="RightSide/TrackFilePathControl" to="." method="_on_TrackFilePathControl_file_selected"]
 
-[connection signal="toggled" from="RightSide/PlayableOnPhoneMusicAppVBoxContainer/PlayableOnPhoneMusicAppControlContainer/PlayableOnPhoneMusicAppControl" to="." method="_on_PlayableOnPhoneMusicAppControl_toggled"]
+[connection signal="toggled" from="RightSide/PlayableOnPhoneMusicAppContainer/PlayableOnPhoneMusicAppControlContainer/PlayableOnPhoneMusicAppControl" to="." method="_on_PlayableOnPhoneMusicAppControl_toggled"]
 
 

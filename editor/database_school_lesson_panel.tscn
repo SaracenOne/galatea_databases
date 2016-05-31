@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_calendar_event_panel.gd" type="Script" id=1]
+[ext_resource path="res://addons/galatea_databases/editor/database_school_lesson_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 
-[node name="CalendarEventPanel" type="Control"]
+[node name="SchoolLessonPanel" type="Control"]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -49,12 +49,12 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
-[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
-
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+
+[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 

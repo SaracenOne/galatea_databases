@@ -73,7 +73,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 400.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Printed Name:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -87,13 +87,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 400.0
-margin/bottom = 40.0
-text = ""
+margin/bottom = 43.0
 max_length = 64
 editable = false
-secret = false
 
 [node name="DescriptionContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -117,7 +115,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 300.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Description:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -132,21 +130,23 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 300.0
 margin/bottom = 200.0
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
 
 [node name="IconFileMainContainer" parent="RightSide" instance=ExtResource( 3 )]
 
 margin/left = 10.0
 margin/top = 290.0
 margin/right = 532.0
-margin/bottom = 330.0
+margin/bottom = 333.0
 label = "Icon File:"
-file_browser_title = "Open Scene"
-file_type = "PackedScene"
+file_browser_title = "Open Image"
+file_type = "Image"
 
-[node name="VisibleInCharacterCreatorContainer" type="VBoxContainer" parent="RightSide"]
+[node name="VisibleInCharacterCreatorContainer" type="HBoxContainer" parent="RightSide"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -155,8 +155,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
 margin/top = 350.0
-margin/right = 410.0
-margin/bottom = 390.0
+margin/right = 168.0
+margin/bottom = 392.0
 alignment = 0
 
 [node name="VisibleInCharacterCreatorLabel" type="Label" parent="RightSide/VisibleInCharacterCreatorContainer"]
@@ -166,9 +166,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 margin/left = 0.0
-margin/top = 0.0
-margin/right = 400.0
-margin/bottom = 13.0
+margin/top = 13.0
+margin/right = 158.0
+margin/bottom = 29.0
 text = "Visible in Character Creator:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -181,10 +181,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 17.0
-margin/right = 400.0
-margin/bottom = 39.0
+margin/left = 162.0
+margin/top = 0.0
+margin/right = 188.0
+margin/bottom = 42.0
 disabled = true
 toggle_mode = true
 flat = false
@@ -212,7 +212,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 262.0
-margin/bottom = 13.0
+margin/bottom = 16.0
 text = "Contradictory Traits:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -224,7 +224,7 @@ anchor/right = 0
 anchor/bottom = 0
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/top = 17.0
+margin/top = 20.0
 margin/right = 262.0
 margin/bottom = 198.0
 
@@ -232,9 +232,9 @@ margin/bottom = 198.0
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
-
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
+
+[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
 
 [connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameControl" to="." method="_on_printed_name_text_changed"]
 

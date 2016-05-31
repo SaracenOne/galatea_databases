@@ -12,6 +12,7 @@ const material_type_database_const = preload("material_type_database.gd")
 const music_track_database_const = preload("music_track_database.gd")
 const quest_database_const = preload("quest_database.gd")
 const readable_database_const = preload("readable_database.gd")
+const school_lesson_database_const = preload("school_lesson_database.gd")
 const status_effect_database_const = preload("status_effect_database.gd")
 const trait_database_const = preload("trait_database.gd")
 const weather_database_const = preload("weather_database.gd")
@@ -30,6 +31,7 @@ var material_type_database = null
 var music_track_database = null
 var quest_database = null
 var readable_database = null
+var school_lesson_database = null
 var status_effect_database = null
 var trait_database = null
 var weather_database = null
@@ -129,6 +131,10 @@ func init_databases():
 	readable_database = readable_database_const.ReadableDatabase.new(self)
 	assert(readable_database)
 	database_list.push_back(readable_database)
+	
+	school_lesson_database = school_lesson_database_const.SchoolLessonDatabase.new(self)
+	assert(school_lesson_database)
+	database_list.push_back(school_lesson_database)
 	
 	status_effect_database = status_effect_database_const.StatusEffectDatabase.new(self)
 	assert(status_effect_database)

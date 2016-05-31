@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_editor.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_activity_panel.tscn" type="PackedScene" id=2]
@@ -12,9 +12,10 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_music_track_panel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://addons/galatea_databases/editor/database_quest_panel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/galatea_databases/editor/database_readable_panel.tscn" type="PackedScene" id=12]
-[ext_resource path="res://addons/galatea_databases/editor/database_status_effect_panel.tscn" type="PackedScene" id=13]
-[ext_resource path="res://addons/galatea_databases/editor/database_trait_panel.tscn" type="PackedScene" id=14]
-[ext_resource path="res://addons/galatea_databases/editor/database_weather_panel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/galatea_databases/editor/database_school_lesson_panel.tscn" type="PackedScene" id=13]
+[ext_resource path="res://addons/galatea_databases/editor/database_status_effect_panel.tscn" type="PackedScene" id=14]
+[ext_resource path="res://addons/galatea_databases/editor/database_trait_panel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/galatea_databases/editor/database_weather_panel.tscn" type="PackedScene" id=16]
 
 [node name="DatabaseEditor" type="Panel"]
 
@@ -60,6 +61,7 @@ margin/left = 4.0
 margin/top = 31.0
 margin/right = 4.0
 margin/bottom = 4.0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="ActivityPanel" parent="DatabaseEditorTabs/Activities" instance=ExtResource( 2 )]
 
@@ -131,6 +133,7 @@ margin/left = 4.0
 margin/top = 31.0
 margin/right = 4.0
 margin/bottom = 4.0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="CalendarEventPanel" parent="DatabaseEditorTabs/CalendarEvent" instance=ExtResource( 6 )]
 
@@ -220,6 +223,7 @@ margin/left = 4.0
 margin/top = 31.0
 margin/right = 4.0
 margin/bottom = 4.0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="QuestPanel" parent="DatabaseEditorTabs/Quests" instance=ExtResource( 11 )]
 
@@ -237,8 +241,26 @@ margin/left = 4.0
 margin/top = 31.0
 margin/right = 4.0
 margin/bottom = 4.0
+__meta__ = { "_editor_collapsed":true }
 
 [node name="ReadablePanel" parent="DatabaseEditorTabs/Readables" instance=ExtResource( 12 )]
+
+[node name="School Lesson" type="Control" parent="DatabaseEditorTabs"]
+
+visibility/visible = false
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 31.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="SchoolLessonPanel" parent="DatabaseEditorTabs/School Lesson" instance=ExtResource( 13 )]
 
 [node name="Status Effects" type="Control" parent="DatabaseEditorTabs"]
 
@@ -256,7 +278,7 @@ margin/right = 4.0
 margin/bottom = 4.0
 __meta__ = { "_editor_collapsed":true }
 
-[node name="StatusEffectPanel" parent="DatabaseEditorTabs/Status Effects" instance=ExtResource( 13 )]
+[node name="StatusEffectPanel" parent="DatabaseEditorTabs/Status Effects" instance=ExtResource( 14 )]
 
 [node name="Traits" type="Control" parent="DatabaseEditorTabs"]
 
@@ -274,7 +296,7 @@ margin/right = 4.0
 margin/bottom = 4.0
 __meta__ = { "_editor_collapsed":true }
 
-[node name="TraitPanel" parent="DatabaseEditorTabs/Traits" instance=ExtResource( 14 )]
+[node name="TraitPanel" parent="DatabaseEditorTabs/Traits" instance=ExtResource( 15 )]
 
 [node name="Weather" type="Control" parent="DatabaseEditorTabs"]
 
@@ -290,8 +312,9 @@ margin/left = 4.0
 margin/top = 31.0
 margin/right = 4.0
 margin/bottom = 4.0
+__meta__ = { "_editor_collapsed":true }
 
-[node name="WeatherPanel" parent="DatabaseEditorTabs/Weather" instance=ExtResource( 15 )]
+[node name="WeatherPanel" parent="DatabaseEditorTabs/Weather" instance=ExtResource( 16 )]
 
 [node name="Panel" type="PanelContainer" parent="."]
 

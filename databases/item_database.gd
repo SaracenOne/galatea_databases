@@ -9,9 +9,12 @@ class ItemRecord:
 	extends "generic_database.gd".GenericRecord
 	var printed_name = ""
 	var description = ""
+	var value = 0
 	var item_type = ITEM_TYPE_UNKNOWN
+	var icon_path = ""
 	var pickup_sfx = ""
 	var putdown_sfx = ""
+	var can_gift = false
 
 class ItemDatabase:
 	extends "generic_database.gd".GenericDatabase
@@ -33,6 +36,9 @@ class ItemDatabase:
 			
 		if(p_dictionary_record.has("description")):
 			p_database_record.description = p_dictionary_record.description
+			
+		if(p_dictionary_record.has("value")):
+			p_database_record.value = p_dictionary_record.value
 		
 		if(p_dictionary_record.has("item_type")):
 			if(p_dictionary_record.item_type == "misc"):
@@ -44,11 +50,17 @@ class ItemDatabase:
 			else:
 				p_database_record.item_type = ITEM_TYPE_UNKNOWN
 		
+		if(p_dictionary_record.has("icon_path")):
+			p_database_record.icon_path = p_dictionary_record.icon_path
+		
 		if(p_dictionary_record.has("pickup_sfx")):
 			p_database_record.pickup_sfx = p_dictionary_record.pickup_sfx
 			
 		if(p_dictionary_record.has("putdown_sfx")):
 			p_database_record.putdown_sfx = p_dictionary_record.putdown_sfx
+			
+		if(p_dictionary_record.has("can_gift")):
+			p_database_record.can_gift = p_dictionary_record.can_gift
 		
 	func load_database_values():
 		_load_database_values(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
@@ -59,6 +71,7 @@ class ItemDatabase:
 		
 		p_dictionary_record.printed_name = p_database_record.printed_name
 		p_dictionary_record.description = p_database_record.description
+		p_dictionary_record.value = p_database_record.value
 		
 		if(p_database_record.item_type == ITEM_TYPE_MISC):
 			p_dictionary_record.item_type = "misc"
@@ -69,8 +82,10 @@ class ItemDatabase:
 		else:
 			p_dictionary_record.item_type = "???"
 		
+		p_dictionary_record.icon_path = p_database_record.icon_path
 		p_dictionary_record.pickup_sfx = p_database_record.pickup_sfx
 		p_dictionary_record.putdown_sfx = p_database_record.putdown_sfx
+		p_dictionary_record.can_gift = p_database_record.can_gift
 		
 	func save_database():
 		_save_database(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
