@@ -144,7 +144,7 @@ margin/right = 532.0
 margin/bottom = 333.0
 label = "Icon File:"
 file_browser_title = "Open Image"
-file_type = "Image"
+file_type = "ImageTexture"
 
 [node name="VisibleInCharacterCreatorContainer" type="HBoxContainer" parent="RightSide"]
 

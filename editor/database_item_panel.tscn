@@ -246,7 +246,7 @@ margin/right = 532.0
 margin/bottom = 383.0
 label = "Icon File:"
 file_browser_title = "Open Image"
-file_type = "Image"
+file_type = "ImageTexture"
 disabled = true
 
 [node name="PickupSFXPathControl" parent="RightSide" instance=ExtResource( 3 )]
@@ -313,6 +313,7 @@ margin/bottom = 22.0
 disabled = true
 toggle_mode = true
 flat = false
+align = 0
 
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
 
