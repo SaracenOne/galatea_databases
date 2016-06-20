@@ -18,6 +18,16 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
+family_name = NodePath("RightSide/FamilyNameVBoxContainer/FamilyNameLineEdit")
+given_name = NodePath("RightSide/GivenNameVBoxContainer/GivenNameLineEdit")
+nickname = NodePath("RightSide/NicknameVBoxContainer/NicknameLineEdit")
+gender = NodePath("RightSide/GenderVBoxContainer/GenderOptionButton")
+date_of_birth_day = NodePath("RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions/Day")
+date_of_birth_month = NodePath("RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions/Month")
+age = NodePath("RightSide/AgeVBoxContainer/AgeControl")
+blood_type = NodePath("RightSide/BloodTypeVBoxContainer/BloodTypeControl")
+actor_groups = NodePath("RightSide/ActorGroupsContainer/ActorGroupsControl")
+traits = NodePath("RightSide/TraitsContainer/TraitsControl")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -72,7 +82,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 13.0
 text = "Family Name:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -86,10 +96,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 17.0
 margin/right = 244.0
-margin/bottom = 43.0
+margin/bottom = 40.0
 editable = false
+focus_mode = 2
 
 [node name="GivenNameVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -113,7 +124,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 13.0
 text = "Given Name:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -127,10 +138,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 17.0
 margin/right = 244.0
-margin/bottom = 43.0
+margin/bottom = 40.0
 editable = false
+focus_mode = 2
 
 [node name="NicknameVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -154,7 +166,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 13.0
 text = "Nickname:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -168,10 +180,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 17.0
 margin/right = 244.0
-margin/bottom = 43.0
+margin/bottom = 40.0
 editable = false
+focus_mode = 2
 
 [node name="GenderVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -195,7 +208,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 13.0
 text = "Gender:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -209,11 +222,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 17.0
 margin/right = 244.0
-margin/bottom = 39.0
+margin/bottom = 36.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Male"
 flat = false
 align = 0
@@ -242,7 +257,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 13.0
 text = "Date of Birth:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -256,9 +271,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 17.0
 margin/right = 244.0
-margin/bottom = 43.0
+margin/bottom = 40.0
 alignment = 0
 
 [node name="Day" type="SpinBox" parent="RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions"]
@@ -296,6 +311,8 @@ margin/right = 244.0
 margin/bottom = 23.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "January"
 flat = false
 align = 0
@@ -324,7 +341,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 13.0
 text = "Age:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -338,9 +355,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 17.0
 margin/right = 244.0
-margin/bottom = 43.0
+margin/bottom = 40.0
 range/min = 0.0
 range/max = 999.0
 range/step = 1.0
@@ -374,7 +391,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 13.0
 text = "Blood Type"
 percent_visible = 1.0
 lines_skipped = 0
@@ -388,11 +405,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 17.0
 margin/right = 244.0
-margin/bottom = 39.0
+margin/bottom = 36.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "A"
 flat = false
 align = 0
@@ -421,7 +440,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 13.0
 text = "Actor Groups:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -432,7 +451,7 @@ max_lines_visible = -1
 anchor/right = 0
 anchor/bottom = 0
 size_flags/vertical = 3
-margin/top = 20.0
+margin/top = 17.0
 margin/right = 244.0
 margin/bottom = 153.0
 
@@ -458,7 +477,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 13.0
 text = "Traits:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -469,7 +488,7 @@ max_lines_visible = -1
 anchor/right = 0
 anchor/bottom = 0
 size_flags/vertical = 3
-margin/top = 20.0
+margin/top = 17.0
 margin/right = 244.0
 margin/bottom = 153.0
 disabled = true
@@ -478,9 +497,9 @@ disabled = true
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
-
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+
+[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="text_changed" from="RightSide/FamilyNameVBoxContainer/FamilyNameLineEdit" to="." method="_on_FamilyNameLineEdit_text_changed"]
 

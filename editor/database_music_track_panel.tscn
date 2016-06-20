@@ -18,6 +18,10 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
+track_title = NodePath("RightSide/TrackTitleContainer/TrackTitleControl")
+track_artist = NodePath("RightSide/TrackArtistContainer/TrackArtistControl")
+track_file_path = NodePath("RightSide/TrackFilePathControl")
+playable_on_phone_music_app = NodePath("RightSide/PlayableOnPhoneMusicAppContainer/PlayableOnPhoneMusicAppControlContainer/PlayableOnPhoneMusicAppControl")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -72,7 +76,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 13.0
 text = "Track Title:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -86,10 +90,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 17.0
 margin/right = 244.0
-margin/bottom = 43.0
+margin/bottom = 40.0
 editable = false
+focus_mode = 2
 
 [node name="TrackArtistContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -113,7 +118,7 @@ size_flags/horizontal = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 13.0
 text = "Track Artist:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -127,10 +132,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 17.0
 margin/right = 244.0
-margin/bottom = 43.0
+margin/bottom = 40.0
 editable = false
+focus_mode = 2
 
 [node name="TrackFilePathControl" parent="RightSide" instance=ExtResource( 3 )]
 
@@ -162,9 +168,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 margin/left = 0.0
-margin/top = 11.0
+margin/top = 12.0
 margin/right = 171.0
-margin/bottom = 27.0
+margin/bottom = 25.0
 text = "Playable on Phone Music App:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -181,11 +187,11 @@ margin/left = 175.0
 margin/top = 0.0
 margin/right = 175.0
 margin/bottom = 38.0
-__meta__ = { "_editor_collapsed":true }
 
-[node name="PlayableOnPhoneMusicAppControl" type="CheckButton" parent="RightSide/PlayableOnPhoneMusicAppContainer/PlayableOnPhoneMusicAppControlContainer"]
+[node name="PlayableOnPhoneMusicAppControl" type="CheckBox" parent="RightSide/PlayableOnPhoneMusicAppContainer/PlayableOnPhoneMusicAppControlContainer"]
 
 rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -193,9 +199,12 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 76.0
-margin/bottom = -3.0
+margin/right = -26.0
+margin/bottom = 0.0
+disabled = true
 toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
 flat = false
 align = 0
 
@@ -203,9 +212,9 @@ align = 0
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
-
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+
+[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="text_changed" from="RightSide/TrackTitleContainer/TrackTitleControl" to="." method="_on_TrackTitleControl_text_changed"]
 

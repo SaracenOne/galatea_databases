@@ -42,6 +42,18 @@ class ActorDatabase:
 		else:
 			""
 			
+	static func get_emoji_from_bloodtype(p_bloodtype):
+		if(p_bloodtype == BLOODTYPE_A):
+			return " "
+		elif(p_bloodtype == BLOODTYPE_B):
+			return " "
+		elif(p_bloodtype == BLOODTYPE_AB):
+			return " "
+		elif(p_bloodtype == BLOODTYPE_O):
+			return " ️"
+		else:
+			""
+			
 	static func get_gender_from_string(p_string):
 		var lower_string = p_string.to_lower()
 		
@@ -80,6 +92,7 @@ class ActorDatabase:
 		
 		var actor_groups = []
 		var traits = []
+		var ai_packages = []
 		
 		var stats = {}
 		
@@ -135,6 +148,12 @@ class ActorDatabase:
 				var trait = databases.trait_database.find_record_by_name(trait_name)
 				if(trait != null):
 					p_database_record.traits.append(trait)
+					
+		if(p_dictionary_record.has("ai_packages")):
+			for ai_package_name in p_dictionary_record.ai_packages:
+				var ai_package = databases.ai_package_database.find_record_by_name(ai_package_name)
+				if(ai_package != null):
+					p_database_record.ai_packages.append(ai_package)
 		
 		if(p_dictionary_record.has("stats")):
 			p_database_record.stats = p_dictionary_record.stats
@@ -167,6 +186,10 @@ class ActorDatabase:
 		p_dictionary_record.traits = []
 		for trait in p_database_record.traits:
 			p_dictionary_record.traits.append(trait.id)
+			
+		p_dictionary_record.ai_packages = []
+		for ai_package in p_database_record.ai_packages:
+			p_dictionary_record.ai_packages.append(ai_package.id)
 		
 		p_dictionary_record.stats = p_database_record.stats
 		

@@ -27,3 +27,6 @@ func insert_procedure_tree_node(p_node, p_parent=null):
 	if(p_parent == null):
 		root.push_back(p_node)
 		p_node.parent = p_parent
+		
+func find_optimal_nodes(p_state_dictionary):
+	pass

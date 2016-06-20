@@ -15,7 +15,7 @@ class AIPackageDatabase:
 	class AIPackageRecord:
 		extends "generic_database.gd".GenericRecord
 		
-		class Schedule:
+		class Schedule extends Reference:
 			const DAY_FLAG_SUNDAY = 1
 			const DAY_FLAG_MONDAY = 2
 			const DAY_FLAG_TUESDAY = 4
@@ -32,12 +32,12 @@ class AIPackageDatabase:
 			var start_minutes = -1
 			var start_hours = -1
 			
-			var days_in_week_flag = 0
+			var week_month_flag = 0
 			var days_flag = 0
-			var months_flag = 0
 			
 		var conditionals = conditionals_const.new()
 		var schedule = Schedule.new()
+		var flags = 0
 		
 		
 	func load_database_ids():

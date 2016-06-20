@@ -1,26 +1,30 @@
 tool
 extends "database_panel.gd"
 
-var track_title_control = null
-var track_artist_control = null
-var track_file_path_control = null
-var playable_on_phone_music_app_control = null
+export(NodePath) var track_title = NodePath()
+var _track_title_control = null
+export(NodePath) var track_artist = NodePath()
+var _track_artist_control = null
+export(NodePath) var track_file_path = NodePath()
+var _track_file_path_control = null
+export(NodePath) var playable_on_phone_music_app = NodePath()
+var _playable_on_phone_music_app_control = null
 
 #
 var database_records = null
 
 func _ready():
-	track_title_control = get_node("RightSide/TrackTitleContainer/TrackTitleControl")
-	assert(track_title_control)
+	_track_title_control = get_node(track_title)
+	assert(_track_title_control)
 	
-	track_artist_control = get_node("RightSide/TrackArtistContainer/TrackArtistControl")
-	assert(track_artist_control)
+	_track_artist_control = get_node(track_artist)
+	assert(_track_artist_control)
 	
-	track_file_path_control = get_node("RightSide/TrackFilePathControl")
-	assert(track_file_path_control)
+	_track_file_path_control = get_node(track_file_path)
+	assert(_track_file_path_control)
 	
-	playable_on_phone_music_app_control = get_node("RightSide/PlayableOnPhoneMusicAppContainer/PlayableOnPhoneMusicAppControlContainer/PlayableOnPhoneMusicAppControl")
-	assert(playable_on_phone_music_app_control)
+	_playable_on_phone_music_app_control = get_node(playable_on_phone_music_app)
+	assert(_playable_on_phone_music_app_control)
 	
 func galatea_databases_assigned():
 	database_records = get_node("LeftSide/DatabaseRecords")
@@ -48,17 +52,17 @@ func galatea_databases_assigned():
 func set_current_record_callback(p_record):
 	.set_current_record_callback(p_record)
 	
-	track_title_control.set_text(current_record.track_title)
-	track_title_control.set_editable(true)
+	_track_title_control.set_text(current_record.track_title)
+	_track_title_control.set_editable(true)
 	
-	track_artist_control.set_text(current_record.track_artist)
-	track_artist_control.set_editable(true)
+	_track_artist_control.set_text(current_record.track_artist)
+	_track_artist_control.set_editable(true)
 	
-	track_file_path_control.set_file_path(current_record.track_path)
-	track_file_path_control.set_disabled(false)
+	_track_file_path_control.set_file_path(current_record.track_path)
+	_track_file_path_control.set_disabled(false)
 	
-	playable_on_phone_music_app_control.set_pressed(p_record.playable_on_phone_music_app)
-	playable_on_phone_music_app_control.set_disabled(false)
+	_playable_on_phone_music_app_control.set_pressed(p_record.playable_on_phone_music_app)
+	_playable_on_phone_music_app_control.set_disabled(false)
 
 func _on_TrackTitleControl_text_changed( text ):
 	if(current_record):
