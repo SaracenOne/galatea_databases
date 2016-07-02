@@ -20,7 +20,7 @@ class SMSDatabase:
 		._load_record(p_dictionary_record, p_database_record)
 		
 		if(p_dictionary_record.has("actor")):
-			var actor = databases.actor_database.find_record_by_name(actor_name)
+			var actor = databases.actor_database.find_record_by_name(p_dictionary_record.actor)
 			if(actor != null):
 				p_database_record.actor = actor
 		
