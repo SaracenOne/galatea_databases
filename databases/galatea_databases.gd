@@ -40,6 +40,19 @@ var weather_database = null
 
 var path = "res://assets/databases"
 
+#stat IDS
+const STAT_STRESS = 0
+const STAT_CREATIVITY = 1
+const STAT_LOGIC = 2
+const STAT_KNOWLEDGE = 3
+const STAT_FITNESS = 4
+const STAT_CHARM = 5
+const STAT_SENSITIVITY = 6
+const STAT_STAMINA = 7
+const STAT_LUCK = 8
+const STAT_REPUTATION = 9
+const STAT_MONEY = 10
+
 const DATABASE_NAME_BINARY = "databases.gbd"
 
 var database_list = []

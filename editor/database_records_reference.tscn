@@ -75,6 +75,8 @@ margin/right = 788.0
 margin/bottom = 30.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Add"
 flat = false
 
@@ -91,12 +93,14 @@ margin/right = 1580.0
 margin/bottom = 30.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Erase"
 flat = false
 
-[connection signal="item_selected" from="RecordTree" to="." method="_on_RecordTree_item_selected"]
-
 [connection signal="cell_selected" from="RecordTree" to="." method="_on_RecordTree_cell_selected"]
+
+[connection signal="item_selected" from="RecordTree" to="." method="_on_RecordTree_item_selected"]
 
 [connection signal="pressed" from="Panel/HBoxContainer/AddButton" to="." method="_on_AddButton_pressed"]
 

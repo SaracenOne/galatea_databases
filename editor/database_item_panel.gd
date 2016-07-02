@@ -13,39 +13,17 @@ export(NodePath) var pickup_sfx_control = NodePath()
 export(NodePath) var putdown_sfx_control = NodePath()
 export(NodePath) var can_gift_control = NodePath()
 
-var printed_name_control_node = null
-var description_control_node = null
-var value_control_node = null
-var item_type_control_node = null
-var icon_file_control_node = null
-var pickup_sfx_control_node = null
-var putdown_sfx_control_node = null
-var can_gift_control_node = null
+onready var _printed_name_control_node = get_node(printed_name_control)
+onready var _description_control_node = get_node(description_control)
+onready var _value_control_node = get_node(value_control)
+onready var _item_type_control_node = get_node(item_type_control)
+onready var _icon_file_control_node = get_node(icon_file_control)
+onready var _pickup_sfx_control_node = get_node(pickup_sfx_control)
+onready var _putdown_sfx_control_node = get_node(putdown_sfx_control)
+onready var _can_gift_control_node = get_node(can_gift_control)
 
 func _ready():
-	printed_name_control_node = get_node(printed_name_control)
-	assert(printed_name_control_node)
-	
-	description_control_node = get_node(description_control)
-	assert(description_control_node)
-	
-	value_control_node = get_node(value_control)
-	assert(value_control_node)
-	
-	item_type_control_node = get_node(item_type_control)
-	assert(item_type_control_node)
-	
-	icon_file_control_node = get_node(icon_file_control)
-	assert(icon_file_control_node)
-	
-	pickup_sfx_control_node = get_node(pickup_sfx_control)
-	assert(pickup_sfx_control_node)
-	
-	putdown_sfx_control_node = get_node(putdown_sfx_control)
-	assert(putdown_sfx_control_node)
-	
-	can_gift_control_node = get_node(can_gift_control)
-	assert(can_gift_control_node)
+	pass
 
 func galatea_databases_assigned():
 	database_records = get_node("LeftSide/DatabaseRecords")
@@ -72,28 +50,29 @@ func galatea_databases_assigned():
 func set_current_record_callback(p_record):
 	.set_current_record_callback(p_record)
 	
-	printed_name_control_node.set_text(current_record.printed_name)
-	printed_name_control_node.set_editable(true)
+	_printed_name_control_node.set_text(current_record.printed_name)
+	_printed_name_control_node.set_editable(true)
 	
-	description_control_node.set_text(current_record.description)
+	_description_control_node.set_text(current_record.description)
+	_description_control_node.set_editable(true)
 	
-	value_control_node.set_value(current_record.value)
-	value_control_node.set_editable(true)
+	_value_control_node.set_value(current_record.value)
+	_value_control_node.set_editable(true)
 	
-	item_type_control_node.select(current_record.item_type)
-	item_type_control_node.set_disabled(false)
+	_item_type_control_node.select(current_record.item_type)
+	_item_type_control_node.set_disabled(false)
 	
-	icon_file_control_node.set_file_path(current_record.icon_path)
-	icon_file_control_node.set_disabled(false)
+	_icon_file_control_node.set_file_path(current_record.icon_path)
+	_icon_file_control_node.set_disabled(false)
 	
-	pickup_sfx_control_node.set_file_path(current_record.pickup_sfx)
-	pickup_sfx_control_node.set_disabled(false)
+	_pickup_sfx_control_node.set_file_path(current_record.pickup_sfx)
+	_pickup_sfx_control_node.set_disabled(false)
 	
-	putdown_sfx_control_node.set_file_path(current_record.putdown_sfx)
-	putdown_sfx_control_node.set_disabled(false)
+	_putdown_sfx_control_node.set_file_path(current_record.putdown_sfx)
+	_putdown_sfx_control_node.set_disabled(false)
 	
-	can_gift_control_node.set_pressed(current_record.can_gift)
-	can_gift_control_node.set_disabled(false)
+	_can_gift_control_node.set_pressed(current_record.can_gift)
+	_can_gift_control_node.set_disabled(false)
 
 func _on_PrintedNameLineEdit_text_changed( text ):
 	if(current_record):
@@ -102,7 +81,7 @@ func _on_PrintedNameLineEdit_text_changed( text ):
 
 func _on_DescriptionTextEdit_text_changed():
 	if(current_record):
-		current_record.description = description_control_node.get_text()
+		current_record.description = _description_control_node.get_text()
 		current_database.mark_database_as_modified()
 
 func _on_ValueSpinBox_value_changed( value ):

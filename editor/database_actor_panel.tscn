@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_actor_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.gd" type="Script" id=4]
 
 [node name="ActorPanel" type="Control"]
 
@@ -70,7 +71,7 @@ size_flags/vertical = 2
 margin/left = 10.0
 margin/top = 10.0
 margin/right = 254.0
-margin/bottom = 50.0
+margin/bottom = 52.0
 alignment = 1
 
 [node name="FamilyNameDescription" type="Label" parent="RightSide/FamilyNameVBoxContainer"]
@@ -79,10 +80,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 14.0
 text = "Family Name:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -96,11 +98,14 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 18.0
 margin/right = 244.0
-margin/bottom = 40.0
+margin/bottom = 42.0
+placeholder/alpha = 0.6
 editable = false
 focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
 
 [node name="GivenNameVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -121,10 +126,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 14.0
 text = "Given Name:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -138,11 +144,14 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 18.0
 margin/right = 244.0
-margin/bottom = 40.0
+margin/bottom = 42.0
+placeholder/alpha = 0.6
 editable = false
 focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
 
 [node name="NicknameVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -163,10 +172,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 14.0
 text = "Nickname:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -180,11 +190,14 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 18.0
 margin/right = 244.0
-margin/bottom = 40.0
+margin/bottom = 42.0
+placeholder/alpha = 0.6
 editable = false
 focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
 
 [node name="GenderVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -205,10 +218,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 14.0
 text = "Gender:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -222,9 +236,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 18.0
 margin/right = 244.0
-margin/bottom = 36.0
+margin/bottom = 38.0
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -254,10 +268,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 14.0
 text = "Date of Birth:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -271,9 +286,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 18.0
 margin/right = 244.0
-margin/bottom = 40.0
+margin/bottom = 42.0
 alignment = 0
 
 [node name="Day" type="SpinBox" parent="RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions"]
@@ -286,7 +301,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 120.0
-margin/bottom = 23.0
+margin/bottom = 24.0
 range/min = 1.0
 range/max = 31.0
 range/step = 1.0
@@ -308,7 +323,7 @@ size_flags/vertical = 2
 margin/left = 124.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 23.0
+margin/bottom = 24.0
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -338,10 +353,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 14.0
 text = "Age:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -355,9 +371,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 18.0
 margin/right = 244.0
-margin/bottom = 40.0
+margin/bottom = 42.0
 range/min = 0.0
 range/max = 999.0
 range/step = 1.0
@@ -388,10 +404,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 14.0
 text = "Blood Type"
 percent_visible = 1.0
 lines_skipped = 0
@@ -405,9 +422,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 18.0
 margin/right = 244.0
-margin/bottom = 36.0
+margin/bottom = 38.0
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -437,10 +454,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 14.0
 text = "Actor Groups:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -451,7 +469,7 @@ max_lines_visible = -1
 anchor/right = 0
 anchor/bottom = 0
 size_flags/vertical = 3
-margin/top = 17.0
+margin/top = 18.0
 margin/right = 244.0
 margin/bottom = 153.0
 
@@ -474,32 +492,118 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 13.0
+margin/bottom = 14.0
 text = "Traits:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="TraitsControl" parent="RightSide/TraitsContainer" instance=ExtResource( 3 )]
+[node name="TraitsControl" type="Control" parent="RightSide/TraitsContainer"]
 
-anchor/right = 0
-anchor/bottom = 0
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
 size_flags/vertical = 3
-margin/top = 17.0
+margin/left = 0.0
+margin/top = 18.0
 margin/right = 244.0
 margin/bottom = 153.0
+script/script = ExtResource( 4 )
 disabled = true
+
+[node name="RecordTree" type="Tree" parent="RightSide/TraitsContainer/TraitsControl"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 50.0
+
+[node name="Panel" type="Panel" parent="RightSide/TraitsContainer/TraitsControl"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 50.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RightSide/TraitsContainer/TraitsControl/Panel"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 10.0
+margin/bottom = 10.0
+alignment = 1
+
+[node name="AddButton" type="Button" parent="RightSide/TraitsContainer/TraitsControl/Panel/HBoxContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 110.0
+margin/bottom = 30.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Add"
+flat = false
+
+[node name="EraseButton" type="Button" parent="RightSide/TraitsContainer/TraitsControl/Panel/HBoxContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 114.0
+margin/top = 0.0
+margin/right = 224.0
+margin/bottom = 30.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Erase"
+flat = false
+
+[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
+
+[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
 
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
-
-[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
-
-[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="text_changed" from="RightSide/FamilyNameVBoxContainer/FamilyNameLineEdit" to="." method="_on_FamilyNameLineEdit_text_changed"]
 
@@ -517,12 +621,20 @@ disabled = true
 
 [connection signal="item_selected" from="RightSide/BloodTypeVBoxContainer/BloodTypeControl" to="." method="_on_BloodTypeControl_item_selected"]
 
+[connection signal="record_erased" from="RightSide/ActorGroupsContainer/ActorGroupsControl" to="." method="_on_ActorGroupsControl_record_erased"]
+
 [connection signal="record_selected" from="RightSide/ActorGroupsContainer/ActorGroupsControl" to="." method="_on_ActorGroupsControl_record_selected"]
 
-[connection signal="record_erased" from="RightSide/ActorGroupsContainer/ActorGroupsControl" to="." method="_on_ActorGroupsControl_record_erased"]
+[connection signal="record_erased" from="RightSide/TraitsContainer/TraitsControl" to="." method="_on_TraitsControl_record_erased"]
 
 [connection signal="record_selected" from="RightSide/TraitsContainer/TraitsControl" to="." method="_on_TraitsControl_record_selected"]
 
-[connection signal="record_erased" from="RightSide/TraitsContainer/TraitsControl" to="." method="_on_TraitsControl_record_erased"]
+[connection signal="cell_selected" from="RightSide/TraitsContainer/TraitsControl/RecordTree" to="RightSide/TraitsContainer/TraitsControl" method="_on_RecordTree_cell_selected"]
+
+[connection signal="item_selected" from="RightSide/TraitsContainer/TraitsControl/RecordTree" to="RightSide/TraitsContainer/TraitsControl" method="_on_RecordTree_item_selected"]
+
+[connection signal="pressed" from="RightSide/TraitsContainer/TraitsControl/Panel/HBoxContainer/AddButton" to="RightSide/TraitsContainer/TraitsControl" method="_on_AddButton_pressed"]
+
+[connection signal="pressed" from="RightSide/TraitsContainer/TraitsControl/Panel/HBoxContainer/EraseButton" to="RightSide/TraitsContainer/TraitsControl" method="_on_EraseButton_pressed"]
 
 

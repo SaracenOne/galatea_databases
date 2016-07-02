@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_activity_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=4]
 
 [node name="ActivityPanel" type="Control"]
 
@@ -17,6 +19,12 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
+printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameLineEdit")
+description_control = NodePath("RightSide/DescriptionContainer/DescriptionLineEdit")
+main_icon_path_control = NodePath("RightSide/MainIconPath")
+activity_script_path_control = NodePath("RightSide/ActivityScriptPath")
+valid_locations_control = NodePath("RightSide/ValidLocationsContainer/ValidLocationsRecordsReference")
+selectable_flag_control = NodePath("RightSide/FlagsContainer/SelectableFlagContainer/SelectableFlagCheckBox")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -49,12 +57,226 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
+[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide"]
+
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 30.0
+margin/right = 254.0
+margin/bottom = 72.0
+alignment = 0
+
+[node name="PrintedNameLabel" type="Label" parent="RightSide/PrintedNameContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 244.0
+margin/bottom = 14.0
+text = "Printed Name:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/PrintedNameContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 244.0
+margin/bottom = 42.0
+placeholder/alpha = 0.6
+editable = false
+focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
+
+[node name="DescriptionContainer" type="VBoxContainer" parent="RightSide"]
+
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 80.0
+margin/right = 254.0
+margin/bottom = 122.0
+alignment = 0
+
+[node name="DescriptionLabel" type="Label" parent="RightSide/DescriptionContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 244.0
+margin/bottom = 14.0
+text = "Description:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DescriptionLineEdit" type="LineEdit" parent="RightSide/DescriptionContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 244.0
+margin/bottom = 42.0
+placeholder/alpha = 0.6
+editable = false
+focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
+
+[node name="MainIconPath" parent="RightSide" instance=ExtResource( 3 )]
+
+margin/left = 10.0
+margin/top = 145.0
+margin/right = 366.0
+margin/bottom = 187.0
+label = "Main Icon Path:"
+file_browser_title = "Load Image"
+file_type = "ImageTexture"
+disabled = true
+
+[node name="ActivityScriptPath" parent="RightSide" instance=ExtResource( 3 )]
+
+margin/left = 10.0
+margin/top = 208.0
+margin/right = 464.0
+margin/bottom = 250.0
+label = "Activity Script:"
+file_browser_title = "Load Script"
+file_type = "GDScript"
+disabled = true
+
+[node name="ValidLocationsContainer" type="VBoxContainer" parent="RightSide"]
+
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 261.0
+margin/right = 256.0
+margin/bottom = 411.0
+alignment = 0
+
+[node name="ValidLocationsLabel" type="Label" parent="RightSide/ValidLocationsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 246.0
+margin/bottom = 14.0
+text = "Valid Locations:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ValidLocationsRecordsReference" parent="RightSide/ValidLocationsContainer" instance=ExtResource( 4 )]
+
+anchor/right = 0
+anchor/bottom = 0
+size_flags/vertical = 3
+margin/top = 18.0
+margin/right = 246.0
+margin/bottom = 150.0
+
+[node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 431.0
+margin/right = 256.0
+margin/bottom = 454.0
+alignment = 0
+
+[node name="SelectableFlagContainer" type="HBoxContainer" parent="RightSide/FlagsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 246.0
+margin/bottom = 23.0
+alignment = 0
+
+[node name="SelectableFlagCheckBox" type="CheckBox" parent="RightSide/FlagsContainer/SelectableFlagContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 92.0
+margin/bottom = 23.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Selectable"
+flat = false
+align = 0
+
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
+
+[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
 
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+[connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
+
+[connection signal="text_changed" from="RightSide/DescriptionContainer/DescriptionLineEdit" to="." method="_on_DescriptionLineEdit_text_changed"]
+
+[connection signal="file_selected" from="RightSide/MainIconPath" to="." method="_on_MainIconPath_file_selected"]
+
+[connection signal="file_selected" from="RightSide/ActivityScriptPath" to="." method="_on_ActivityScriptPath_file_selected"]
+
+[connection signal="record_erased" from="RightSide/ValidLocationsContainer/ValidLocationsRecordsReference" to="." method="_on_ValidLocationsRecordsReference_record_erased"]
+
+[connection signal="record_selected" from="RightSide/ValidLocationsContainer/ValidLocationsRecordsReference" to="." method="_on_ValidLocationsRecordsReference_record_selected"]
+
+[connection signal="toggled" from="RightSide/FlagsContainer/SelectableFlagContainer/SelectableFlagCheckBox" to="." method="_on_SelectableFlagCheckBox_toggled"]
 
 

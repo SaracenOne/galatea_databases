@@ -18,17 +18,10 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
-printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameLineEdit")
-description_control = NodePath("RightSide/DescriptionContainer/DescriptionTextEdit")
-value_control = NodePath("RightSide/ValueContainer/ValueSpinBox")
-item_type_control = NodePath("RightSide/ItemTypeContainer/ItemTypeOptionButton")
-icon_file_control = NodePath("RightSide/IconFilePathControl")
-pickup_sfx_control = NodePath("RightSide/PickupSFXPathControl")
-putdown_sfx_control = NodePath("RightSide/PutdownSFXPathControl")
-can_gift_control = NodePath("RightSide/CanGiftContainer/CanGiftCheckBox")
 
 [node name="LeftSide" type="Control" parent="."]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 2
 anchor/bottom = 1
@@ -40,7 +33,6 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.2
 margin/bottom = 0.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
@@ -78,10 +70,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 14.0
 text = "Printed Name:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -95,9 +88,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 18.0
 margin/right = 244.0
-margin/bottom = 43.0
+margin/bottom = 42.0
+placeholder/alpha = 0.6
+focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
 
 [node name="DescriptionContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -118,10 +115,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 14.0
 text = "Description:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -135,7 +133,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 18.0
 margin/right = 244.0
 margin/bottom = 159.0
 caret/caret_blink = false
@@ -160,10 +158,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 14.0
 text = "Value:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -177,9 +176,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 18.0
 margin/right = 244.0
-margin/bottom = 43.0
+margin/bottom = 42.0
 range/min = 0.0
 range/max = 1.21575e+009
 range/step = 1.0
@@ -210,10 +209,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 244.0
-margin/bottom = 16.0
+margin/bottom = 14.0
 text = "Item Type:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -227,11 +227,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 18.0
 margin/right = 244.0
-margin/bottom = 39.0
+margin/bottom = 38.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Misc"
 flat = false
 align = 0
@@ -290,10 +292,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 3.0
-margin/right = 49.0
-margin/bottom = 19.0
+margin/top = 4.0
+margin/right = 54.0
+margin/bottom = 18.0
 text = "Can Gift:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -306,22 +309,24 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 53.0
+margin/left = 58.0
 margin/top = 0.0
-margin/right = 79.0
-margin/bottom = 22.0
+margin/right = 84.0
+margin/bottom = 23.0
 disabled = true
 toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
 flat = false
 align = 0
-
-[connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
-
-[connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+
+[connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
+
+[connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
 [connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
 

@@ -70,10 +70,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 400.0
-margin/bottom = 16.0
+margin/bottom = 14.0
 text = "Printed Name:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -87,11 +88,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 18.0
 margin/right = 400.0
-margin/bottom = 43.0
+margin/bottom = 42.0
+placeholder/alpha = 0.6
 max_length = 64
 editable = false
+focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
 
 [node name="DescriptionContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -112,10 +117,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 300.0
-margin/bottom = 16.0
+margin/bottom = 14.0
 text = "Description:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -130,7 +136,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 20.0
+margin/top = 18.0
 margin/right = 300.0
 margin/bottom = 200.0
 caret/caret_blink = false
@@ -143,7 +149,7 @@ margin/top = 290.0
 margin/right = 532.0
 margin/bottom = 333.0
 label = "Icon File:"
-file_browser_title = "Open Image"
+file_browser_title = "Load Image"
 file_type = "ImageTexture"
 
 [node name="VisibleInCharacterCreatorContainer" type="HBoxContainer" parent="RightSide"]
@@ -159,21 +165,6 @@ margin/right = 168.0
 margin/bottom = 392.0
 alignment = 0
 
-[node name="VisibleInCharacterCreatorLabel" type="Label" parent="RightSide/VisibleInCharacterCreatorContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-margin/left = 0.0
-margin/top = 13.0
-margin/right = 158.0
-margin/bottom = 29.0
-text = "Visible in Character Creator:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
 [node name="VisibleInCharacterCreatorControl" type="CheckBox" parent="RightSide/VisibleInCharacterCreatorContainer"]
 
 rect/pivot = Vector2( 0, 0 )
@@ -181,12 +172,15 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 162.0
+margin/left = 0.0
 margin/top = 0.0
-margin/right = 188.0
+margin/right = 199.0
 margin/bottom = 42.0
 disabled = true
 toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Visible in Character Creator"
 flat = false
 align = 0
 
@@ -209,10 +203,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 262.0
-margin/bottom = 16.0
+margin/bottom = 14.0
 text = "Contradictory Traits:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -224,17 +219,17 @@ anchor/right = 0
 anchor/bottom = 0
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/top = 20.0
+margin/top = 18.0
 margin/right = 262.0
 margin/bottom = 198.0
-
-[connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
-
-[connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+
+[connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
+
+[connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
 [connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameControl" to="." method="_on_printed_name_text_changed"]
 
@@ -244,8 +239,8 @@ margin/bottom = 198.0
 
 [connection signal="toggled" from="RightSide/VisibleInCharacterCreatorContainer/VisibleInCharacterCreatorControl" to="." method="_on_VisibleInCharacterControl_toggled"]
 
-[connection signal="record_selected" from="RightSide/ContradictoryTraitsContainer/ContradictoryTraitsControl" to="." method="_on_ContradictoryTraitsControl_record_selected"]
-
 [connection signal="record_erased" from="RightSide/ContradictoryTraitsContainer/ContradictoryTraitsControl" to="." method="_on_ContradictoryTraitsControl_record_erased"]
+
+[connection signal="record_selected" from="RightSide/ContradictoryTraitsContainer/ContradictoryTraitsControl" to="." method="_on_ContradictoryTraitsControl_record_selected"]
 
 
