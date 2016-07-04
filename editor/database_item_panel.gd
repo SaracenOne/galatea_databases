@@ -54,7 +54,6 @@ func set_current_record_callback(p_record):
 	_printed_name_control_node.set_editable(true)
 	
 	_description_control_node.set_text(current_record.description)
-	_description_control_node.set_editable(true)
 	
 	_value_control_node.set_value(current_record.value)
 	_value_control_node.set_editable(true)

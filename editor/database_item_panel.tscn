@@ -18,6 +18,14 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
+printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameLineEdit")
+description_control = NodePath("RightSide/DescriptionContainer/DescriptionTextEdit")
+value_control = NodePath("RightSide/ValueContainer/ValueSpinBox")
+item_type_control = NodePath("RightSide/ItemTypeContainer/ItemTypeOptionButton")
+icon_file_control = NodePath("RightSide/IconFilePathControl")
+pickup_sfx_control = NodePath("RightSide/PickupSFXPathControl")
+putdown_sfx_control = NodePath("RightSide/PutdownSFXPathControl")
+can_gift_control = NodePath("RightSide/CanGiftContainer/CanGiftCheckBox")
 
 [node name="LeftSide" type="Control" parent="."]
 
