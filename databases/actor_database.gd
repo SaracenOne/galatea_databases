@@ -87,8 +87,10 @@ class ActorDatabase:
 		var family_name = ""
 		var nickname = ""
 		
+		var is_valid_contact=false
 		var is_storyline_actor=false
-		var is_unique=false
+		
+		var contact_icon_path = ""
 		
 		var actor_groups = []
 		var traits = []
@@ -137,6 +139,15 @@ class ActorDatabase:
 		if(p_dictionary_record.has("date_of_birth_month")):
 			p_database_record.date_of_birth_month = date_and_time_const.get_month_from_string(p_dictionary_record.date_of_birth_month)
 		
+		# Flags
+		if(p_dictionary_record.has("is_valid_contact")):
+			p_database_record.is_valid_contact = p_dictionary_record.is_valid_contact
+		if(p_dictionary_record.has("is_storyline_actor")):
+			p_database_record.is_storyline_actor = p_dictionary_record.is_storyline_actor
+			
+		if(p_dictionary_record.has("contact_icon_path")):
+			p_database_record.contact_icon_path = p_dictionary_record.contact_icon_path
+		
 		if(p_dictionary_record.has("actor_groups")):
 			for actor_group_name in p_dictionary_record.actor_groups:
 				var actor_group = databases.actor_group_database.find_record_by_name(actor_group_name)
@@ -178,6 +189,13 @@ class ActorDatabase:
 		
 		p_dictionary_record.date_of_birth_day = p_database_record.date_of_birth_day
 		p_dictionary_record.date_of_birth_month = date_and_time_const.get_string_from_month(p_database_record.date_of_birth_month)
+		
+		# Flags
+		p_dictionary_record.is_valid_contact = p_database_record.is_valid_contact
+		p_dictionary_record.is_storyline_actor = p_database_record.is_storyline_actor
+		
+		###
+		p_dictionary_record.contact_icon_path = p_database_record.contact_icon_path
 		
 		p_dictionary_record.actor_groups = []
 		for actor_group in p_database_record.actor_groups:

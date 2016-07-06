@@ -12,53 +12,37 @@ export(NodePath) var blood_type = NodePath()
 export(NodePath) var actor_groups = NodePath()
 export(NodePath) var traits = NodePath()
 
-var _family_name_control = null
-var _given_name_control = null
-var _nickname_control = null
-var _gender_control = null
+export(NodePath) var contact_icon_path = NodePath()
+export(NodePath) var contact_icon_texture = NodePath()
 
-var _date_of_birth_day_control = null
-var _date_of_birth_month_control = null
+export(NodePath) var valid_contact = NodePath()
+export(NodePath) var is_storyline_actor = NodePath()
 
-var _age_control = null
-var _blood_type_control = null
+onready var _family_name_control = get_node(family_name)
+onready var _given_name_control = get_node(given_name)
+onready var _nickname_control = get_node(nickname)
+onready var _gender_control = get_node(gender)
 
-var _actor_groups_control = null
-var _traits_control = null
+onready var _date_of_birth_day_control = get_node(date_of_birth_day)
+onready var _date_of_birth_month_control = get_node(date_of_birth_month)
+
+onready var _age_control = get_node(age)
+onready var _blood_type_control = get_node(blood_type)
+
+onready var _actor_groups_control = get_node(actor_groups)
+onready var _traits_control = get_node(traits)
+
+onready var _contact_icon_path_control = get_node(contact_icon_path)
+onready var _contact_icon_texture_control = get_node(contact_icon_texture)
+
+onready var _valid_contact_control = get_node(valid_contact)
+onready var _is_storyline_actor_control = get_node(is_storyline_actor)
 
 #
 var database_records = null
 
 func _ready():
-	_family_name_control = get_node(family_name)
-	assert(_family_name_control)
-	
-	_given_name_control = get_node(given_name)
-	assert(_given_name_control)
-	
-	_nickname_control = get_node(nickname)
-	assert(_nickname_control)
-	
-	_gender_control = get_node(gender)
-	assert(_gender_control)
-	
-	_date_of_birth_day_control = get_node(date_of_birth_day)
-	assert(_date_of_birth_day_control)
-	
-	_date_of_birth_month_control = get_node(date_of_birth_month)
-	assert(_date_of_birth_month_control)
-	
-	_age_control = get_node(age)
-	assert(_age_control)
-	
-	_blood_type_control = get_node(blood_type)
-	assert(_blood_type_control)
-	
-	_actor_groups_control = get_node(actor_groups)
-	assert(_actor_groups_control)
-	
-	_traits_control = get_node(traits)
-	assert(_traits_control)
+	pass
 	
 func galatea_databases_assigned():
 	database_records = get_node("LeftSide/DatabaseRecords")
@@ -117,6 +101,19 @@ func set_current_record_callback(p_record):
 	
 	_traits_control.set_disabled(false)
 	_traits_control.populate_tree(p_record.traits, null)
+	
+	_contact_icon_path_control.set_disabled(false)
+	_contact_icon_path_control.set_file_path(p_record.contact_icon_path)
+	_contact_icon_texture_control.set_texture(null)
+	var contact_icon_texture = load(p_record.contact_icon_path)
+	if(contact_icon_texture extends ImageTexture):
+		_contact_icon_texture_control.set_texture(contact_icon_texture)
+	
+	_valid_contact_control.set_disabled(false)
+	_valid_contact_control.set_pressed(p_record.is_valid_contact)
+	
+	_is_storyline_actor_control.set_disabled(false)
+	_is_storyline_actor_control.set_pressed(p_record.is_storyline_actor)
 
 func _on_FamilyNameLineEdit_text_changed( text ):
 	if(current_record):
@@ -190,3 +187,23 @@ func _on_TraitsControl_record_selected( p_record ):
 			current_record.traits.append(p_record)
 			_traits_control.populate_tree(current_record.traits, null)
 			current_database.mark_database_as_modified()
+			
+func _on_ContactIconPathControl_file_selected( p_path ):
+	if(current_record):
+		current_record.contact_icon_path = p_path
+		_contact_icon_texture_control.set_texture(null)
+		var contact_icon_texture = load(p_path)
+		if(contact_icon_texture extends ImageTexture):
+			_contact_icon_texture_control.set_texture(contact_icon_texture)
+		
+		current_database.mark_database_as_modified()
+		
+func _on_ValidContactCheckbox_toggled( pressed ):
+	if(current_record):
+		current_record.is_valid_contact = pressed
+		current_database.mark_database_as_modified()
+
+func _on_IsStorylineActorCheckbox_toggled( pressed ):
+	if(current_record):
+		current_record.is_storyline_actor = pressed
+		current_database.mark_database_as_modified()

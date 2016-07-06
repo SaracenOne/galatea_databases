@@ -255,9 +255,11 @@ margin/top = 340.0
 margin/right = 532.0
 margin/bottom = 383.0
 label = "Icon File:"
+file_path = ""
 file_browser_title = "Open Image"
 file_type = "ImageTexture"
 disabled = true
+has_clear_button = true
 
 [node name="PickupSFXPathControl" parent="RightSide" instance=ExtResource( 3 )]
 
@@ -266,9 +268,11 @@ margin/top = 390.0
 margin/right = 532.0
 margin/bottom = 433.0
 label = "Pickup SFX:"
+file_path = ""
 file_browser_title = "Open Sample"
 file_type = "Sample"
 disabled = true
+has_clear_button = true
 
 [node name="PutdownSFXPathControl" parent="RightSide" instance=ExtResource( 3 )]
 
@@ -277,9 +281,11 @@ margin/top = 450.0
 margin/right = 532.0
 margin/bottom = 493.0
 label = "Putdown SFX:"
+file_path = ""
 file_browser_title = "Open Sample"
 file_type = "Sample"
 disabled = true
+has_clear_button = true
 
 [node name="CanGiftContainer" type="HBoxContainer" parent="RightSide"]
 

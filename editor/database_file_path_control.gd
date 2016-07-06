@@ -10,6 +10,7 @@ export(String) var file_browser_title = "" setget set_file_browser_title, get_fi
 export(String) var file_type = "" setget set_file_type, get_file_type
 
 export(bool) var disabled = false setget set_disabled, get_disabled
+export(bool) var has_clear_button = false setget set_has_clear_button, get_has_clear_button
 
 var label_control = null
 var file_path_control = null
@@ -52,12 +53,27 @@ func get_file_type():
 	
 func set_disabled(p_bool):
 	disabled = p_bool
-	var button = get_node("Container/LoadButton")
-	if(button):
-		button.set_disabled(p_bool)
+	var load_button = get_node("Container/LoadButton")
+	if(load_button):
+		load_button.set_disabled(p_bool)
+		
+	var clear_button = get_node("Container/ClearButton")
+	if(clear_button):
+		clear_button.set_disabled(p_bool)
 
 func get_disabled():
 	return disabled
+	
+func set_has_clear_button(p_bool):
+	has_clear_button = p_bool
+	var button = get_node("Container/ClearButton")
+	if(has_clear_button):
+		button.show()
+	else:
+		button.hide()
+
+func get_has_clear_button():
+	return has_clear_button
 
 func _ready():
 	label_control = get_node("FileLabel")
@@ -68,8 +84,13 @@ func _ready():
 	assert(file_path_control)
 	file_path_control.set_text(file_path)
 	
+	if(has_clear_button):
+		get_node("Container/ClearButton").show()
+	else:
+		get_node("Container/ClearButton").hide()
+	
 	add_child(editor_file_dialog)
-
+	
 	editor_file_dialog.set_title(file_browser_title);
 	editor_file_dialog.connect("file_selected", self, "_on_file_selected")
 	editor_file_dialog.set_mode(FileDialog.MODE_OPEN_FILE);
@@ -83,3 +104,8 @@ func _on_file_selected(p_path):
 	
 func _on_LoadButton_pressed():
 	editor_file_dialog.popup_centered_ratio()
+
+func _on_ClearButton_pressed():
+	set_file_path("")
+	
+	emit_signal("file_selected", "")

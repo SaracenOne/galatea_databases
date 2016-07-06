@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_actor_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/galatea_databases/editor/database_records_reference.gd" type="Script" id=4]
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=5]
 
 [node name="ActorPanel" type="Control"]
 
@@ -29,6 +30,10 @@ age = NodePath("RightSide/AgeVBoxContainer/AgeControl")
 blood_type = NodePath("RightSide/BloodTypeVBoxContainer/BloodTypeControl")
 actor_groups = NodePath("RightSide/ActorGroupsContainer/ActorGroupsControl")
 traits = NodePath("RightSide/TraitsContainer/TraitsControl")
+contact_icon_path = NodePath("RightSide/ContactIconContainer/ContactIconPathControl")
+contact_icon_texture = NodePath("RightSide/ContactIconContainer/ContactIconTextureFrame/ContactIconTexture")
+valid_contact = NodePath("RightSide/FlagsContainer/ValidContactContainer/ValidContactCheckbox")
+is_storyline_actor = NodePath("RightSide/FlagsContainer/IsStorylineActorContainer/IsStorylineActorCheckbox")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -63,6 +68,7 @@ margin/bottom = 0.0
 
 [node name="FamilyNameVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -597,6 +603,169 @@ shortcut = null
 text = "Erase"
 flat = false
 
+[node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 440.0
+margin/right = 254.0
+margin/bottom = 463.0
+alignment = 1
+
+[node name="ValidContactContainer" type="HBoxContainer" parent="RightSide/FlagsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 244.0
+margin/bottom = 23.0
+alignment = 0
+
+[node name="ValidContactCheckbox" type="CheckBox" parent="RightSide/FlagsContainer/ValidContactContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 26.0
+margin/bottom = 23.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="ValidContactLabel" type="Label" parent="RightSide/FlagsContainer/ValidContactContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 30.0
+margin/top = 4.0
+margin/right = 113.0
+margin/bottom = 18.0
+text = "Valid Contact"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="IsStorylineActorContainer" type="HBoxContainer" parent="RightSide/FlagsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 27.0
+margin/right = 244.0
+margin/bottom = 50.0
+alignment = 0
+
+[node name="IsStorylineActorCheckbox" type="CheckBox" parent="RightSide/FlagsContainer/IsStorylineActorContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 26.0
+margin/bottom = 23.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="IsStorylineActorLabel" type="Label" parent="RightSide/FlagsContainer/IsStorylineActorContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 30.0
+margin/top = 4.0
+margin/right = 140.0
+margin/bottom = 18.0
+text = "Is Storyline Actor"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ContactIconContainer" type="HBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 370.0
+margin/right = 521.0
+margin/bottom = 434.0
+alignment = 0
+
+[node name="ContactIconPathControl" parent="RightSide/ContactIconContainer" instance=ExtResource( 5 )]
+
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/right = 443.0
+margin/bottom = 64.0
+label = "Contact Icon Path:"
+file_path = ""
+file_browser_title = "Open Image"
+file_type = "ImageTexture"
+disabled = true
+has_clear_button = true
+
+[node name="ContactIconTextureFrame" type="Panel" parent="RightSide/ContactIconContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+rect/min_size = Vector2( 64, 64 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 447.0
+margin/top = 0.0
+margin/right = 511.0
+margin/bottom = 64.0
+
+[node name="ContactIconTexture" type="TextureFrame" parent="RightSide/ContactIconContainer/ContactIconTextureFrame"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+rect/min_size = Vector2( 64, 64 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+expand = true
+stretch_mode = 0
+
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
@@ -636,5 +805,11 @@ flat = false
 [connection signal="pressed" from="RightSide/TraitsContainer/TraitsControl/Panel/HBoxContainer/AddButton" to="RightSide/TraitsContainer/TraitsControl" method="_on_AddButton_pressed"]
 
 [connection signal="pressed" from="RightSide/TraitsContainer/TraitsControl/Panel/HBoxContainer/EraseButton" to="RightSide/TraitsContainer/TraitsControl" method="_on_EraseButton_pressed"]
+
+[connection signal="toggled" from="RightSide/FlagsContainer/ValidContactContainer/ValidContactCheckbox" to="." method="_on_ValidContactCheckbox_toggled"]
+
+[connection signal="toggled" from="RightSide/FlagsContainer/IsStorylineActorContainer/IsStorylineActorCheckbox" to="." method="_on_IsStorylineActorCheckbox_toggled"]
+
+[connection signal="file_selected" from="RightSide/ContactIconContainer/ContactIconPathControl" to="." method="_on_ContactIconPathControl_file_selected"]
 
 

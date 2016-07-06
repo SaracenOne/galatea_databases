@@ -15,11 +15,6 @@ margin/right = 522.0
 margin/bottom = 40.0
 alignment = 1
 script/script = ExtResource( 1 )
-label = ""
-file_path = ""
-file_browser_title = ""
-file_type = ""
-disabled = false
 
 [node name="FileLabel" type="Label" parent="."]
 
@@ -27,10 +22,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 522.0
-margin/bottom = 13.0
+margin/bottom = 14.0
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -43,9 +39,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 18.0
 margin/right = 522.0
-margin/bottom = 40.0
+margin/bottom = 42.0
 alignment = 0
 
 [node name="FilePath" type="LineEdit" parent="Container"]
@@ -57,12 +53,13 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 500.0
-margin/bottom = 23.0
-text = ""
-max_length = 0
+margin/right = 498.0
+margin/bottom = 24.0
+placeholder/alpha = 0.6
 editable = false
-secret = false
+focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
 
 [node name="LoadButton" type="Button" parent="Container"]
 
@@ -71,15 +68,38 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 504.0
+margin/left = 502.0
 margin/top = 0.0
 margin/right = 522.0
-margin/bottom = 23.0
+margin/bottom = 24.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = ".."
 flat = false
 
+[node name="ClearButton" type="Button" parent="Container"]
+
+visibility/visible = false
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 502.0
+margin/top = 0.0
+margin/right = 522.0
+margin/bottom = 24.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "C"
+flat = false
+
 [connection signal="pressed" from="Container/LoadButton" to="." method="_on_LoadButton_pressed"]
+
+[connection signal="pressed" from="Container/ClearButton" to="." method="_on_ClearButton_pressed"]
 
 
