@@ -4,6 +4,8 @@ extends Control
 var record_tree = null
 var database = null
 
+var database_list_popup = preload("database_list.tscn").instance()
+
 signal record_selected(p_record)
 signal record_erased(p_record)
 
@@ -17,8 +19,6 @@ func set_disabled(p_bool):
 
 func get_disabled():
 	return disabled
-
-var database_list_popup = preload("database_list.tscn").instance()
 
 func _on_record_selected(p_record):
 	emit_signal("record_selected", p_record)
@@ -58,7 +58,6 @@ func _ready():
 	record_tree.set_select_mode(Tree.SELECT_SINGLE)
 	
 	add_child(database_list_popup)
-
 	database_list_popup.connect("record_selected", self, "_on_record_selected")
 	
 func _on_RecordTree_item_selected():

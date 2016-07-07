@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_sms_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=3]
 
 [node name="SMSPanel" type="Control"]
 
@@ -17,6 +18,9 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
+actor = NodePath("RightSide/ActorContainer/ActorRecordsReference")
+message_body = NodePath("RightSide/MessageBodyContainer/MessageBodyTextEdit")
+is_reply = NodePath("RightSide/FlagsContainer/IsReplyCheckbox")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -49,12 +53,116 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
+[node name="ActorContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 20.0
+margin/top = 30.0
+margin/right = 145.0
+margin/bottom = 72.0
+alignment = 0
+
+[node name="ActorRecordsReference" parent="RightSide/ActorContainer" instance=ExtResource( 3 )]
+
+size_flags/horizontal = 3
+margin/right = 125.0
+margin/bottom = 42.0
+label = "Actor:"
+disabled = true
+
+[node name="MessageBodyContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 20.0
+margin/top = 90.0
+margin/right = 145.0
+margin/bottom = 132.0
+alignment = 0
+
+[node name="MessageBodyLabel" type="Label" parent="RightSide/MessageBodyContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 256.0
+margin/bottom = 14.0
+text = "Message Body:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MessageBodyTextEdit" type="TextEdit" parent="RightSide/MessageBodyContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+rect/min_size = Vector2( 256, 128 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 256.0
+margin/bottom = 146.0
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 20.0
+margin/top = 250.0
+margin/right = 50.0
+margin/bottom = 273.0
+alignment = 0
+
+[node name="IsReplyCheckbox" type="CheckBox" parent="RightSide/FlagsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 77.0
+margin/bottom = 23.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Is Reply"
+flat = false
+align = 0
+
+[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
+
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
 
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
+[connection signal="record_erased" from="RightSide/ActorContainer/ActorRecordsReference" to="." method="_on_ActorRecordsReference_record_erased"]
+
+[connection signal="record_selected" from="RightSide/ActorContainer/ActorRecordsReference" to="." method="_on_ActorRecordsReference_record_selected"]
+
+[connection signal="draw" from="RightSide/MessageBodyContainer/MessageBodyTextEdit" to="." method="_on_MessageBodyTextEdit_draw"]
+
+[connection signal="toggled" from="RightSide/FlagsContainer/IsReplyCheckbox" to="." method="_on_IsReplyCheckbox_toggled"]
 
 

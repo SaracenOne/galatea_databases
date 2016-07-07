@@ -127,7 +127,6 @@ class ActorDatabase:
 		if(p_dictionary_record.has("nickname")):
 			p_database_record.nickname = p_dictionary_record.nickname
 		
-		
 		if(p_dictionary_record.has("gender")):
 			p_database_record.gender = get_gender_from_string(p_dictionary_record.gender)
 		if(p_dictionary_record.has("age")):
