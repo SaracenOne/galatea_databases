@@ -1,0 +1,109 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.gd" type="Script" id=1]
+
+[node name="RecordsReferenceSingle" type="VBoxContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 522.0
+margin/bottom = 40.0
+alignment = 1
+script/script = ExtResource( 1 )
+label = ""
+record_name = ""
+disabled = false
+has_clear_button = false
+
+[node name="RecordReferenceLabel" type="Label" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 522.0
+margin/bottom = 14.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Container" type="HBoxContainer" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 522.0
+margin/bottom = 42.0
+alignment = 0
+
+[node name="RecordReferenceName" type="LineEdit" parent="Container"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 498.0
+margin/bottom = 24.0
+placeholder/alpha = 0.6
+editable = false
+focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
+
+[node name="LoadButton" type="Button" parent="Container"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 502.0
+margin/top = 0.0
+margin/right = 522.0
+margin/bottom = 24.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = ".."
+flat = false
+
+[node name="ClearButton" type="Button" parent="Container"]
+
+visibility/visible = false
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 502.0
+margin/top = 0.0
+margin/right = 522.0
+margin/bottom = 24.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "C"
+flat = false
+
+[connection signal="pressed" from="Container/LoadButton" to="." method="_on_LoadButton_pressed"]
+
+[connection signal="pressed" from="Container/ClearButton" to="." method="_on_ClearButton_pressed"]
+
+
