@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_actor_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.gd" type="Script" id=4]
-[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/galatea_databases/editor/database_date_option.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.gd" type="Script" id=5]
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=6]
 
 [node name="ActorPanel" type="Control"]
 
@@ -24,8 +25,7 @@ family_name = NodePath("RightSide/FamilyNameVBoxContainer/FamilyNameLineEdit")
 given_name = NodePath("RightSide/GivenNameVBoxContainer/GivenNameLineEdit")
 nickname = NodePath("RightSide/NicknameVBoxContainer/NicknameLineEdit")
 gender = NodePath("RightSide/GenderVBoxContainer/GenderOptionButton")
-date_of_birth_day = NodePath("RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions/Day")
-date_of_birth_month = NodePath("RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions/Month")
+date_of_birth = NodePath("RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions")
 age = NodePath("RightSide/AgeVBoxContainer/AgeControl")
 blood_type = NodePath("RightSide/BloodTypeVBoxContainer/BloodTypeControl")
 actor_groups = NodePath("RightSide/ActorGroupsContainer/ActorGroupsControl")
@@ -284,61 +284,10 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="DateOfBirthOptions" type="HBoxContainer" parent="RightSide/DateOfBirthVBoxContainer"]
+[node name="DateOfBirthOptions" parent="RightSide/DateOfBirthVBoxContainer" instance=ExtResource( 3 )]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
 margin/top = 18.0
-margin/right = 244.0
 margin/bottom = 42.0
-alignment = 0
-
-[node name="Day" type="SpinBox" parent="RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 120.0
-margin/bottom = 24.0
-range/min = 1.0
-range/max = 31.0
-range/step = 1.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-editable = false
-prefix = ""
-suffix = ""
-
-[node name="Month" type="OptionButton" parent="RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 124.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 24.0
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "January"
-flat = false
-align = 0
-selected = 0
-items = [ "January", null, false, -1, null, "February", null, false, -1, null, "March", null, false, -1, null, "April", null, false, -1, null, "May", null, false, -1, null, "June", null, false, -1, null, "July", null, false, -1, null, "August", null, false, -1, null, "September", null, false, -1, null, "October", null, false, -1, null, "November", null, false, -1, null, "December", null, false, -1, null ]
 
 [node name="AgeVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -470,7 +419,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ActorGroupsControl" parent="RightSide/ActorGroupsContainer" instance=ExtResource( 3 )]
+[node name="ActorGroupsControl" parent="RightSide/ActorGroupsContainer" instance=ExtResource( 4 )]
 
 anchor/right = 0
 anchor/bottom = 0
@@ -520,7 +469,7 @@ margin/left = 0.0
 margin/top = 18.0
 margin/right = 244.0
 margin/bottom = 153.0
-script/script = ExtResource( 4 )
+script/script = ExtResource( 5 )
 disabled = true
 
 [node name="RecordTree" type="Tree" parent="RightSide/TraitsContainer/TraitsControl"]
@@ -723,7 +672,7 @@ margin/right = 521.0
 margin/bottom = 434.0
 alignment = 0
 
-[node name="ContactIconPathControl" parent="RightSide/ContactIconContainer" instance=ExtResource( 5 )]
+[node name="ContactIconPathControl" parent="RightSide/ContactIconContainer" instance=ExtResource( 6 )]
 
 size_flags/horizontal = 3
 size_flags/vertical = 3
@@ -732,7 +681,7 @@ margin/bottom = 64.0
 label = "Contact Icon Path:"
 file_path = ""
 file_browser_title = "Open Image"
-file_type = "ImageTexture"
+file_type = "Texture"
 disabled = true
 has_clear_button = true
 
@@ -782,9 +731,9 @@ stretch_mode = 0
 
 [connection signal="item_selected" from="RightSide/GenderVBoxContainer/GenderOptionButton" to="." method="_on_GenderOptionButton_item_selected"]
 
-[connection signal="value_changed" from="RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions/Day" to="." method="_on_Day_value_changed"]
+[connection signal="day_changed" from="RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions" to="." method="_on_DateOfBirthOption_day_changed"]
 
-[connection signal="item_selected" from="RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions/Month" to="." method="_on_Month_item_selected"]
+[connection signal="month_changed" from="RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions" to="." method="_on_DateOfBirthOptions_month_changed"]
 
 [connection signal="value_changed" from="RightSide/AgeVBoxContainer/AgeControl" to="." method="_on_AgeSpinbox_value_changed"]
 

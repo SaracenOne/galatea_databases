@@ -7,6 +7,7 @@ var database_records = null
 export(NodePath) var printed_name_control = NodePath()
 export(NodePath) var description_control = NodePath()
 export(NodePath) var main_icon_path_control = NodePath()
+export(NodePath) var main_icon_preview_control = NodePath()
 export(NodePath) var activity_script_path_control = NodePath()
 export(NodePath) var valid_locations_control = NodePath()
 export(NodePath) var selectable_flag_control = NodePath()
@@ -14,6 +15,7 @@ export(NodePath) var selectable_flag_control = NodePath()
 onready var _printed_name_control_node = get_node(printed_name_control)
 onready var _description_control_node = get_node(description_control)
 onready var _main_icon_path_control_node = get_node(main_icon_path_control)
+onready var _main_icon_preview_control_node = get_node(main_icon_preview_control)
 onready var _activity_script_path_control_node = get_node(activity_script_path_control)
 onready var _valid_locations_control_node = get_node(valid_locations_control)
 onready var _selectable_flag_control_node = get_node(selectable_flag_control)
@@ -55,6 +57,12 @@ func set_current_record_callback(p_record):
 	
 	_main_icon_path_control_node.set_file_path(current_record.main_icon_path)
 	_main_icon_path_control_node.set_disabled(false)
+	
+	_main_icon_preview_control_node.set_texture(null)
+	var main_icon_texture = load(p_record.main_icon_path)
+	if(main_icon_texture):
+		if(main_icon_texture extends Texture):
+			_main_icon_preview_control_node.set_texture(main_icon_texture)
 	
 	_activity_script_path_control_node.set_file_path(current_record.activity_script_path)
 	_activity_script_path_control_node.set_disabled(false)
@@ -104,4 +112,11 @@ func _on_SelectableFlagCheckBox_toggled( pressed ):
 func _on_MainIconPath_file_selected( p_path ):
 	if(current_record):
 		current_record.main_icon_path = p_path
+		
+		_main_icon_preview_control_node.set_texture(null)
+		var main_icon_texture = load(p_path)
+		if(main_icon_texture):
+			if(main_icon_texture extends Texture):
+				_main_icon_preview_control_node.set_texture(main_icon_texture)
+			
 		current_database.mark_database_as_modified()

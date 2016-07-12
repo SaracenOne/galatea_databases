@@ -51,6 +51,7 @@ tabs_visible = true
 
 [node name="Activities" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
 anchor/bottom = 1
@@ -59,15 +60,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="ActivityPanel" parent="DatabaseEditorTabs/Activities" instance=ExtResource( 2 )]
 
 [node name="Actors" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -77,15 +78,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="ActorPanel" parent="DatabaseEditorTabs/Actors" instance=ExtResource( 3 )]
 
 [node name="Actor Groups" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -95,15 +96,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="ActorGroupPanel" parent="DatabaseEditorTabs/Actor Groups" instance=ExtResource( 4 )]
 
 [node name="AI Packages" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -113,15 +114,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="AIPackagePanel" parent="DatabaseEditorTabs/AI Packages" instance=ExtResource( 5 )]
 
-[node name="CalendarEvent" type="Control" parent="DatabaseEditorTabs"]
+[node name="Calendar Event" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -131,15 +132,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
-[node name="CalendarEventPanel" parent="DatabaseEditorTabs/CalendarEvent" instance=ExtResource( 6 )]
+[node name="CalendarEventPanel" parent="DatabaseEditorTabs/Calendar Event" instance=ExtResource( 6 )]
 
 [node name="Items" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -149,15 +150,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="ItemPanel" parent="DatabaseEditorTabs/Items" instance=ExtResource( 7 )]
 
 [node name="Locations" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -167,15 +168,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="LocationPanel" parent="DatabaseEditorTabs/Locations" instance=ExtResource( 8 )]
 
 [node name="Material Types" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -185,15 +186,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="MaterialTypePanel" parent="DatabaseEditorTabs/Material Types" instance=ExtResource( 9 )]
 
 [node name="Music Tracks" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -203,15 +204,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="MusicTrackPanel" parent="DatabaseEditorTabs/Music Tracks" instance=ExtResource( 10 )]
 
 [node name="Quests" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -221,15 +222,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="QuestPanel" parent="DatabaseEditorTabs/Quests" instance=ExtResource( 11 )]
 
 [node name="Readables" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -239,15 +240,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="ReadablePanel" parent="DatabaseEditorTabs/Readables" instance=ExtResource( 12 )]
 
 [node name="School Lesson" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -257,10 +258,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="SchoolLessonPanel" parent="DatabaseEditorTabs/School Lesson" instance=ExtResource( 13 )]
 
@@ -275,7 +275,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
@@ -283,6 +283,7 @@ margin/bottom = 4.0
 
 [node name="Status Effects" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -292,15 +293,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="StatusEffectPanel" parent="DatabaseEditorTabs/Status Effects" instance=ExtResource( 15 )]
 
 [node name="Traits" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -310,15 +311,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="TraitPanel" parent="DatabaseEditorTabs/Traits" instance=ExtResource( 16 )]
 
 [node name="Weather" type="Control" parent="DatabaseEditorTabs"]
 
+editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -328,10 +329,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
-margin/top = 31.0
+margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="WeatherPanel" parent="DatabaseEditorTabs/Weather" instance=ExtResource( 17 )]
 
@@ -356,8 +356,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 7.0
 margin/top = 7.0
-margin/right = 169.0
-margin/bottom = 26.0
+margin/right = 174.0
+margin/bottom = 27.0
 alignment = 1
 
 [node name="SaveButton" type="Button" parent="Panel/HBoxContainer"]
@@ -370,7 +370,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 41.0
-margin/bottom = 19.0
+margin/bottom = 20.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -386,8 +386,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 45.0
 margin/top = 0.0
-margin/right = 106.0
-margin/bottom = 19.0
+margin/right = 108.0
+margin/bottom = 20.0
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -402,10 +402,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 110.0
+margin/left = 112.0
 margin/top = 0.0
-margin/right = 162.0
-margin/bottom = 19.0
+margin/right = 167.0
+margin/bottom = 20.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null

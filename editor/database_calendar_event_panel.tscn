@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_calendar_event_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/galatea_databases/editor/database_date_option.tscn" type="PackedScene" id=4]
 
 [node name="CalendarEventPanel" type="Control"]
 
@@ -17,6 +19,13 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
+printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameLineEdit")
+calendar_icon_path_control = NodePath("RightSide/CalendarIconContainer/CalendarIconFilePath")
+calendar_icon_preview_control = NodePath("RightSide/CalendarIconContainer/CalendarIconPanel/CalendarIconPreview")
+date_start_control = NodePath("RightSide/DateContainer/StartDateContainer/StartDateOption")
+date_end_control = NodePath("RightSide/DateContainer/EndDateContainer/EndDateOption")
+is_school_holiday_control = NodePath("RightSide/FlagsContainer/IsSchoolHolidayCheckBox")
+is_hidden_control = NodePath("RightSide/FlagsContainer/IsHiddenCheckBox")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -49,12 +58,264 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
+[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 25.0
+margin/right = 327.0
+margin/bottom = 67.0
+alignment = 0
+
+[node name="PrintedNameLavel" type="Label" parent="RightSide/PrintedNameContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 317.0
+margin/bottom = 14.0
+text = "Printed Name:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/PrintedNameContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 317.0
+margin/bottom = 42.0
+placeholder/alpha = 0.6
+editable = false
+focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
+
+[node name="CalendarIconContainer" type="HBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 80.0
+margin/right = 405.0
+margin/bottom = 144.0
+alignment = 0
+
+[node name="CalendarIconFilePath" parent="RightSide/CalendarIconContainer" instance=ExtResource( 3 )]
+
+size_flags/horizontal = 3
+margin/right = 327.0
+margin/bottom = 64.0
+label = "Calendar Icon:"
+file_path = ""
+file_browser_title = "Open Image"
+file_type = "Texture"
+disabled = true
+has_clear_button = true
+
+[node name="CalendarIconPanel" type="Panel" parent="RightSide/CalendarIconContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+rect/min_size = Vector2( 64, 64 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 331.0
+margin/top = 0.0
+margin/right = 395.0
+margin/bottom = 64.0
+
+[node name="CalendarIconPreview" type="TextureFrame" parent="RightSide/CalendarIconContainer/CalendarIconPanel"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+expand = true
+stretch_mode = 0
+
+[node name="DateContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 150.0
+margin/right = 327.0
+margin/bottom = 238.0
+alignment = 0
+
+[node name="StartDateContainer" type="VBoxContainer" parent="RightSide/DateContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 317.0
+margin/bottom = 42.0
+alignment = 0
+
+[node name="StartDateLabel" type="Label" parent="RightSide/DateContainer/StartDateContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 317.0
+margin/bottom = 14.0
+text = "Start Date:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="StartDateOption" parent="RightSide/DateContainer/StartDateContainer" instance=ExtResource( 4 )]
+
+margin/top = 18.0
+margin/right = 317.0
+margin/bottom = 42.0
+disabled = false
+
+[node name="EndDateContainer" type="VBoxContainer" parent="RightSide/DateContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 46.0
+margin/right = 317.0
+margin/bottom = 88.0
+alignment = 0
+
+[node name="EndDateLabel" type="Label" parent="RightSide/DateContainer/EndDateContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 317.0
+margin/bottom = 14.0
+text = "End Date:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="EndDateOption" parent="RightSide/DateContainer/EndDateContainer" instance=ExtResource( 4 )]
+
+margin/top = 18.0
+margin/right = 317.0
+margin/bottom = 42.0
+disabled = false
+
+[node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 260.0
+margin/right = 146.0
+margin/bottom = 310.0
+alignment = 0
+
+[node name="IsSchoolHolidayCheckBox" type="CheckBox" parent="RightSide/FlagsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 136.0
+margin/bottom = 23.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Is School Holiday"
+flat = false
+align = 0
+
+[node name="IsHiddenCheckBox" type="CheckBox" parent="RightSide/FlagsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 27.0
+margin/right = 136.0
+margin/bottom = 50.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Is Hidden"
+flat = false
+align = 0
+
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
+
+[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
 
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+[connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
+
+[connection signal="file_selected" from="RightSide/CalendarIconContainer/CalendarIconFilePath" to="." method="_on_CalendarIconFilePath_file_selected"]
+
+[connection signal="day_changed" from="RightSide/DateContainer/StartDateContainer/StartDateOption" to="." method="_on_StartDateOption_day_changed"]
+
+[connection signal="month_changed" from="RightSide/DateContainer/StartDateContainer/StartDateOption" to="." method="_on_StartDateOption_month_changed"]
+
+[connection signal="day_changed" from="RightSide/DateContainer/EndDateContainer/EndDateOption" to="." method="_on_EndDateOption_day_changed"]
+
+[connection signal="month_changed" from="RightSide/DateContainer/EndDateContainer/EndDateOption" to="." method="_on_EndDateOption_month_changed"]
+
+[connection signal="toggled" from="RightSide/FlagsContainer/IsSchoolHolidayCheckBox" to="." method="_on_IsSchoolHolidayCheckBox_toggled"]
+
+[connection signal="toggled" from="RightSide/FlagsContainer/IsHiddenCheckBox" to="." method="_on_IsHiddenCheckBox_toggled"]
 
 

@@ -257,7 +257,7 @@ margin/bottom = 383.0
 label = "Icon File:"
 file_path = ""
 file_browser_title = "Open Image"
-file_type = "ImageTexture"
+file_type = "Texture"
 disabled = true
 has_clear_button = true
 

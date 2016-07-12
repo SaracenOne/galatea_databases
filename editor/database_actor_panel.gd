@@ -5,8 +5,7 @@ export(NodePath) var family_name = NodePath()
 export(NodePath) var given_name = NodePath()
 export(NodePath) var nickname = NodePath()
 export(NodePath) var gender = NodePath()
-export(NodePath) var date_of_birth_day = NodePath()
-export(NodePath) var date_of_birth_month = NodePath()
+export(NodePath) var date_of_birth = NodePath()
 export(NodePath) var age = NodePath()
 export(NodePath) var blood_type = NodePath()
 export(NodePath) var actor_groups = NodePath()
@@ -23,8 +22,7 @@ onready var _given_name_control = get_node(given_name)
 onready var _nickname_control = get_node(nickname)
 onready var _gender_control = get_node(gender)
 
-onready var _date_of_birth_day_control = get_node(date_of_birth_day)
-onready var _date_of_birth_month_control = get_node(date_of_birth_month)
+onready var _date_of_birth = get_node(date_of_birth)
 
 onready var _age_control = get_node(age)
 onready var _blood_type_control = get_node(blood_type)
@@ -84,11 +82,9 @@ func set_current_record_callback(p_record):
 	_gender_control.select(current_record.gender)
 	_gender_control.set_disabled(false)
 	
-	_date_of_birth_day_control.set_value(p_record.date_of_birth_day)
-	_date_of_birth_day_control.set_editable(true)
-	
-	_date_of_birth_month_control.select(p_record.date_of_birth_month - 1)
-	_date_of_birth_month_control.set_disabled(false)
+	_date_of_birth.set_disabled(false)
+	_date_of_birth.set_day(p_record.date_of_birth_day)
+	_date_of_birth.set_month(p_record.date_of_birth_month - 1)
 	
 	_age_control.set_value(p_record.age)
 	_age_control.set_editable(true)
@@ -106,8 +102,9 @@ func set_current_record_callback(p_record):
 	_contact_icon_path_control.set_file_path(p_record.contact_icon_path)
 	_contact_icon_texture_control.set_texture(null)
 	var contact_icon_texture = load(p_record.contact_icon_path)
-	if(contact_icon_texture extends ImageTexture):
-		_contact_icon_texture_control.set_texture(contact_icon_texture)
+	if(contact_icon_texture):
+		if(contact_icon_texture extends Texture):
+			_contact_icon_texture_control.set_texture(contact_icon_texture)
 	
 	_valid_contact_control.set_disabled(false)
 	_valid_contact_control.set_pressed(p_record.is_valid_contact)
@@ -134,15 +131,15 @@ func _on_GenderOptionButton_item_selected( ID ):
 	if(current_record):
 		current_record.gender = ID
 		current_database.mark_database_as_modified()
-
-func _on_Day_value_changed( value ):
+		
+func _on_DateOfBirthOption_day_changed( p_day ):
 	if(current_record):
-		current_record.date_of_birth_day = value
+		current_record.date_of_birth_day = p_day
 		current_database.mark_database_as_modified()
-
-func _on_Month_item_selected( ID ):
+		
+func _on_DateOfBirthOption_month_changed( p_month ):
 	if(current_record):
-		current_record.date_of_birth_month = ID + 1
+		current_record.date_of_birth_month = p_month + 1
 		current_database.mark_database_as_modified()
 
 func _on_AgeSpinbox_value_changed( value ):
@@ -193,8 +190,9 @@ func _on_ContactIconPathControl_file_selected( p_path ):
 		current_record.contact_icon_path = p_path
 		_contact_icon_texture_control.set_texture(null)
 		var contact_icon_texture = load(p_path)
-		if(contact_icon_texture extends ImageTexture):
-			_contact_icon_texture_control.set_texture(contact_icon_texture)
+		if(contact_icon_texture):
+			if(contact_icon_texture extends Texture):
+				_contact_icon_texture_control.set_texture(contact_icon_texture)
 		
 		current_database.mark_database_as_modified()
 		
@@ -207,3 +205,4 @@ func _on_IsStorylineActorCheckbox_toggled( pressed ):
 	if(current_record):
 		current_record.is_storyline_actor = pressed
 		current_database.mark_database_as_modified()
+
