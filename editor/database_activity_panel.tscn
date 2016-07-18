@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_activity_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/galatea_databases/editor/database_code_editor.tscn" type="PackedScene" id=5]
 
 [node name="ActivityPanel" type="Control"]
 
@@ -222,7 +223,6 @@ has_clear_button = false
 
 [node name="ValidLocationsContainer" type="VBoxContainer" parent="RightSide"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -304,6 +304,13 @@ shortcut = null
 text = "Selectable"
 flat = false
 align = 0
+
+[node name="DatabaseCodeEditor" parent="RightSide" instance=ExtResource( 5 )]
+
+margin/left = 444.0
+margin/top = 369.0
+margin/right = 240.0
+margin/bottom = 196.0
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 

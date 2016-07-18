@@ -55,7 +55,9 @@ func set_current_record_callback(p_record):
 	_calendar_icon_path_control_node.set_disabled(false)
 	
 	_calendar_icon_preview_control_node.set_texture(null)
-	var calendar_icon_texture = load(p_record.calendar_icon_path)
+	var calendar_icon_texture = null
+	if(!p_record.calendar_icon_path.empty()):
+		calendar_icon_texture = load(p_record.calendar_icon_path)
 	if(calendar_icon_texture):
 		if(calendar_icon_texture extends Texture):
 			_calendar_icon_preview_control_node.set_texture(calendar_icon_texture)
@@ -85,7 +87,9 @@ func _on_CalendarIconFilePath_file_selected( p_path ):
 		current_record.calendar_icon_path = p_path
 		
 		_calendar_icon_preview_control_node.set_texture(null)
-		var calendar_icon_texture = load(p_path)
+		var calendar_icon_texture = null
+		if(!p_path.empty()):
+			calendar_icon_texture = load(p_path)
 		if(calendar_icon_texture):
 			if(calendar_icon_texture extends Texture):
 				_calendar_icon_preview_control_node.set_texture(calendar_icon_texture)

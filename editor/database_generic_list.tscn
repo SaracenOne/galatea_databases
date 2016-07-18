@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=1]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_list.gd" type="Script" id=1]
+[ext_resource path="res://addons/galatea_databases/editor/database_generic_list.gd" type="Script" id=1]
 
 [node name="DatabaseList" type="WindowDialog"]
 
@@ -18,10 +18,10 @@ margin/top = 0.25
 margin/right = 0.75
 margin/bottom = 0.75
 popup/exclusive = true
-window/title = "Select Database Record..."
+window/title = "Select..."
 script/script = ExtResource( 1 )
 
-[node name="RecordTree" type="Tree" parent="."]
+[node name="ListTree" type="Tree" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -100,7 +100,7 @@ shortcut = null
 text = "Cancel"
 flat = false
 
-[connection signal="cell_selected" from="RecordTree" to="." method="_on_RecordTree_cell_selected"]
+[connection signal="cell_selected" from="ListTree" to="." method="_on_ListTree_cell_selected"]
 
 [connection signal="pressed" from="Panel/HBoxContainer/ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
 

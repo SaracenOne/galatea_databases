@@ -4,8 +4,10 @@ class MusicTrackDatabase:
 	extends "generic_database.gd".GenericDatabase
 
 	const DATABASE_IDENT = "MUTK"
-	const DATABASE_NAME = "music_track_database.json"
+	const DATABASE_NAME = "music_track_database"
+	const DATABASE_NAME_JSON = "music_track_database.json"
 	const DATABASE_NAME_BINARY = "music_track_database.gbd"
+	const DATABASE_INLINED_FILENAME = "music_track_database_inlined.gd"
 	const RECORDS_NAME = "music_track_records"
 	
 	class MusicTrackRecord:
@@ -16,8 +18,14 @@ class MusicTrackDatabase:
 		var track_path = ""
 		var playable_on_phone_music_app = false
 		
+	func get_database_name():
+		return DATABASE_NAME
+		
+	func get_inlined_filename():
+		return DATABASE_INLINED_FILENAME
+		
 	func load_database_ids():
-		return _load_database_ids(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		return _load_database_ids(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 		
 	func _load_record(p_dictionary_record, p_database_record):
 		# Read Data
@@ -33,7 +41,7 @@ class MusicTrackDatabase:
 			p_database_record.playable_on_phone_music_app = p_dictionary_record.playable_on_phone_music_app
 		
 	func load_database_values():
-		_load_database_values(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		_load_database_values(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 		
 	func _save_record(p_database_record, p_dictionary_record):
 		# Write Data
@@ -45,7 +53,7 @@ class MusicTrackDatabase:
 		p_dictionary_record.playable_on_phone_music_app = p_database_record.playable_on_phone_music_app
 		
 	func save_database():
-		_save_database(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		_save_database(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 			
 	func _create_record():
 		return MusicTrackRecord.new()

@@ -22,6 +22,10 @@ onready var _selectable_flag_control_node = get_node(selectable_flag_control)
 
 func _ready():
 	pass
+	
+func editor_plugin_assigned():
+	if(editor_plugin):
+		get_node("RightSide/DatabaseCodeEditor").assign_editor_plugin(editor_plugin)
 
 func galatea_databases_assigned():
 	database_records = get_node("LeftSide/DatabaseRecords")
@@ -59,7 +63,9 @@ func set_current_record_callback(p_record):
 	_main_icon_path_control_node.set_disabled(false)
 	
 	_main_icon_preview_control_node.set_texture(null)
-	var main_icon_texture = load(p_record.main_icon_path)
+	var main_icon_texture = null
+	if(!p_record.main_icon_path.empty()):
+		main_icon_texture = load(p_record.main_icon_path)
 	if(main_icon_texture):
 		if(main_icon_texture extends Texture):
 			_main_icon_preview_control_node.set_texture(main_icon_texture)
@@ -114,7 +120,9 @@ func _on_MainIconPath_file_selected( p_path ):
 		current_record.main_icon_path = p_path
 		
 		_main_icon_preview_control_node.set_texture(null)
-		var main_icon_texture = load(p_path)
+		var main_icon_texture = null
+		if(!p_path.empty()):
+			main_icon_texture = load(p_path)
 		if(main_icon_texture):
 			if(main_icon_texture extends Texture):
 				_main_icon_preview_control_node.set_texture(main_icon_texture)

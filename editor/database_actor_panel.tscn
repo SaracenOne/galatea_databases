@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_actor_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_date_option.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.gd" type="Script" id=5]
-[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=5]
 
 [node name="ActorPanel" type="Control"]
 
@@ -288,6 +287,7 @@ max_lines_visible = -1
 
 margin/top = 18.0
 margin/bottom = 42.0
+disabled = false
 
 [node name="AgeVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -457,100 +457,15 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="TraitsControl" type="Control" parent="RightSide/TraitsContainer"]
+[node name="TraitsControl" parent="RightSide/TraitsContainer" instance=ExtResource( 4 )]
 
-editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
+anchor/right = 0
+anchor/bottom = 0
 size_flags/vertical = 3
-margin/left = 0.0
 margin/top = 18.0
 margin/right = 244.0
 margin/bottom = 153.0
-script/script = ExtResource( 5 )
 disabled = true
-
-[node name="RecordTree" type="Tree" parent="RightSide/TraitsContainer/TraitsControl"]
-
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 50.0
-
-[node name="Panel" type="Panel" parent="RightSide/TraitsContainer/TraitsControl"]
-
-rect/pivot = Vector2( 0, 0 )
-anchor/top = 1
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 50.0
-margin/right = 0.0
-margin/bottom = 0.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="RightSide/TraitsContainer/TraitsControl/Panel"]
-
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 10.0
-margin/right = 10.0
-margin/bottom = 10.0
-alignment = 1
-
-[node name="AddButton" type="Button" parent="RightSide/TraitsContainer/TraitsControl/Panel/HBoxContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 110.0
-margin/bottom = 30.0
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Add"
-flat = false
-
-[node name="EraseButton" type="Button" parent="RightSide/TraitsContainer/TraitsControl/Panel/HBoxContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 114.0
-margin/top = 0.0
-margin/right = 224.0
-margin/bottom = 30.0
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Erase"
-flat = false
 
 [node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -672,7 +587,7 @@ margin/right = 521.0
 margin/bottom = 434.0
 alignment = 0
 
-[node name="ContactIconPathControl" parent="RightSide/ContactIconContainer" instance=ExtResource( 6 )]
+[node name="ContactIconPathControl" parent="RightSide/ContactIconContainer" instance=ExtResource( 5 )]
 
 size_flags/horizontal = 3
 size_flags/vertical = 3
@@ -746,14 +661,6 @@ stretch_mode = 0
 [connection signal="record_erased" from="RightSide/TraitsContainer/TraitsControl" to="." method="_on_TraitsControl_record_erased"]
 
 [connection signal="record_selected" from="RightSide/TraitsContainer/TraitsControl" to="." method="_on_TraitsControl_record_selected"]
-
-[connection signal="cell_selected" from="RightSide/TraitsContainer/TraitsControl/RecordTree" to="RightSide/TraitsContainer/TraitsControl" method="_on_RecordTree_cell_selected"]
-
-[connection signal="item_selected" from="RightSide/TraitsContainer/TraitsControl/RecordTree" to="RightSide/TraitsContainer/TraitsControl" method="_on_RecordTree_item_selected"]
-
-[connection signal="pressed" from="RightSide/TraitsContainer/TraitsControl/Panel/HBoxContainer/AddButton" to="RightSide/TraitsContainer/TraitsControl" method="_on_AddButton_pressed"]
-
-[connection signal="pressed" from="RightSide/TraitsContainer/TraitsControl/Panel/HBoxContainer/EraseButton" to="RightSide/TraitsContainer/TraitsControl" method="_on_EraseButton_pressed"]
 
 [connection signal="toggled" from="RightSide/FlagsContainer/ValidContactContainer/ValidContactCheckbox" to="." method="_on_ValidContactCheckbox_toggled"]
 

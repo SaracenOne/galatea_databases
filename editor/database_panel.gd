@@ -2,6 +2,7 @@ tool
 extends Control
 
 var galatea_databases = null
+var editor_plugin = null
 var current_database = null
 var current_record = null
 ##
@@ -63,3 +64,9 @@ func set_galatea_databases(p_galatea_databases):
 	
 	if(has_method("galatea_databases_assigned")):
 		galatea_databases_assigned()
+
+func set_editor_plugin(p_editor_plugin):
+	editor_plugin = p_editor_plugin
+	
+	if(has_method("editor_plugin_assigned")):
+		editor_plugin_assigned()

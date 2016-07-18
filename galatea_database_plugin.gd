@@ -37,9 +37,14 @@ func _exit_tree():
 func database_interface_assign_databases(p_control):
 	for child in p_control.get_children():
 		if(child.has_method("set_galatea_databases")):
-			print(child.get_name())
 			child.call("set_galatea_databases", galatea_databases)
 		database_interface_assign_databases(child)
+		
+func database_interface_assign_editor_plugin(p_control):
+	for child in p_control.get_children():
+		if(child.has_method("set_editor_plugin")):
+			child.call("set_editor_plugin", self)
+		database_interface_assign_editor_plugin(child)
 		
 func _database_destroy_popup():
 	if(database_popup_instance):
@@ -68,6 +73,7 @@ func database_popup_requested():
 		get_base_control().add_child(database_popup_instance)
 		database_popup_instance.popup_centered()
 		database_interface_assign_databases(database_popup_instance)
+		database_interface_assign_editor_plugin(database_popup_instance)
 	else:
 		printerr("Could not load database editor scene")
 		return FAILED

@@ -101,7 +101,9 @@ func set_current_record_callback(p_record):
 	_contact_icon_path_control.set_disabled(false)
 	_contact_icon_path_control.set_file_path(p_record.contact_icon_path)
 	_contact_icon_texture_control.set_texture(null)
-	var contact_icon_texture = load(p_record.contact_icon_path)
+	var contact_icon_texture = null
+	if(!p_record.contact_icon_path.empty()):
+		contact_icon_texture = load(p_record.contact_icon_path)
 	if(contact_icon_texture):
 		if(contact_icon_texture extends Texture):
 			_contact_icon_texture_control.set_texture(contact_icon_texture)
@@ -189,7 +191,9 @@ func _on_ContactIconPathControl_file_selected( p_path ):
 	if(current_record):
 		current_record.contact_icon_path = p_path
 		_contact_icon_texture_control.set_texture(null)
-		var contact_icon_texture = load(p_path)
+		var contact_icon_texture = null
+		if(!p_path.empty()):
+			contact_icon_texture = load(p_path)
 		if(contact_icon_texture):
 			if(contact_icon_texture extends Texture):
 				_contact_icon_texture_control.set_texture(contact_icon_texture)

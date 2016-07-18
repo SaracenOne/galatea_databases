@@ -1,0 +1,201 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://addons/galatea_databases/editor/database_conditional_list.gd" type="Script" id=1]
+
+[node name="DatabaseConditionalList" type="Control"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 727.0
+margin/bottom = 213.0
+script/script = ExtResource( 1 )
+add_button = NodePath("ButtonPanel/ButtonContainer/AddButton")
+edit_button = NodePath("ButtonPanel/ButtonContainer/EditButton")
+duplicate_button = NodePath("ButtonPanel/ButtonContainer/DuplicateButton")
+remove_button = NodePath("ButtonPanel/ButtonContainer/RemoveButton")
+move_up_button = NodePath("ButtonPanel/ButtonContainer/MoveUpButton")
+move_down_button = NodePath("ButtonPanel/ButtonContainer/MoveDownButton")
+
+[node name="ListTree" type="Tree" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 60.0
+
+[node name="ButtonPanel" type="Panel" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 60.0
+margin/right = 0.0
+margin/bottom = 10.0
+
+[node name="ButtonContainer" type="HBoxContainer" parent="ButtonPanel"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 10.0
+margin/bottom = 10.0
+alignment = 1
+
+[node name="AddButton" type="Button" parent="ButtonPanel/ButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 113.0
+margin/bottom = 30.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Add"
+flat = false
+
+[node name="EditButton" type="Button" parent="ButtonPanel/ButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 117.0
+margin/top = 0.0
+margin/right = 230.0
+margin/bottom = 30.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Edit"
+flat = false
+
+[node name="DuplicateButton" type="Button" parent="ButtonPanel/ButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 234.0
+margin/top = 0.0
+margin/right = 347.0
+margin/bottom = 30.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Duplicate"
+flat = false
+
+[node name="RemoveButton" type="Button" parent="ButtonPanel/ButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 351.0
+margin/top = 0.0
+margin/right = 464.0
+margin/bottom = 30.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Remove"
+flat = false
+
+[node name="VSeparator" type="VSeparator" parent="ButtonPanel/ButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 468.0
+margin/top = 0.0
+margin/right = 471.0
+margin/bottom = 30.0
+
+[node name="MoveUpButton" type="Button" parent="ButtonPanel/ButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 475.0
+margin/top = 0.0
+margin/right = 588.0
+margin/bottom = 30.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Move Up"
+flat = false
+
+[node name="MoveDownButton" type="Button" parent="ButtonPanel/ButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 592.0
+margin/top = 0.0
+margin/right = 707.0
+margin/bottom = 30.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Move Down"
+flat = false
+
+[connection signal="cell_selected" from="ListTree" to="." method="_on_ListTree_cell_selected"]
+
+[connection signal="pressed" from="ButtonPanel/ButtonContainer/AddButton" to="." method="_on_AddButton_pressed"]
+
+[connection signal="pressed" from="ButtonPanel/ButtonContainer/EditButton" to="." method="_on_EditButton_pressed"]
+
+[connection signal="pressed" from="ButtonPanel/ButtonContainer/DuplicateButton" to="." method="_on_DuplicateButton_pressed"]
+
+[connection signal="pressed" from="ButtonPanel/ButtonContainer/RemoveButton" to="." method="_on_RemoveButton_pressed"]
+
+[connection signal="pressed" from="ButtonPanel/ButtonContainer/MoveUpButton" to="." method="_on_MoveUp_pressed"]
+
+[connection signal="pressed" from="ButtonPanel/ButtonContainer/MoveDownButton" to="." method="_on_MoveDown_pressed"]
+
+

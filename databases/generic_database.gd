@@ -51,8 +51,10 @@ class GenericDatabase extends Reference:
 			p_dictionary_record.metadata[meta] = p_database_record.get_meta(meta)
 		
 	func _save_database(p_filepath, p_records_name):
-		var dictionary = {}
+		# Construct and inlined script needed
+		build_procedural_script()
 		
+		var dictionary = {}
 		var database_dictionary_array = []
 		
 		for database_record in database_records:
@@ -271,3 +273,36 @@ class GenericDatabase extends Reference:
 			for record in database_records:
 				if(p_name == record.id):
 					database_records.remove(database_records.find(record))
+					
+	func build_procedural_script():
+		var script_text = ""
+		
+		for database_record in database_records:
+			if(has_method("get_record_inlined_code")):
+				var dictionary = call("get_record_inlined_code", database_record)
+				if(dictionary != null):
+					for key in dictionary.keys():
+						script_text += "func " + get_database_name() + "_" + database_record.id + "_" + key + "():\n"
+						
+						var code_raw = dictionary[key]
+						if(code_raw != null and code_raw.length() > 0):
+							var code = code_raw.split("\n")
+						
+							for line in code:
+								script_text += "\t" + line + "\n"
+						else:
+							script_text += "\tpass\n"
+							
+						script_text += "\n"
+		
+		var inline_directory = Directory.new()
+		if(inline_directory.open("res://assets/scripts") == OK):
+			if(inline_directory.dir_exists("res://assets/scripts/inline") == false):
+				if(inline_directory.make_dir("res://assets/scripts/inline") != OK):
+					printerr("Could not create inline directory ):")
+					return null
+				
+		var f = File.new()
+		f.open("res://assets/scripts/inline/" + get_inlined_filename(), File.WRITE)
+		f.store_string(script_text)
+		f.close()

@@ -4,8 +4,10 @@ class TraitDatabase:
 	extends "generic_database.gd".GenericDatabase
 	
 	const DATABASE_IDENT = "TRAT"
-	const DATABASE_NAME = "trait_database.json"
+	const DATABASE_NAME = "trait_database"
+	const DATABASE_NAME_JSON = "trait_database.json"
 	const DATABASE_NAME_BINARY = "trait_database.gbd"
+	const DATABASE_INLINED_FILENAME = "trait_database_inlined.gd"
 	const RECORDS_NAME = "trait_records"
 	
 	class TraitRecord:
@@ -19,8 +21,14 @@ class TraitDatabase:
 		
 		var contradictory_traits = []
 		
+	func get_database_name():
+		return DATABASE_NAME
+		
+	func get_inlined_filename():
+		return DATABASE_INLINED_FILENAME
+		
 	func load_database_ids():
-		return _load_database_ids(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		return _load_database_ids(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 		
 	func _load_record(p_dictionary_record, p_database_record):
 		# Read Data
@@ -45,7 +53,7 @@ class TraitDatabase:
 					p_database_record.contradictory_traits.append(contradictory_trait)
 		
 	func load_database_values():
-		_load_database_values(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		_load_database_values(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 		
 	func _save_record(p_database_record, p_dictionary_record):
 		# Write Data
@@ -61,7 +69,7 @@ class TraitDatabase:
 			p_dictionary_record.contradictory_traits.append(contradictory_trait.id)#
 		
 	func save_database():
-		_save_database(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		_save_database(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 			
 	func _create_record():
 		return TraitRecord.new()

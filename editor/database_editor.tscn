@@ -51,7 +51,6 @@ tabs_visible = true
 
 [node name="Activities" type="Control" parent="DatabaseEditorTabs"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
 anchor/bottom = 1
@@ -65,6 +64,8 @@ margin/right = 4.0
 margin/bottom = 4.0
 
 [node name="ActivityPanel" parent="DatabaseEditorTabs/Activities" instance=ExtResource( 2 )]
+
+test_code_editor_control = NodePath("")
 
 [node name="Actors" type="Control" parent="DatabaseEditorTabs"]
 

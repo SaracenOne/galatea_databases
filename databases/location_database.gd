@@ -5,8 +5,10 @@ class LocationDatabase:
 	extends "generic_database.gd".GenericDatabase
 	
 	const DATABASE_IDENT = "LOCT"
-	const DATABASE_NAME = "location_database.json"
+	const DATABASE_NAME = "location_database"
+	const DATABASE_NAME_JSON = "location_database.json"
 	const DATABASE_NAME_BINARY = "location_database.gbd"
+	const DATABASE_INLINED_FILENAME = "location_database_inlined.gd"
 	const RECORDS_NAME = "location_records"
 	
 	class LocationRecord:
@@ -24,8 +26,14 @@ class LocationDatabase:
 		
 		var linked_locations = []
 		
+	func get_database_name():
+		return DATABASE_NAME
+		
+	func get_inlined_filename():
+		return DATABASE_INLINED_FILENAME
+		
 	func load_database_ids():
-		return _load_database_ids(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		return _load_database_ids(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 				
 	func _load_record(p_dictionary_record, p_database_record):
 		# Read Data
@@ -43,7 +51,7 @@ class LocationDatabase:
 			p_database_record.maximum_actor_capacity_includes_players = p_dictionary_record.maximum_actor_capacity_includes_players
 				
 	func load_database_values():
-		_load_database_values(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		_load_database_values(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 			
 	func _save_record(p_database_record, p_dictionary_record):
 		# Write Data
@@ -55,7 +63,7 @@ class LocationDatabase:
 		p_dictionary_record.maximum_actor_capacity_includes_players = p_database_record.maximum_actor_capacity_includes_players
 		
 	func save_database():
-		_save_database(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		_save_database(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 			
 	func _create_record():
 		return LocationRecord.new()

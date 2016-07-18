@@ -12,8 +12,10 @@ class ActorDatabase:
 	const BLOODTYPE_O = 3
 	
 	const DATABASE_IDENT = "ACTR"
-	const DATABASE_NAME = "actor_database.json"
+	const DATABASE_NAME = "actor_database"
+	const DATABASE_NAME_JSON = "actor_database.json"
 	const DATABASE_NAME_BINARY = "actor_database.gbd"
+	const DATABASE_INLINED_FILENAME = "actor_database_inlined.gd"
 	const RECORDS_NAME = "actor_records"
 	
 	static func get_bloodtype_from_string(p_string):
@@ -105,8 +107,14 @@ class ActorDatabase:
 			
 		var appearence = Appearence.new()
 		
+	func get_database_name():
+		return DATABASE_NAME
+		
+	func get_inlined_filename():
+		return DATABASE_INLINED_FILENAME
+		
 	func load_database_ids():
-		return _load_database_ids(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		return _load_database_ids(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 		
 	func _load_appearence(p_appearence, p_appearence_dictionary):
 		if(p_appearence_dictionary.has("hair")):
@@ -172,7 +180,7 @@ class ActorDatabase:
 			_load_appearence(p_database_record.appearence, p_dictionary_record.appearence)
 		
 	func load_database_values():
-		_load_database_values(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		_load_database_values(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 			
 	func _save_record(p_database_record, p_dictionary_record):
 		# Write Data
@@ -212,10 +220,15 @@ class ActorDatabase:
 		
 		
 	func save_database():
-		_save_database(databases.path + "/" + DATABASE_NAME, RECORDS_NAME)
+		_save_database(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 			
 	func _create_record():
 		return ActorRecord.new()
+		
+	func get_record_inlined_code(p_database_record):
+		var dict = {}
+		dict["test1"] = ""
+		return dict
 		
 	func _init(p_databases).(p_databases):
 		pass
