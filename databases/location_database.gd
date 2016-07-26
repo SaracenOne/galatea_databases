@@ -16,6 +16,7 @@ class LocationDatabase:
 		
 		var printed_name = ""
 		var scene_path = ""
+		var skybox_path = ""
 		
 		var maximum_actor_capacity = -1
 		var maximum_actor_capacity_includes_players = false
@@ -44,6 +45,9 @@ class LocationDatabase:
 			
 		if(p_dictionary_record.has("scene_path")):
 			p_database_record.scene_path = p_dictionary_record.scene_path
+			
+		if(p_dictionary_record.has("skybox_path")):
+			p_database_record.skybox_path = p_dictionary_record.skybox_path
 		
 		if(p_dictionary_record.has("maximum_actor_capacity")):
 			p_database_record.maximum_actor_capacity = p_dictionary_record.maximum_actor_capacity
@@ -59,6 +63,7 @@ class LocationDatabase:
 		
 		p_dictionary_record.printed_name = p_database_record.printed_name
 		p_dictionary_record.scene_path = p_database_record.scene_path
+		p_dictionary_record.skybox_path = p_database_record.skybox_path
 		p_dictionary_record.maximum_actor_capacity = p_database_record.maximum_actor_capacity
 		p_dictionary_record.maximum_actor_capacity_includes_players = p_database_record.maximum_actor_capacity_includes_players
 		

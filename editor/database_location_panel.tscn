@@ -18,6 +18,9 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
+printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameControl")
+scene_file_control = NodePath("RightSide/SceneFileMainContainer")
+skybox_file_control = NodePath("RightSide/SkyboxFileMainContainer")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -52,6 +55,7 @@ margin/bottom = 0.0
 
 [node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -62,7 +66,6 @@ margin/top = 30.0
 margin/right = 410.0
 margin/bottom = 70.0
 alignment = 0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="PrintedNameLabel" type="Label" parent="RightSide/PrintedNameContainer"]
 
@@ -70,10 +73,11 @@ rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 400.0
-margin/bottom = 13.0
+margin/bottom = 14.0
 text = "Printed Name:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -87,13 +91,15 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 17.0
+margin/top = 18.0
 margin/right = 400.0
-margin/bottom = 40.0
-text = ""
+margin/bottom = 42.0
+placeholder/alpha = 0.6
 max_length = 64
 editable = false
-secret = false
+focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
 
 [node name="SceneFileMainContainer" parent="RightSide" instance=ExtResource( 3 )]
 
@@ -102,19 +108,41 @@ margin/top = 80.0
 margin/right = 532.0
 margin/bottom = 120.0
 label = "Scene File:"
+file_path = ""
 file_browser_title = "Open Scene"
 file_type = "PackedScene"
+disabled = true
+has_clear_button = true
 
-[connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
+[node name="SkyboxFileMainContainer" parent="RightSide" instance=ExtResource( 3 )]
 
-[connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
+margin/left = 10.0
+margin/top = 130.0
+margin/right = 532.0
+margin/bottom = 172.0
+label = "Skybox File:"
+file_path = ""
+file_browser_title = "Open Scene"
+file_type = "PackedScene"
+disabled = true
+has_clear_button = true
+
+[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
 
-[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
+[connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
+
+[connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
+
+[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewRecordDialog_confirmed"]
 
 [connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameControl" to="." method="_on_printed_name_text_changed"]
 
 [connection signal="file_selected" from="RightSide/SceneFileMainContainer" to="." method="_on_scene_file_selected"]
+
+[connection signal="file_selected" from="RightSide/SkyboxFileMainContainer" to="." method="_on_skybox_file_selected"]
 
 

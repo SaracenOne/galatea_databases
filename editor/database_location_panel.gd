@@ -4,17 +4,16 @@ extends "database_panel.gd"
 #
 var database_records = null
 
-var printed_name_control = null
-var scene_file_control = null
+export(NodePath) var printed_name_control = NodePath()
+export(NodePath) var scene_file_control = NodePath()
+export(NodePath) var skybox_file_control = NodePath()
 
-var foobar
+onready var _printed_name_control_node = get_node(printed_name_control)
+onready var _scene_file_control_node = get_node(scene_file_control)
+onready var _skybox_file_control_node = get_node(skybox_file_control)
 
 func _ready():
-	printed_name_control = get_node("RightSide/PrintedNameContainer/PrintedNameControl")
-	assert(printed_name_control)
-	
-	scene_file_control = get_node("RightSide/SceneFileMainContainer")
-	assert(scene_file_control)
+	pass
 
 func galatea_databases_assigned():
 	database_records = get_node("LeftSide/DatabaseRecords")
@@ -41,18 +40,26 @@ func galatea_databases_assigned():
 func set_current_record_callback(p_record):
 	.set_current_record_callback(p_record)
 	
-	printed_name_control.set_text(current_record.printed_name)
-	printed_name_control.set_editable(true)
+	_printed_name_control_node.set_text(current_record.printed_name)
+	_printed_name_control_node.set_editable(true)
 	
-	scene_file_control.set_file_path(current_record.scene_path)
-	scene_file_control.set_disabled(false)
+	_scene_file_control_node.set_file_path(current_record.scene_path)
+	_scene_file_control_node.set_disabled(false)
+	
+	_skybox_file_control_node.set_file_path(current_record.skybox_path)
+	_skybox_file_control_node.set_disabled(false)
 
-func _on_scene_file_selected( p_path ):
+func _on_printed_name_text_changed(p_printed_name):
+	if(current_record):
+		current_record.printed_name = p_printed_name
+		current_database.mark_database_as_modified()
+
+func _on_scene_file_selected(p_path):
 	if(current_record):
 		current_record.scene_path = p_path
 		current_database.mark_database_as_modified()
-
-func _on_printed_name_text_changed( p_printed_name ):
+		
+func _on_skybox_file_selected(p_path):
 	if(current_record):
-		current_record.printed_name = p_printed_name
+		current_record.skybox_path = p_path
 		current_database.mark_database_as_modified()
