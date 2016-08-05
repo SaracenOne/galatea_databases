@@ -1,5 +1,2 @@
 # Galatea Databases
 This is a plugin for a tool I'm writing for my interactive anime high school simulator 'Galatea'. With it, you will be able to manipulate the various JSON databases which will be responsible for the majority of the gameplay elements. Even though the game itself is still in-production and the design of the databases is still being regularly revised and changed, I'm releasing this tool as part of the game's official future modding kit and under the assumption that due to its heavily polymorphic design, it may also be useful for other developers who would like a simple database tool they could easily adapt for usage in their own games.
-
-# Warning
-The tool is written in GDScript and implemented as a plugin for the Godot game engine, but current at the time of writing, due to a commit I've made to the Godot repository responsible for allowing subclasses to derive from other subclasses contained in external files, this plugin currently requires the latest build of the engine built directly from the official repository [here](https://github.com/okamstudio/godot).
