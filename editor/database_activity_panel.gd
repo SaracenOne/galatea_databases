@@ -24,8 +24,7 @@ func _ready():
 	pass
 	
 func editor_plugin_assigned():
-	if(editor_plugin):
-		get_node("RightSide/DatabaseCodeEditor").assign_editor_plugin(editor_plugin)
+	pass
 
 func galatea_databases_assigned():
 	database_records = get_node("LeftSide/DatabaseRecords")

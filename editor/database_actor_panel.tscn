@@ -287,7 +287,6 @@ max_lines_visible = -1
 
 margin/top = 18.0
 margin/bottom = 42.0
-disabled = false
 
 [node name="AgeVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -331,7 +330,7 @@ margin/right = 244.0
 margin/bottom = 42.0
 range/min = 0.0
 range/max = 999.0
-range/step = 1.0
+range/step = 0.0
 range/page = 0.0
 range/value = 1.0
 range/exp_edit = false
@@ -594,7 +593,6 @@ size_flags/vertical = 3
 margin/right = 443.0
 margin/bottom = 64.0
 label = "Contact Icon Path:"
-file_path = ""
 file_browser_title = "Open Image"
 file_type = "Texture"
 disabled = true

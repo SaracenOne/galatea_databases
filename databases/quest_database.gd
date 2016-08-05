@@ -43,6 +43,9 @@ class QuestDatabase:
 		# Write Data
 		._save_record(p_database_record, p_dictionary_record)
 		
+		p_dictionary_record.printed_name = p_database_record.printed_name
+		p_dictionary_record.invisible = p_database_record.invisible
+		
 	func save_database():
 		_save_database(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 			

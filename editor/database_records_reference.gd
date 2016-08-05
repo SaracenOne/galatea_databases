@@ -13,9 +13,10 @@ export(bool) var disabled = false setget set_disabled, get_disabled
 
 func set_disabled(p_bool):
 	disabled = p_bool
-	var button = get_node("Panel/HBoxContainer/AddButton")
-	if(button):
-		button.set_disabled(p_bool)
+	if(has_node("Panel/HBoxContainer/AddButton")):
+		var button = get_node("Panel/HBoxContainer/AddButton")
+		if(button):
+			button.set_disabled(p_bool)
 
 func get_disabled():
 	return disabled
@@ -67,4 +68,5 @@ func _on_RecordTree_cell_selected():
 	var tree_item = record_tree.get_selected()
 	var record = tree_item.get_metadata(0)
 	
-	get_node("Panel/HBoxContainer/EraseButton").set_disabled(false)
+	if(has_node("Panel/HBoxContainer/EraseButton")):
+		get_node("Panel/HBoxContainer/EraseButton").set_disabled(false)

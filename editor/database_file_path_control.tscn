@@ -15,6 +15,12 @@ margin/right = 522.0
 margin/bottom = 40.0
 alignment = 1
 script/script = ExtResource( 1 )
+label = ""
+file_path = ""
+file_browser_title = ""
+file_type = null
+disabled = null
+has_clear_button = false
 
 [node name="FileLabel" type="Label" parent="."]
 
@@ -72,7 +78,6 @@ margin/left = 502.0
 margin/top = 0.0
 margin/right = 522.0
 margin/bottom = 24.0
-disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -91,7 +96,6 @@ margin/left = 502.0
 margin/top = 0.0
 margin/right = 522.0
 margin/bottom = 24.0
-disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null

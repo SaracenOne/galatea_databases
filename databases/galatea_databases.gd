@@ -4,12 +4,14 @@ const actor_database_const = preload("actor_database.gd")
 const actor_group_database_const = preload("actor_group_database.gd")
 const body_scaler_database_const = preload("body_scaler_database.gd")
 const calendar_event_database_const = preload("calendar_event_database.gd")
+const global_svar_database_const = preload("global_svar_database.gd")
 const hair_database_const = preload("hair_database.gd")
 const item_database_const = preload("item_database.gd")
 const clothing_set_database_const = preload("clothing_set_database.gd")
 const location_database_const = preload("location_database.gd")
 const material_type_database_const = preload("material_type_database.gd")
 const music_track_database_const = preload("music_track_database.gd")
+const precipitation_database_const = preload("precipitation_database.gd")
 const quest_database_const = preload("quest_database.gd")
 const readable_database_const = preload("readable_database.gd")
 const school_lesson_database_const = preload("school_lesson_database.gd")
@@ -24,12 +26,14 @@ var actor_database = null
 var actor_group_database = null
 var body_scaler_database = null
 var calendar_event_database = null
+var global_svar_database = null
 var hair_database = null
 var item_database = null
 var clothing_set_database = null
 var location_database = null
 var material_type_database = null
 var music_track_database = null
+var precipitation_database = null
 var quest_database = null
 var readable_database = null
 var school_lesson_database = null
@@ -115,6 +119,10 @@ func init_databases():
 	assert(calendar_event_database)
 	database_list.push_back(calendar_event_database)
 	
+	global_svar_database = global_svar_database_const.GlobalSvarDatabase.new(self)
+	assert(global_svar_database)
+	database_list.push_back(global_svar_database)
+	
 	hair_database = hair_database_const.HairDatabase.new(self)
 	assert(hair_database)
 	database_list.push_back(hair_database)
@@ -138,6 +146,10 @@ func init_databases():
 	music_track_database = music_track_database_const.MusicTrackDatabase.new(self)
 	assert(music_track_database)
 	database_list.push_back(music_track_database)
+	
+	precipitation_database = precipitation_database_const.PrecipitationDatabase.new(self)
+	assert(precipitation_database)
+	database_list.push_back(precipitation_database)
 	
 	quest_database = quest_database_const.QuestDatabase.new(self)
 	assert(quest_database)

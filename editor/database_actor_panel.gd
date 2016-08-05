@@ -87,6 +87,7 @@ func set_current_record_callback(p_record):
 	_date_of_birth.set_month(p_record.date_of_birth_month - 1)
 	
 	_age_control.set_value(p_record.age)
+	_age_control.set_step(1)
 	_age_control.set_editable(true)
 	
 	_blood_type_control.select(p_record.bloodtype)
@@ -153,7 +154,6 @@ func _on_BloodTypeControl_item_selected( ID ):
 	if(current_record):
 		current_record.bloodtype = ID
 		current_database.mark_database_as_modified()
-
 
 func _on_ActorGroupsControl_record_erased( p_record ):
 	if(current_record):

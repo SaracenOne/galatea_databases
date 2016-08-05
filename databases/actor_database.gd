@@ -100,12 +100,11 @@ class ActorDatabase:
 		
 		var stats = {}
 		
-		class Appearence:
-			var hair = ""
-			var scalers = {}
-			var facial_deformations = {}
-			
-		var appearence = Appearence.new()
+		# Appearence
+		var hair = ""
+		var height = 1.0
+		var scalers = {}
+		var facial_deformations = {}
 		
 	func get_database_name():
 		return DATABASE_NAME
@@ -115,14 +114,6 @@ class ActorDatabase:
 		
 	func load_database_ids():
 		return _load_database_ids(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
-		
-	func _load_appearence(p_appearence, p_appearence_dictionary):
-		if(p_appearence_dictionary.has("hair")):
-			p_appearence.hair = p_appearence_dictionary.hair
-		if(p_appearence_dictionary.has("scalers")):
-			p_appearence.scalers = p_appearence_dictionary.scalers
-		if(p_appearence_dictionary.has("facial_deformations")):
-			p_appearence.facial_deformations = p_appearence_dictionary.facial_deformations
 		
 	func _load_record(p_dictionary_record, p_database_record):
 		# Read Data
@@ -176,8 +167,14 @@ class ActorDatabase:
 		if(p_dictionary_record.has("stats")):
 			p_database_record.stats = p_dictionary_record.stats
 			
-		if(p_dictionary_record.has("appearence")):
-			_load_appearence(p_database_record.appearence, p_dictionary_record.appearence)
+		if(p_dictionary_record.has("hair")):
+			p_database_record.hair = p_dictionary_record.hair
+		if(p_dictionary_record.has("height")):
+			p_database_record.height = p_dictionary_record.height
+		if(p_dictionary_record.has("scalers")):
+			p_database_record.scalers = p_dictionary_record.scalers
+		if(p_dictionary_record.has("facial_deformations")):
+			p_database_record.facial_deformations = p_dictionary_record.facial_deformations
 		
 	func load_database_values():
 		_load_database_values(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
@@ -217,6 +214,11 @@ class ActorDatabase:
 			p_dictionary_record.ai_packages.append(ai_package.id)
 		
 		p_dictionary_record.stats = p_database_record.stats
+		
+		p_dictionary_record.hair = p_database_record.hair
+		p_dictionary_record.height = p_database_record.height
+		p_dictionary_record.scalers = p_database_record.scalers
+		p_dictionary_record.facial_deformations = p_database_record.facial_deformations
 		
 		
 	func save_database():

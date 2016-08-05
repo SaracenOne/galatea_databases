@@ -6,11 +6,16 @@ var list_tree = null
 var database_new_edit_record_popup = null
 var error_dialog = null
 
-var assigned_conditionals = []
+var conditionals = null
 var selected = null
 
-const conditionals_const = preload("../conditionals/conditionals.gd")
+func set_disabled(p_disabled):
+	is_disabled = p_disabled
+	update_button_states()
 
+export(bool) var is_disabled = false setget set_disabled
+
+const conditionals_const = preload("../conditionals/conditionals.gd")
 var conditional_item_editor_window = preload("database_conditional_item_editor_window.tscn").instance()
 
 export(NodePath) var add_button = NodePath("ButtonPanel/ButtonContainer/AddButton")
@@ -27,15 +32,15 @@ onready var _remove_button_node = get_node(remove_button)
 onready var _move_up_button_node = get_node(move_up_button)
 onready var _move_down_button_node = get_node(move_down_button)
 
-signal move_up(p_index)
-signal move_down(p_index)
+signal conditionals_changed(p_conditionals)
 
 func _notification(what):
 	pass
 		
-func assign_conditionals(p_conditional_array):
-	assigned_conditionals = p_conditional_array
-	populate_tree(assigned_conditionals)
+func assign_conditionals(p_conditionals):
+	conditionals = p_conditionals
+	selected = null
+	populate_tree(conditionals.conditional_items)
 		
 func populate_tree(p_list):
 	if(list_tree and p_list != null):
@@ -52,7 +57,7 @@ func populate_tree(p_list):
 			var string = ""
 			
 			if(list_item.conditional_method != ""):
-				string += conditionals_const.process_on_to_string(list_item.process_on)
+				string += conditionals_const.subject_to_string(list_item.subject)
 				string += "."
 				string += list_item.conditional_method
 				string += "("
@@ -100,40 +105,48 @@ func _on_ListTree_cell_selected():
 		update_button_states()
 
 func update_button_states():
+	if(_add_button_node):
+		if(!is_disabled):
+			_add_button_node.set_disabled(false)
+		else:
+			_add_button_node.set_disabled(true)
+		
 	if(_edit_button_node):
-		if(selected):
+		if(selected and !is_disabled):
 			_edit_button_node.set_disabled(false)
 		else:
 			_edit_button_node.set_disabled(true)
 	
 	if(_duplicate_button_node):
-		if(selected):
+		if(selected and !is_disabled):
 			_duplicate_button_node.set_disabled(false)
 		else:
 			_duplicate_button_node.set_disabled(true)
 		
 	if(_remove_button_node):
-		if(selected):
+		if(selected and !is_disabled):
 			_remove_button_node.set_disabled(false)
 		else:
 			_remove_button_node.set_disabled(true)
 		
 	if(_move_up_button_node):
-		if(selected and selected.get_prev()):
+		if(selected and selected.get_prev() and !is_disabled):
 			_move_up_button_node.set_disabled(false)
 		else:
 			_move_up_button_node.set_disabled(true)
 		
 	if(_move_down_button_node):
-		if(selected and selected.get_next()):
+		if(selected and selected.get_next() and !is_disabled):
 			_move_down_button_node.set_disabled(false)
 		else:
 			_move_down_button_node.set_disabled(true)
 
 func _on_add_item_confirmed(p_conditional_item):
 	if(p_conditional_item):
-		assigned_conditionals.append(p_conditional_item)
-		populate_tree(assigned_conditionals)
+		conditionals.conditional_items.append(p_conditional_item)
+		populate_tree(conditionals.conditional_items)
+		
+		emit_signal("conditionals_changed", conditionals)
 	
 func _on_add_item_hidden():
 	if(conditional_item_editor_window.is_connected("confirmed", self, "_on_add_item_confirmed")):
@@ -153,8 +166,10 @@ func _on_AddButton_pressed():
 	
 func _on_edit_item_confirmed(p_conditional_item):
 	if(p_conditional_item):
-		populate_tree(assigned_conditionals)
+		populate_tree(conditionals.conditional_items)
 		update_button_states()
+		
+		emit_signal("conditionals_changed", conditionals)
 	
 func _on_edit_item_hidden():
 	if(conditional_item_editor_window.is_connected("confirmed", self, "_on_edit_item_confirmed")):
@@ -180,8 +195,10 @@ func _on_DuplicateButton_pressed():
 			var new_conditional = conditionals_const.ConditionalItem.new()
 			new_conditional.copy(conditional_item)
 				
-			assigned_conditionals.insert(assigned_conditionals.find(conditional_item) + 1, new_conditional)
-			populate_tree(assigned_conditionals)
+			conditionals.conditional_items.insert(conditionals.conditional_items.find(conditional_item) + 1, new_conditional)
+			populate_tree(conditionals.conditional_items)
+			
+			emit_signal("conditionals_changed", conditionals)
 
 func _on_RemoveButton_pressed():
 	if(selected):
@@ -194,30 +211,36 @@ func _on_RemoveButton_pressed():
 			else:
 				selected = null
 				
-			assigned_conditionals.remove(assigned_conditionals.find(conditional_item))
-			populate_tree(assigned_conditionals)
+			conditionals.conditional_items.remove(conditionals.conditional_items.find(conditional_item))
+			populate_tree(conditionals.conditional_items)
 			update_button_states()
+			
+			emit_signal("conditionals_changed", conditionals)
 
 func _on_MoveUp_pressed():
 	if(selected):
 		var conditional_item = selected.get_metadata(0)
 		if(conditional_item):
-			var index = assigned_conditionals.find(conditional_item)
+			var index = conditionals.conditional_items.find(conditional_item)
 			if(index > 0):
-				assigned_conditionals.remove(index)
-				assigned_conditionals.insert(index - 1, conditional_item)
+				conditionals.conditional_items.remove(index)
+				conditionals.conditional_items.insert(index - 1, conditional_item)
 				
-				populate_tree(assigned_conditionals)
+				populate_tree(conditionals.conditional_items)
 				update_button_states()
+				
+				emit_signal("conditionals_changed", conditionals)
 		
 func _on_MoveDown_pressed():
 	if(selected):
 		var conditional_item = selected.get_metadata(0)
 		if(conditional_item):
-			var index = assigned_conditionals.find(conditional_item)
-			if(index != -1 and index < assigned_conditionals.size()-1):
-				assigned_conditionals.remove(index)
-				assigned_conditionals.insert(index + 1, conditional_item)
+			var index = conditionals.conditional_items.find(conditional_item)
+			if(index != -1 and index < conditionals.conditional_items.size()-1):
+				conditionals.conditional_items.remove(index)
+				conditionals.conditional_items.insert(index + 1, conditional_item)
 				
-				populate_tree(assigned_conditionals)
+				populate_tree(conditionals.conditional_items)
 				update_button_states()
+				
+				emit_signal("conditionals_changed", conditionals)

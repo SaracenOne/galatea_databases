@@ -36,24 +36,27 @@ func get_record_name():
 	
 func set_disabled(p_bool):
 	disabled = p_bool
-	var load_button = get_node("Container/LoadButton")
-	if(load_button):
-		load_button.set_disabled(p_bool)
+	if(has_node("Container/LoadButton")):
+		var load_button = get_node("Container/LoadButton")
+		if(load_button):
+			load_button.set_disabled(p_bool)
 		
-	var clear_button = get_node("Container/ClearButton")
-	if(clear_button):
-		clear_button.set_disabled(p_bool)
+	if(has_node("Container/ClearButton")):
+		var clear_button = get_node("Container/ClearButton")
+		if(clear_button):
+			clear_button.set_disabled(p_bool)
 
 func get_disabled():
 	return disabled
 	
 func set_has_clear_button(p_bool):
 	has_clear_button = p_bool
-	var clear_button = get_node("Container/ClearButton")
-	if(has_clear_button and clear_button):
-		clear_button.show()
-	else:
-		clear_button.hide()
+	if(has_node("Container/ClearButton")):
+		var clear_button = get_node("Container/ClearButton")
+		if(clear_button and has_clear_button):
+			clear_button.show()
+		else:
+			clear_button.hide()
 
 func get_has_clear_button():
 	return has_clear_button

@@ -7,10 +7,12 @@ var database_records = null
 export(NodePath) var printed_name_control = NodePath()
 export(NodePath) var scene_file_control = NodePath()
 export(NodePath) var skybox_file_control = NodePath()
+export(NodePath) var is_interior_control = NodePath()
 
 onready var _printed_name_control_node = get_node(printed_name_control)
 onready var _scene_file_control_node = get_node(scene_file_control)
 onready var _skybox_file_control_node = get_node(skybox_file_control)
+onready var _is_interior_control_node = get_node(is_interior_control)
 
 func _ready():
 	pass
@@ -62,4 +64,10 @@ func _on_scene_file_selected(p_path):
 func _on_skybox_file_selected(p_path):
 	if(current_record):
 		current_record.skybox_path = p_path
+		current_database.mark_database_as_modified()
+		
+
+func _on_IsInteriorCheckbox_toggled( pressed ):
+	if(current_record):
+		current_record.is_interior = pressed
 		current_database.mark_database_as_modified()

@@ -14,7 +14,6 @@ func database_interface_assign_databases(p_control):
 		database_interface_assign_databases(child)
 
 func database_interface_assign_editor_plugin(p_control):
-	print("YYY")
 	for child in p_control.get_children():
 		if(child.has_method("set_editor_plugin")):
 			child.call("set_editor_plugin", galatea_databases)

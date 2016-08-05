@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_activity_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/galatea_databases/editor/database_code_editor.tscn" type="PackedScene" id=5]
 
 [node name="ActivityPanel" type="Control"]
 
@@ -173,7 +172,6 @@ size_flags/vertical = 3
 margin/right = 264.0
 margin/bottom = 64.0
 label = "Main Icon Path:"
-file_path = ""
 file_browser_title = "Load Image"
 file_type = "Texture"
 disabled = true
@@ -215,11 +213,9 @@ margin/top = 208.0
 margin/right = 250.0
 margin/bottom = 250.0
 label = "Activity Script:"
-file_path = ""
 file_browser_title = "Load Script"
 file_type = "GDScript"
 disabled = true
-has_clear_button = false
 
 [node name="ValidLocationsContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -304,13 +300,6 @@ shortcut = null
 text = "Selectable"
 flat = false
 align = 0
-
-[node name="DatabaseCodeEditor" parent="RightSide" instance=ExtResource( 5 )]
-
-margin/left = 444.0
-margin/top = 369.0
-margin/right = 240.0
-margin/bottom = 196.0
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 

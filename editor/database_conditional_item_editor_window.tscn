@@ -138,7 +138,7 @@ click_on_press = true
 enabled_focus_mode = 0
 shortcut = null
 flat = false
-items = [  ]
+items = [ "self", null, false, false, false, 0, 0, null, "", false, "target", null, false, false, false, 1, 0, null, "", false, "reference", null, false, false, false, 2, 0, null, "", false, "global", null, false, false, false, 3, 0, null, "", false, "self", null, false, false, false, 0, 0, null, "", false, "target", null, false, false, false, 1, 0, null, "", false, "reference", null, false, false, false, 2, 0, null, "", false, "global", null, false, false, false, 3, 0, null, "", false, "self", null, false, false, false, 0, 0, null, "", false, "target", null, false, false, false, 1, 0, null, "", false, "reference", null, false, false, false, 2, 0, null, "", false, "global", null, false, false, false, 3, 0, null, "", false, "self", null, false, false, false, 0, 0, null, "", false, "target", null, false, false, false, 1, 0, null, "", false, "reference", null, false, false, false, 2, 0, null, "", false, "global", null, false, false, false, 3, 0, null, "", false ]
 
 [node name="Column2" type="VBoxContainer" parent="ConditionalItemEditor/Row1"]
 
@@ -273,7 +273,7 @@ enabled_focus_mode = 0
 shortcut = null
 text = "=="
 flat = false
-items = [  ]
+items = [ "==", null, false, false, false, 0, 0, null, "", false, "!=", null, false, false, false, 1, 0, null, "", false, ">", null, false, false, false, 2, 0, null, "", false, "<", null, false, false, false, 3, 0, null, "", false, ">=", null, false, false, false, 4, 0, null, "", false, "<=", null, false, false, false, 5, 0, null, "", false ]
 
 [node name="SwapLabel" type="Label" parent="ConditionalItemEditor/Row1/Column3"]
 
@@ -355,6 +355,7 @@ max_lines_visible = -1
 
 [node name="ValueContainer" type="VBoxContainer" parent="ConditionalItemEditor/Row1/Column4"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 rect/min_size = Vector2( 50, 30 )
 focus/ignore_mouse = false

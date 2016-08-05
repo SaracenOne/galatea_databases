@@ -21,6 +21,7 @@ script/script = ExtResource( 1 )
 printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameControl")
 scene_file_control = NodePath("RightSide/SceneFileMainContainer")
 skybox_file_control = NodePath("RightSide/SkyboxFileMainContainer")
+is_interior_control = NodePath("RightSide/FlagsContainer/IsInteriorContainer/IsInteriorCheckbox")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -127,6 +128,66 @@ file_type = "PackedScene"
 disabled = true
 has_clear_button = true
 
+[node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 190.0
+margin/right = 254.0
+margin/bottom = 213.0
+alignment = 1
+
+[node name="IsInteriorContainer" type="HBoxContainer" parent="RightSide/FlagsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 244.0
+margin/bottom = 23.0
+alignment = 0
+
+[node name="IsInteriorCheckbox" type="CheckBox" parent="RightSide/FlagsContainer/IsInteriorContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 26.0
+margin/bottom = 23.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="IsInteriorLabel" type="Label" parent="RightSide/FlagsContainer/IsInteriorContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 30.0
+margin/top = 4.0
+margin/right = 94.0
+margin/bottom = 18.0
+text = "Is Interior"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
@@ -135,14 +196,12 @@ has_clear_button = true
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewRecordDialog_confirmed"]
-
 [connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameControl" to="." method="_on_printed_name_text_changed"]
 
 [connection signal="file_selected" from="RightSide/SceneFileMainContainer" to="." method="_on_scene_file_selected"]
 
 [connection signal="file_selected" from="RightSide/SkyboxFileMainContainer" to="." method="_on_skybox_file_selected"]
+
+[connection signal="toggled" from="RightSide/FlagsContainer/IsInteriorContainer/IsInteriorCheckbox" to="." method="_on_IsInteriorCheckbox_toggled"]
 
 

@@ -15,6 +15,7 @@ margin/right = 244.0
 margin/bottom = 24.0
 alignment = 0
 script/script = ExtResource( 1 )
+disabled = false
 
 [node name="Day" type="SpinBox" parent="."]
 
@@ -29,7 +30,7 @@ margin/right = 120.0
 margin/bottom = 24.0
 range/min = 1.0
 range/max = 31.0
-range/step = 1.0
+range/step = 0.0
 range/page = 0.0
 range/value = 1.0
 range/exp_edit = false

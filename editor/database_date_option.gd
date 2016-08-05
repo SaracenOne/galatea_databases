@@ -12,9 +12,13 @@ func set_disabled(p_disabled):
 	disabled = p_disabled
 	if(day_option):
 		day_option.set_editable(!p_disabled)
+		if(p_disabled):
+			day_option.set_step(0)
+		else:
+			day_option.set_step(1)
 	if(month_option):
 		month_option.set_disabled(p_disabled)
-
+		
 func day_value_changed(p_day):
 	emit_signal("day_changed", p_day)
 	

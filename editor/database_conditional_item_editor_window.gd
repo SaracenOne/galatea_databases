@@ -1,4 +1,5 @@
 extends Control
+tool
 
 const methods_const = preload("../methods/methods.gd")
 var master_method_dict = null
@@ -49,13 +50,20 @@ func _spinbox_value_changed(p_value):
 
 func setup_controls():
 	if(_method_selection_node):
+		if(_method_selection_node.is_connected("pressed", self, "method_selection_pressed")):
+			_method_selection_node.disconnect("pressed", self, "method_selection_pressed")
 		_method_selection_node.connect("pressed", self, "method_selection_pressed")
 		
 	if(_arguments_selection_node):
+		if(_arguments_selection_node.is_connected("pressed", self, "argument_selection_pressed")):
+			_arguments_selection_node.disconnect("pressed", self, "argument_selection_pressed")
 		_arguments_selection_node.connect("pressed", self, "argument_selection_pressed")
 		
 	if(_operator_selection_node):
 		var operator_popup = _operator_selection_node.get_popup()
+		operator_popup.clear()
+		if(operator_popup.is_connected("item_pressed", self, "operator_type_selected")):
+			operator_popup.disconnect("item_pressed", self, "operator_type_selected")
 		operator_popup.connect("item_pressed", self, "operator_type_selected")
 		var operator_string_array = conditionals_const.get_array_of_operator_strings()
 		
@@ -67,6 +75,9 @@ func setup_controls():
 			
 	if(_value_type_selection_node):
 		var value_type_popup = _value_type_selection_node.get_popup()
+		value_type_popup.clear()
+		if(value_type_popup.is_connected("item_pressed", self, "value_type_selected")):
+			value_type_popup.disconnet("item_pressed", self, "value_type_selected")
 		value_type_popup.connect("item_pressed", self, "value_type_selected")
 		var value_type_string_array = conditionals_const.get_array_of_value_type_strings()
 		
@@ -75,6 +86,8 @@ func setup_controls():
 			
 	if(_subject_selection_node):
 		var subject_selection_popup = _subject_selection_node.get_popup()
+		if(subject_selection_popup.is_connected("item_pressed", self, "subject_selected")):
+			subject_selection_popup.disconnect("item_pressed", self, "subject_selected")
 		subject_selection_popup.connect("item_pressed", self, "subject_selected")
 		var subject_string_array = conditionals_const.get_array_of_subjects()
 		
@@ -82,6 +95,8 @@ func setup_controls():
 			subject_selection_popup.add_item(subject_string_array[i], i)
 		
 	if(_or_checkbox_node):
+		if(_or_checkbox_node.is_connected("toggled", self, "or_checkbox_toggled")):
+			_or_checkbox_node.disconnect("toggled", self, "or_checkbox_toggled")
 		_or_checkbox_node.connect("toggled", self, "or_checkbox_toggled")
 
 func set_value_type(p_value_type):

@@ -1,3 +1,6 @@
+extends Reference
+tool
+
 const COMPARISON_OPERATOR_EQUALS = 0
 const COMPARISON_OPERATOR_NOT = 1
 const COMPARISON_OPERATOR_GREATER = 2
@@ -184,7 +187,7 @@ static func value_type_to_string(p_subject):
 		printerr("value_type_to_string: invalid!")
 		return "float"
 		
-static func load_from_dictionary(p_dictionary, p_conditional_set):
+static func load_from_dictionary(p_conditional_set, p_dictionary):
 	if(p_dictionary.has("conditional_items")):
 		p_conditional_set.conditional_items.clear()
 		
@@ -194,8 +197,9 @@ static func load_from_dictionary(p_dictionary, p_conditional_set):
 			conditional_item.conditional_method = conditional_dictionary.conditional_method
 			
 			conditional_item.arguments.clear()
-			for argument in conditional_dictionary.arguments:
-				conditional_item.push_back(argument)
+			if(conditional_dictionary.has("arguments")):
+				for argument in conditional_dictionary.arguments:
+					conditional_item.push_back(argument)
 				
 			conditional_item.operator = string_to_operator(conditional_dictionary.operator)
 			conditional_item.value = conditional_dictionary.value
@@ -203,10 +207,10 @@ static func load_from_dictionary(p_dictionary, p_conditional_set):
 			conditional_item.subject = string_to_subject(conditional_dictionary.subject)
 			conditional_item.use_or = conditional_dictionary.use_or
 			
-			p_conditional_set.push_back(conditional_item)
+			p_conditional_set.conditional_items.push_back(conditional_item)
 		
-static func save_to_dictionary(p_dictionary, p_conditional_set):
-	p_dictionary.conditional_items = []
+static func save_to_dictionary(p_conditional_set):
+	var conditionals = []
 	
 	for conditional_item in p_conditional_set.conditional_items:
 		var conditional_dictionary = {}
@@ -222,5 +226,7 @@ static func save_to_dictionary(p_dictionary, p_conditional_set):
 		conditional_dictionary.subject = subject_to_string(conditional_item.subject)
 		conditional_dictionary.use_or = conditional_item.use_or
 		
-		p_dictionary.conditional_items.push_back(conditional_dictionary)
+		conditionals.push_back(conditional_dictionary)
+		
+	return {"conditional_items":conditionals}
 		

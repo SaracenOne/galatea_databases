@@ -56,6 +56,7 @@ func set_current_record_callback(p_record):
 	_description_control_node.set_text(current_record.description)
 	
 	_value_control_node.set_value(current_record.value)
+	_value_control_node.set_step(1)
 	_value_control_node.set_editable(true)
 	
 	_item_type_control_node.select(current_record.item_type)
