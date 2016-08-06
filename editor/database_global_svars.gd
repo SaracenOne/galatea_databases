@@ -1,7 +1,7 @@
 tool
 extends "database_panel.gd"
 
-const global_svar_database_const = preload("../databases/global_svar_database.gd")
+const global_svar_record_const = preload("../databases/global_svar_record.gd")
 
 #
 var database_records = null
@@ -19,13 +19,13 @@ func svar_type_selected(p_id):
 		current_record.type = p_id
 		set_type(p_id)
 		
-		if(p_id == global_svar_database_const.SVAR_TYPE_INTEGER):
+		if(p_id == global_svar_record_const.SVAR_TYPE_INTEGER):
 			current_record.value = int(0)
 			_svar_value_spinbox_node.set_value(0)
-		elif (p_id == global_svar_database_const.SVAR_TYPE_FLOAT):
+		elif (p_id == global_svar_record_const.SVAR_TYPE_FLOAT):
 			current_record.value = float(0.0)
 			_svar_value_spinbox_node.set_value(0.0)
-		elif(p_id == global_svar_database_const.SVAR_TYPE_STRING):
+		elif(p_id == global_svar_record_const.SVAR_TYPE_STRING):
 			current_record.value = ""
 			_svar_value_line_edit_node.set_text("")
 			
@@ -38,7 +38,7 @@ func _ready():
 		var svar_type_popup = _svar_type_node.get_popup()
 		svar_type_popup.connect("item_pressed", self, "svar_type_selected")
 		
-		var types = global_svar_database_const.get_array_of_types_as_strings()
+		var types = global_svar_record_const.get_array_of_types_as_strings()
 		svar_type_popup.clear()
 		for i in range(0, types.size()):
 			svar_type_popup.add_item(types[i], i)
@@ -66,18 +66,18 @@ func galatea_databases_assigned():
 		printerr("global_svar_database is null")
 
 func set_type(p_type):
-	_svar_type_node.set_text(global_svar_database_const.GlobalSvarDatabase.svar_type_to_string(p_type))
+	_svar_type_node.set_text(global_svar_record_const.svar_type_to_string(p_type))
 	
-	if(p_type == global_svar_database_const.SVAR_TYPE_INTEGER) or (p_type == global_svar_database_const.SVAR_TYPE_FLOAT):
+	if(p_type == global_svar_record_const.SVAR_TYPE_INTEGER) or (p_type == global_svar_record_const.SVAR_TYPE_FLOAT):
 		_svar_value_line_edit_node.hide()
 		_svar_value_spinbox_node.show()
-		if(p_type == global_svar_database_const.SVAR_TYPE_INTEGER):
+		if(p_type == global_svar_record_const.SVAR_TYPE_INTEGER):
 			_svar_value_spinbox_node.set_step(1)
 			_svar_value_spinbox_node.set_rounded_values(true)
 		else:
 			_svar_value_spinbox_node.set_step(0.00000001)
 			_svar_value_spinbox_node.set_rounded_values(false)
-	elif(p_type == global_svar_database_const.SVAR_TYPE_STRING):
+	elif(p_type == global_svar_record_const.SVAR_TYPE_STRING):
 		_svar_value_line_edit_node.show()
 		_svar_value_spinbox_node.hide()
 
@@ -91,18 +91,18 @@ func set_current_record_callback(p_record):
 	
 	set_type(p_record.type)
 	
-	if(p_record.type == global_svar_database_const.SVAR_TYPE_INTEGER):
+	if(p_record.type == global_svar_record_const.SVAR_TYPE_INTEGER):
 		_svar_value_spinbox_node.set_value(int(p_record.value))
-	elif (p_record.type == global_svar_database_const.SVAR_TYPE_FLOAT):
+	elif (p_record.type == global_svar_record_const.SVAR_TYPE_FLOAT):
 		_svar_value_spinbox_node.set_value(float(p_record.value))
-	elif(p_record.type == global_svar_database_const.SVAR_TYPE_STRING):
+	elif(p_record.type == global_svar_record_const.SVAR_TYPE_STRING):
 		_svar_value_line_edit_node.set_text(str(p_record.value))
 
 func _on_SvarValueSpinbox_value_changed( value ):
 	if(current_record):
-		if(current_record.type == global_svar_database_const.SVAR_TYPE_INTEGER):
+		if(current_record.type == global_svar_record_const.SVAR_TYPE_INTEGER):
 			current_record.value = int(value)
-		elif(current_record.type == global_svar_database_const.SVAR_TYPE_FLOAT):
+		elif(current_record.type == global_svar_record_const.SVAR_TYPE_FLOAT):
 			current_record.value = float(value)
 		current_database.mark_database_as_modified()
 

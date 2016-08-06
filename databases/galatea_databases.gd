@@ -4,16 +4,16 @@ const actor_database_const = preload("actor_database.gd")
 const actor_group_database_const = preload("actor_group_database.gd")
 const body_scaler_database_const = preload("body_scaler_database.gd")
 const calendar_event_database_const = preload("calendar_event_database.gd")
+const clothing_database_const = preload("clothing_database.gd")
+const clothing_set_database_const = preload("clothing_set_database.gd")
 const global_svar_database_const = preload("global_svar_database.gd")
 const hair_database_const = preload("hair_database.gd")
 const item_database_const = preload("item_database.gd")
-const clothing_set_database_const = preload("clothing_set_database.gd")
 const location_database_const = preload("location_database.gd")
 const material_type_database_const = preload("material_type_database.gd")
 const music_track_database_const = preload("music_track_database.gd")
 const precipitation_database_const = preload("precipitation_database.gd")
 const quest_database_const = preload("quest_database.gd")
-const readable_database_const = preload("readable_database.gd")
 const school_lesson_database_const = preload("school_lesson_database.gd")
 const sms_database_const = preload("sms_database.gd")
 const status_effect_database_const = preload("status_effect_database.gd")
@@ -26,16 +26,16 @@ var actor_database = null
 var actor_group_database = null
 var body_scaler_database = null
 var calendar_event_database = null
+var clothing_database = null
+var clothing_set_database = null
 var global_svar_database = null
 var hair_database = null
 var item_database = null
-var clothing_set_database = null
 var location_database = null
 var material_type_database = null
 var music_track_database = null
 var precipitation_database = null
 var quest_database = null
-var readable_database = null
 var school_lesson_database = null
 var sms_database = null
 var status_effect_database = null
@@ -59,7 +59,7 @@ const STAT_MONEY = 10
 
 const DATABASE_NAME_BINARY = "databases.gbd"
 
-var database_list = []
+var database_list = {}
 var database_dirty_list = []
 	
 func load_all_databases():
@@ -67,7 +67,7 @@ func load_all_databases():
 
 	init_databases()
 
-	for current_database in database_list:
+	for current_database in database_list.values():
 		assert(current_database)
 		add_to_dirty_list(current_database)
 		
@@ -92,97 +92,97 @@ func save_all_databases():
 			database.save_database()
 	
 func init_databases():
-	database_list = []
+	database_list = {}
 	database_dirty_list = []
 		
-	activity_database = activity_database_const.ActivityDatabase.new(self)
+	activity_database = activity_database_const.new(self)
 	assert(activity_database)#
-	database_list.push_back(activity_database)
+	database_list[activity_database_const.DATABASE_NAME] = activity_database
 
-	ai_package_database = ai_package_database_const.AIPackageDatabase.new(self)
+	ai_package_database = ai_package_database_const.new(self)
 	assert(ai_package_database)
-	database_list.push_back(ai_package_database)
+	database_list[ai_package_database_const.DATABASE_NAME] = ai_package_database
 	
-	actor_database = actor_database_const.ActorDatabase.new(self)
+	actor_database = actor_database_const.new(self)
 	assert(actor_database)
-	database_list.push_back(actor_database)
+	database_list[actor_database_const.DATABASE_NAME] = actor_database
 	
-	actor_group_database = actor_group_database_const.ActorGroupDatabase.new(self)
+	actor_group_database = actor_group_database_const.new(self)
 	assert(actor_group_database)
-	database_list.push_back(actor_group_database)
+	database_list[actor_group_database_const.DATABASE_NAME] = actor_group_database
 	
-	body_scaler_database = body_scaler_database_const.BodyScalerDatabase.new(self)
+	body_scaler_database = body_scaler_database_const.new(self)
 	assert(body_scaler_database)
-	database_list.push_back(body_scaler_database)
+	database_list[body_scaler_database_const.DATABASE_NAME] = body_scaler_database
 	
-	calendar_event_database = calendar_event_database_const.CalendarEventDatabase.new(self)
+	calendar_event_database = calendar_event_database_const.new(self)
 	assert(calendar_event_database)
-	database_list.push_back(calendar_event_database)
+	database_list[calendar_event_database_const.DATABASE_NAME] = calendar_event_database
 	
-	global_svar_database = global_svar_database_const.GlobalSvarDatabase.new(self)
-	assert(global_svar_database)
-	database_list.push_back(global_svar_database)
+	clothing_database = clothing_database_const.new(self)
+	assert(clothing_database)
+	database_list[clothing_database_const.DATABASE_NAME] = clothing_database
 	
-	hair_database = hair_database_const.HairDatabase.new(self)
-	assert(hair_database)
-	database_list.push_back(hair_database)
-	
-	item_database = item_database_const.ItemDatabase.new(self)
-	assert(item_database)
-	database_list.push_back(item_database)
-
-	clothing_set_database = clothing_set_database_const.ClothingSetDatabase.new(self)
+	clothing_set_database = clothing_set_database_const.new(self)
 	assert(clothing_set_database)
-	database_list.push_back(clothing_set_database)
+	database_list[clothing_set_database_const.DATABASE_NAME] = clothing_set_database
 	
-	location_database = location_database_const.LocationDatabase.new(self)
+	global_svar_database = global_svar_database_const.new(self)
+	assert(global_svar_database)
+	database_list[global_svar_database_const.DATABASE_NAME] = global_svar_database
+	
+	hair_database = hair_database_const.new(self)
+	assert(hair_database)
+	database_list[hair_database_const.DATABASE_NAME] = hair_database
+	
+	item_database = item_database_const.new(self)
+	assert(item_database)
+	database_list[item_database_const.DATABASE_NAME] = item_database
+	
+	location_database = location_database_const.new(self)
 	assert(location_database)
-	database_list.push_back(location_database)
+	database_list[location_database_const.DATABASE_NAME] = location_database
 	
-	material_type_database = material_type_database_const.MaterialTypeDatabase.new(self)
+	material_type_database = material_type_database_const.new(self)
 	assert(material_type_database)
-	database_list.push_back(material_type_database)
+	database_list[material_type_database_const.DATABASE_NAME] = material_type_database
 	
-	music_track_database = music_track_database_const.MusicTrackDatabase.new(self)
+	music_track_database = music_track_database_const.new(self)
 	assert(music_track_database)
-	database_list.push_back(music_track_database)
+	database_list[music_track_database_const.DATABASE_NAME] = music_track_database
 	
-	precipitation_database = precipitation_database_const.PrecipitationDatabase.new(self)
+	precipitation_database = precipitation_database_const.new(self)
 	assert(precipitation_database)
-	database_list.push_back(precipitation_database)
+	database_list[precipitation_database_const.DATABASE_NAME] = precipitation_database
 	
-	quest_database = quest_database_const.QuestDatabase.new(self)
+	quest_database = quest_database_const.new(self)
 	assert(quest_database)
-	database_list.push_back(quest_database)
+	database_list[quest_database_const.DATABASE_NAME] = quest_database
 	
-	readable_database = readable_database_const.ReadableDatabase.new(self)
-	assert(readable_database)
-	database_list.push_back(readable_database)
-	
-	school_lesson_database = school_lesson_database_const.SchoolLessonDatabase.new(self)
+	school_lesson_database = school_lesson_database_const.new(self)
 	assert(school_lesson_database)
-	database_list.push_back(school_lesson_database)
+	database_list[school_lesson_database_const.DATABASE_NAME] = school_lesson_database
 	
-	sms_database = sms_database_const.SMSDatabase.new(self)
+	sms_database = sms_database_const.new(self)
 	assert(sms_database)
-	database_list.push_back(sms_database)
+	database_list[sms_database_const.DATABASE_NAME] = sms_database
 	
-	status_effect_database = status_effect_database_const.StatusEffectDatabase.new(self)
+	status_effect_database = status_effect_database_const.new(self)
 	assert(status_effect_database)
-	database_list.push_back(status_effect_database)
+	database_list[status_effect_database_const.DATABASE_NAME] = status_effect_database
 	
-	trait_database = trait_database_const.TraitDatabase.new(self)
+	trait_database = trait_database_const.new(self)
 	assert(trait_database)
-	database_list.push_back(trait_database)
+	database_list[trait_database_const.DATABASE_NAME] = trait_database
 	
-	weather_database = weather_database_const.WeatherDatabase.new(self)
+	weather_database = weather_database_const.new(self)
 	assert(weather_database)
-	database_list.push_back(weather_database)
+	database_list[weather_database_const.DATABASE_NAME] = weather_database
 	
 func check_database_modified():
 	var is_modified = false
 	
-	for current_database in database_list:
+	for current_database in database_list.values():
 		if(current_database.check_database_modified()):
 			is_modified = true
 			

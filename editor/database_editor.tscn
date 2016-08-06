@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=19 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_editor.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_music_track_panel.tscn" type="PackedScene" id=2]
@@ -14,11 +14,10 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_school_lesson_panel.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/galatea_databases/editor/database_global_svars.tscn" type="PackedScene" id=13]
 [ext_resource path="res://addons/galatea_databases/editor/database_item_panel.tscn" type="PackedScene" id=14]
-[ext_resource path="res://addons/galatea_databases/editor/database_readable_panel.tscn" type="PackedScene" id=15]
-[ext_resource path="res://addons/galatea_databases/editor/database_sms_panel.tscn" type="PackedScene" id=16]
-[ext_resource path="res://addons/galatea_databases/editor/database_location_panel.tscn" type="PackedScene" id=17]
-[ext_resource path="res://addons/galatea_databases/editor/database_precipitation_panel.tscn" type="PackedScene" id=18]
-[ext_resource path="res://addons/galatea_databases/editor/database_weather_panel.tscn" type="PackedScene" id=19]
+[ext_resource path="res://addons/galatea_databases/editor/database_sms_panel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/galatea_databases/editor/database_location_panel.tscn" type="PackedScene" id=16]
+[ext_resource path="res://addons/galatea_databases/editor/database_precipitation_panel.tscn" type="PackedScene" id=17]
+[ext_resource path="res://addons/galatea_databases/editor/database_weather_panel.tscn" type="PackedScene" id=18]
 
 [node name="DatabaseEditor" type="Panel"]
 
@@ -362,24 +361,6 @@ margin/bottom = 4.0
 
 [node name="ItemPanel" parent="DatabaseEditorTabs/Miscellaneous/Items" instance=ExtResource( 14 )]
 
-[node name="Readables" type="Control" parent="DatabaseEditorTabs/Miscellaneous"]
-
-editor/display_folded = true
-visibility/visible = false
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 4.0
-margin/top = 32.0
-margin/right = 4.0
-margin/bottom = 4.0
-
-[node name="ReadablePanel" parent="DatabaseEditorTabs/Miscellaneous/Readables" instance=ExtResource( 15 )]
-
 [node name="SMS" type="Control" parent="DatabaseEditorTabs/Miscellaneous"]
 
 visibility/visible = false
@@ -395,7 +376,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="SMSPanel" parent="DatabaseEditorTabs/Miscellaneous/SMS" instance=ExtResource( 16 )]
+[node name="SMSPanel" parent="DatabaseEditorTabs/Miscellaneous/SMS" instance=ExtResource( 15 )]
 
 [node name="World" type="TabContainer" parent="DatabaseEditorTabs"]
 
@@ -429,7 +410,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="LocationPanel" parent="DatabaseEditorTabs/World/Locations" instance=ExtResource( 17 )]
+[node name="LocationPanel" parent="DatabaseEditorTabs/World/Locations" instance=ExtResource( 16 )]
 
 [node name="Precipitation" type="Control" parent="DatabaseEditorTabs/World"]
 
@@ -443,10 +424,10 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
 margin/top = 32.0
-margin/right = 1548.0
-margin/bottom = 752.0
+margin/right = 4.0
+margin/bottom = 4.0
 
-[node name="PrecipitationPanel" parent="DatabaseEditorTabs/World/Precipitation" instance=ExtResource( 18 )]
+[node name="PrecipitationPanel" parent="DatabaseEditorTabs/World/Precipitation" instance=ExtResource( 17 )]
 
 [node name="Weather" type="Control" parent="DatabaseEditorTabs/World"]
 
@@ -464,7 +445,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="WeatherPanel" parent="DatabaseEditorTabs/World/Weather" instance=ExtResource( 19 )]
+[node name="WeatherPanel" parent="DatabaseEditorTabs/World/Weather" instance=ExtResource( 18 )]
 
 [node name="Panel" type="PanelContainer" parent="."]
 

@@ -140,7 +140,7 @@ func _on_DateOfBirthOption_day_changed( p_day ):
 		current_record.date_of_birth_day = p_day
 		current_database.mark_database_as_modified()
 		
-func _on_DateOfBirthOption_month_changed( p_month ):
+func _on_DateOfBirthOptions_month_changed( p_month ):
 	if(current_record):
 		current_record.date_of_birth_month = p_month + 1
 		current_database.mark_database_as_modified()
@@ -209,4 +209,3 @@ func _on_IsStorylineActorCheckbox_toggled( pressed ):
 	if(current_record):
 		current_record.is_storyline_actor = pressed
 		current_database.mark_database_as_modified()
-

@@ -1,7 +1,7 @@
 tool
 extends Control
 
-const generic_database_const = preload("../databases/generic_database.gd")
+const generic_record_const = preload("../databases/generic_record.gd")
 
 var record_tree = null
 
@@ -44,7 +44,7 @@ func add_record_name_received(p_string):
 		error_dialog.set_text("Please input a valid name...")
 		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
 		error_dialog.popup_centered_minsize(Vector2(200, 100))
-	elif(ascii_string.size() > generic_database_const.GenericRecord.MAX_ID_SIZE):
+	elif(ascii_string.size() > generic_record_const.MAX_ID_SIZE):
 		error_dialog.set_text("Record name exeeds maximum string length!")
 		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
 		error_dialog.popup_centered_minsize(Vector2(200, 100))
@@ -67,7 +67,7 @@ func rename_record_name_received(p_string):
 		error_dialog.set_text("Please input a valid id...")
 		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
 		error_dialog.popup_centered_minsize(Vector2(200, 100))
-	elif(ascii_string.size() > generic_database_const.GenericRecord.MAX_ID_SIZE):
+	elif(ascii_string.size() > generic_record_const.MAX_ID_SIZE):
 		error_dialog.set_text("Record name exeeds maximum string length!")
 		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
 		error_dialog.popup_centered_minsize(Vector2(200, 100))
@@ -90,8 +90,9 @@ func _on_AddButton_pressed():
 
 func _on_EraseButton_pressed():
 	var tree_item = record_tree.get_selected()
-	var record = tree_item.get_metadata(0)
-	emit_signal("submit_erase_record", record.id)
+	if(tree_item):
+		var record = tree_item.get_metadata(0)
+		emit_signal("submit_erase_record", record.id)
 
 func _on_RenameButton_pressed():
 	var tree_item = record_tree.get_selected()

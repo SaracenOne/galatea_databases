@@ -1,4 +1,4 @@
-const actor_record_const = preload("../databases/actor_database.gd")
+const actor_record_const = preload("../databases/actor_record.gd")
 const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd")
 
 const ARGUMENT_TYPE_ENUM = 0
@@ -41,15 +41,15 @@ static func get_master_method_dict():
 	dict["is_in_actor_group"] = MethodItem.new(ArgumentItem.new("p_actor_group", ARGUMENT_TYPE_STRING))
 	
 	dict["has_bloodtype"] = MethodItem.new(ArgumentItem.new("p_bloodtype", ARGUMENT_TYPE_ENUM, [
-		ArgumentOption.new("A", actor_record_const.ActorDatabase.BLOODTYPE_A),
-		ArgumentOption.new("B", actor_record_const.ActorDatabase.BLOODTYPE_B),
-		ArgumentOption.new("AB", actor_record_const.ActorDatabase.BLOODTYPE_AB),
-		ArgumentOption.new("O", actor_record_const.ActorDatabase.BLOODTYPE_O),
+		ArgumentOption.new("A", actor_record_const.BLOODTYPE_A),
+		ArgumentOption.new("B", actor_record_const.BLOODTYPE_B),
+		ArgumentOption.new("AB", actor_record_const.BLOODTYPE_AB),
+		ArgumentOption.new("O", actor_record_const.BLOODTYPE_O),
 		]))
 		
 	dict["is_gender"] = MethodItem.new(ArgumentItem.new("p_gender", ARGUMENT_TYPE_ENUM, [
-		ArgumentOption.new("Male", actor_record_const.ActorDatabase.GENDER_MALE),
-		ArgumentOption.new("Female", actor_record_const.ActorDatabase.GENDER_FEMALE),
+		ArgumentOption.new("Male", actor_record_const.GENDER_MALE),
+		ArgumentOption.new("Female", actor_record_const.GENDER_FEMALE),
 		]))
 		
 	dict["is_given_name"] = MethodItem.new(ArgumentItem.new("p_given_name", ARGUMENT_TYPE_STRING))

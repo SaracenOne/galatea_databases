@@ -57,7 +57,6 @@ func galatea_databases_assigned():
 func set_current_record_callback(p_record):
 	.set_current_record_callback(p_record)
 	
-	print(_texture_path_control.get_name())
 	_texture_path_control.set_disabled(false)
 	_texture_path_control.set_file_path(p_record.texture_path)
 	_texture_path_texture_control.set_texture(null)
@@ -71,35 +70,35 @@ func set_current_record_callback(p_record):
 	_shader_path_control.set_disabled(false)
 	_shader_path_control.set_file_path(p_record.shader_path)
 			
-	_sub_texture_count_x_control.set_editable(false)
+	_sub_texture_count_x_control.set_editable(true)
 	_sub_texture_count_x_control.set_value(p_record.sub_texture_count_x)
 	_sub_texture_count_x_control.set_step(1)
 	
-	_sub_texture_count_y_control.set_editable(false)
+	_sub_texture_count_y_control.set_editable(true)
 	_sub_texture_count_y_control.set_value(p_record.sub_texture_count_y)
 	_sub_texture_count_y_control.set_step(1)
 	
-	_box_size_control.set_editable(false)
+	_box_size_control.set_editable(true)
 	_box_size_control.set_value(p_record.box_size)
 	_box_size_control.set_step(0.0001)
 	
-	_wind_multiplier_control.set_editable(false)
+	_wind_multiplier_control.set_editable(true)
 	_wind_multiplier_control.set_value(p_record.wind_multiplier)
 	_wind_multiplier_control.set_step(0.000001)
 	
-	_particle_density_control.set_editable(false)
+	_particle_density_control.set_editable(true)
 	_particle_density_control.set_value(p_record.particle_density)
 	_particle_density_control.set_step(0.000001)
 	
-	_particle_rotation_velocity_control.set_editable(false)
+	_particle_rotation_velocity_control.set_editable(true)
 	_particle_rotation_velocity_control.set_value(p_record.particle_rotation_velocity)
 	_particle_rotation_velocity_control.set_step(0.000001)
 	
-	_particle_size_x_control.set_editable(false)
+	_particle_size_x_control.set_editable(true)
 	_particle_size_x_control.set_value(p_record.particle_size.x)
 	_particle_size_x_control.set_step(0.000001)
 	
-	_particle_size_y_control.set_editable(false)
+	_particle_size_y_control.set_editable(true)
 	_particle_size_y_control.set_value(p_record.particle_size.y)
 	_particle_size_y_control.set_step(0.000001)
 

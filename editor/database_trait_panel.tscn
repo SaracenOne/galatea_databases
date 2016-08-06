@@ -19,6 +19,11 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
+printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameControl")
+description_control = NodePath("RightSide/DescriptionContainer/DescriptionControl")
+icon_file_control = NodePath("RightSide/IconFileMainContainer")
+visible_in_character_creator = NodePath("RightSide/VisibleInCharacterCreatorContainer/VisibleInCharacterCreatorControl")
+contradictory_traits_control = NodePath("RightSide/ContradictoryTraitsContainer/ContradictoryTraitsControl")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -139,6 +144,10 @@ margin/left = 0.0
 margin/top = 18.0
 margin/right = 300.0
 margin/bottom = 200.0
+syntax_highlighting = false
+show_line_numbers = false
+highlight_all_occurrences = false
+caret/block_caret = false
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
@@ -230,6 +239,10 @@ margin/bottom = 198.0
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
+
+[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
 
 [connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameControl" to="." method="_on_printed_name_text_changed"]
 
