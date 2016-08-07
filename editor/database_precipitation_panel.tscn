@@ -531,14 +531,6 @@ suffix = ""
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog 2" to="LeftSide/DatabaseRecords/NewEditRecordDialog 2" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog 2" to="LeftSide/DatabaseRecords/NewEditRecordDialog 2" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="file_selected" from="RightSide/TexturePathContainer/TexturePathControl" to="." method="_on_TexturePathControl_file_selected"]
 
 [connection signal="file_selected" from="RightSide/ShaderPath/ShaderPathControl" to="." method="_on_ShaderPathControl_file_selected"]

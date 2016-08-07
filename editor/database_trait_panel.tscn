@@ -240,10 +240,6 @@ margin/bottom = 198.0
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameControl" to="." method="_on_printed_name_text_changed"]
 
 [connection signal="text_changed" from="RightSide/DescriptionContainer/DescriptionControl" to="." method="_on_DescriptionControl_text_changed"]
