@@ -8,7 +8,7 @@ const DATABASE_NAME = "hair_database"
 const DATABASE_NAME_JSON = "hair_database.json"
 const DATABASE_NAME_BINARY = "hair_database.gbd"
 const DATABASE_INLINED_FILENAME = "hair_database_inlined.gd"
-const RECORDS_NAME = "hair_set_records"
+const RECORDS_NAME = "hair_records"
 
 func get_database_name():
 	return DATABASE_NAME
