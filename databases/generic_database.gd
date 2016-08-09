@@ -2,7 +2,7 @@ extends Reference
 
 var databases = null
 var cached_dictionary = null
-var database_records = []
+var database_records = {}
 var database_is_modified = false
 
 func load_database_ids():
@@ -16,8 +16,8 @@ func _load_database_values(p_database_path, p_records_name):
 		var dictionary_records = get_dictionary_records_array(cached_dictionary, p_database_path, p_records_name)
 		if(dictionary_records != null):
 			for i in range(0, dictionary_records.size()):
-				var database_record = database_records[i]
 				var dictionary_record = dictionary_records[i]
+				var database_record = database_records[dictionary_record.id]
 				
 				# Read Data
 				database_record._load_record(dictionary_record, databases)
@@ -37,7 +37,8 @@ func _save_database(p_filepath, p_records_name):
 	var dictionary = {}
 	var database_dictionary_array = []
 	
-	for database_record in database_records:
+	var database_record_values = database_records.values()
+	for database_record in database_record_values:
 		var dictionary_record = {}
 		
 		database_record._save_record(dictionary_record)
@@ -125,7 +126,6 @@ func _load_database_ids(p_database_path, p_records_name):
 	var dictionary_records = get_dictionary_records_array(cached_dictionary, p_database_path, p_records_name)
 	if(dictionary_records != null):
 		for i in range(0, dictionary_records.size()):
-		
 			var new_record = _create_record()
 			assert(new_record)
 			
@@ -150,19 +150,13 @@ func _init(p_databases):
 	databases = p_databases
 
 func find_record_by_name(p_id):
-	for i in range(0, database_records.size()):
-		if(database_records[i].id == p_id):
-			return database_records[i]
+	if(database_records.has(p_id)):
+		return database_records[p_id]
 	
 	return null
 
 func _insert_record(p_record):
-	for i in range(0, database_records.size()):
-		if(p_record.id.casecmp_to(database_records[i].id) < 0):
-			database_records.insert(i, p_record)
-			return
-		
-	database_records.push_back(p_record)
+	database_records[p_record.id] = p_record
 
 func create_new_record(p_id):
 	if(!p_id.empty()):
@@ -178,11 +172,10 @@ func create_new_record(p_id):
 		
 func rename_record(p_from, p_to):
 	if(!p_from.empty() and !p_to.empty()):
-		var record = find_record_by_name(p_from)
-		if(record != null):
-			database_records.remove(database_records.find(record))
-			
+		if(database_records.has(p_from)):
+			var record = database_records[p_from]
 			record.id = p_to
+			database_records.erase(p_from)
 			
 			_insert_record(record)
 			return record
@@ -190,14 +183,12 @@ func rename_record(p_from, p_to):
 	
 func erase_record(p_name):
 	if(!p_name.empty()):
-		for record in database_records:
-			if(p_name == record.id):
-				database_records.remove(database_records.find(record))
+		database_records.erase(p_name)
 				
 func build_procedural_script():
 	var script_text = ""
 	
-	for database_record in database_records:
+	for database_record in database_records.values():
 		if(has_method("get_record_inlined_code")):
 			var dictionary = call("get_record_inlined_code", database_record)
 			if(dictionary != null):

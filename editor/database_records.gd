@@ -108,7 +108,10 @@ func populate_tree(p_database, p_selection_record):
 		record_tree.clear()
 		var root = record_tree.create_item(null)
 		record_tree.set_hide_root(true)
-		for record in p_database.database_records:
+		var database_record_keys = p_database.database_records.keys()
+		database_record_keys.sort()
+		for key in database_record_keys:
+			var record = p_database.database_records[key]
 			var tree_item = record_tree.create_item(root)
 			tree_item.set_cell_mode(0, TreeItem.CELL_MODE_STRING)
 			tree_item.set_text(0, record.id)
