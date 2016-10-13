@@ -8,6 +8,7 @@ const clothing_database_const = preload("clothing_database.gd")
 const clothing_set_database_const = preload("clothing_set_database.gd")
 const global_svar_database_const = preload("global_svar_database.gd")
 const hair_database_const = preload("hair_database.gd")
+const headpart_database_const = preload("headpart_database.gd")
 const item_database_const = preload("item_database.gd")
 const location_database_const = preload("location_database.gd")
 const material_type_database_const = preload("material_type_database.gd")
@@ -30,6 +31,7 @@ var clothing_database = null
 var clothing_set_database = null
 var global_svar_database = null
 var hair_database = null
+var headpart_database = null
 var item_database = null
 var location_database = null
 var material_type_database = null
@@ -87,7 +89,7 @@ func load_dirty_list():
 		current_database.load_database_values()
 		
 func save_all_databases():
-	for database in database_list:
+	for database in database_list.values():
 		if(database.check_database_modified()):
 			database.save_database()
 	
@@ -134,6 +136,10 @@ func init_databases():
 	hair_database = hair_database_const.new(self)
 	assert(hair_database)
 	database_list[hair_database_const.DATABASE_NAME] = hair_database
+	
+	headpart_database = headpart_database_const.new(self)
+	assert(headpart_database)
+	database_list[headpart_database_const.DATABASE_NAME] = headpart_database
 	
 	item_database = item_database_const.new(self)
 	assert(item_database)

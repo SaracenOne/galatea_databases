@@ -4,8 +4,7 @@ extends "database_panel.gd"
 export(NodePath) var texture_path = NodePath()
 export(NodePath) var texture_path_texture = NodePath()
 export(NodePath) var shader_path = NodePath()
-export(NodePath) var sub_texture_count_x = NodePath()
-export(NodePath) var sub_texture_count_y = NodePath()
+export(NodePath) var sub_texture_count_xy = NodePath()
 export(NodePath) var box_size = NodePath()
 export(NodePath) var wind_multiplier = NodePath()
 export(NodePath) var particle_density = NodePath()
@@ -16,8 +15,7 @@ export(NodePath) var particle_size_y = NodePath()
 onready var _texture_path_control = get_node(texture_path)
 onready var _texture_path_texture_control = get_node(texture_path_texture)
 onready var _shader_path_control = get_node(shader_path)
-onready var _sub_texture_count_x_control = get_node(sub_texture_count_x)
-onready var _sub_texture_count_y_control = get_node(sub_texture_count_y)
+onready var _sub_texture_count_xy_control = get_node(sub_texture_count_xy)
 onready var _box_size_control = get_node(box_size)
 onready var _wind_multiplier_control = get_node(wind_multiplier)
 onready var _particle_density_control = get_node(particle_density)
@@ -70,13 +68,9 @@ func set_current_record_callback(p_record):
 	_shader_path_control.set_disabled(false)
 	_shader_path_control.set_file_path(p_record.shader_path)
 			
-	_sub_texture_count_x_control.set_editable(true)
-	_sub_texture_count_x_control.set_value(p_record.sub_texture_count_x)
-	_sub_texture_count_x_control.set_step(1)
-	
-	_sub_texture_count_y_control.set_editable(true)
-	_sub_texture_count_y_control.set_value(p_record.sub_texture_count_y)
-	_sub_texture_count_y_control.set_step(1)
+	_sub_texture_count_xy_control.set_editable(true)
+	_sub_texture_count_xy_control.set_value(p_record.sub_texture_count_xy)
+	_sub_texture_count_xy_control.set_step(1)
 	
 	_box_size_control.set_editable(true)
 	_box_size_control.set_value(p_record.box_size)
@@ -107,19 +101,21 @@ func _on_TexturePathControl_file_selected( p_path ):
 		current_record.texture_path = p_path
 		current_database.mark_database_as_modified()
 		
+		var particle_texture = null
+		if(!current_record.texture_path.empty()):
+			particle_texture = load(current_record.texture_path)
+		if(particle_texture):
+			if(particle_texture extends Texture):
+				_texture_path_texture_control.set_texture(particle_texture)
+		
 func _on_ShaderPathControl_file_selected( p_path ):
 	if(current_record):
 		current_record.shader_path = p_path
 		current_database.mark_database_as_modified()
 		
-func _on_SubTextureCountXControl_value_changed( value ):
+func _on_SubTextureCountXYControl_value_changed( value ):
 	if(current_record):
-		current_record.sub_texture_count_x = value
-		current_database.mark_database_as_modified()
-		
-func _on_SubTextureCountYControl_value_changed( value ):
-	if(current_record):
-		current_record.sub_texture_count_y = value
+		current_record.sub_texture_count_xy = value
 		current_database.mark_database_as_modified()
 		
 func _on_BoxSizeControl_value_changed( value ):

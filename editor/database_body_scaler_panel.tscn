@@ -1,0 +1,668 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://addons/galatea_databases/editor/database_body_scaler_panel.gd" type="Script" id=1]
+[ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
+
+[node name="BodyScalerPanel" type="Control"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+vector_control_x = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/XVectorContainer/XVectorSpinBox")
+vector_control_y = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/YVectorContainer/YVectorSpinBox")
+vector_control_z = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/ZVectorContainer/ZVectorSpinBox")
+bone_tree_nodepath = NodePath("RightSide/BoneScalerArea/BonesContainer/BonesTree")
+command_tree_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandsTree")
+type_selection_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/CommandTypeMenuButton")
+inverse_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/InverseCheckBox")
+min_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MinContainer/MinSpinbox")
+max_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MaxContainer/MaxSpinbox")
+
+[node name="LeftSide" type="Control" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 2
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.2
+margin/bottom = 0.0
+
+[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
+
+[node name="RightSide" type="Control" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/left = 2
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.2
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="BoneScalerArea" type="HBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 20.0
+margin/bottom = 20.0
+alignment = 0
+
+[node name="BonesContainer" type="VBoxContainer" parent="RightSide/BoneScalerArea"]
+
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+rect/min_size = Vector2( 300, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 300.0
+margin/bottom = 870.0
+alignment = 0
+
+[node name="BonesLabel" type="Label" parent="RightSide/BoneScalerArea/BonesContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 300.0
+margin/bottom = 14.0
+text = "Bones:"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="BonesTree" type="Tree" parent="RightSide/BoneScalerArea/BonesContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 300.0
+margin/bottom = 846.0
+
+[node name="BonesButtonContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/BonesContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 850.0
+margin/right = 300.0
+margin/bottom = 870.0
+alignment = 0
+
+[node name="AddBoneButton" type="Button" parent="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 97.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Add"
+flat = false
+
+[node name="EraseBoneButton" type="Button" parent="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 101.0
+margin/top = 0.0
+margin/right = 198.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Erase"
+flat = false
+
+[node name="RenameBoneButton" type="Button" parent="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 202.0
+margin/top = 0.0
+margin/right = 300.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Rename"
+flat = false
+
+[node name="CommandsContainer" type="VBoxContainer" parent="RightSide/BoneScalerArea"]
+
+rect/pivot = Vector2( 0, 0 )
+rect/min_size = Vector2( 300, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 304.0
+margin/top = 0.0
+margin/right = 1250.0
+margin/bottom = 870.0
+alignment = 0
+
+[node name="CommandsLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 946.0
+margin/bottom = 14.0
+text = "Commands:"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CommandsTree" type="Tree" parent="RightSide/BoneScalerArea/CommandsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 946.0
+margin/bottom = 430.0
+
+[node name="CommandsButtonContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 434.0
+margin/right = 946.0
+margin/bottom = 454.0
+alignment = 0
+
+[node name="AddCommandButton" type="Button" parent="RightSide/BoneScalerArea/CommandsContainer/CommandsButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 471.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Add"
+flat = false
+
+[node name="EraseCommandButton" type="Button" parent="RightSide/BoneScalerArea/CommandsContainer/CommandsButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 475.0
+margin/top = 0.0
+margin/right = 946.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Erase"
+flat = false
+
+[node name="CommandControlsContainer" type="VBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 458.0
+margin/right = 946.0
+margin/bottom = 870.0
+alignment = 0
+
+[node name="CommandTypeMenuButton" type="MenuButton" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 946.0
+margin/bottom = 20.0
+disabled = true
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 0
+shortcut = null
+flat = true
+items = [ "Scale", null, false, false, false, 0, 0, null, "", false, "Position", null, false, false, false, 1, 0, null, "", false ]
+
+[node name="XVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 24.0
+margin/right = 946.0
+margin/bottom = 48.0
+alignment = 0
+
+[node name="XVectorLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/XVectorContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 5.0
+margin/right = 12.0
+margin/bottom = 19.0
+text = "X:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="XVectorSpinBox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/XVectorContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 16.0
+margin/top = 0.0
+margin/right = 946.0
+margin/bottom = 24.0
+range/min = -1007.0
+range/max = 1007.0
+range/step = 0.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="YVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 52.0
+margin/right = 946.0
+margin/bottom = 76.0
+alignment = 0
+
+[node name="YVectorLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/YVectorContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 5.0
+margin/right = 11.0
+margin/bottom = 19.0
+text = "Y:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="YVectorSpinBox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/YVectorContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 15.0
+margin/top = 0.0
+margin/right = 946.0
+margin/bottom = 24.0
+range/min = -1007.0
+range/max = 1007.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="ZVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 80.0
+margin/right = 946.0
+margin/bottom = 104.0
+alignment = 0
+
+[node name="ZVectorLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/ZVectorContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 5.0
+margin/right = 12.0
+margin/bottom = 19.0
+text = "Z:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ZVectorSpinBox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/ZVectorContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 16.0
+margin/top = 0.0
+margin/right = 946.0
+margin/bottom = 24.0
+range/min = -1007.0
+range/max = 1007.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="InverseCheckBox" type="CheckBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 108.0
+margin/right = 946.0
+margin/bottom = 131.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Inverse"
+flat = false
+align = 0
+
+[node name="MinContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 135.0
+margin/right = 946.0
+margin/bottom = 159.0
+alignment = 0
+
+[node name="MinLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MinContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 5.0
+margin/right = 28.0
+margin/bottom = 19.0
+text = "Min:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MinSpinbox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MinContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 32.0
+margin/top = 0.0
+margin/right = 946.0
+margin/bottom = 24.0
+range/min = -1007.0
+range/max = 1007.0
+range/step = 0.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="MaxContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 163.0
+margin/right = 946.0
+margin/bottom = 187.0
+alignment = 0
+
+[node name="MaxLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MaxContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 5.0
+margin/right = 30.0
+margin/bottom = 19.0
+text = "Max:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MaxSpinbox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MaxContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 34.0
+margin/top = 0.0
+margin/right = 946.0
+margin/bottom = 24.0
+range/min = -1007.0
+range/max = 1007.0
+range/step = 0.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+editable = true
+prefix = ""
+suffix = ""
+
+[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
+
+[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+
+[connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
+
+[connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
+
+[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="cell_selected" from="RightSide/BoneScalerArea/BonesContainer/BonesTree" to="." method="_on_BonesTree_cell_selected"]
+
+[connection signal="pressed" from="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer/AddBoneButton" to="." method="_on_AddBoneButton_pressed"]
+
+[connection signal="pressed" from="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer/EraseBoneButton" to="." method="_on_EraseBoneButton_pressed"]
+
+[connection signal="pressed" from="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer/RenameBoneButton" to="." method="_on_RenameBoneButton_pressed"]
+
+[connection signal="cell_selected" from="RightSide/BoneScalerArea/CommandsContainer/CommandsTree" to="." method="_on_CommandsTree_cell_selected"]
+
+[connection signal="pressed" from="RightSide/BoneScalerArea/CommandsContainer/CommandsButtonContainer/AddCommandButton" to="." method="_on_AddCommandButton_pressed"]
+
+[connection signal="pressed" from="RightSide/BoneScalerArea/CommandsContainer/CommandsButtonContainer/EraseCommandButton" to="." method="_on_EraseCommandButton_pressed"]
+
+[connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/XVectorContainer/XVectorSpinBox" to="." method="_on_XVectorSpinBox_value_changed"]
+
+[connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/YVectorContainer/YVectorSpinBox" to="." method="_on_YVectorSpinBox_value_changed"]
+
+[connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/ZVectorContainer/ZVectorSpinBox" to="." method="_on_ZVectorSpinBox_value_changed"]
+
+[connection signal="toggled" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/InverseCheckBox" to="." method="_on_InverseCheckBox_toggled"]
+
+[connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MinContainer/MinSpinbox" to="." method="_on_MinSpinbox_value_changed"]
+
+[connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MaxContainer/MaxSpinbox" to="." method="_on_MaxSpinbox_value_changed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog" to="NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog" to="NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog 2" to="NewEditRecordDialog 2" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog 2" to="NewEditRecordDialog 2" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog 3" to="NewEditRecordDialog 3" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog 3" to="NewEditRecordDialog 3" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog 4" to="NewEditRecordDialog 4" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog 4" to="NewEditRecordDialog 4" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog 5" to="NewEditRecordDialog 5" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog 5" to="NewEditRecordDialog 5" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog 6" to="NewEditRecordDialog 6" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog 6" to="NewEditRecordDialog 6" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog 7" to="NewEditRecordDialog 7" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog 7" to="NewEditRecordDialog 7" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog 8" to="NewEditRecordDialog 8" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog 8" to="NewEditRecordDialog 8" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog 9" to="NewEditRecordDialog 9" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog 9" to="NewEditRecordDialog 9" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog 10" to="NewEditRecordDialog 10" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog 10" to="NewEditRecordDialog 10" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog 11" to="NewEditRecordDialog 11" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog 11" to="NewEditRecordDialog 11" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog 12" to="NewEditRecordDialog 12" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog 12" to="NewEditRecordDialog 12" method="_on_NewEditRecordDialog_confirmed"]
+
+

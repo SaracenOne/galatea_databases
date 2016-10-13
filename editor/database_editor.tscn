@@ -1,23 +1,25 @@
-[gd_scene load_steps=19 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_editor.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_music_track_panel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_actor_panel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/galatea_databases/editor/database_actor_group_panel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/galatea_databases/editor/database_ai_package_panel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://addons/galatea_databases/editor/database_status_effect_panel.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/galatea_databases/editor/database_trait_panel.tscn" type="PackedScene" id=7]
-[ext_resource path="res://addons/galatea_databases/editor/database_material_type_panel.tscn" type="PackedScene" id=8]
-[ext_resource path="res://addons/galatea_databases/editor/database_activity_panel.tscn" type="PackedScene" id=9]
-[ext_resource path="res://addons/galatea_databases/editor/database_calendar_event_panel.tscn" type="PackedScene" id=10]
-[ext_resource path="res://addons/galatea_databases/editor/database_quest_panel.tscn" type="PackedScene" id=11]
-[ext_resource path="res://addons/galatea_databases/editor/database_school_lesson_panel.tscn" type="PackedScene" id=12]
-[ext_resource path="res://addons/galatea_databases/editor/database_global_svars.tscn" type="PackedScene" id=13]
-[ext_resource path="res://addons/galatea_databases/editor/database_item_panel.tscn" type="PackedScene" id=14]
-[ext_resource path="res://addons/galatea_databases/editor/database_sms_panel.tscn" type="PackedScene" id=15]
-[ext_resource path="res://addons/galatea_databases/editor/database_location_panel.tscn" type="PackedScene" id=16]
-[ext_resource path="res://addons/galatea_databases/editor/database_precipitation_panel.tscn" type="PackedScene" id=17]
-[ext_resource path="res://addons/galatea_databases/editor/database_weather_panel.tscn" type="PackedScene" id=18]
+[ext_resource path="res://addons/galatea_databases/editor/database_body_scaler_panel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/galatea_databases/editor/database_headpart_panel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/galatea_databases/editor/database_status_effect_panel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/galatea_databases/editor/database_trait_panel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/galatea_databases/editor/database_material_type_panel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://addons/galatea_databases/editor/database_activity_panel.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/galatea_databases/editor/database_calendar_event_panel.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/galatea_databases/editor/database_quest_panel.tscn" type="PackedScene" id=13]
+[ext_resource path="res://addons/galatea_databases/editor/database_school_lesson_panel.tscn" type="PackedScene" id=14]
+[ext_resource path="res://addons/galatea_databases/editor/database_global_svars.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/galatea_databases/editor/database_item_panel.tscn" type="PackedScene" id=16]
+[ext_resource path="res://addons/galatea_databases/editor/database_sms_panel.tscn" type="PackedScene" id=17]
+[ext_resource path="res://addons/galatea_databases/editor/database_location_panel.tscn" type="PackedScene" id=18]
+[ext_resource path="res://addons/galatea_databases/editor/database_precipitation_panel.tscn" type="PackedScene" id=19]
+[ext_resource path="res://addons/galatea_databases/editor/database_weather_panel.tscn" type="PackedScene" id=20]
 
 [node name="DatabaseEditor" type="Panel"]
 
@@ -152,6 +154,40 @@ margin/bottom = 4.0
 
 [node name="AIPackagePanel" parent="DatabaseEditorTabs/Characters/AI Packages" instance=ExtResource( 5 )]
 
+[node name="Body Scalers" type="Control" parent="DatabaseEditorTabs/Characters"]
+
+visibility/visible = false
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="BodyScalerPanel" parent="DatabaseEditorTabs/Characters/Body Scalers" instance=ExtResource( 6 )]
+
+[node name="Headparts" type="Control" parent="DatabaseEditorTabs/Characters"]
+
+visibility/visible = false
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="HeadpartPanel" parent="DatabaseEditorTabs/Characters/Headparts" instance=ExtResource( 7 )]
+
 [node name="Status Effects" type="Control" parent="DatabaseEditorTabs/Characters"]
 
 editor/display_folded = true
@@ -168,7 +204,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="StatusEffectPanel" parent="DatabaseEditorTabs/Characters/Status Effects" instance=ExtResource( 6 )]
+[node name="StatusEffectPanel" parent="DatabaseEditorTabs/Characters/Status Effects" instance=ExtResource( 8 )]
 
 [node name="Traits" type="Control" parent="DatabaseEditorTabs/Characters"]
 
@@ -186,7 +222,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="TraitPanel" parent="DatabaseEditorTabs/Characters/Traits" instance=ExtResource( 7 )]
+[node name="TraitPanel" parent="DatabaseEditorTabs/Characters/Traits" instance=ExtResource( 9 )]
 
 [node name="Effects" type="TabContainer" parent="DatabaseEditorTabs"]
 
@@ -220,7 +256,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="MaterialTypePanel" parent="DatabaseEditorTabs/Effects/Material Types" instance=ExtResource( 8 )]
+[node name="MaterialTypePanel" parent="DatabaseEditorTabs/Effects/Material Types" instance=ExtResource( 10 )]
 
 [node name="Game Logic" type="TabContainer" parent="DatabaseEditorTabs"]
 
@@ -254,7 +290,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="ActivityPanel" parent="DatabaseEditorTabs/Game Logic/Activities" instance=ExtResource( 9 )]
+[node name="ActivityPanel" parent="DatabaseEditorTabs/Game Logic/Activities" instance=ExtResource( 11 )]
 
 [node name="Calendar Event" type="Control" parent="DatabaseEditorTabs/Game Logic"]
 
@@ -272,7 +308,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="CalendarEventPanel" parent="DatabaseEditorTabs/Game Logic/Calendar Event" instance=ExtResource( 10 )]
+[node name="CalendarEventPanel" parent="DatabaseEditorTabs/Game Logic/Calendar Event" instance=ExtResource( 12 )]
 
 [node name="Quests" type="Control" parent="DatabaseEditorTabs/Game Logic"]
 
@@ -290,7 +326,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="QuestPanel" parent="DatabaseEditorTabs/Game Logic/Quests" instance=ExtResource( 11 )]
+[node name="QuestPanel" parent="DatabaseEditorTabs/Game Logic/Quests" instance=ExtResource( 13 )]
 
 [node name="School Lesson" type="Control" parent="DatabaseEditorTabs/Game Logic"]
 
@@ -308,7 +344,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="SchoolLessonPanel" parent="DatabaseEditorTabs/Game Logic/School Lesson" instance=ExtResource( 12 )]
+[node name="SchoolLessonPanel" parent="DatabaseEditorTabs/Game Logic/School Lesson" instance=ExtResource( 14 )]
 
 [node name="Miscellaneous" type="TabContainer" parent="DatabaseEditorTabs"]
 
@@ -341,7 +377,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="GlobalSvarPanel" parent="DatabaseEditorTabs/Miscellaneous/Global SVars" instance=ExtResource( 13 )]
+[node name="GlobalSvarPanel" parent="DatabaseEditorTabs/Miscellaneous/Global SVars" instance=ExtResource( 15 )]
 
 [node name="Items" type="Control" parent="DatabaseEditorTabs/Miscellaneous"]
 
@@ -359,7 +395,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="ItemPanel" parent="DatabaseEditorTabs/Miscellaneous/Items" instance=ExtResource( 14 )]
+[node name="ItemPanel" parent="DatabaseEditorTabs/Miscellaneous/Items" instance=ExtResource( 16 )]
 
 [node name="SMS" type="Control" parent="DatabaseEditorTabs/Miscellaneous"]
 
@@ -376,7 +412,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="SMSPanel" parent="DatabaseEditorTabs/Miscellaneous/SMS" instance=ExtResource( 15 )]
+[node name="SMSPanel" parent="DatabaseEditorTabs/Miscellaneous/SMS" instance=ExtResource( 17 )]
 
 [node name="World" type="TabContainer" parent="DatabaseEditorTabs"]
 
@@ -410,7 +446,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="LocationPanel" parent="DatabaseEditorTabs/World/Locations" instance=ExtResource( 16 )]
+[node name="LocationPanel" parent="DatabaseEditorTabs/World/Locations" instance=ExtResource( 18 )]
 
 [node name="Precipitation" type="Control" parent="DatabaseEditorTabs/World"]
 
@@ -427,7 +463,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="PrecipitationPanel" parent="DatabaseEditorTabs/World/Precipitation" instance=ExtResource( 17 )]
+[node name="PrecipitationPanel" parent="DatabaseEditorTabs/World/Precipitation" instance=ExtResource( 19 )]
 
 [node name="Weather" type="Control" parent="DatabaseEditorTabs/World"]
 
@@ -445,7 +481,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="WeatherPanel" parent="DatabaseEditorTabs/World/Weather" instance=ExtResource( 18 )]
+[node name="WeatherPanel" parent="DatabaseEditorTabs/World/Weather" instance=ExtResource( 20 )]
 
 [node name="Panel" type="PanelContainer" parent="."]
 
@@ -523,6 +559,14 @@ enabled_focus_mode = 2
 shortcut = null
 text = "Reload"
 flat = false
+
+[connection signal="about_to_show" from="DatabaseEditorTabs/Characters/Body Scalers/BodyScalerPanel/NewEditRecordDialog" to="DatabaseEditorTabs/Characters/Body Scalers/BodyScalerPanel/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="DatabaseEditorTabs/Characters/Body Scalers/BodyScalerPanel/NewEditRecordDialog" to="DatabaseEditorTabs/Characters/Body Scalers/BodyScalerPanel/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="DatabaseEditorTabs/Characters/Body Scalers/BodyScalerPanel/NewEditRecordDialog 2" to="DatabaseEditorTabs/Characters/Body Scalers/BodyScalerPanel/NewEditRecordDialog 2" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="DatabaseEditorTabs/Characters/Body Scalers/BodyScalerPanel/NewEditRecordDialog 2" to="DatabaseEditorTabs/Characters/Body Scalers/BodyScalerPanel/NewEditRecordDialog 2" method="_on_NewEditRecordDialog_confirmed"]
 
 [connection signal="pressed" from="Panel/HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
 

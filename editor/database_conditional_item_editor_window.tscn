@@ -23,6 +23,7 @@ value_type_selection = NodePath("ConditionalItemEditor/Row1/Column4/ValueTypeMen
 value_spinbox = NodePath("ConditionalItemEditor/Row1/Column4/ValueContainer/ValueSpinBox")
 value_button = NodePath("ConditionalItemEditor/Row1/Column4/ValueContainer/ValueButton")
 value_line_edit = NodePath("ConditionalItemEditor/Row1/Column4/ValueContainer/ValueLineEdit")
+value_checkbox = NodePath("ConditionalItemEditor/Row1/Column4/ValueContainer/CheckBoxCenter/CheckBox")
 subject_selection = NodePath("ConditionalItemEditor/Row1/Column1/SubjectButton")
 source_button = NodePath("ConditionalItemEditor/Row1/Column2/SourceButton")
 or_checkbox = NodePath("ConditionalItemEditor/Row1/Column5/OrCheckBox")
@@ -59,6 +60,7 @@ alignment = 0
 
 [node name="Column1" type="VBoxContainer" parent="ConditionalItemEditor/Row1"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 rect/min_size = Vector2( 100, 0 )
 focus/ignore_mouse = false
@@ -138,11 +140,10 @@ click_on_press = true
 enabled_focus_mode = 0
 shortcut = null
 flat = false
-items = [ "self", null, false, false, false, 0, 0, null, "", false, "target", null, false, false, false, 1, 0, null, "", false, "reference", null, false, false, false, 2, 0, null, "", false, "global", null, false, false, false, 3, 0, null, "", false, "self", null, false, false, false, 0, 0, null, "", false, "target", null, false, false, false, 1, 0, null, "", false, "reference", null, false, false, false, 2, 0, null, "", false, "global", null, false, false, false, 3, 0, null, "", false, "self", null, false, false, false, 0, 0, null, "", false, "target", null, false, false, false, 1, 0, null, "", false, "reference", null, false, false, false, 2, 0, null, "", false, "global", null, false, false, false, 3, 0, null, "", false, "self", null, false, false, false, 0, 0, null, "", false, "target", null, false, false, false, 1, 0, null, "", false, "reference", null, false, false, false, 2, 0, null, "", false, "global", null, false, false, false, 3, 0, null, "", false ]
+items = [ "self", null, false, false, false, 0, 0, null, "", false, "target", null, false, false, false, 1, 0, null, "", false, "reference", null, false, false, false, 2, 0, null, "", false, "global", null, false, false, false, 3, 0, null, "", false ]
 
 [node name="Column2" type="VBoxContainer" parent="ConditionalItemEditor/Row1"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -355,7 +356,6 @@ max_lines_visible = -1
 
 [node name="ValueContainer" type="VBoxContainer" parent="ConditionalItemEditor/Row1/Column4"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 rect/min_size = Vector2( 50, 30 )
 focus/ignore_mouse = false
@@ -378,7 +378,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 104.0
+margin/right = 200.0
 margin/bottom = 20.0
 toggle_mode = false
 enabled_focus_mode = 2
@@ -395,10 +395,11 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 104.0
+margin/right = 200.0
 margin/bottom = 24.0
 placeholder/alpha = 0.6
 align = 1
+expand_to_len = false
 focus_mode = 2
 caret/caret_blink = true
 caret/caret_blink_speed = 0.65
@@ -413,7 +414,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 104.0
+margin/right = 200.0
 margin/bottom = 24.0
 range/min = 0.0
 range/max = 100.0
@@ -425,6 +426,38 @@ range/rounded = false
 editable = true
 prefix = ""
 suffix = ""
+
+[node name="CheckBoxCenter" type="HBoxContainer" parent="ConditionalItemEditor/Row1/Column4/ValueContainer"]
+
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 200.0
+margin/bottom = 0.0
+alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="ConditionalItemEditor/Row1/Column4/ValueContainer/CheckBoxCenter"]
+
+visibility/visible = false
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 87.0
+margin/top = 0.0
+margin/right = 113.0
+margin/bottom = 23.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
 
 [node name="ValueTypeLabel" type="Label" parent="ConditionalItemEditor/Row1/Column4"]
 

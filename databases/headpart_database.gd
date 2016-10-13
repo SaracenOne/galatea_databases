@@ -1,6 +1,7 @@
 extends "generic_database.gd"
 
 const generic_database_const = preload("generic_database.gd")
+const headpart_record_const = preload("headpart_record.gd")
 
 const DATABASE_IDENT = "HPRT"
 const DATABASE_NAME = "headpart_database"
@@ -8,17 +9,6 @@ const DATABASE_NAME_JSON = "headpart_database.json"
 const DATABASE_NAME_BINARY = "headpart_database.gbd"
 const DATABASE_INLINED_FILENAME = "headpart_database_inlined.gd"
 const RECORDS_NAME = "headpart_records"
-
-class HeadPartRecord:
-	extends "generic_database.gd".GenericRecord
-	
-	func _load_record(p_dictionary_record, p_databases):
-		# Read Data
-		._load_record(p_dictionary_record, p_databases)
-		
-	func _save_record(p_dictionary_record):
-		# Write Data
-		._save_record(p_dictionary_record)
 	
 func get_database_name():
 	return DATABASE_NAME
@@ -36,7 +26,7 @@ func save_database():
 	_save_database(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 		
 func _create_record():
-	return HeadPartRecord.new()
+	return headpart_record_const.new()
 	
 func _init(p_databases).(p_databases):
 	pass

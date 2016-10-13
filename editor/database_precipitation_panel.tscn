@@ -21,8 +21,7 @@ script/script = ExtResource( 1 )
 texture_path = NodePath("RightSide/TexturePathContainer/TexturePathControl")
 texture_path_texture = NodePath("RightSide/TexturePathContainer/TexturePathTextureFrame/TexturePathTexture")
 shader_path = NodePath("RightSide/ShaderPath/ShaderPathControl")
-sub_texture_count_x = NodePath("RightSide/SubTextureCountContainer/SubTextureCountXControl")
-sub_texture_count_y = NodePath("RightSide/SubTextureCountContainer/SubTextureCountYControl")
+sub_texture_count_xy = NodePath("RightSide/SubTextureCountContainer/SubTextureCountXYControl")
 box_size = NodePath("RightSide/BoxSizeContainer/BoxSizeControl")
 wind_multiplier = NodePath("RightSide/WindMultiplerContainer/WindMultiplierControl")
 particle_density = NodePath("RightSide/ParticleDensityContainer/ParticleDensityControl")
@@ -151,10 +150,10 @@ size_flags/vertical = 2
 margin/left = 10.0
 margin/top = 150.0
 margin/right = 162.0
-margin/bottom = 238.0
+margin/bottom = 192.0
 alignment = 1
 
-[node name="SubTextureCountXLabel" type="Label" parent="RightSide/SubTextureCountContainer"]
+[node name="SubTextureCountXYLabel" type="Label" parent="RightSide/SubTextureCountContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
@@ -165,12 +164,12 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 152.0
 margin/bottom = 14.0
-text = "SubTexture Count X:"
+text = "SubTexture Count XY:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="SubTextureCountXControl" type="SpinBox" parent="RightSide/SubTextureCountContainer"]
+[node name="SubTextureCountXYControl" type="SpinBox" parent="RightSide/SubTextureCountContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -181,44 +180,6 @@ margin/left = 0.0
 margin/top = 18.0
 margin/right = 152.0
 margin/bottom = 42.0
-range/min = 1.0
-range/max = 64.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-editable = false
-prefix = ""
-suffix = ""
-
-[node name="SubTextureCountYLabel" type="Label" parent="RightSide/SubTextureCountContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 46.0
-margin/right = 152.0
-margin/bottom = 60.0
-text = "SubTexture Count Y:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="SubTextureCountYControl" type="SpinBox" parent="RightSide/SubTextureCountContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 64.0
-margin/right = 152.0
-margin/bottom = 88.0
 range/min = 1.0
 range/max = 64.0
 range/step = 0.0
@@ -340,9 +301,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 250.0
+margin/top = 200.0
 margin/right = 162.0
-margin/bottom = 292.0
+margin/bottom = 242.0
 alignment = 1
 
 [node name="ParticleDensityLabel" type="Label" parent="RightSide/ParticleDensityContainer"]
@@ -442,9 +403,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 310.0
+margin/top = 260.0
 margin/right = 162.0
-margin/bottom = 352.0
+margin/bottom = 348.0
 alignment = 1
 
 [node name="ParticleSizeLabelX" type="Label" parent="RightSide/ParticleSizeContainer"]
@@ -531,13 +492,15 @@ suffix = ""
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
+[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
+
 [connection signal="file_selected" from="RightSide/TexturePathContainer/TexturePathControl" to="." method="_on_TexturePathControl_file_selected"]
 
 [connection signal="file_selected" from="RightSide/ShaderPath/ShaderPathControl" to="." method="_on_ShaderPathControl_file_selected"]
 
-[connection signal="value_changed" from="RightSide/SubTextureCountContainer/SubTextureCountXControl" to="." method="_on_SubTextureCountXControl_value_changed"]
-
-[connection signal="value_changed" from="RightSide/SubTextureCountContainer/SubTextureCountYControl" to="." method="_on_SubTextureCountYControl_value_changed"]
+[connection signal="value_changed" from="RightSide/SubTextureCountContainer/SubTextureCountXYControl" to="." method="_on_SubTextureCountXYControl_value_changed"]
 
 [connection signal="value_changed" from="RightSide/BoxSizeContainer/BoxSizeControl" to="." method="_on_BoxSizeControl_value_changed"]
 

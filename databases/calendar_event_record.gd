@@ -38,9 +38,9 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("is_hidden")):
 		is_hidden = p_dictionary_record.is_hidden
 		
-func _save_record(p_dictionary_record):
+func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record)
+	._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.printed_name = printed_name
 	p_dictionary_record.calendar_icon_path = calendar_icon_path

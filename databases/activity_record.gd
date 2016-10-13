@@ -34,9 +34,9 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("selectable")):
 		selectable = p_dictionary_record.selectable
 		
-func _save_record(p_dictionary_record):
+func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record)
+	._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.printed_name = printed_name
 	p_dictionary_record.description = description

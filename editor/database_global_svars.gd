@@ -9,10 +9,12 @@ var database_records = null
 export(NodePath) var svar_type = NodePath()
 export(NodePath) var svar_value_line_edit = NodePath()
 export(NodePath) var svar_value_spinbox = NodePath()
+export(NodePath) var svar_value_checkbox = NodePath()
 
 onready var _svar_type_node = get_node(svar_type)
 onready var _svar_value_line_edit_node = get_node(svar_value_line_edit)
 onready var _svar_value_spinbox_node = get_node(svar_value_spinbox)
+onready var _svar_value_checkbox_node = get_node(svar_value_checkbox)
 
 func svar_type_selected(p_id):
 	if(current_record and p_id != current_record.type):
@@ -28,6 +30,9 @@ func svar_type_selected(p_id):
 		elif(p_id == global_svar_record_const.SVAR_TYPE_STRING):
 			current_record.value = ""
 			_svar_value_line_edit_node.set_text("")
+		elif(p_id == global_svar_record_const.SVAR_TYPE_BOOLEAN):
+			current_record.value = false
+			_svar_value_checkbox_node.set_pressed(false)
 			
 		current_database.mark_database_as_modified()
 
@@ -71,6 +76,7 @@ func set_type(p_type):
 	if(p_type == global_svar_record_const.SVAR_TYPE_INTEGER) or (p_type == global_svar_record_const.SVAR_TYPE_FLOAT):
 		_svar_value_line_edit_node.hide()
 		_svar_value_spinbox_node.show()
+		_svar_value_checkbox_node.hide()
 		if(p_type == global_svar_record_const.SVAR_TYPE_INTEGER):
 			_svar_value_spinbox_node.set_step(1)
 			_svar_value_spinbox_node.set_rounded_values(true)
@@ -80,6 +86,11 @@ func set_type(p_type):
 	elif(p_type == global_svar_record_const.SVAR_TYPE_STRING):
 		_svar_value_line_edit_node.show()
 		_svar_value_spinbox_node.hide()
+		_svar_value_checkbox_node.hide()
+	elif(p_type == global_svar_record_const.SVAR_TYPE_BOOLEAN):
+		_svar_value_line_edit_node.hide()
+		_svar_value_spinbox_node.hide()
+		_svar_value_checkbox_node.show()
 
 func set_current_record_callback(p_record):
 	.set_current_record_callback(p_record)
@@ -97,6 +108,8 @@ func set_current_record_callback(p_record):
 		_svar_value_spinbox_node.set_value(float(p_record.value))
 	elif(p_record.type == global_svar_record_const.SVAR_TYPE_STRING):
 		_svar_value_line_edit_node.set_text(str(p_record.value))
+	elif(p_record.type == global_svar_record_const.SVAR_TYPE_BOOLEAN):
+		_svar_value_line_edit_node.set_text(str(p_record.value))
 
 func _on_SvarValueSpinbox_value_changed( value ):
 	if(current_record):
@@ -109,4 +122,10 @@ func _on_SvarValueSpinbox_value_changed( value ):
 func _on_SvarValueLineEdit_text_changed( text ):
 	if(current_record):
 		current_record.value = str(text)
+		current_database.mark_database_as_modified()
+
+
+func _on_SvarCheckBox_toggled( pressed ):
+	if(current_record):
+		current_record.value = pressed
 		current_database.mark_database_as_modified()

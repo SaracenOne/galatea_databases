@@ -18,9 +18,9 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("message_body")):
 		message_body = p_dictionary_record.message_body
 		
-func _save_record(p_dictionary_record):
+func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record)
+	._save_record(p_dictionary_record, p_databases)
 	if(actor):
 		p_dictionary_record.actor = actor.id
 	else:

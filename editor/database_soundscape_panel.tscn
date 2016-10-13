@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=1]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_music_track_panel.gd" type="Script" id=1]
+[ext_resource path="res://addons/galatea_databases/editor/database_soundscape_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/galatea_databases/editor/database_conditional_list.tscn" type="PackedScene" id=4]
 
-[node name="MusicTrackPanel" type="Control"]
+[node name="SoundscapePanel" type="Control"]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -19,13 +19,6 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
-track_title = NodePath("RightSide/Left/TrackTitleContainer/TrackTitleControl")
-track_artist = NodePath("RightSide/Left/TrackArtistContainer/TrackArtistControl")
-track_file_path = NodePath("RightSide/Left/TrackFilePathControl")
-loop_start = NodePath("RightSide/Left/LoopStartContainer/LoopStartControl")
-contains_loop = NodePath("RightSide/Left/FlagsContainer/ContainsLoopControl")
-playable_on_music_player = NodePath("RightSide/Left/FlagsContainer/PlayableOnMusicPlayer")
-conditionals = NodePath("RightSide/Right/DatabaseConditionalList")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -114,7 +107,6 @@ margin/right = 244.0
 margin/bottom = 42.0
 placeholder/alpha = 0.6
 editable = false
-expand_to_len = false
 focus_mode = 2
 caret/caret_blink = true
 caret/caret_blink_speed = 0.65
@@ -162,7 +154,6 @@ margin/right = 244.0
 margin/bottom = 42.0
 placeholder/alpha = 0.6
 editable = false
-expand_to_len = false
 focus_mode = 2
 caret/caret_blink = true
 caret/caret_blink_speed = 0.65
@@ -302,10 +293,6 @@ is_disabled = true
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
-
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
 
 [connection signal="text_changed" from="RightSide/Left/TrackTitleContainer/TrackTitleControl" to="." method="_on_TrackTitleControl_text_changed"]
 

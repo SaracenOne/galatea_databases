@@ -1,11 +1,15 @@
 tool
 extends Control
 
+const methods_const = preload("../methods/methods.gd")
+
 var list_tree = null
+var master_method_dict = null
 
 var database_new_edit_record_popup = null
 var error_dialog = null
 
+var databases = null
 var conditionals = null
 var selected = null
 
@@ -44,7 +48,6 @@ func assign_conditionals(p_conditionals):
 		
 func populate_tree(p_list):
 	if(list_tree and p_list != null):
-		
 		var selected_conditional = null
 		if(selected):
 			selected_conditional = selected.get_metadata(0)
@@ -54,6 +57,8 @@ func populate_tree(p_list):
 		list_tree.set_hide_root(true)
 		
 		for list_item in p_list:
+			var template_method = master_method_dict[list_item.conditional_method]
+			
 			var string = ""
 			
 			if(list_item.conditional_method != ""):
@@ -61,9 +66,28 @@ func populate_tree(p_list):
 				string += "."
 				string += list_item.conditional_method
 				string += "("
-				for argument in list_item.arguments:
-					string += argument
-					string += ", "
+				
+				for i in range(0, list_item.arguments.size()):
+					var argument
+					
+					if(template_method.arguments[i].type == methods_const.ARGUMENT_TYPE_ENUM):
+						var argument_enums = template_method.arguments[i].options["enums"]
+						for argument_enum in argument_enums:
+							if(argument_enum.option_value == (list_item.arguments[i])):
+								argument = argument_enum.option_name
+								break
+					elif(template_method.arguments[i].type == methods_const.ARGUMENT_TYPE_OBJECT):
+						if(list_item.arguments[i]):
+							argument = str(list_item.arguments[i].id)
+						else:
+							argument = "nil"
+					else:
+						argument = str(list_item.arguments[i])
+					
+					string += str(argument)
+					if(i != list_item.arguments.size()-1):
+						string += ", "
+				
 				string += ")"
 				string += " "
 				string += conditionals_const.operator_to_string(list_item.operator)
@@ -88,6 +112,8 @@ func populate_tree(p_list):
 		printerr("List tree is null!")
 		
 func _ready():
+	master_method_dict = methods_const.get_master_method_dict()
+	
 	list_tree = get_node("ListTree")
 	assert(list_tree)
 	
@@ -161,7 +187,7 @@ func _on_AddButton_pressed():
 	conditional_item_editor_window.connect("confirmed", self, "_on_add_item_confirmed")
 	conditional_item_editor_window.connect("popup_hide", self, "_on_add_item_hidden")
 	
-	conditional_item_editor_window.assign_conditional_item(conditional_item)
+	conditional_item_editor_window.assign_conditional_item(conditional_item, databases)
 	conditional_item_editor_window.popup_centered()
 	
 func _on_edit_item_confirmed(p_conditional_item):
@@ -185,7 +211,7 @@ func _on_EditButton_pressed():
 			conditional_item_editor_window.connect("confirmed", self, "_on_edit_item_confirmed")
 			conditional_item_editor_window.connect("popup_hide", self, "_on_edit_item_hidden")
 			
-			conditional_item_editor_window.assign_conditional_item(conditional_item)
+			conditional_item_editor_window.assign_conditional_item(conditional_item, databases)
 			conditional_item_editor_window.popup_centered()
 
 func _on_DuplicateButton_pressed():
@@ -244,3 +270,6 @@ func _on_MoveDown_pressed():
 				update_button_states()
 				
 				emit_signal("conditionals_changed", conditionals)
+
+func assign_databases(p_databases):
+	databases = p_databases

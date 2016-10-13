@@ -49,11 +49,11 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("playable_on_music_player")):
 		playable_on_music_player = p_dictionary_record.playable_on_music_player
 	if(p_dictionary_record.has("conditionals")):
-		conditionals_const.load_from_dictionary(conditionals, p_dictionary_record.conditionals)
+		conditionals_const.load_from_dictionary(conditionals, p_dictionary_record.conditionals, p_databases)
 
-func _save_record(p_dictionary_record):
+func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record)
+	._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.track_title = track_title
 	p_dictionary_record.track_artist = track_artist
@@ -61,4 +61,4 @@ func _save_record(p_dictionary_record):
 	p_dictionary_record.contains_loop = contains_loop
 	p_dictionary_record.loop_start = loop_start
 	p_dictionary_record.playable_on_music_player = playable_on_music_player
-	p_dictionary_record.conditionals = conditionals_const.save_to_dictionary(conditionals)
+	p_dictionary_record.conditionals = conditionals_const.save_to_dictionary(conditionals, p_databases)

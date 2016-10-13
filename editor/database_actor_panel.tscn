@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_actor_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_date_option.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=6]
 
 [node name="ActorPanel" type="Control"]
 
@@ -33,6 +34,15 @@ contact_icon_path = NodePath("RightSide/ContactIconContainer/ContactIconPathCont
 contact_icon_texture = NodePath("RightSide/ContactIconContainer/ContactIconTextureFrame/ContactIconTexture")
 valid_contact = NodePath("RightSide/FlagsContainer/ValidContactContainer/ValidContactCheckbox")
 is_storyline_actor = NodePath("RightSide/FlagsContainer/IsStorylineActorContainer/IsStorylineActorCheckbox")
+head = NodePath("RightSide/CombinedMeshesContainer/HeadMeshRecord")
+eyes = NodePath("RightSide/CombinedMeshesContainer/EyesMeshRecord")
+eyebrows = NodePath("RightSide/CombinedMeshesContainer/EyebrowsMeshRecord")
+mouth = NodePath("RightSide/CombinedMeshesContainer/MouthMeshRecord")
+eyelashes = NodePath("RightSide/CombinedMeshesContainer/EyelashesMeshRecord")
+head_morph_table = NodePath("RightSide/MorphTableContainer/MorphTableTree")
+head_morph_value = NodePath("RightSide/MorphTableContainer/MorphTableSpinBox")
+body_scaler_table = NodePath("RightSide/ScalerTable/ScalerTableControl")
+body_scaler_value = NodePath("RightSide/ScalerTable/ScalerTableSpinBox")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -108,6 +118,7 @@ margin/right = 244.0
 margin/bottom = 42.0
 placeholder/alpha = 0.6
 editable = false
+expand_to_len = false
 focus_mode = 2
 caret/caret_blink = true
 caret/caret_blink_speed = 0.65
@@ -154,12 +165,14 @@ margin/right = 244.0
 margin/bottom = 42.0
 placeholder/alpha = 0.6
 editable = false
+expand_to_len = false
 focus_mode = 2
 caret/caret_blink = true
 caret/caret_blink_speed = 0.65
 
 [node name="NicknameVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -200,21 +213,23 @@ margin/right = 244.0
 margin/bottom = 42.0
 placeholder/alpha = 0.6
 editable = false
+expand_to_len = false
 focus_mode = 2
 caret/caret_blink = true
 caret/caret_blink_speed = 0.65
 
 [node name="GenderVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 160.0
+margin/top = 161.0
 margin/right = 254.0
-margin/bottom = 196.0
+margin/bottom = 199.0
 alignment = 1
 
 [node name="GenderDescription" type="Label" parent="RightSide/GenderVBoxContainer"]
@@ -341,6 +356,7 @@ suffix = ""
 
 [node name="BloodTypeVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -429,6 +445,7 @@ margin/bottom = 153.0
 
 [node name="TraitsContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -468,6 +485,7 @@ disabled = true
 
 [node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -575,6 +593,7 @@ max_lines_visible = -1
 
 [node name="ContactIconContainer" type="HBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -628,6 +647,211 @@ margin/bottom = 0.0
 expand = true
 stretch_mode = 0
 
+[node name="CombinedMeshesContainer" type="VBoxContainer" parent="RightSide"]
+
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 540.0
+margin/top = 10.0
+margin/right = 752.0
+margin/bottom = 254.0
+alignment = 1
+
+[node name="CombinedMeshesLabel" type="Label" parent="RightSide/CombinedMeshesContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 212.0
+margin/bottom = 14.0
+text = "Combined Meshes:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HeadMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
+
+margin/top = 18.0
+margin/right = 212.0
+margin/bottom = 60.0
+label = "Head:"
+record_name = ""
+disabled = true
+has_clear_button = true
+
+[node name="EyesMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
+
+margin/top = 64.0
+margin/right = 212.0
+margin/bottom = 106.0
+label = "Eyes:"
+record_name = ""
+disabled = true
+has_clear_button = true
+
+[node name="EyebrowsMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
+
+margin/top = 110.0
+margin/right = 212.0
+margin/bottom = 152.0
+label = "Eyebrows:"
+record_name = ""
+disabled = true
+has_clear_button = true
+
+[node name="MouthMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
+
+margin/top = 156.0
+margin/right = 212.0
+margin/bottom = 198.0
+label = "Mouth:"
+record_name = ""
+disabled = true
+has_clear_button = true
+
+[node name="EyelashesMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
+
+margin/top = 202.0
+margin/right = 212.0
+margin/bottom = 244.0
+label = "Eyelashes:"
+record_name = ""
+disabled = true
+has_clear_button = true
+
+[node name="MorphTableContainer" type="VBoxContainer" parent="RightSide"]
+
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 780.0
+margin/top = 10.0
+margin/right = 994.0
+margin/bottom = 236.0
+alignment = 1
+
+[node name="MorphTableLabel" type="Label" parent="RightSide/MorphTableContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 214.0
+margin/bottom = 14.0
+text = "Morph Table:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MorphTableTree" type="Tree" parent="RightSide/MorphTableContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 214.0
+margin/bottom = 198.0
+
+[node name="MorphTableSpinBox" type="SpinBox" parent="RightSide/MorphTableContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 202.0
+margin/right = 214.0
+margin/bottom = 226.0
+range/min = 0.0
+range/max = 1.0
+range/step = 0.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = false
+prefix = ""
+suffix = ""
+
+[node name="ScalerTable" type="VBoxContainer" parent="RightSide"]
+
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 780.0
+margin/top = 250.0
+margin/right = 994.0
+margin/bottom = 476.0
+alignment = 1
+
+[node name="ScalerTableLabel" type="Label" parent="RightSide/ScalerTable"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 214.0
+margin/bottom = 14.0
+text = "Scaler Table:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ScalerTableControl" parent="RightSide/ScalerTable" instance=ExtResource( 4 )]
+
+anchor/right = 0
+anchor/bottom = 0
+size_flags/vertical = 3
+margin/top = 18.0
+margin/right = 214.0
+margin/bottom = 198.0
+
+[node name="ScalerTableSpinBox" type="SpinBox" parent="RightSide/ScalerTable"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 202.0
+margin/right = 214.0
+margin/bottom = 226.0
+range/min = 0.0
+range/max = 1.0
+range/step = 0.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = false
+prefix = ""
+suffix = ""
+
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
@@ -635,6 +859,10 @@ stretch_mode = 0
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
+
+[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
 
 [connection signal="text_changed" from="RightSide/FamilyNameVBoxContainer/FamilyNameLineEdit" to="." method="_on_FamilyNameLineEdit_text_changed"]
 
@@ -665,5 +893,37 @@ stretch_mode = 0
 [connection signal="toggled" from="RightSide/FlagsContainer/IsStorylineActorContainer/IsStorylineActorCheckbox" to="." method="_on_IsStorylineActorCheckbox_toggled"]
 
 [connection signal="file_selected" from="RightSide/ContactIconContainer/ContactIconPathControl" to="." method="_on_ContactIconPathControl_file_selected"]
+
+[connection signal="record_erased" from="RightSide/CombinedMeshesContainer/HeadMeshRecord" to="." method="_on_HeadMeshRecord_record_erased"]
+
+[connection signal="record_selected" from="RightSide/CombinedMeshesContainer/HeadMeshRecord" to="." method="_on_HeadMeshRecord_record_selected"]
+
+[connection signal="record_erased" from="RightSide/CombinedMeshesContainer/EyesMeshRecord" to="." method="_on_EyesMeshRecord_record_erased"]
+
+[connection signal="record_selected" from="RightSide/CombinedMeshesContainer/EyesMeshRecord" to="." method="_on_EyesMeshRecord_record_selected"]
+
+[connection signal="record_erased" from="RightSide/CombinedMeshesContainer/EyebrowsMeshRecord" to="." method="_on_EyebrowsMeshRecord_record_erased"]
+
+[connection signal="record_selected" from="RightSide/CombinedMeshesContainer/EyebrowsMeshRecord" to="." method="_on_EyebrowsMeshRecord_record_selected"]
+
+[connection signal="record_erased" from="RightSide/CombinedMeshesContainer/MouthMeshRecord" to="." method="_on_MouthMeshRecord_record_erased"]
+
+[connection signal="record_selected" from="RightSide/CombinedMeshesContainer/MouthMeshRecord" to="." method="_on_MouthMeshRecord_record_selected"]
+
+[connection signal="record_erased" from="RightSide/CombinedMeshesContainer/EyelashesMeshRecord" to="." method="_on_EyelashesMeshRecord_record_erased"]
+
+[connection signal="record_selected" from="RightSide/CombinedMeshesContainer/EyelashesMeshRecord" to="." method="_on_EyelashesMeshRecord_record_selected"]
+
+[connection signal="cell_selected" from="RightSide/MorphTableContainer/MorphTableTree" to="." method="_on_MorphTableTree_cell_selected"]
+
+[connection signal="value_changed" from="RightSide/MorphTableContainer/MorphTableSpinBox" to="." method="_on_MorphTableSpinBox_value_changed"]
+
+[connection signal="record_cell_selected" from="RightSide/ScalerTable/ScalerTableControl" to="." method="_on_ScalerTableControl_record_cell_selected"]
+
+[connection signal="record_erased" from="RightSide/ScalerTable/ScalerTableControl" to="." method="_on_ScalerTableControl_record_erased"]
+
+[connection signal="record_selected" from="RightSide/ScalerTable/ScalerTableControl" to="." method="_on_ScalerTableControl_record_selected"]
+
+[connection signal="value_changed" from="RightSide/ScalerTable/ScalerTableSpinBox" to="." method="_on_ScalerTableSpinBox_value_changed"]
 
 

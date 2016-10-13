@@ -38,28 +38,28 @@ static func get_master_method_dict():
 	var dict = {}
 	
 	# Install method references
-	dict["is_in_actor_group"] = MethodItem.new(ArgumentItem.new("p_actor_group", ARGUMENT_TYPE_STRING))
+	dict["is_in_actor_group"] = MethodItem.new([ArgumentItem.new("p_actor_group", ARGUMENT_TYPE_STRING)])
 	
-	dict["has_bloodtype"] = MethodItem.new(ArgumentItem.new("p_bloodtype", ARGUMENT_TYPE_ENUM, [
+	dict["has_bloodtype"] = MethodItem.new([ArgumentItem.new("p_bloodtype", ARGUMENT_TYPE_ENUM, {"enums":[
 		ArgumentOption.new("A", actor_record_const.BLOODTYPE_A),
 		ArgumentOption.new("B", actor_record_const.BLOODTYPE_B),
 		ArgumentOption.new("AB", actor_record_const.BLOODTYPE_AB),
 		ArgumentOption.new("O", actor_record_const.BLOODTYPE_O),
-		]))
+		]})])
 		
-	dict["is_gender"] = MethodItem.new(ArgumentItem.new("p_gender", ARGUMENT_TYPE_ENUM, [
+	dict["is_gender"] = MethodItem.new([ArgumentItem.new("p_gender", ARGUMENT_TYPE_ENUM, {"enums":[
 		ArgumentOption.new("Male", actor_record_const.GENDER_MALE),
 		ArgumentOption.new("Female", actor_record_const.GENDER_FEMALE),
-		]))
+		]})])
 		
-	dict["is_given_name"] = MethodItem.new(ArgumentItem.new("p_given_name", ARGUMENT_TYPE_STRING))
-	dict["is_family_name"] = MethodItem.new(ArgumentItem.new("p_family_name", ARGUMENT_TYPE_STRING))
+	dict["is_given_name"] = MethodItem.new([ArgumentItem.new("p_given_name", ARGUMENT_TYPE_STRING)])
+	dict["is_family_name"] = MethodItem.new([ArgumentItem.new("p_family_name", ARGUMENT_TYPE_STRING)])
 	
 	dict["get_current_time"] = MethodItem.new()
 	dict["get_day_of_the_week"] = MethodItem.new()
 	
-	dict["is_date_of_birth_day"] = MethodItem.new(ArgumentItem.new("p_is_player", ARGUMENT_TYPE_INT))
-	dict["is_date_of_birth_month"] = MethodItem.new(ArgumentItem.new("p_month", ARGUMENT_TYPE_ENUM, [
+	dict["is_date_of_birth_day"] = MethodItem.new([ArgumentItem.new("p_day", ARGUMENT_TYPE_INT)])
+	dict["is_date_of_birth_month"] = MethodItem.new([ArgumentItem.new("p_month", ARGUMENT_TYPE_ENUM, {"enums":[
 		ArgumentOption.new("January", OS.MONTH_JANUARY),
 		ArgumentOption.new("February", OS.MONTH_FEBRUARY),
 		ArgumentOption.new("March", OS.MONTH_MARCH),
@@ -72,10 +72,10 @@ static func get_master_method_dict():
 		ArgumentOption.new("October", OS.MONTH_OCTOBER),
 		ArgumentOption.new("November", OS.MONTH_NOVEMBER),
 		ArgumentOption.new("December", OS.MONTH_DECEMBER),
-		]))
+		]})])
 		
-	dict["has_calendar_event"] = MethodItem.new(ArgumentItem.new("p_event", ARGUMENT_TYPE_OBJECT))
-	dict["is_in_location"] = MethodItem.new(ArgumentItem.new("p_location", ARGUMENT_TYPE_OBJECT))
-	dict["is_player"] = MethodItem.new(ArgumentItem.new("p_is_player", ARGUMENT_TYPE_BOOL))
+	dict["has_calendar_event"] = MethodItem.new([ArgumentItem.new("p_event", ARGUMENT_TYPE_OBJECT, {"database":"calendar_event_database"})])
+	dict["is_in_location"] = MethodItem.new([ArgumentItem.new("p_location", ARGUMENT_TYPE_OBJECT, {"database":"location_database"})])
+	dict["is_player"] = MethodItem.new([ArgumentItem.new("p_is_player", ARGUMENT_TYPE_BOOL)])
 		
 	return dict

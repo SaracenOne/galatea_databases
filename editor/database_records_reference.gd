@@ -3,11 +3,13 @@ extends Control
 
 var record_tree = null
 var database = null
+var rules = []
 
 var database_list_popup = preload("database_list.tscn").instance()
 
 signal record_selected(p_record)
 signal record_erased(p_record)
+signal record_cell_selected(p_record)
 
 export(bool) var disabled = false setget set_disabled, get_disabled
 
@@ -26,16 +28,13 @@ func _on_record_selected(p_record):
 		
 func _on_AddButton_pressed():
 	if(database):
-		database_list_popup.populate_tree(database)
+		database_list_popup.populate_tree(database, rules)
 		database_list_popup.popup_centered_ratio()
 
 func _on_EraseButton_pressed():
 	var tree_item = record_tree.get_selected()
 	var record = tree_item.get_metadata(0)
 	emit_signal("record_erased", record)
-	
-func assign_database(p_database):
-	database = p_database
 	
 func populate_tree(p_records_array, p_selection_record):
 	if(record_tree and p_records_array != null):
@@ -70,3 +69,14 @@ func _on_RecordTree_cell_selected():
 	
 	if(has_node("Panel/HBoxContainer/EraseButton")):
 		get_node("Panel/HBoxContainer/EraseButton").set_disabled(false)
+		
+	emit_signal("record_cell_selected", record)
+		
+func assign_database(p_database):
+	database = p_database
+		
+func clear_rules():
+	rules = []
+	
+func assign_rule(p_rule):
+	rules.append(p_rule)

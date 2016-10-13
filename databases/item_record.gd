@@ -49,9 +49,9 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("can_gift")):
 		can_gift = p_dictionary_record.can_gift
 		
-func _save_record(p_dictionary_record):
+func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record)
+	._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.printed_name = printed_name
 	p_dictionary_record.description = description

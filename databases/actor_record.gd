@@ -34,10 +34,16 @@ var ai_packages = []
 var stats = {}
 
 # Appearence
+var head = null
+var eyes = null
+var eyebrows = null
+var mouth = null
+var eyelashes = null
+
 var hair = ""
 var height = 1.0
-var scalers = {}
-var facial_deformations = {}
+var body_scaler_table = {}
+var head_morph_table = {}
 
 static func get_bloodtype_from_string(p_string):
 	var upper_string = p_string.to_upper()
@@ -144,6 +150,17 @@ func _load_record(p_dictionary_record, p_databases):
 			if(ai_package != null):
 				ai_packages.append(ai_package)
 	
+	if(p_dictionary_record.has("head")):
+		head = p_databases.headpart_database.find_record_by_name(p_dictionary_record.head)
+	if(p_dictionary_record.has("eyes")):
+		eyes = p_databases.headpart_database.find_record_by_name(p_dictionary_record.eyes)
+	if(p_dictionary_record.has("eyebrows")):
+		eyebrows = p_databases.headpart_database.find_record_by_name(p_dictionary_record.eyebrows)
+	if(p_dictionary_record.has("mouth")):
+		mouth = p_databases.headpart_database.find_record_by_name(p_dictionary_record.mouth)
+	if(p_dictionary_record.has("eyelashes")):
+		eyelashes = p_databases.headpart_database.find_record_by_name(p_dictionary_record.eyelashes)
+		
 	if(p_dictionary_record.has("stats")):
 		stats = p_dictionary_record.stats
 		
@@ -151,14 +168,14 @@ func _load_record(p_dictionary_record, p_databases):
 		hair = p_dictionary_record.hair
 	if(p_dictionary_record.has("height")):
 		height = p_dictionary_record.height
-	if(p_dictionary_record.has("scalers")):
-		scalers = p_dictionary_record.scalers
-	if(p_dictionary_record.has("facial_deformations")):
-		facial_deformations = p_dictionary_record.facial_deformations
+	if(p_dictionary_record.has("body_scaler_table")):
+		body_scaler_table = p_dictionary_record.body_scaler_table
+	if(p_dictionary_record.has("head_morph_table")):
+		head_morph_table = p_dictionary_record.head_morph_table
 		
-func _save_record(p_dictionary_record):
+func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record)
+	._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.family_name = family_name
 	p_dictionary_record.given_name = given_name
@@ -192,7 +209,32 @@ func _save_record(p_dictionary_record):
 	
 	p_dictionary_record.stats = stats
 	
+	if(head):
+		p_dictionary_record.head = head.id
+	else:
+		p_dictionary_record.head = ""
+		
+	if(eyes):
+		p_dictionary_record.eyes = eyes.id
+	else:
+		p_dictionary_record.eyes = ""
+		
+	if(eyebrows):
+		p_dictionary_record.eyebrows = eyebrows.id
+	else:
+		p_dictionary_record.eyebrows = ""
+		
+	if(mouth):
+		p_dictionary_record.mouth = mouth.id
+	else:
+		p_dictionary_record.mouth = ""
+		
+	if(eyelashes):
+		p_dictionary_record.eyelashes = eyelashes.id
+	else:
+		p_dictionary_record.eyelashes = ""
+	
 	p_dictionary_record.hair = hair
 	p_dictionary_record.height = height
-	p_dictionary_record.scalers = scalers
-	p_dictionary_record.facial_deformations = facial_deformations
+	p_dictionary_record.body_scaler_table = body_scaler_table
+	p_dictionary_record.head_morph_table = head_morph_table

@@ -12,6 +12,7 @@ signal record_erased(p_record)
 
 var database = null
 var record = null
+var rules = []
 
 var label_control = null
 var record_reference_control = null
@@ -80,7 +81,7 @@ func _ready():
 	
 func _on_LoadButton_pressed():
 	if(database):
-		database_list_popup.populate_tree(database)
+		database_list_popup.populate_tree(database, rules)
 		database_list_popup.popup_centered_ratio()
 
 func _on_ClearButton_pressed():
@@ -93,3 +94,9 @@ func _on_record_selected(p_record):
 	
 func assign_database(p_database):
 	database = p_database
+	
+func clear_rules():
+	rules = []
+	
+func assign_rule(p_rule):
+	rules.append(p_rule)

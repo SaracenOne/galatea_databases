@@ -14,45 +14,8 @@ const COLOR_TYPE_LIGHT_COLOR = 6
 var current_color_type = COLOR_TYPE_AMBIENT
 var current_layer_number = 0
 
-export(NodePath) var color_type_menu = NodePath()
-
-export(NodePath) var sunrise_color_picker_button = NodePath()
-export(NodePath) var day_color_picker_button = NodePath()
-export(NodePath) var sunset_color_picker_button = NodePath()
-export(NodePath) var night_color_picker_button = NodePath()
-
-export(NodePath) var layer_number_menu = NodePath()
-export(NodePath) var layer_texture_path = NodePath()
-export(NodePath) var layer_texture_preview = NodePath()
-export(NodePath) var layer_scroll_x = NodePath()
-export(NodePath) var layer_scroll_y = NodePath()
-export(NodePath) var layer_scroll_alpha = NodePath()
-
-export(NodePath) var precipitation_control = NodePath()
-
-export(NodePath) var wind_power = NodePath()
-export(NodePath) var wind_direction = NodePath()
-export(NodePath) var wind_variation = NodePath()
-
-onready var _color_type_menu = get_node(color_type_menu)
-
-onready var _sunrise_color_picker_button = get_node(sunrise_color_picker_button)
-onready var _day_color_picker_button = get_node(day_color_picker_button)
-onready var _sunset_color_picker_button = get_node(sunset_color_picker_button)
-onready var _night_color_picker_button = get_node(night_color_picker_button)
-
-onready var _layer_number_menu = get_node(layer_number_menu)
-onready var _layer_texture_path = get_node(layer_texture_path)
-onready var _layer_texture_preview = get_node(layer_texture_preview)
-onready var _layer_scroll_x = get_node(layer_scroll_x)
-onready var _layer_scroll_y = get_node(layer_scroll_y)
-onready var _layer_scroll_alpha = get_node(layer_scroll_alpha)
-
-onready var _precipitation_control = get_node(precipitation_control)
-
-onready var _wind_power = get_node(wind_power)
-onready var _wind_direction = get_node(wind_direction)
-onready var _wind_variation = get_node(wind_variation)
+export(NodePath) var weather_list = NodePath()
+onready var _weather_list = get_node(weather_list)
 
 #
 var database_records = null

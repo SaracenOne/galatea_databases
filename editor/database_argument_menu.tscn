@@ -1,24 +1,27 @@
 [gd_scene load_steps=2 format=1]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.gd" type="Script" id=1]
+[ext_resource path="res://addons/galatea_databases/editor/database_argument_menu.gd" type="Script" id=1]
 
-[node name="DatabaseRecordsReference" type="Control"]
+[node name="DatabaseList" type="WindowDialog"]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
+anchor/left = 2
+anchor/top = 2
+anchor/right = 2
+anchor/bottom = 2
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/left = 0.2
+margin/top = 0.2
+margin/right = 0.8
+margin/bottom = 0.8
+popup/exclusive = true
+window/title = "Select Argument"
 script/script = ExtResource( 1 )
-disabled = false
 
-[node name="RecordTree" type="Tree" parent="."]
+[node name="ArgumentTree" type="Tree" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -28,9 +31,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 0.0
+margin/top = 10.0
 margin/right = 0.0
-margin/bottom = 50.0
+margin/bottom = 60.0
 
 [node name="Panel" type="Panel" parent="."]
 
@@ -62,7 +65,7 @@ margin/right = 10.0
 margin/bottom = 10.0
 alignment = 1
 
-[node name="AddButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="EditButton" type="Button" parent="Panel/HBoxContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -71,38 +74,36 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 788.0
+margin/right = 468.0
 margin/bottom = 30.0
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Add"
+text = "Edit"
 flat = false
 
-[node name="EraseButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="BackButton" type="Button" parent="Panel/HBoxContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 792.0
+margin/left = 472.0
 margin/top = 0.0
-margin/right = 1580.0
+margin/right = 940.0
 margin/bottom = 30.0
-disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Erase"
+text = "Back"
 flat = false
 
-[connection signal="cell_selected" from="RecordTree" to="." method="_on_RecordTree_cell_selected"]
+[connection signal="cell_selected" from="ArgumentTree" to="." method="_on_ArgumentTree_cell_selected"]
 
-[connection signal="item_selected" from="RecordTree" to="." method="_on_RecordTree_item_selected"]
+[connection signal="pressed" from="Panel/HBoxContainer/EditButton" to="." method="_on_EditButton_pressed"]
 
-[connection signal="pressed" from="Panel/HBoxContainer/AddButton" to="." method="_on_AddButton_pressed"]
-
-[connection signal="pressed" from="Panel/HBoxContainer/EraseButton" to="." method="_on_EraseButton_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
 
 

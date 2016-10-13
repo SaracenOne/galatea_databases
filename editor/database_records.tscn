@@ -114,6 +114,10 @@ shortcut = null
 text = "Rename"
 flat = false
 
+[connection signal="about_to_show" from="NewEditRecordDialog" to="NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog" to="NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
+
 [connection signal="cell_selected" from="RecordTree" to="." method="_on_RecordTree_cell_selected"]
 
 [connection signal="item_selected" from="RecordTree" to="." method="_on_RecordTree_item_selected"]

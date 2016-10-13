@@ -1,6 +1,8 @@
 extends Reference
 tool
 
+const methods_const = preload("../methods/methods.gd")
+
 const COMPARISON_OPERATOR_EQUALS = 0
 const COMPARISON_OPERATOR_NOT = 1
 const COMPARISON_OPERATOR_GREATER = 2
@@ -16,6 +18,7 @@ const CONDITIONAL_SUBJECT_GLOBAL = 3
 const VALUE_TYPE_FLOAT = 0
 const VALUE_TYPE_STRING = 1
 const VALUE_TYPE_SVAR = 2
+const VALUE_TYPE_BOOLEAN = 3
 
 class ConditionalItem:
 	var conditional_method = ""
@@ -137,7 +140,7 @@ static func get_array_of_subjects():
 	return ["self", "target", "reference", "global"]
 	
 static func get_array_of_value_type_strings():
-	return ["float", "string", "svar"]
+	return ["float", "string", "svar", "boolean"]
 		
 static func string_to_subject(p_string):
 	if(p_string == "self"):
@@ -172,6 +175,8 @@ static func string_to_value_type(p_string):
 		return VALUE_TYPE_STRING
 	elif(p_string == "svar"):
 		return VALUE_TYPE_SVAR
+	elif(p_string == "boolean"):
+		return VALUE_TYPE_BOOLEAN
 	else:
 		printerr("string_to_value_type: invalid!")
 		return VALUE_TYPE_FLOAT
@@ -183,50 +188,94 @@ static func value_type_to_string(p_subject):
 		return "string"
 	elif(p_subject == VALUE_TYPE_SVAR):
 		return "svar"
+	elif(p_subject == VALUE_TYPE_BOOLEAN):
+		return "boolean"
 	else:
 		printerr("value_type_to_string: invalid!")
 		return "float"
 		
-static func load_from_dictionary(p_conditional_set, p_dictionary):
-	if(p_dictionary.has("conditional_items")):
+static func load_from_dictionary(p_conditional_set, p_dictionary, p_databases):
+	if(p_dictionary != null and p_dictionary.has("conditional_items")):
+		var dictionary = methods_const.get_master_method_dict()
+		
 		p_conditional_set.conditional_items.clear()
 		
 		for conditional_dictionary in p_dictionary.conditional_items:
-			var conditional_item = ConditionalItem.new()
+			var method_template = null
+			if(dictionary.has(conditional_dictionary.conditional_method)):
+				method_template = dictionary[conditional_dictionary.conditional_method]
 			
-			conditional_item.conditional_method = conditional_dictionary.conditional_method
+				var conditional_item = ConditionalItem.new()
+				conditional_item.conditional_method = conditional_dictionary.conditional_method
 			
-			conditional_item.arguments.clear()
-			if(conditional_dictionary.has("arguments")):
-				for argument in conditional_dictionary.arguments:
-					conditional_item.push_back(argument)
+				conditional_item.arguments.clear()
+				if(conditional_dictionary.has("conditional_arguments")):
+					for i in range(0, conditional_dictionary.conditional_arguments.size()):
+						var argument = conditional_dictionary.conditional_arguments[i]
+						var argument_template = method_template.arguments[i]
+						if(argument_template.type == methods_const.ARGUMENT_TYPE_OBJECT):
+							if(argument_template.options.has("database")):
+								var database = p_databases.get(argument_template.options["database"])
+								conditional_item.arguments.push_back(database.find_record_by_name(str(argument)))
+						elif(argument_template.type == methods_const.ARGUMENT_TYPE_ENUM):
+							if(argument_template.options.size() > 0):
+								var argument_enums = argument_template.options["enums"]
+								var argument_enum_value = argument_enums[0]
+								for option in argument_enums:
+									if(argument == option.option_name):
+										argument_enum_value = option.option_value
+										break
+								conditional_item.arguments.push_back(argument_enum_value)
+						else:
+							conditional_item.arguments.push_back(argument)
+					
+				conditional_item.operator = string_to_operator(conditional_dictionary.operator)
+				conditional_item.value = conditional_dictionary.value
+				conditional_item.value_type = string_to_value_type(conditional_dictionary.value_type)
+				conditional_item.subject = string_to_subject(conditional_dictionary.subject)
+				conditional_item.use_or = conditional_dictionary.use_or
 				
-			conditional_item.operator = string_to_operator(conditional_dictionary.operator)
-			conditional_item.value = conditional_dictionary.value
-			conditional_item.value_type = string_to_value_type(conditional_dictionary.value_type)
-			conditional_item.subject = string_to_subject(conditional_dictionary.subject)
-			conditional_item.use_or = conditional_dictionary.use_or
-			
-			p_conditional_set.conditional_items.push_back(conditional_item)
-		
-static func save_to_dictionary(p_conditional_set):
+				p_conditional_set.conditional_items.push_back(conditional_item)
+
+static func save_to_dictionary(p_conditional_set, p_database):
 	var conditionals = []
 	
+	var dictionary = methods_const.get_master_method_dict()
+	
 	for conditional_item in p_conditional_set.conditional_items:
-		var conditional_dictionary = {}
-		
-		conditional_dictionary.conditional_method = conditional_item.conditional_method
-		
-		for argument in conditional_item.arguments:
-			conditional_dictionary.conditional_arguments.push_back(argument)
+		var method_template = null
+		if(dictionary.has(conditional_item.conditional_method)):
+			method_template = dictionary[conditional_item.conditional_method]
+			var conditional_dictionary = {}
 			
-		conditional_dictionary.operator = operator_to_string(conditional_item.operator)
-		conditional_dictionary.value = conditional_item.value
-		conditional_dictionary.value_type = value_type_to_string(conditional_item.value_type)
-		conditional_dictionary.subject = subject_to_string(conditional_item.subject)
-		conditional_dictionary.use_or = conditional_item.use_or
-		
-		conditionals.push_back(conditional_dictionary)
+			conditional_dictionary.conditional_method = conditional_item.conditional_method
+			
+			conditional_dictionary.conditional_arguments = []
+			for i in range(0, conditional_item.arguments.size()):
+				var argument = conditional_item.arguments[i]
+				var argument_template = method_template.arguments[i]
+				
+				if(argument_template.type == methods_const.ARGUMENT_TYPE_OBJECT):
+					conditional_dictionary.conditional_arguments.push_back(argument.id)
+				elif(argument_template.type == methods_const.ARGUMENT_TYPE_ENUM):
+					if(argument_template.options.size() > 0):
+						var argument_enums = argument_template.options["enums"]
+						var argument_enum_name = argument_enums[0]
+						for argument_enum in argument_enums:
+							if(argument == argument_enum.option_value):
+								argument_enum_name = argument_enum.option_name
+								break
+						conditional_dictionary.conditional_arguments.push_back(argument_enum_name)
+				else:
+					conditional_dictionary.conditional_arguments.push_back(argument)
+				
+			conditional_dictionary.operator = operator_to_string(conditional_item.operator)
+			conditional_dictionary.value = conditional_item.value
+			conditional_dictionary.value_type = value_type_to_string(conditional_item.value_type)
+			conditional_dictionary.subject = subject_to_string(conditional_item.subject)
+			conditional_dictionary.use_or = conditional_item.use_or
+			
+			conditionals.push_back(conditional_dictionary)
 		
 	return {"conditional_items":conditionals}
 		

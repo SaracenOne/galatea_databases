@@ -1,0 +1,446 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://addons/galatea_databases/editor/database_headpart_panel.gd" type="Script" id=1]
+[ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
+
+[node name="HeadpartPanel" type="Control"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+headpart_type_control = NodePath("RightSide/HeadpartTypeContainer/HeadpartTypeMenuButton")
+mesh_file_control = NodePath("RightSide/MeshFileMainContainer")
+texture_file_control = NodePath("RightSide/TextureFileMainContainer/TextureFileMainContainer")
+texture_file_preview_control = NodePath("RightSide/TextureFileMainContainer/TextureFilePanel/TextureFileTextureFrame")
+gen_morph_file_control = NodePath("RightSide/GenMorphFileMainContainer")
+target_min_x_control = NodePath("RightSide/TargetMinContainer/TargetMinHContainer/TargetMinXSpinbox")
+target_min_y_control = NodePath("RightSide/TargetMinContainer/TargetMinHContainer/TargetMinYSpinbox")
+target_max_x_control = NodePath("RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxXSpinbox")
+target_max_y_control = NodePath("RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxYSpinbox")
+
+[node name="LeftSide" type="Control" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 2
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.2
+margin/bottom = 0.0
+
+[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
+
+[node name="RightSide" type="Control" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/left = 2
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.2
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="HeadpartTypeContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 164.0
+margin/bottom = 50.0
+alignment = 0
+
+[node name="HeadpartTypeLabel" type="Label" parent="RightSide/HeadpartTypeContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 154.0
+margin/bottom = 14.0
+text = "Headpart Type:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HeadpartTypeMenuButton" type="MenuButton" parent="RightSide/HeadpartTypeContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 154.0
+margin/bottom = 38.0
+disabled = true
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 0
+shortcut = null
+flat = false
+items = [  ]
+
+[node name="MeshFileMainContainer" parent="RightSide" instance=ExtResource( 3 )]
+
+margin/left = 10.0
+margin/top = 72.0
+margin/right = 532.0
+margin/bottom = 115.0
+label = "Mesh File:"
+file_browser_title = "Load Mesh"
+file_type = "Mesh"
+disabled = true
+
+[node name="TextureFileMainContainer" type="HBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 125.0
+margin/right = 600.0
+margin/bottom = 189.0
+alignment = 0
+
+[node name="TextureFileMainContainer" parent="RightSide/TextureFileMainContainer" instance=ExtResource( 3 )]
+
+size_flags/horizontal = 3
+margin/bottom = 64.0
+label = "Texture File:"
+file_browser_title = "Load Texture"
+file_type = "Texture"
+disabled = true
+
+[node name="TextureFilePanel" type="Panel" parent="RightSide/TextureFileMainContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+rect/min_size = Vector2( 64, 64 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 526.0
+margin/top = 0.0
+margin/right = 590.0
+margin/bottom = 64.0
+
+[node name="TextureFileTextureFrame" type="TextureFrame" parent="RightSide/TextureFileMainContainer/TextureFilePanel"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+stretch_mode = 0
+
+[node name="GenMorphFileMainContainer" parent="RightSide" instance=ExtResource( 3 )]
+
+margin/left = 10.0
+margin/top = 192.0
+margin/right = 532.0
+margin/bottom = 235.0
+label = "Gen Morph File:"
+file_browser_title = "Load Morph Data Collection"
+file_type = "MorphDataCollection"
+disabled = true
+
+[node name="TargetMinContainer" type="VBoxContainer" parent="RightSide"]
+
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 260.0
+margin/right = 260.0
+margin/bottom = 302.0
+alignment = 0
+
+[node name="TargetMinLabel" type="Label" parent="RightSide/TargetMinContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 250.0
+margin/bottom = 14.0
+text = "Target Min:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TargetMinHContainer" type="HBoxContainer" parent="RightSide/TargetMinContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 250.0
+margin/bottom = 42.0
+alignment = 0
+
+[node name="TargetMinXSpinboxLabel" type="Label" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 5.0
+margin/right = 12.0
+margin/bottom = 19.0
+text = "X:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TargetMinXSpinbox" type="SpinBox" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 16.0
+margin/top = 0.0
+margin/right = 123.0
+margin/bottom = 24.0
+range/min = 0.0
+range/max = 1.0
+range/step = 0.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = false
+prefix = ""
+suffix = ""
+
+[node name="TargetMinYSpinboxLabel" type="Label" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 127.0
+margin/top = 5.0
+margin/right = 138.0
+margin/bottom = 19.0
+text = "Y:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TargetMinYSpinbox" type="SpinBox" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 142.0
+margin/top = 0.0
+margin/right = 250.0
+margin/bottom = 24.0
+range/min = 0.0
+range/max = 1.0
+range/step = 0.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = false
+prefix = ""
+suffix = ""
+
+[node name="TargetMaxContainer" type="VBoxContainer" parent="RightSide"]
+
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 320.0
+margin/right = 260.0
+margin/bottom = 362.0
+alignment = 0
+
+[node name="TargetMaxLabel" type="Label" parent="RightSide/TargetMaxContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 250.0
+margin/bottom = 14.0
+text = "Target Max:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TargetMaxHContainer" type="HBoxContainer" parent="RightSide/TargetMaxContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 250.0
+margin/bottom = 42.0
+alignment = 0
+
+[node name="TargetMaxXSpinboxLabel" type="Label" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 5.0
+margin/right = 12.0
+margin/bottom = 19.0
+text = "X:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TargetMaxXSpinbox" type="SpinBox" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 16.0
+margin/top = 0.0
+margin/right = 123.0
+margin/bottom = 24.0
+range/min = 0.0
+range/max = 1.0
+range/step = 0.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = false
+prefix = ""
+suffix = ""
+
+[node name="TargetMaxYSpinboxLabel" type="Label" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 127.0
+margin/top = 5.0
+margin/right = 138.0
+margin/bottom = 19.0
+text = "Y:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TargetMaxYSpinbox" type="SpinBox" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 142.0
+margin/top = 0.0
+margin/right = 250.0
+margin/bottom = 24.0
+range/min = 0.0
+range/max = 1.0
+range/step = 0.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = false
+prefix = ""
+suffix = ""
+
+[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
+
+[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+
+[connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
+
+[connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
+
+[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="file_selected" from="RightSide/MeshFileMainContainer" to="." method="_on_MeshFileMainContainer_file_selected"]
+
+[connection signal="file_selected" from="RightSide/TextureFileMainContainer/TextureFileMainContainer" to="." method="_on_TextureFileMainContainer_file_selected"]
+
+[connection signal="file_selected" from="RightSide/GenMorphFileMainContainer" to="." method="_on_GenMorphFileMainContainer_file_selected"]
+
+[connection signal="value_changed" from="RightSide/TargetMinContainer/TargetMinHContainer/TargetMinXSpinbox" to="." method="_on_TargetMinXSpinbox_value_changed"]
+
+[connection signal="value_changed" from="RightSide/TargetMinContainer/TargetMinHContainer/TargetMinYSpinbox" to="." method="_on_TargetMinYSpinbox_value_changed"]
+
+[connection signal="value_changed" from="RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxXSpinbox" to="." method="_on_TargetMaxXSpinbox_value_changed"]
+
+[connection signal="value_changed" from="RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxYSpinbox" to="." method="_on_TargetMaxYSpinbox_value_changed"]
+
+

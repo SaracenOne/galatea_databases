@@ -20,6 +20,7 @@ script/script = ExtResource( 1 )
 svar_type = NodePath("RightSide/SvarValueContainer/SvarValueColumns/SvarValueContainerRight/SvarTypeMenuButton")
 svar_value_line_edit = NodePath("RightSide/SvarValueContainer/SvarValueColumns/SvarValueContainerLeft/SvarValueLineEdit")
 svar_value_spinbox = NodePath("RightSide/SvarValueContainer/SvarValueColumns/SvarValueContainerLeft/SvarValueSpinbox")
+svar_value_checkbox = NodePath("RightSide/SvarValueContainer/SvarValueColumns/SvarValueContainerLeft/SvarCheckBox")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -121,12 +122,14 @@ margin/right = 153.0
 margin/bottom = 42.0
 placeholder/alpha = 0.6
 editable = false
+expand_to_len = false
 focus_mode = 2
 caret/caret_blink = true
 caret/caret_blink_speed = 0.65
 
 [node name="SvarValueSpinbox" type="SpinBox" parent="RightSide/SvarValueContainer/SvarValueColumns/SvarValueContainerLeft"]
 
+visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -138,7 +141,7 @@ margin/right = 153.0
 margin/bottom = 42.0
 range/min = -2.76447e+008
 range/max = 1.67772e+007
-range/step = 1e-008
+range/step = 0.0
 range/page = 0.0
 range/value = 0.0
 range/exp_edit = false
@@ -146,6 +149,24 @@ range/rounded = false
 editable = false
 prefix = ""
 suffix = ""
+
+[node name="SvarCheckBox" type="CheckBox" parent="RightSide/SvarValueContainer/SvarValueColumns/SvarValueContainerLeft"]
+
+visibility/visible = false
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 153.0
+margin/bottom = 41.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
 
 [node name="SvarValueContainerRight" type="VBoxContainer" parent="RightSide/SvarValueContainer/SvarValueColumns"]
 
@@ -193,7 +214,7 @@ click_on_press = true
 enabled_focus_mode = 0
 shortcut = null
 flat = false
-items = [ "integer", null, false, false, false, 0, 0, null, "", false, "float", null, false, false, false, 1, 0, null, "", false, "string", null, false, false, false, 2, 0, null, "", false ]
+items = [ "integer", null, false, false, false, 0, 0, null, "", false, "float", null, false, false, false, 1, 0, null, "", false, "string", null, false, false, false, 2, 0, null, "", false, "boolean", null, false, false, false, 3, 0, null, "", false ]
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
@@ -203,8 +224,14 @@ items = [ "integer", null, false, false, false, 0, 0, null, "", false, "float", 
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
+[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
+
 [connection signal="text_changed" from="RightSide/SvarValueContainer/SvarValueColumns/SvarValueContainerLeft/SvarValueLineEdit" to="." method="_on_SvarValueLineEdit_text_changed"]
 
 [connection signal="value_changed" from="RightSide/SvarValueContainer/SvarValueColumns/SvarValueContainerLeft/SvarValueSpinbox" to="." method="_on_SvarValueSpinbox_value_changed"]
+
+[connection signal="toggled" from="RightSide/SvarValueContainer/SvarValueColumns/SvarValueContainerLeft/SvarCheckBox" to="." method="_on_SvarCheckBox_toggled"]
 
 

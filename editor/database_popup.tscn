@@ -23,8 +23,9 @@ script/script = ExtResource( 1 )
 
 [node name="DatabaseEditor" parent="." instance=ExtResource( 2 )]
 
-margin/left = 10.0
-margin/right = 10.0
-margin/bottom = 40.0
+margin/left = 30.0
+margin/top = 30.0
+margin/right = 30.0
+margin/bottom = 30.0
 
 

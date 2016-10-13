@@ -41,8 +41,6 @@ func galatea_databases_assigned():
 	
 	current_database = galatea_databases.music_track_database
 	
-	_conditionals_control.assign_databases(galatea_databases)
-	
 	if(current_database != null):
 		database_records.populate_tree(current_database, null)
 	else:

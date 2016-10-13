@@ -41,7 +41,7 @@ func _save_database(p_filepath, p_records_name):
 	for database_record in database_record_values:
 		var dictionary_record = {}
 		
-		database_record._save_record(dictionary_record)
+		database_record._save_record(dictionary_record, databases)
 		
 		database_dictionary_array.push_back(dictionary_record)
 	
@@ -217,3 +217,19 @@ func build_procedural_script():
 	f.open("res://assets/scripts/inline/" + get_inlined_filename(), File.WRITE)
 	f.store_string(script_text)
 	f.close()
+	
+static func convert_string_to_vector_2(p_str):
+	if(p_str):
+		var floats = p_str.substr(1, p_str.length()-1).split_floats(",") 
+		if(floats.size() == 2):
+			return Vector2(floats[0], floats[1])
+	
+	return Vector2(0.0, 0.0)
+	
+static func convert_string_to_vector_3(p_str):
+	if(p_str):
+		var floats = p_str.substr(1, p_str.length()-1).split_floats(",") 
+		if(floats.size() == 3):
+			return Vector3(floats[0], floats[1], floats[2])
+	
+	return Vector3(0.0, 0.0, 0.0)

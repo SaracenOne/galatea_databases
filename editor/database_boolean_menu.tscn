@@ -1,24 +1,27 @@
 [gd_scene load_steps=2 format=1]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.gd" type="Script" id=1]
+[ext_resource path="res://addons/galatea_databases/editor/database_boolean_menu.gd" type="Script" id=1]
 
-[node name="DatabaseRecordsReference" type="Control"]
+[node name="BooleanMenu" type="WindowDialog"]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
+anchor/left = 2
+anchor/top = 2
+anchor/right = 2
+anchor/bottom = 2
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/left = 0.45
+margin/top = 0.45
+margin/right = 0.55
+margin/bottom = 0.55
+popup/exclusive = true
+window/title = "Input Boolean"
 script/script = ExtResource( 1 )
-disabled = false
 
-[node name="RecordTree" type="Tree" parent="."]
+[node name="CheckButton" type="CheckButton" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -27,10 +30,16 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 50.0
+margin/left = 10.0
+margin/top = 9.0
+margin/right = 10.0
+margin/bottom = 60.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "is_enabled"
+flat = false
+align = 0
 
 [node name="Panel" type="Panel" parent="."]
 
@@ -62,7 +71,7 @@ margin/right = 10.0
 margin/bottom = 10.0
 alignment = 1
 
-[node name="AddButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="SelectButton" type="Button" parent="Panel/HBoxContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -71,38 +80,33 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 788.0
+margin/right = 68.0
 margin/bottom = 30.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Add"
+text = "Select"
 flat = false
 
-[node name="EraseButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="CancelButton" type="Button" parent="Panel/HBoxContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 792.0
+margin/left = 72.0
 margin/top = 0.0
-margin/right = 1580.0
+margin/right = 140.0
 margin/bottom = 30.0
-disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Erase"
+text = "Cancel"
 flat = false
 
-[connection signal="cell_selected" from="RecordTree" to="." method="_on_RecordTree_cell_selected"]
+[connection signal="pressed" from="Panel/HBoxContainer/SelectButton" to="." method="_on_SelectButton_pressed"]
 
-[connection signal="item_selected" from="RecordTree" to="." method="_on_RecordTree_item_selected"]
-
-[connection signal="pressed" from="Panel/HBoxContainer/AddButton" to="." method="_on_AddButton_pressed"]
-
-[connection signal="pressed" from="Panel/HBoxContainer/EraseButton" to="." method="_on_EraseButton_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
 
 
