@@ -5,6 +5,8 @@ var cached_dictionary = null
 var database_records = {}
 var database_is_modified = false
 
+const DATABASE_NAME = "generic_database"
+
 func load_database_ids():
 	pass
 	
@@ -141,7 +143,8 @@ func _load_database_ids(p_database_path, p_records_name):
 		return FAILED
 		
 func mark_database_as_modified():
-	database_is_modified=true
+	print("Database " + DATABASE_NAME + " marked as modified...")
+	database_is_modified = true
 		
 func check_database_modified():
 	return database_is_modified
@@ -157,25 +160,28 @@ func find_record_by_name(p_id):
 
 func _insert_record(p_record):
 	database_records[p_record.id] = p_record
+	databases.global_records_list[p_record.id] = p_record
 
 func create_new_record(p_id):
 	if(!p_id.empty()):
-		
-		var new_record = _create_record()
-		new_record.id = p_id
-		
-		_insert_record(new_record)
-		
-		return new_record
+		if(!databases.global_records_list.has(p_id)):
+			var new_record = _create_record()
+			new_record.id = p_id
+			
+			_insert_record(new_record)
+			
+			return new_record
+		else:
+			return null
 	else:
 		return null
 		
 func rename_record(p_from, p_to):
 	if(!p_from.empty() and !p_to.empty()):
-		if(database_records.has(p_from)):
+		if(database_records.has(p_from) and databases.global_records_list.has(p_from)):
 			var record = database_records[p_from]
 			record.id = p_to
-			database_records.erase(p_from)
+			erase_record(p_from)
 			
 			_insert_record(record)
 			return record
@@ -184,6 +190,7 @@ func rename_record(p_from, p_to):
 func erase_record(p_name):
 	if(!p_name.empty()):
 		database_records.erase(p_name)
+		databases.global_records_list.erase(p_name)
 				
 func build_procedural_script():
 	var script_text = ""
@@ -233,3 +240,11 @@ static func convert_string_to_vector_3(p_str):
 			return Vector3(floats[0], floats[1], floats[2])
 	
 	return Vector3(0.0, 0.0, 0.0)
+	
+static func convert_string_to_color(p_str):
+	if(p_str):
+		var floats = p_str.substr(0, p_str.length()).split_floats(",") 
+		if(floats.size() == 4):
+			return Color(floats[0], floats[1], floats[2], floats[3])
+	
+	return Color(1.0, 1.0, 1.0, 1.0)

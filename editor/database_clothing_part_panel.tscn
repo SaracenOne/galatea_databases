@@ -1,0 +1,142 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://addons/galatea_databases/editor/database_clothing_part_panel.gd" type="Script" id=1]
+[ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
+
+[node name="ClothingPartPanel" type="Control"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+male_mesh = NodePath("RightSide/GendersContainer/GenderMaleContainer/MaleMeshControl")
+female_mesh = NodePath("RightSide/GendersContainer/GenderFemaleContainer/FemaleMeshControl")
+
+[node name="LeftSide" type="Control" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 2
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.2
+margin/bottom = 0.0
+
+[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
+
+[node name="RightSide" type="Control" parent="."]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/left = 2
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.2
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="GendersContainer" type="HBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 480.0
+margin/bottom = 52.0
+alignment = 0
+
+[node name="GenderMaleContainer" type="VBoxContainer" parent="RightSide/GendersContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 229.0
+margin/bottom = 42.0
+alignment = 0
+
+[node name="MaleMeshControl" parent="RightSide/GendersContainer/GenderMaleContainer" instance=ExtResource( 3 )]
+
+margin/right = 229.0
+margin/bottom = 42.0
+label = "Male Mesh:"
+file_browser_title = "Open Mesh"
+file_type = "Mesh"
+disabled = true
+has_clear_button = true
+
+[node name="VSeparator" type="VSeparator" parent="RightSide/GendersContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 233.0
+margin/top = 0.0
+margin/right = 236.0
+margin/bottom = 42.0
+
+[node name="GenderFemaleContainer" type="VBoxContainer" parent="RightSide/GendersContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 240.0
+margin/top = 0.0
+margin/right = 470.0
+margin/bottom = 42.0
+alignment = 0
+
+[node name="FemaleMeshControl" parent="RightSide/GendersContainer/GenderFemaleContainer" instance=ExtResource( 3 )]
+
+margin/right = 230.0
+margin/bottom = 42.0
+label = "Female Mesh:"
+file_browser_title = "Open Mesh"
+file_type = "Mesh"
+disabled = true
+has_clear_button = true
+
+[connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
+
+[connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
+
+[connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
+
+[connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
+
+[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="file_selected" from="RightSide/GendersContainer/GenderMaleContainer/MaleMeshControl" to="." method="_on_MaleMeshControl_file_selected"]
+
+[connection signal="file_selected" from="RightSide/GendersContainer/GenderFemaleContainer/FemaleMeshControl" to="." method="_on_FemaleMeshControl_file_selected"]
+
+

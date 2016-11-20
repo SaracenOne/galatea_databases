@@ -1,14 +1,15 @@
 extends "generic_record.gd"
 
 const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd")
+const generic_database_const = preload("generic_database.gd")
 
-const GENDER_MALE = 0
-const GENDER_FEMALE = 1
+enum {GENDER_MALE,
+ GENDER_FEMALE}
 
-const BLOODTYPE_A = 0
-const BLOODTYPE_B = 1
-const BLOODTYPE_AB = 2
-const BLOODTYPE_O = 3
+enum {BLOODTYPE_A,
+ BLOODTYPE_B,
+ BLOODTYPE_AB,
+ BLOODTYPE_O}
 
 var gender = GENDER_MALE
 
@@ -22,10 +23,13 @@ var given_name= ""
 var family_name = ""
 var nickname = ""
 
-var is_valid_contact=false
-var is_storyline_actor=false
+var is_valid_contact = false
+var is_storyline_actor = false
 
 var contact_icon_path = ""
+
+var skeleton_male_path = ""
+var skeleton_female_path = ""
 
 var actor_groups = []
 var traits = []
@@ -40,10 +44,16 @@ var eyebrows = null
 var mouth = null
 var eyelashes = null
 
-var hair = ""
+var default_body = null
+var skin_color = Color(1.0, 1.0, 1.0, 1.0)
+
+var hair = null
+var hair_color = Color(1.0, 1.0, 1.0, 1.0)
+
 var height = 1.0
 var body_scaler_table = {}
 var head_morph_table = {}
+var stamp_table = {}
 
 static func get_bloodtype_from_string(p_string):
 	var upper_string = p_string.to_upper()
@@ -131,6 +141,11 @@ func _load_record(p_dictionary_record, p_databases):
 		
 	if(p_dictionary_record.has("contact_icon_path")):
 		contact_icon_path = p_dictionary_record.contact_icon_path
+		
+	if(p_dictionary_record.has("skeleton_male_path")):
+		skeleton_male_path = p_dictionary_record.skeleton_male_path
+	if(p_dictionary_record.has("skeleton_female_path")):
+		skeleton_female_path = p_dictionary_record.skeleton_female_path
 	
 	if(p_dictionary_record.has("actor_groups")):
 		for actor_group_name in p_dictionary_record.actor_groups:
@@ -152,26 +167,53 @@ func _load_record(p_dictionary_record, p_databases):
 	
 	if(p_dictionary_record.has("head")):
 		head = p_databases.headpart_database.find_record_by_name(p_dictionary_record.head)
+	else:
+		head = null
 	if(p_dictionary_record.has("eyes")):
 		eyes = p_databases.headpart_database.find_record_by_name(p_dictionary_record.eyes)
+	else:
+		eyes = null
 	if(p_dictionary_record.has("eyebrows")):
 		eyebrows = p_databases.headpart_database.find_record_by_name(p_dictionary_record.eyebrows)
+	else:
+		eyebrows = null
 	if(p_dictionary_record.has("mouth")):
 		mouth = p_databases.headpart_database.find_record_by_name(p_dictionary_record.mouth)
+	else:
+		mouth = null
 	if(p_dictionary_record.has("eyelashes")):
 		eyelashes = p_databases.headpart_database.find_record_by_name(p_dictionary_record.eyelashes)
+	else:
+		eyelashes = null
 		
 	if(p_dictionary_record.has("stats")):
 		stats = p_dictionary_record.stats
 		
+	if(p_dictionary_record.has("default_body")):
+		default_body = p_databases.clothing_database.find_record_by_name(p_dictionary_record.default_body)
+	else:
+		default_body = null
+		
+	if(p_dictionary_record.has("skin_color")):
+		skin_color = generic_database_const.convert_string_to_color(p_dictionary_record.skin_color)
+		
 	if(p_dictionary_record.has("hair")):
-		hair = p_dictionary_record.hair
+		hair = p_databases.hair_database.find_record_by_name(p_dictionary_record.hair)
+		
+	if(p_dictionary_record.has("hair_color")):
+		hair_color = generic_database_const.convert_string_to_color(p_dictionary_record.hair_color)
+		
 	if(p_dictionary_record.has("height")):
 		height = p_dictionary_record.height
 	if(p_dictionary_record.has("body_scaler_table")):
 		body_scaler_table = p_dictionary_record.body_scaler_table
 	if(p_dictionary_record.has("head_morph_table")):
 		head_morph_table = p_dictionary_record.head_morph_table
+		
+	stamp_table = {}
+	if(p_dictionary_record.has("stamp_table")):
+		for key in p_dictionary_record.stamp_table.keys():
+			stamp_table[key] = generic_database_const.convert_string_to_color(p_dictionary_record.stamp_table[key])
 		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
@@ -194,6 +236,9 @@ func _save_record(p_dictionary_record, p_databases):
 	
 	###
 	p_dictionary_record.contact_icon_path = contact_icon_path
+	
+	p_dictionary_record.skeleton_male_path = skeleton_male_path
+	p_dictionary_record.skeleton_female_path = skeleton_female_path
 	
 	p_dictionary_record.actor_groups = []
 	for actor_group in actor_groups:
@@ -233,8 +278,22 @@ func _save_record(p_dictionary_record, p_databases):
 		p_dictionary_record.eyelashes = eyelashes.id
 	else:
 		p_dictionary_record.eyelashes = ""
+		
+	if(default_body):
+		p_dictionary_record.default_body = default_body.id
+	else:
+		p_dictionary_record.default_body = ""
+		
+	p_dictionary_record.skin_color = skin_color
 	
-	p_dictionary_record.hair = hair
+	if(hair):
+		p_dictionary_record.hair = hair.id
+	else:
+		p_dictionary_record.hair = ""
+	
+	p_dictionary_record.hair_color = hair_color
+	
 	p_dictionary_record.height = height
 	p_dictionary_record.body_scaler_table = body_scaler_table
 	p_dictionary_record.head_morph_table = head_morph_table
+	p_dictionary_record.stamp_table = stamp_table

@@ -113,7 +113,6 @@ func _on_EndDateOption_day_changed( p_day ):
 		
 func _on_EndDateOption_month_changed( p_month ):
 	if(current_record):
-		print(p_month)
 		current_record.end_date_month = p_month + 1
 		current_database.mark_database_as_modified()
 		

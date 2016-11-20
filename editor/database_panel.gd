@@ -15,15 +15,14 @@ signal erase_record_successful(p_current_database, p_record)
 func submit_new_record_callback(p_name):
 	if(galatea_databases):
 		if(current_database):
-			var original_name = current_database.find_record_by_name(p_name)
+			var original_record = galatea_databases.find_record_by_name(p_name)
 			
-			if(original_name != null):
-				emit_signal("new_record_duplicate_callback")
+			if(original_record != null):
+				emit_signal("new_record_duplicate")
 			else:
 				var record = current_database.create_new_record(p_name)
 				emit_signal("new_record_add_successful", current_database, record)
-				
-			current_database.mark_database_as_modified()
+				current_database.mark_database_as_modified()
 		else:
 			printerr("current_database is null")
 	else:

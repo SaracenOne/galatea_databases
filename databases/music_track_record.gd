@@ -2,8 +2,7 @@ extends "generic_record.gd"
 
 const conditionals_const = preload("../conditionals/conditionals.gd")
 
-const TRACK_TYPE_SINGLE_TRACK = 0
-const TRACK_TYPE_ASYNC_TRACK = 1
+enum {TRACK_TYPE_SINGLE_TRACK, TRACK_TYPE_ASYNC_TRACK}
 
 static func get_track_type_from_string(p_string):
 	var upper_string = p_string.to_upper()

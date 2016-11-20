@@ -1,9 +1,9 @@
 extends "generic_record.gd"
 	
-const ITEM_TYPE_UNKNOWN = 0
-const ITEM_TYPE_MISC = 1
-const ITEM_TYPE_KEY = 2
-const ITEM_TYPE_CONSUMABLE = 3
+enum {ITEM_TYPE_UNKNOWN,
+ ITEM_TYPE_MISC,
+ ITEM_TYPE_KEY,
+ ITEM_TYPE_CONSUMABLE}
 
 var printed_name = ""
 var description = ""

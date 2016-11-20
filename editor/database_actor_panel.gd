@@ -4,6 +4,7 @@ extends "database_panel.gd"
 const headpart_record_const = preload("../databases/headpart_record.gd")
 
 var current_body_scaler_key = ""
+var current_stamp_key = ""
 
 export(NodePath) var family_name = NodePath()
 export(NodePath) var given_name = NodePath()
@@ -18,6 +19,9 @@ export(NodePath) var traits = NodePath()
 export(NodePath) var contact_icon_path = NodePath()
 export(NodePath) var contact_icon_texture = NodePath()
 
+export(NodePath) var skeleton_male_path = NodePath()
+export(NodePath) var skeleton_female_path = NodePath()
+
 export(NodePath) var valid_contact = NodePath()
 export(NodePath) var is_storyline_actor = NodePath()
 
@@ -27,12 +31,21 @@ export(NodePath) var eyebrows = NodePath()
 export(NodePath) var mouth = NodePath()
 export(NodePath) var eyelashes = NodePath()
 
+export(NodePath) var hair = NodePath()
+export(NodePath) var hair_color = NodePath()
+
+export(NodePath) var skin_color = NodePath()
+
 export(NodePath) var head_morph_table = NodePath()
 export(NodePath) var head_morph_value = NodePath()
 
 export(NodePath) var body_scaler_table = NodePath()
 export(NodePath) var body_scaler_value = NodePath()
 
+export(NodePath) var stamp_table = NodePath()
+export(NodePath) var stamp_color = NodePath()
+
+export(NodePath) var default_body = NodePath()
 
 onready var _family_name_control = get_node(family_name)
 onready var _given_name_control = get_node(given_name)
@@ -50,6 +63,9 @@ onready var _traits_control = get_node(traits)
 onready var _contact_icon_path_control = get_node(contact_icon_path)
 onready var _contact_icon_texture_control = get_node(contact_icon_texture)
 
+onready var _skeleton_male_path_control = get_node(skeleton_male_path)
+onready var _skeleton_female_path_control = get_node(skeleton_female_path)
+
 onready var _valid_contact_control = get_node(valid_contact)
 onready var _is_storyline_actor_control = get_node(is_storyline_actor)
 
@@ -59,11 +75,21 @@ onready var _eyebrows_control = get_node(eyebrows)
 onready var _mouth_control = get_node(mouth)
 onready var _eyelashes_control = get_node(eyelashes)
 
+onready var _hair_control = get_node(hair)
+onready var _hair_color_control = get_node(hair_color)
+
+onready var _skin_color_control = get_node(skin_color)
+
 onready var _head_morph_table_control = get_node(head_morph_table)
 onready var _head_morph_value_control = get_node(head_morph_value)
 
 onready var _body_scaler_table_control = get_node(body_scaler_table)
 onready var _body_scaler_value_control = get_node(body_scaler_value)
+
+onready var _stamp_table_control = get_node(stamp_table)
+onready var _stamp_color_control = get_node(stamp_color)
+
+onready var _default_body_control = get_node(default_body)
 
 #
 var database_records = null
@@ -95,6 +121,7 @@ func galatea_databases_assigned():
 		_actor_groups_control.assign_database(galatea_databases.actor_group_database)
 		_traits_control.assign_database(galatea_databases.trait_database)
 		_body_scaler_table_control.assign_database(galatea_databases.body_scaler_database)
+		_stamp_table_control.assign_database(galatea_databases.stamp_database)
 		
 		_head_control.assign_database(galatea_databases.headpart_database)
 		_head_control.clear_rules()
@@ -115,6 +142,10 @@ func galatea_databases_assigned():
 		_eyelashes_control.assign_database(galatea_databases.headpart_database)
 		_eyelashes_control.clear_rules()
 		_eyelashes_control.assign_rule({"method":"is_headpart_type", "arg0":headpart_record_const.HEADPART_EYELASHES})
+		
+		_hair_control.assign_database(galatea_databases.hair_database)
+		
+		_default_body_control.assign_database(galatea_databases.clothing_database)
 		
 	else:
 		printerr("actor_databases is null")
@@ -164,6 +195,19 @@ func set_current_record_callback(p_record):
 	_body_scaler_value_control.set_step(0.0)
 	_body_scaler_value_control.set_value(0.0)
 	
+	var stamp_records = []
+	for stamp_key in p_record.stamp_table.keys():
+		var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
+		if(record):
+			stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+	
+	_stamp_table_control.set_disabled(false)
+	_stamp_table_control.populate_tree(stamp_records, null)
+	
+	current_stamp_key = ""
+	_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
+	_stamp_color_control.set_disabled(true)
+	
 	_contact_icon_path_control.set_disabled(false)
 	_contact_icon_path_control.set_file_path(p_record.contact_icon_path)
 	_contact_icon_texture_control.set_texture(null)
@@ -173,6 +217,12 @@ func set_current_record_callback(p_record):
 	if(contact_icon_texture):
 		if(contact_icon_texture extends Texture):
 			_contact_icon_texture_control.set_texture(contact_icon_texture)
+			
+	_skeleton_male_path_control.set_disabled(false)
+	_skeleton_male_path_control.set_file_path(p_record.skeleton_male_path)
+	
+	_skeleton_female_path_control.set_disabled(false)
+	_skeleton_female_path_control.set_file_path(p_record.skeleton_female_path)
 	
 	_valid_contact_control.set_disabled(false)
 	_valid_contact_control.set_pressed(p_record.is_valid_contact)
@@ -205,6 +255,25 @@ func set_current_record_callback(p_record):
 		_eyelashes_control.set_record_name(p_record.eyelashes.id)
 	else:
 		_eyelashes_control.set_record_name("")
+		
+	_hair_control.set_disabled(false)
+	if(p_record.hair):
+		_hair_control.set_record_name(p_record.hair.id)
+	else:
+		_hair_control.set_record_name("")
+		
+	_hair_color_control.set_disabled(false)
+	_hair_color_control.set_color(p_record.hair_color)
+	
+	_skin_color_control.set_disabled(false)
+	_skin_color_control.set_color(p_record.skin_color)
+	
+	_default_body_control.set_disabled(false)
+	if(p_record.default_body):
+		_default_body_control.set_record_name(p_record.default_body.id)
+	else:
+		_default_body_control.set_record_name("")
+		
 	
 	update_body_scalers()
 	update_morphs()
@@ -227,7 +296,6 @@ static func get_valid_morph_key_list(p_record):
 			var morph_data_collection = load(morph_path)
 			if(morph_data_collection):
 				for morph_data in morph_data_collection.morph_data_array:
-					print(morph_data.name)
 					if(!morph_key_list.has(morph_data.name)):
 						morph_key_list.append(morph_data.name)
 	
@@ -346,6 +414,7 @@ func _on_ContactIconPathControl_file_selected( p_path ):
 				_contact_icon_texture_control.set_texture(contact_icon_texture)
 		
 		current_database.mark_database_as_modified()
+		
 		
 func _on_ValidContactCheckbox_toggled( pressed ):
 	if(current_record):
@@ -484,7 +553,6 @@ func _on_ScalerTableControl_record_cell_selected( p_record ):
 		current_body_scaler_key = p_record.id
 		
 		if(current_record.body_scaler_table.has(p_record.id) == true):
-			print(current_record.body_scaler_table[p_record.id])
 			_body_scaler_value_control.set_value(current_record.body_scaler_table[p_record.id])
 			_body_scaler_value_control.set_step(0.000001)
 		else:
@@ -492,3 +560,106 @@ func _on_ScalerTableControl_record_cell_selected( p_record ):
 			_body_scaler_value_control.set_step(0.0)
 	else:
 		current_body_scaler_key = ""
+
+func _on_HairRecord_record_erased( p_record ):
+	if(current_record):
+		current_database.mark_database_as_modified()
+
+func _on_HairRecord_record_selected( p_record ):
+	if(current_record):
+		current_record.hair = p_record
+		current_database.mark_database_as_modified()
+
+func _on_HairColorPicker_color_changed( color ):
+	if(current_record):
+		current_record.hair_color = color
+		current_database.mark_database_as_modified()
+
+func _on_SkinToneColorPicker_color_changed( color ):
+	if(current_record):
+		current_record.skin_color = color
+		current_database.mark_database_as_modified()
+
+
+func _on_DefaultBody_record_selected( p_record ):
+	if(current_record):
+		current_record.default_body = p_record
+		current_database.mark_database_as_modified()
+
+func _on_DefaultBody_record_erased( p_record ):
+	if(current_record):
+		current_record.default_body = p_record
+		current_database.mark_database_as_modified()
+
+func _on_StampTableControl_record_cell_selected( p_record ):
+	if(current_record):
+		current_stamp_key = p_record.id
+		
+		if(current_record.stamp_table.has(p_record.id) == true):
+			_stamp_color_control.set_color(current_record.stamp_table[p_record.id])
+		else:
+			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
+		_stamp_color_control.set_disabled(false)
+	else:
+		current_stamp_key = ""
+
+func _on_StampTableControl_record_erased( p_record ):
+	if(current_record):
+		if(current_record.stamp_table.has(p_record.id) == true):
+			current_record.stamp_table.erase(p_record.id)
+			
+			var stamp_records = []
+			for stamp_key in current_record.stamp_table.keys():
+				var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
+				if(record):
+					stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+			
+			current_stamp_key = ""
+			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
+			_stamp_color_control.set_disabled(true)
+			
+			_stamp_table_control.populate_tree(stamp_records, null)
+			current_database.mark_database_as_modified()
+
+
+func _on_StampTableControl_record_selected( p_record ):
+	if(current_record and current_record != p_record):
+		if(current_record.stamp_table.has(p_record.id) == true):
+			return
+		else:
+			current_record.stamp_table[p_record.id] = Color(1.0, 1.0, 1.0)
+			
+			var stamp_records = []
+			for stamp_key in current_record.stamp_table.keys():
+				var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
+				if(record):
+					stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+					
+			current_stamp_key = ""
+			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
+			_stamp_color_control.set_disabled(false)
+			
+			_stamp_table_control.populate_tree(stamp_records, null)
+			current_database.mark_database_as_modified()
+
+
+func _on_StampColorButton_color_changed( color ):
+	if(current_record):
+		if(_stamp_color_control):
+			if(current_stamp_key != ""):
+				if(current_record.stamp_table.has(current_stamp_key) == true):
+					current_record.stamp_table[current_stamp_key] = color
+					
+					current_database.mark_database_as_modified()
+
+
+func _on_MaleSkeletonPathControl_file_selected( p_path ):
+	if(current_record):
+		current_record.skeleton_male_path = p_path
+		current_database.mark_database_as_modified()
+
+
+func _on_FemaleSkeletonPathControl_file_selected( p_path ):
+	if(current_record):
+		current_record.skeleton_female_path = p_path
+		current_database.mark_database_as_modified()

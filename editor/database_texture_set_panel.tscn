@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_sms_panel.gd" type="Script" id=1]
+[ext_resource path="res://addons/galatea_databases/editor/database_texture_set_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
 
-[node name="SMSPanel" type="Control"]
+[node name="TextureSetPanel" type="Control"]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -18,9 +18,9 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
-actor = NodePath("RightSide/ActorContainer/ActorRecordsReference")
-message_body = NodePath("RightSide/MessageBodyContainer/MessageBodyTextEdit")
-is_reply = NodePath("RightSide/FlagsContainer/IsReplyCheckbox")
+texture_path = NodePath("RightSide/TexturesContainer/TexturesContainerLeft/TexturesPathControl")
+texture_tree = NodePath("RightSide/TexturesContainer/TexturesContainerLeft/TexturesTree")
+texture_preview = NodePath("RightSide/TexturesContainer/TextureFramePanel/TextureFrame")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -53,9 +53,8 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
-[node name="ActorContainer" type="VBoxContainer" parent="RightSide"]
+[node name="TexturesContainer" type="HBoxContainer" parent="RightSide"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -63,35 +62,24 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
 margin/top = 10.0
-margin/right = 135.0
-margin/bottom = 52.0
+margin/right = 610.0
+margin/bottom = 310.0
 alignment = 0
 
-[node name="ActorRecordsReference" parent="RightSide/ActorContainer" instance=ExtResource( 3 )]
+[node name="TexturesContainerLeft" type="VBoxContainer" parent="RightSide/TexturesContainer"]
 
-size_flags/horizontal = 3
-margin/right = 125.0
-margin/bottom = 42.0
-label = "Actor:"
-record_name = ""
-disabled = true
-has_clear_button = false
-
-[node name="MessageBodyContainer" type="VBoxContainer" parent="RightSide"]
-
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 70.0
-margin/right = 266.0
-margin/bottom = 216.0
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 298.0
+margin/bottom = 300.0
 alignment = 0
 
-[node name="MessageBodyLabel" type="Label" parent="RightSide/MessageBodyContainer"]
+[node name="TexturesLabel" type="Label" parent="RightSide/TexturesContainer/TexturesContainerLeft"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
@@ -100,62 +88,62 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 256.0
+margin/right = 298.0
 margin/bottom = 14.0
-text = "Message Body:"
+text = "Textures:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="MessageBodyTextEdit" type="TextEdit" parent="RightSide/MessageBodyContainer"]
+[node name="TexturesTree" type="Tree" parent="RightSide/TexturesContainer/TexturesContainerLeft"]
 
 rect/pivot = Vector2( 0, 0 )
-rect/min_size = Vector2( 256, 128 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/horizontal = 3
+size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 18.0
-margin/right = 256.0
-margin/bottom = 146.0
-syntax_highlighting = false
-show_line_numbers = false
-highlight_all_occurrences = false
-caret/block_caret = false
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
+margin/right = 298.0
+margin/bottom = 254.0
 
-[node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
+[node name="TexturesPathControl" parent="RightSide/TexturesContainer/TexturesContainerLeft" instance=ExtResource( 3 )]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 230.0
-margin/right = 87.0
-margin/bottom = 253.0
-alignment = 0
+margin/top = 258.0
+margin/right = 298.0
+margin/bottom = 300.0
+file_browser_title = "Open Image"
+file_type = "Texture"
+disabled = true
+has_clear_button = true
 
-[node name="IsReplyCheckbox" type="CheckBox" parent="RightSide/FlagsContainer"]
+[node name="TextureFramePanel" type="Panel" parent="RightSide/TexturesContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 302.0
+margin/top = 0.0
+margin/right = 600.0
+margin/bottom = 300.0
+
+[node name="TextureFrame" type="TextureFrame" parent="RightSide/TexturesContainer/TextureFramePanel"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 77.0
-margin/bottom = 23.0
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-text = "Is Reply"
-flat = false
-align = 0
+margin/right = 0.0
+margin/bottom = 0.0
+expand = true
+stretch_mode = 0
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
@@ -169,12 +157,8 @@ align = 0
 
 [connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
 
-[connection signal="record_erased" from="RightSide/ActorContainer/ActorRecordsReference" to="." method="_on_ActorRecordsReference_record_erased"]
+[connection signal="cell_selected" from="RightSide/TexturesContainer/TexturesContainerLeft/TexturesTree" to="." method="_on_TexturesTree_cell_selected"]
 
-[connection signal="record_selected" from="RightSide/ActorContainer/ActorRecordsReference" to="." method="_on_ActorRecordsReference_record_selected"]
-
-[connection signal="draw" from="RightSide/MessageBodyContainer/MessageBodyTextEdit" to="." method="_on_MessageBodyTextEdit_draw"]
-
-[connection signal="toggled" from="RightSide/FlagsContainer/IsReplyCheckbox" to="." method="_on_IsReplyCheckbox_toggled"]
+[connection signal="file_selected" from="RightSide/TexturesContainer/TexturesContainerLeft/TexturesPathControl" to="." method="_on_TexturesPathControl_file_selected"]
 
 

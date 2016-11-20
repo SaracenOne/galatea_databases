@@ -5,6 +5,7 @@ const actor_group_database_const = preload("actor_group_database.gd")
 const body_scaler_database_const = preload("body_scaler_database.gd")
 const calendar_event_database_const = preload("calendar_event_database.gd")
 const clothing_database_const = preload("clothing_database.gd")
+const clothing_part_database_const = preload("clothing_part_database.gd")
 const clothing_set_database_const = preload("clothing_set_database.gd")
 const global_svar_database_const = preload("global_svar_database.gd")
 const hair_database_const = preload("hair_database.gd")
@@ -17,7 +18,9 @@ const precipitation_database_const = preload("precipitation_database.gd")
 const quest_database_const = preload("quest_database.gd")
 const school_lesson_database_const = preload("school_lesson_database.gd")
 const sms_database_const = preload("sms_database.gd")
+const stamp_database_const = preload("stamp_database.gd")
 const status_effect_database_const = preload("status_effect_database.gd")
+const texture_set_database_const = preload("texture_set_database.gd")
 const trait_database_const = preload("trait_database.gd")
 const weather_database_const = preload("weather_database.gd")
 	
@@ -28,6 +31,7 @@ var actor_group_database = null
 var body_scaler_database = null
 var calendar_event_database = null
 var clothing_database = null
+var clothing_part_database = null
 var clothing_set_database = null
 var global_svar_database = null
 var hair_database = null
@@ -40,11 +44,15 @@ var precipitation_database = null
 var quest_database = null
 var school_lesson_database = null
 var sms_database = null
+var stamp_database = null
 var status_effect_database = null
+var texture_set_database = null
 var trait_database = null
 var weather_database = null
 
 var path = "res://assets/databases"
+
+var global_records_list = {}
 
 #stat IDS
 const STAT_STRESS = 0
@@ -91,6 +99,7 @@ func load_dirty_list():
 func save_all_databases():
 	for database in database_list.values():
 		if(database.check_database_modified()):
+			print(database.DATABASE_NAME + " saved...")
 			database.save_database()
 	
 func init_databases():
@@ -124,6 +133,10 @@ func init_databases():
 	clothing_database = clothing_database_const.new(self)
 	assert(clothing_database)
 	database_list[clothing_database_const.DATABASE_NAME] = clothing_database
+	
+	clothing_part_database = clothing_part_database_const.new(self)
+	assert(clothing_part_database)
+	database_list[clothing_part_database_const.DATABASE_NAME] = clothing_part_database
 	
 	clothing_set_database = clothing_set_database_const.new(self)
 	assert(clothing_set_database)
@@ -173,9 +186,17 @@ func init_databases():
 	assert(sms_database)
 	database_list[sms_database_const.DATABASE_NAME] = sms_database
 	
+	stamp_database = stamp_database_const.new(self)
+	assert(stamp_database)
+	database_list[stamp_database_const.DATABASE_NAME] = stamp_database
+	
 	status_effect_database = status_effect_database_const.new(self)
 	assert(status_effect_database)
 	database_list[status_effect_database_const.DATABASE_NAME] = status_effect_database
+	
+	texture_set_database = texture_set_database_const.new(self)
+	assert(texture_set_database)
+	database_list[texture_set_database_const.DATABASE_NAME] = texture_set_database
 	
 	trait_database = trait_database_const.new(self)
 	assert(trait_database)
@@ -193,6 +214,10 @@ func check_database_modified():
 			is_modified = true
 			
 	return is_modified
+	
+func find_record_by_name(p_name):
+	if(global_records_list.has(p_name)):
+		return global_records_list[p_name]
 	
 func _init(p_path):
 	path = p_path

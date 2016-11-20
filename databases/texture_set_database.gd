@@ -1,15 +1,15 @@
 extends "generic_database.gd"
 
 const generic_database_const = preload("generic_database.gd")
-const clothing_record_const = preload("clothing_record.gd")
+const texture_set_record_const = preload("texture_set_record.gd")
 
-const DATABASE_IDENT = "CLOT"
-const DATABASE_NAME = "clothing_database"
-const DATABASE_NAME_JSON = "clothing_database.json"
-const DATABASE_NAME_BINARY = "clothing_database.gbd"
-const DATABASE_INLINED_FILENAME = "clothing_database_inlined.gd"
-const RECORDS_NAME = "clothing_records"
-
+const DATABASE_IDENT = "TEXS"
+const DATABASE_NAME = "texture_set_database"
+const DATABASE_NAME_JSON = "texture_set_database.json"
+const DATABASE_NAME_BINARY = "texture_set_database.gdb"
+const DATABASE_INLINED_FILENAME = "texture_set_database_inlined.gd"
+const RECORDS_NAME = "texture_set_database_records"
+	
 func get_database_name():
 	return DATABASE_NAME
 	
@@ -21,12 +21,12 @@ func load_database_ids():
 	
 func load_database_values():
 	_load_database_values(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
-	
+
 func save_database():
 	_save_database(databases.path + "/" + DATABASE_NAME_JSON, RECORDS_NAME)
 		
 func _create_record():
-	return clothing_record_const.new()
+	return texture_set_record_const.new()
 	
 func _init(p_databases).(p_databases):
 	pass

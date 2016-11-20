@@ -1,5 +1,7 @@
 extends "generic_record.gd"
 
+const generic_database_const = preload("generic_database.gd")
+
 var texture_path = ""
 var shader_path = ""
 var sub_texture_count_xy = 1
@@ -32,7 +34,7 @@ func _load_record(p_dictionary_record, p_databases):
 		particle_rotation_velocity = p_dictionary_record.particle_rotation_velocity
 		
 	if(p_dictionary_record.has("particle_size")):
-		particle_size = p_dictionary_record.particle_size
+		particle_size = generic_database_const.convert_string_to_vector_2(p_dictionary_record.particle_size)
 		
 	if(p_dictionary_record.has("wind_multiplier")):
 		wind_multiplier = p_dictionary_record.wind_multiplier

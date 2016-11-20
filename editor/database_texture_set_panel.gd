@@ -1,0 +1,106 @@
+tool
+extends "database_panel.gd"
+
+var currently_selected_texture = ""
+
+export(NodePath) var texture_path = NodePath()
+export(NodePath) var texture_tree = NodePath()
+export(NodePath) var texture_preview = NodePath()
+
+onready var _texture_path_control = get_node(texture_path)
+onready var _texture_tree_control = get_node(texture_tree)
+onready var _texture_preview_control = get_node(texture_preview)
+
+#
+var database_records = null
+
+func _ready():
+	texture_path = NodePath("RightSide/TexturesContainer/TexturesContainerLeft/TexturesPathControl")
+	texture_tree = NodePath("RightSide/TexturesContainer/TexturesContainerLeft/TexturesTree")
+	texture_preview = NodePath("RightSide/TexturesContainer/TextureFramePanel/TextureFrame")
+
+	_texture_path_control = get_node(texture_path)
+	_texture_tree_control = get_node(texture_tree)
+	_texture_preview_control = get_node(texture_preview)
+
+func galatea_databases_assigned():
+	database_records = get_node("LeftSide/DatabaseRecords")
+	assert(database_records)
+
+	if not(is_connected("new_record_duplicate", database_records, "new_record_duplicate_callback")):
+		connect("new_record_duplicate", database_records, "new_record_duplicate_callback")
+
+	if not(is_connected("new_record_add_successful", database_records, "new_record_add_successful_callback")):
+		connect("new_record_add_successful", database_records, "new_record_add_successful_callback")
+
+	if not(is_connected("rename_record_successful", database_records, "rename_record_successful_callback")):
+		connect("rename_record_successful", database_records, "rename_record_successful_callback")
+
+	if not(is_connected("erase_record_successful", database_records, "erase_record_successful_callback")):
+		connect("erase_record_successful", database_records, "erase_record_successful_callback")
+
+	current_database = galatea_databases.texture_set_database
+	if(current_database != null):
+		database_records.populate_tree(current_database, null)
+	else:
+		printerr("texture_set_database is null")
+
+func update_tree_data(p_retain_selection):
+	if(current_record):
+		var selection = _texture_tree_control.get_selected()
+		var selection_metadata = ""
+		if(selection):
+			selection_metadata = selection.get_metadata(0)
+			
+		_texture_tree_control.clear()
+		_texture_tree_control.set_hide_root(true)
+		var root = _texture_tree_control.create_item(null)
+		
+		for key in current_record.textures:
+			var item = _texture_tree_control.create_item(root)
+			item.set_text(0, key)
+			item.set_text(1, current_record.textures[key])
+			item.set_metadata(0, key)
+			if(p_retain_selection and key == selection_metadata):
+				item.select(0)
+			
+func update_preview():
+	if(current_record and currently_selected_texture != ""):
+		_texture_preview_control.set_texture(null)
+		var preview_texture = load(current_record.textures[currently_selected_texture])
+		
+		if(preview_texture):
+			if(preview_texture extends Texture):
+				_texture_preview_control.set_texture(preview_texture)
+	else:
+		_texture_preview_control.set_texture(null)
+
+func set_current_record_callback(p_record):
+	.set_current_record_callback(p_record)
+	
+	currently_selected_texture = ""
+	_texture_path_control.set_file_path("")
+	
+	update_tree_data(false)
+	update_preview()
+	
+func _on_TexturesTree_cell_selected():
+	if(current_record):
+		var selected = _texture_tree_control.get_selected()
+		var metadata = selected.get_metadata(0)
+		currently_selected_texture = metadata
+		
+		var texture_file_path = current_record.textures[metadata]
+		_texture_path_control.set_disabled(false)
+		_texture_path_control.set_file_path(texture_file_path)
+		
+		update_preview()
+
+func _on_TexturesPathControl_file_selected( p_path ):
+	if(current_record and currently_selected_texture != ""):
+		current_record.textures[currently_selected_texture] = p_path
+		
+		update_preview()
+		update_tree_data(true)
+		
+		current_database.mark_database_as_modified()

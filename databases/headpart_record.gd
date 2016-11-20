@@ -2,17 +2,18 @@ extends "generic_record.gd"
 
 const generic_database_const = preload("generic_database.gd")
 
-const HEADPART_HEAD = 0
-const HEADPART_EYES = 1
-const HEADPART_EYEBROWS = 2
-const HEADPART_MOUTH = 3
-const HEADPART_EYELASHES = 4
-const HEADPART_MAX = 5
+enum {HEADPART_HEAD,
+ HEADPART_EYES,
+ HEADPART_EYEBROWS,
+ HEADPART_MOUTH,
+ HEADPART_EYELASHES,
+ HEADPART_MAX}
 
 var headpart_type = HEADPART_HEAD
 var mesh_path = ""
-var texture_path = ""
 var gen_morph_path = ""
+var stamp = null
+
 var target_min = Vector2(0.0, 0.0)
 var target_max = Vector2(1.0, 1.0)
 
@@ -56,15 +57,15 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("mesh_path")):
 		mesh_path = p_dictionary_record.mesh_path
 		
-	if(p_dictionary_record.has("texture_path")):
-		texture_path = p_dictionary_record.texture_path
-		
 	if(p_dictionary_record.has("gen_morph_path")):
 		gen_morph_path = p_dictionary_record.gen_morph_path
 		
+	if(p_dictionary_record.has("stamp")):
+		stamp = p_databases.stamp_database.find_record_by_name(p_dictionary_record.stamp)
+		
 	if(p_dictionary_record.has("target_min")):
 		target_min = generic_database_const.convert_string_to_vector_2(p_dictionary_record.target_min)
-	
+
 	if(p_dictionary_record.has("target_max")):
 		target_max = generic_database_const.convert_string_to_vector_2(p_dictionary_record.target_max)
 	
@@ -74,9 +75,11 @@ func _save_record(p_dictionary_record, p_databases):
 	
 	p_dictionary_record.headpart_type = get_string_from_headpart(headpart_type)
 	p_dictionary_record.mesh_path = mesh_path
-	p_dictionary_record.texture_path = texture_path
 	p_dictionary_record.gen_morph_path = gen_morph_path
 	
+	if(stamp):
+		p_dictionary_record.stamp = stamp.id
+		
 	p_dictionary_record.target_min = target_min
 	p_dictionary_record.target_max = target_max
 	
