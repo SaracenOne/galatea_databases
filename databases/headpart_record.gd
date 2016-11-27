@@ -10,12 +10,8 @@ enum {HEADPART_HEAD,
  HEADPART_MAX}
 
 var headpart_type = HEADPART_HEAD
-var mesh_path = ""
-var gen_morph_path = ""
+var meshpart = null
 var stamp = null
-
-var target_min = Vector2(0.0, 0.0)
-var target_max = Vector2(1.0, 1.0)
 
 static func get_headpart_from_string(p_string):
 	var lower_string = p_string.to_lower()
@@ -54,34 +50,24 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("headpart_type")):
 		headpart_type = get_headpart_from_string(p_dictionary_record.headpart_type)
 		
-	if(p_dictionary_record.has("mesh_path")):
-		mesh_path = p_dictionary_record.mesh_path
-		
-	if(p_dictionary_record.has("gen_morph_path")):
-		gen_morph_path = p_dictionary_record.gen_morph_path
+	if(p_dictionary_record.has("meshpart")):
+		meshpart = p_databases.meshpart_database.find_record_by_name(p_dictionary_record.meshpart)
+	else:
+		meshpart = null
 		
 	if(p_dictionary_record.has("stamp")):
 		stamp = p_databases.stamp_database.find_record_by_name(p_dictionary_record.stamp)
-		
-	if(p_dictionary_record.has("target_min")):
-		target_min = generic_database_const.convert_string_to_vector_2(p_dictionary_record.target_min)
-
-	if(p_dictionary_record.has("target_max")):
-		target_max = generic_database_const.convert_string_to_vector_2(p_dictionary_record.target_max)
 	
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
 	._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.headpart_type = get_string_from_headpart(headpart_type)
-	p_dictionary_record.mesh_path = mesh_path
-	p_dictionary_record.gen_morph_path = gen_morph_path
+	if(meshpart):
+		p_dictionary_record.meshpart = meshpart.id
 	
 	if(stamp):
 		p_dictionary_record.stamp = stamp.id
-		
-	p_dictionary_record.target_min = target_min
-	p_dictionary_record.target_max = target_max
 	
 func is_headpart_type(p_type):
 	return headpart_type == p_type

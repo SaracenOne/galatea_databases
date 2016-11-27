@@ -37,10 +37,15 @@ skeleton_female_path = NodePath("RightSide/SkeletonPathContainer/FemaleSkeletonP
 valid_contact = NodePath("RightSide/FlagsContainer/ValidContactContainer/ValidContactCheckbox")
 is_storyline_actor = NodePath("RightSide/FlagsContainer/IsStorylineActorContainer/IsStorylineActorCheckbox")
 head = NodePath("RightSide/CombinedMeshesContainer/HeadMeshRecord")
+head_color = NodePath("RightSide/CombinedMeshesContainer/HeadMeshColor")
 eyes = NodePath("RightSide/CombinedMeshesContainer/EyesMeshRecord")
+eyes_color = NodePath("RightSide/CombinedMeshesContainer/EyesMeshColor")
 eyebrows = NodePath("RightSide/CombinedMeshesContainer/EyebrowsMeshRecord")
+eyebrows_color = NodePath("RightSide/CombinedMeshesContainer/EyebrowsMeshColo")
 mouth = NodePath("RightSide/CombinedMeshesContainer/MouthMeshRecord")
+mouth_color = NodePath("RightSide/CombinedMeshesContainer/MouthMeshColor")
 eyelashes = NodePath("RightSide/CombinedMeshesContainer/EyelashesMeshRecord")
+eyelashes_color = NodePath("RightSide/CombinedMeshesContainer/EyelashesColor")
 hair = NodePath("RightSide/HairContainer/HairRecord")
 hair_color = NodePath("RightSide/HairContainer/HairColorPicker")
 skin_color = NodePath("RightSide/SkinToneContainer/SkinToneColorPicker")
@@ -729,7 +734,7 @@ size_flags/vertical = 2
 margin/left = 540.0
 margin/top = 10.0
 margin/right = 752.0
-margin/bottom = 254.0
+margin/bottom = 374.0
 alignment = 1
 
 [node name="CombinedMeshesLabel" type="Label" parent="RightSide/CombinedMeshesContainer"]
@@ -758,45 +763,140 @@ record_name = ""
 disabled = true
 has_clear_button = true
 
-[node name="EyesMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
+[node name="HeadMeshColor" type="ColorPickerButton" parent="RightSide/CombinedMeshesContainer"]
 
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
 margin/top = 64.0
 margin/right = 212.0
-margin/bottom = 106.0
+margin/bottom = 84.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[node name="EyesMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
+
+margin/top = 88.0
+margin/right = 212.0
+margin/bottom = 130.0
 label = "Eyes:"
 record_name = ""
 disabled = true
 has_clear_button = true
 
+[node name="EyesMeshColor" type="ColorPickerButton" parent="RightSide/CombinedMeshesContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 134.0
+margin/right = 212.0
+margin/bottom = 154.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
 [node name="EyebrowsMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
 
-margin/top = 110.0
+margin/top = 158.0
 margin/right = 212.0
-margin/bottom = 152.0
+margin/bottom = 200.0
 label = "Eyebrows:"
 record_name = ""
 disabled = true
 has_clear_button = true
 
+[node name="EyebrowsMeshColo" type="ColorPickerButton" parent="RightSide/CombinedMeshesContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 204.0
+margin/right = 212.0
+margin/bottom = 224.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
 [node name="MouthMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
 
-margin/top = 156.0
+margin/top = 228.0
 margin/right = 212.0
-margin/bottom = 198.0
+margin/bottom = 270.0
 label = "Mouth:"
 record_name = ""
 disabled = true
 has_clear_button = true
 
+[node name="MouthMeshColor" type="ColorPickerButton" parent="RightSide/CombinedMeshesContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 274.0
+margin/right = 212.0
+margin/bottom = 294.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
 [node name="EyelashesMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
 
-margin/top = 202.0
+margin/top = 298.0
 margin/right = 212.0
-margin/bottom = 244.0
+margin/bottom = 340.0
 label = "Eyelashes:"
 record_name = ""
 disabled = true
 has_clear_button = true
+
+[node name="EyelashesColor" type="ColorPickerButton" parent="RightSide/CombinedMeshesContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 344.0
+margin/right = 212.0
+margin/bottom = 364.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
 
 [node name="HairContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -806,9 +906,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 540.0
-margin/top = 300.0
+margin/top = 381.0
 margin/right = 752.0
-margin/bottom = 366.0
+margin/bottom = 471.0
 alignment = 0
 
 [node name="HairRecord" parent="RightSide/HairContainer" instance=ExtResource( 6 )]
@@ -847,9 +947,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 540.0
-margin/top = 380.0
+margin/top = 461.0
 margin/right = 752.0
-margin/bottom = 418.0
+margin/bottom = 499.0
 alignment = 0
 
 [node name="SkinToneLabel" type="Label" parent="RightSide/SkinToneContainer"]
@@ -1130,21 +1230,31 @@ has_clear_button = true
 
 [connection signal="record_selected" from="RightSide/CombinedMeshesContainer/HeadMeshRecord" to="." method="_on_HeadMeshRecord_record_selected"]
 
+[connection signal="color_changed" from="RightSide/CombinedMeshesContainer/HeadMeshColor" to="." method="_on_HeadMeshColor_color_changed"]
+
 [connection signal="record_erased" from="RightSide/CombinedMeshesContainer/EyesMeshRecord" to="." method="_on_EyesMeshRecord_record_erased"]
 
 [connection signal="record_selected" from="RightSide/CombinedMeshesContainer/EyesMeshRecord" to="." method="_on_EyesMeshRecord_record_selected"]
+
+[connection signal="color_changed" from="RightSide/CombinedMeshesContainer/EyesMeshColor" to="." method="_on_EyesMeshColor_color_changed"]
 
 [connection signal="record_erased" from="RightSide/CombinedMeshesContainer/EyebrowsMeshRecord" to="." method="_on_EyebrowsMeshRecord_record_erased"]
 
 [connection signal="record_selected" from="RightSide/CombinedMeshesContainer/EyebrowsMeshRecord" to="." method="_on_EyebrowsMeshRecord_record_selected"]
 
+[connection signal="color_changed" from="RightSide/CombinedMeshesContainer/EyebrowsMeshColo" to="." method="_on_EyebrowsMeshColo_color_changed"]
+
 [connection signal="record_erased" from="RightSide/CombinedMeshesContainer/MouthMeshRecord" to="." method="_on_MouthMeshRecord_record_erased"]
 
 [connection signal="record_selected" from="RightSide/CombinedMeshesContainer/MouthMeshRecord" to="." method="_on_MouthMeshRecord_record_selected"]
 
+[connection signal="color_changed" from="RightSide/CombinedMeshesContainer/MouthMeshColor" to="." method="_on_MouthMeshColor_color_changed"]
+
 [connection signal="record_erased" from="RightSide/CombinedMeshesContainer/EyelashesMeshRecord" to="." method="_on_EyelashesMeshRecord_record_erased"]
 
 [connection signal="record_selected" from="RightSide/CombinedMeshesContainer/EyelashesMeshRecord" to="." method="_on_EyelashesMeshRecord_record_selected"]
+
+[connection signal="color_changed" from="RightSide/CombinedMeshesContainer/EyelashesColor" to="." method="_on_EyelashesColor_color_changed"]
 
 [connection signal="record_erased" from="RightSide/HairContainer/HairRecord" to="." method="_on_HairRecord_record_erased"]
 

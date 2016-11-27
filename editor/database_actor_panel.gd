@@ -4,7 +4,7 @@ extends "database_panel.gd"
 const headpart_record_const = preload("../databases/headpart_record.gd")
 
 var current_body_scaler_key = ""
-var current_stamp_key = ""
+var current_stamp = ""
 
 export(NodePath) var family_name = NodePath()
 export(NodePath) var given_name = NodePath()
@@ -26,10 +26,15 @@ export(NodePath) var valid_contact = NodePath()
 export(NodePath) var is_storyline_actor = NodePath()
 
 export(NodePath) var head = NodePath()
+export(NodePath) var head_color = NodePath()
 export(NodePath) var eyes = NodePath()
+export(NodePath) var eyes_color = NodePath()
 export(NodePath) var eyebrows = NodePath()
+export(NodePath) var eyebrows_color = NodePath()
 export(NodePath) var mouth = NodePath()
+export(NodePath) var mouth_color = NodePath()
 export(NodePath) var eyelashes = NodePath()
+export(NodePath) var eyelashes_color = NodePath()
 
 export(NodePath) var hair = NodePath()
 export(NodePath) var hair_color = NodePath()
@@ -70,10 +75,15 @@ onready var _valid_contact_control = get_node(valid_contact)
 onready var _is_storyline_actor_control = get_node(is_storyline_actor)
 
 onready var _head_control = get_node(head)
+onready var _head_color_control = get_node(head_color)
 onready var _eyes_control = get_node(eyes)
+onready var _eyes_color_control = get_node(eyes_color)
 onready var _eyebrows_control = get_node(eyebrows)
+onready var _eyebrows_color_control = get_node(eyebrows_color)
 onready var _mouth_control = get_node(mouth)
+onready var _mouth_color_control = get_node(mouth_color)
 onready var _eyelashes_control = get_node(eyelashes)
+onready var _eyelashes_color_control = get_node(eyelashes_color)
 
 onready var _hair_control = get_node(hair)
 onready var _hair_color_control = get_node(hair_color)
@@ -196,15 +206,15 @@ func set_current_record_callback(p_record):
 	_body_scaler_value_control.set_value(0.0)
 	
 	var stamp_records = []
-	for stamp_key in p_record.stamp_table.keys():
-		var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
+	for stamp in current_record.stamp_table:
+		var record = galatea_databases.stamp_database.find_record_by_name(stamp)
 		if(record):
-			stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+			stamp_records.append(record)
 	
 	_stamp_table_control.set_disabled(false)
 	_stamp_table_control.populate_tree(stamp_records, null)
 	
-	current_stamp_key = ""
+	current_stamp = null
 	_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 	_stamp_color_control.set_disabled(true)
 	
@@ -233,28 +243,47 @@ func set_current_record_callback(p_record):
 	_head_control.set_disabled(false)
 	if(p_record.head):
 		_head_control.set_record_name(p_record.head.id)
+		_head_color_control.set_color(p_record.head_color)
+		_head_color_control.set_disabled(false)
 	else:
 		_head_control.set_record_name("")
+		_head_color_control.set_color(Color(1.0, 1.0, 1.0, 1.0))
+		_head_color_control.set_disabled(true)
 	_eyes_control.set_disabled(false)
 	if(p_record.eyes):
 		_eyes_control.set_record_name(p_record.eyes.id)
+		_eyes_color_control.set_color(p_record.eyes_color)
+		_eyes_color_control.set_disabled(false)
 	else:
 		_eyes_control.set_record_name("")
+		_eyes_color_control.set_color(Color(1.0, 1.0, 1.0, 1.0))
+		_eyes_color_control.set_disabled(true)
 	_eyebrows_control.set_disabled(false)
 	if(p_record.eyebrows):
 		_eyebrows_control.set_record_name(p_record.eyebrows.id)
+		_eyebrows_color_control.set_color(p_record.eyelashes_color)
+		_eyebrows_color_control.set_disabled(false)
 	else:
 		_eyebrows_control.set_record_name("")
+		_eyebrows_color_control.set_color(Color(1.0, 1.0, 1.0, 1.0))
+		_eyebrows_color_control.set_disabled(true)
 	_mouth_control.set_disabled(false)
 	if(p_record.mouth):
 		_mouth_control.set_record_name(p_record.mouth.id)
+		_mouth_color_control.set_color(p_record.mouth_control)
+		_mouth_color_control.set_disabled(false)
 	else:
 		_mouth_control.set_record_name("")
+		_mouth_color_control.set_color(Color(1.0, 1.0, 1.0, 1.0))
+		_mouth_color_control.set_disabled(true)
 	_eyelashes_control.set_disabled(false)
 	if(p_record.eyelashes):
 		_eyelashes_control.set_record_name(p_record.eyelashes.id)
+		_eyelashes_control.set_color(p_record.eyelashes_control)
 	else:
 		_eyelashes_control.set_record_name("")
+		_eyelashes_color_control.set_color(Color(1.0, 1.0, 1.0, 1.0))
+		_eyelashes_color_control.set_disabled(true)
 		
 	_hair_control.set_disabled(false)
 	if(p_record.hair):
@@ -283,14 +312,14 @@ static func get_valid_morph_key_list(p_record):
 	var morph_paths = []
 	
 	if(p_record):
-		if(p_record.head and p_record.head.gen_morph_path):
-			morph_paths.append(p_record.head.gen_morph_path)
-		if(p_record.eyes and p_record.eyes.gen_morph_path):
-			morph_paths.append(p_record.eyes.gen_morph_path)
-		if(p_record.eyebrows and p_record.eyebrows.gen_morph_path):
-			morph_paths.append(p_record.eyebrows.gen_morph_path)
-		if(p_record.eyelashes and p_record.eyelashes.gen_morph_path):
-			morph_paths.append(p_record.eyelashes.gen_morph_path)
+		if(p_record.head and p_record.head.meshpart and p_record.head.meshpart.gen_morph_path):
+			morph_paths.append(p_record.head.meshpart.gen_morph_path)
+		if(p_record.eyes and p_record.eyes.meshpart and p_record.eyes.meshpart.gen_morph_path):
+			morph_paths.append(p_record.eyes.meshpart.gen_morph_path)
+		if(p_record.eyebrows and p_record.eyebrows.meshpart and p_record.eyebrows.meshpart.gen_morph_path):
+			morph_paths.append(p_record.eyebrows.meshpart.gen_morph_path)
+		if(p_record.eyelashes and p_record.eyelashes.meshpart and p_record.eyelashes.meshpart.gen_morph_path):
+			morph_paths.append(p_record.eyelashes.meshpart.gen_morph_path)
 			
 		for morph_path in morph_paths:
 			var morph_data_collection = load(morph_path)
@@ -448,29 +477,29 @@ func _on_EyebrowsMeshRecord_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.eyebrows = p_record
 		current_database.mark_database_as_modified()
-
+		
 func _on_EyebrowsMeshRecord_record_erased( p_record ):
 	current_record.eyebrows = null
 	current_database.mark_database_as_modified()
-
+	
 func _on_MouthMeshRecord_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.mouth = p_record
 		current_database.mark_database_as_modified()
-
+		
 func _on_MouthMeshRecord_record_erased( p_record ):
 	current_record.mouth = null
 	current_database.mark_database_as_modified()
-
+	
 func _on_EyelashesMeshRecord_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.eyelashes = p_record
 		current_database.mark_database_as_modified()
-
+		
 func _on_EyelashesMeshRecord_record_erased( p_record ):
 	current_record.eyelashes = null
 	current_database.mark_database_as_modified()
-
+	
 func _on_MorphTableTree_cell_selected():
 	if(current_record):
 		if(_head_morph_table_control and _head_morph_value_control):
@@ -480,7 +509,7 @@ func _on_MorphTableTree_cell_selected():
 				_head_morph_value_control.set_value(value)
 				_head_morph_value_control.set_step(0.000001)
 				_head_morph_value_control.set_editable(true)
-
+				
 func _on_MorphTableSpinBox_value_changed( value ):
 	if(current_record):
 		if(_head_morph_table_control and _head_morph_value_control):
@@ -488,8 +517,7 @@ func _on_MorphTableSpinBox_value_changed( value ):
 			if(tree_item):
 				var name = tree_item.get_metadata(0)
 				current_record.head_morph_table[name] = value
-
-
+				
 func _on_ScalerRemoveButton_button_down():
 	if(current_record):
 		if(_body_scaler_table_control and _body_scaler_value_control):
@@ -500,7 +528,7 @@ func _on_ScalerRemoveButton_button_down():
 					current_record.body_scaler_table.remove(name)
 					
 					update_body_scalers()
-
+					
 func _on_ScalerTableSpinBox_value_changed( value ):
 	if(current_record):
 		if(_body_scaler_value_control):
@@ -509,7 +537,7 @@ func _on_ScalerTableSpinBox_value_changed( value ):
 					current_record.body_scaler_table[current_body_scaler_key] = value
 					
 					current_database.mark_database_as_modified()
-
+					
 func _on_ScalerTableControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		if(current_record.body_scaler_table.has(p_record.id) == true):
@@ -529,7 +557,7 @@ func _on_ScalerTableControl_record_selected( p_record ):
 			
 			_body_scaler_table_control.populate_tree(body_scaler_records, null)
 			current_database.mark_database_as_modified()
-
+			
 func _on_ScalerTableControl_record_erased( p_record ):
 	if(current_record):
 		if(current_record.body_scaler_table.has(p_record.id) == true):
@@ -547,7 +575,7 @@ func _on_ScalerTableControl_record_erased( p_record ):
 			
 			_body_scaler_table_control.populate_tree(body_scaler_records, null)
 			current_database.mark_database_as_modified()
-
+			
 func _on_ScalerTableControl_record_cell_selected( p_record ):
 	if(current_record):
 		current_body_scaler_key = p_record.id
@@ -560,106 +588,134 @@ func _on_ScalerTableControl_record_cell_selected( p_record ):
 			_body_scaler_value_control.set_step(0.0)
 	else:
 		current_body_scaler_key = ""
-
+		
 func _on_HairRecord_record_erased( p_record ):
 	if(current_record):
 		current_database.mark_database_as_modified()
-
+		
 func _on_HairRecord_record_selected( p_record ):
 	if(current_record):
 		current_record.hair = p_record
 		current_database.mark_database_as_modified()
-
+		
 func _on_HairColorPicker_color_changed( color ):
 	if(current_record):
 		current_record.hair_color = color
 		current_database.mark_database_as_modified()
-
+		
 func _on_SkinToneColorPicker_color_changed( color ):
 	if(current_record):
 		current_record.skin_color = color
 		current_database.mark_database_as_modified()
-
-
+		
 func _on_DefaultBody_record_selected( p_record ):
 	if(current_record):
 		current_record.default_body = p_record
 		current_database.mark_database_as_modified()
-
+		
 func _on_DefaultBody_record_erased( p_record ):
 	if(current_record):
 		current_record.default_body = p_record
 		current_database.mark_database_as_modified()
-
+		
 func _on_StampTableControl_record_cell_selected( p_record ):
 	if(current_record):
-		current_stamp_key = p_record.id
-		
-		if(current_record.stamp_table.has(p_record.id) == true):
-			_stamp_color_control.set_color(current_record.stamp_table[p_record.id])
+		if(current_record.stamp_table.has(p_record) == true):
+			var id = current_record.stamp_table.find(p_record)
+			_stamp_color_control.set_color(current_record.stamp_color_table[id])
 		else:
 			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 		_stamp_color_control.set_disabled(false)
 	else:
-		current_stamp_key = ""
-
+		current_stamp = null
+		
 func _on_StampTableControl_record_erased( p_record ):
 	if(current_record):
-		if(current_record.stamp_table.has(p_record.id) == true):
-			current_record.stamp_table.erase(p_record.id)
+		if(current_record.stamp_table.has(p_record) == true):
+			var id = current_record.stamp_table.find(p_record)
+			current_record.stamp_table.erase(id)
+			current_record.stamp_color_table.erase(id)
 			
 			var stamp_records = []
-			for stamp_key in current_record.stamp_table.keys():
-				var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
+			for stamp in current_record.stamp_table:
+				var record = galatea_databases.stamp_database.find_record_by_name(stamp)
 				if(record):
-					stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+					stamp_records.append(record)
 			
-			current_stamp_key = ""
+			current_stamp = null
 			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 			_stamp_color_control.set_disabled(true)
 			
 			_stamp_table_control.populate_tree(stamp_records, null)
 			current_database.mark_database_as_modified()
-
-
+			
 func _on_StampTableControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
-		if(current_record.stamp_table.has(p_record.id) == true):
+		if(current_record.stamp_table.has(p_record) == true):
 			return
 		else:
-			current_record.stamp_table[p_record.id] = Color(1.0, 1.0, 1.0)
+			current_record.stamp_table.append(p_record)
+			current_record.stamp_color_table.append = Color(1.0, 1.0, 1.0)
 			
 			var stamp_records = []
-			for stamp_key in current_record.stamp_table.keys():
-				var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
+			for stamp in current_record.stamp_table:
+				var record = galatea_databases.stamp_database.find_record_by_name(stamp)
 				if(record):
-					stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+					stamp_records.append(record)
 					
-			current_stamp_key = ""
+			current_stamp = null
 			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 			_stamp_color_control.set_disabled(false)
 			
 			_stamp_table_control.populate_tree(stamp_records, null)
 			current_database.mark_database_as_modified()
-
-
+			
 func _on_StampColorButton_color_changed( color ):
 	if(current_record):
 		if(_stamp_color_control):
-			if(current_stamp_key != ""):
-				if(current_record.stamp_table.has(current_stamp_key) == true):
-					current_record.stamp_table[current_stamp_key] = color
+			if(current_stamp != null):
+				if(current_record.stamp_table.has(current_stamp) == true):
+					var id = current_record.stamp_table.find(current_stamp)
+					current_record.stamp_color_table[id] = color
 					
 					current_database.mark_database_as_modified()
-
-
+					
 func _on_MaleSkeletonPathControl_file_selected( p_path ):
 	if(current_record):
 		current_record.skeleton_male_path = p_path
 		current_database.mark_database_as_modified()
-
-
+		
 func _on_FemaleSkeletonPathControl_file_selected( p_path ):
 	if(current_record):
 		current_record.skeleton_female_path = p_path
 		current_database.mark_database_as_modified()
+		
+func _on_HeadMeshColor_color_changed( color ):
+	if(current_record):
+		if(_head_color_control):
+			current_record.head_color = color
+			current_database.mark_database_as_modified()
+				
+func _on_EyesMeshColor_color_changed( color ):
+	if(current_record):
+		if(_eyes_color_control):
+			current_record.eyes_color = color
+			current_database.mark_database_as_modified()
+				
+func _on_EyebrowsMeshColo_color_changed( color ):
+	if(current_record):
+		if(_eyebrows_color_control):
+			current_record.eyebrows_color = color
+			current_database.mark_database_as_modified()
+				
+func _on_MouthMeshColor_color_changed( color ):
+	if(current_record):
+		if(_mouth_color_control):
+			current_record.mouth_color = color
+			current_database.mark_database_as_modified()
+				
+func _on_EyelashesColor_color_changed( color ):
+	if(current_record):
+		if(_eyelashes_color_control):
+			current_record.eyelashes_color = color
+			current_database.mark_database_as_modified()

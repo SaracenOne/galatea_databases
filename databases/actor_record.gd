@@ -39,10 +39,15 @@ var stats = {}
 
 # Appearence
 var head = null
+var head_color = Color(1.0, 1.0, 1.0, 1.0)
 var eyes = null
+var eyes_color = Color(1.0, 1.0, 1.0, 1.0)
 var eyebrows = null
+var eyebrows_color = Color(1.0, 1.0, 1.0, 1.0)
 var mouth = null
+var mouth_color = Color(1.0, 1.0, 1.0, 1.0)
 var eyelashes = null
+var eyelashes_color = Color(1.0, 1.0, 1.0, 1.0)
 
 var default_body = null
 var skin_color = Color(1.0, 1.0, 1.0, 1.0)
@@ -53,7 +58,8 @@ var hair_color = Color(1.0, 1.0, 1.0, 1.0)
 var height = 1.0
 var body_scaler_table = {}
 var head_morph_table = {}
-var stamp_table = {}
+var stamp_table = []
+var stamp_color_table = []
 
 static func get_bloodtype_from_string(p_string):
 	var upper_string = p_string.to_upper()
@@ -169,22 +175,46 @@ func _load_record(p_dictionary_record, p_databases):
 		head = p_databases.headpart_database.find_record_by_name(p_dictionary_record.head)
 	else:
 		head = null
+	if(p_dictionary_record.has("head_color")):
+		head_color = generic_database_const.convert_string_to_color(p_dictionary_record.head_color)
+	else:
+		head_color = Color(1.0, 1.0, 1.0, 1.0)
+		
 	if(p_dictionary_record.has("eyes")):
 		eyes = p_databases.headpart_database.find_record_by_name(p_dictionary_record.eyes)
 	else:
 		eyes = null
+	if(p_dictionary_record.has("eyes_color")):
+		eyes_color = generic_database_const.convert_string_to_color(p_dictionary_record.eyes_color)
+	else:
+		eyes_color = Color(1.0, 1.0, 1.0, 1.0)
+		
 	if(p_dictionary_record.has("eyebrows")):
 		eyebrows = p_databases.headpart_database.find_record_by_name(p_dictionary_record.eyebrows)
 	else:
 		eyebrows = null
+	if(p_dictionary_record.has("eyebrows_color")):
+		eyebrows_color = generic_database_const.convert_string_to_color(p_dictionary_record.eyebrows_color)
+	else:
+		eyebrows_color = Color(1.0, 1.0, 1.0, 1.0)
+		
 	if(p_dictionary_record.has("mouth")):
 		mouth = p_databases.headpart_database.find_record_by_name(p_dictionary_record.mouth)
 	else:
 		mouth = null
+	if(p_dictionary_record.has("mouth_color")):
+		mouth_color = generic_database_const.convert_string_to_color(p_dictionary_record.mouth_color)
+	else:
+		mouth_color = Color(1.0, 1.0, 1.0, 1.0)
+		
 	if(p_dictionary_record.has("eyelashes")):
 		eyelashes = p_databases.headpart_database.find_record_by_name(p_dictionary_record.eyelashes)
 	else:
 		eyelashes = null
+	if(p_dictionary_record.has("eyelashes_color")):
+		eyelashes_color = generic_database_const.convert_string_to_color(p_dictionary_record.eyelashes_color)
+	else:
+		eyelashes_color = Color(1.0, 1.0, 1.0, 1.0)
 		
 	if(p_dictionary_record.has("stats")):
 		stats = p_dictionary_record.stats
@@ -210,10 +240,17 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("head_morph_table")):
 		head_morph_table = p_dictionary_record.head_morph_table
 		
-	stamp_table = {}
+	stamp_table = []
 	if(p_dictionary_record.has("stamp_table")):
-		for key in p_dictionary_record.stamp_table.keys():
-			stamp_table[key] = generic_database_const.convert_string_to_color(p_dictionary_record.stamp_table[key])
+		for stamp in p_dictionary_record.stamp_table:
+			var stamp_record = p_databases.stamp_database.find_record_by_name(p_dictionary_record.stamp)
+			stamp_table.append(stamp_record)
+			
+	stamp_color_table = []
+	if(p_dictionary_record.has("stamp_color_table")):
+		for color_string in p_dictionary_record.stamp_color_table:
+			var color = generic_database_const.convert_string_to_color(color_string)
+			stamp_color_table.append(color)
 		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
@@ -258,26 +295,31 @@ func _save_record(p_dictionary_record, p_databases):
 		p_dictionary_record.head = head.id
 	else:
 		p_dictionary_record.head = ""
+	p_dictionary_record.head_color = head_color
 		
 	if(eyes):
 		p_dictionary_record.eyes = eyes.id
 	else:
 		p_dictionary_record.eyes = ""
+	p_dictionary_record.eyes_color = eyes_color
 		
 	if(eyebrows):
 		p_dictionary_record.eyebrows = eyebrows.id
 	else:
 		p_dictionary_record.eyebrows = ""
+	p_dictionary_record.eyebrows_color = eyebrows_color
 		
 	if(mouth):
 		p_dictionary_record.mouth = mouth.id
 	else:
 		p_dictionary_record.mouth = ""
+	p_dictionary_record.mouth_color = mouth_color
 		
 	if(eyelashes):
 		p_dictionary_record.eyelashes = eyelashes.id
 	else:
 		p_dictionary_record.eyelashes = ""
+	p_dictionary_record.eyelashes_color = eyelashes_color
 		
 	if(default_body):
 		p_dictionary_record.default_body = default_body.id
@@ -297,3 +339,9 @@ func _save_record(p_dictionary_record, p_databases):
 	p_dictionary_record.body_scaler_table = body_scaler_table
 	p_dictionary_record.head_morph_table = head_morph_table
 	p_dictionary_record.stamp_table = stamp_table
+	
+	for stamp in stamp_table:
+		p_dictionary_record.stamp_table.append(stamp.id)
+		
+	for color in stamp_color_table:
+			p_dictionary_record.stamp_color_table.append(color)

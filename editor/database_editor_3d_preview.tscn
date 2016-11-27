@@ -1,43 +1,24 @@
-[gd_scene format=1]
+[gd_scene load_steps=2 format=1]
 
-[node name="3DScenePreview" type="Spatial"]
+[ext_resource path="res://addons/galatea_databases/editor/database_editor_3d_preview.gd" type="Script" id=1]
 
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+[node name="DatabaseEditor3DPreview" type="Panel"]
 
-[node name="Camera" type="Camera" parent="."]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
-projection = 0
-fov = 60.0
-near = 0.1
-far = 100.0
-keep_aspect = 1
-current = false
-visible_layers = 1048575
-raycast_layers = 1048575
-depth = -1
-environment = null
-h_offset = 0.0
-v_offset = 0.0
-room_cull_enabled = true
-
-[node name="TestCube" type="TestCube" parent="."]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-layers = 1
-geometry/visible = true
-geometry/material_override = null
-geometry/cast_shadow = 1
-geometry/receive_shadows = true
-geometry/range_begin = 0.0
-geometry/range_end = 0.0
-geometry/extra_cull_margin = 0.0
-geometry/billboard = false
-geometry/billboard_y = false
-geometry/depth_scale = false
-geometry/visible_in_all_rooms = false
-geometry/use_baked_light = false
-geometry/baked_light_tex_id = 0
+rect/pivot = Vector2( 0, 0 )
+rect/min_size = Vector2( 1, 150 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 300.0
+margin/bottom = 300.0
+script/script = ExtResource( 1 )
+max_zoom = 5.0
+min_zoom = 0.0
+zoom_rate = 1.0
+x_rotation = true
+y_rotation = true
 
 

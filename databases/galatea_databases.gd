@@ -13,6 +13,7 @@ const headpart_database_const = preload("headpart_database.gd")
 const item_database_const = preload("item_database.gd")
 const location_database_const = preload("location_database.gd")
 const material_type_database_const = preload("material_type_database.gd")
+const meshpart_database_const = preload("meshpart_database.gd")
 const music_track_database_const = preload("music_track_database.gd")
 const precipitation_database_const = preload("precipitation_database.gd")
 const quest_database_const = preload("quest_database.gd")
@@ -39,6 +40,7 @@ var headpart_database = null
 var item_database = null
 var location_database = null
 var material_type_database = null
+var meshpart_database = null
 var music_track_database = null
 var precipitation_database = null
 var quest_database = null
@@ -165,6 +167,10 @@ func init_databases():
 	material_type_database = material_type_database_const.new(self)
 	assert(material_type_database)
 	database_list[material_type_database_const.DATABASE_NAME] = material_type_database
+	
+	meshpart_database = meshpart_database_const.new(self)
+	assert(meshpart_database)
+	database_list[meshpart_database_const.DATABASE_NAME] = meshpart_database
 	
 	music_track_database = music_track_database_const.new(self)
 	assert(music_track_database)

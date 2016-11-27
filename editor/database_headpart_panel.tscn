@@ -2,8 +2,8 @@
 
 [ext_resource path="res://addons/galatea_databases/editor/database_headpart_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/galatea_databases/editor/database_editor_3d_preview.tscn" type="PackedScene" id=4]
 
 [node name="HeadpartPanel" type="Control"]
 
@@ -20,13 +20,9 @@ margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
 headpart_type_control = NodePath("RightSide/HeadpartTypeContainer/HeadpartTypeMenuButton")
-mesh_file_control = NodePath("RightSide/MeshFileMainContainer")
-gen_morph_file_control = NodePath("RightSide/GenMorphFileMainContainer")
+meshpart_control = NodePath("RightSide/MeshpartControl")
 stamp_control = NodePath("RightSide/StampControl")
-target_min_x_control = NodePath("RightSide/TargetMinContainer/TargetMinHContainer/TargetMinXSpinbox")
-target_min_y_control = NodePath("RightSide/TargetMinContainer/TargetMinHContainer/TargetMinYSpinbox")
-target_max_x_control = NodePath("RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxXSpinbox")
-target_max_y_control = NodePath("RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxYSpinbox")
+headpart_preview = NodePath("RightSide/HeadpartPreview")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -108,276 +104,34 @@ shortcut = null
 flat = false
 items = [  ]
 
-[node name="MeshFileMainContainer" parent="RightSide" instance=ExtResource( 3 )]
+[node name="MeshpartControl" parent="RightSide" instance=ExtResource( 3 )]
 
 margin/left = 10.0
-margin/top = 72.0
+margin/top = 70.0
 margin/right = 532.0
-margin/bottom = 115.0
-label = "Mesh File:"
-file_browser_title = "Load Mesh"
-file_type = "Mesh"
+margin/bottom = 112.0
+label = "Meshpart:"
+record_name = ""
 disabled = true
 has_clear_button = true
 
-[node name="GenMorphFileMainContainer" parent="RightSide" instance=ExtResource( 3 )]
+[node name="StampControl" parent="RightSide" instance=ExtResource( 3 )]
 
 margin/left = 10.0
-margin/top = 122.0
+margin/top = 120.0
 margin/right = 532.0
-margin/bottom = 165.0
-label = "Gen Morph File:"
-file_browser_title = "Load Morph Data Collection"
-file_type = "MorphDataCollection"
-disabled = true
-has_clear_button = true
-
-[node name="StampControl" parent="RightSide" instance=ExtResource( 4 )]
-
-margin/left = 10.0
-margin/top = 180.0
-margin/right = 532.0
-margin/bottom = 222.0
+margin/bottom = 162.0
 label = "Stamp:"
 record_name = ""
 disabled = true
 has_clear_button = true
 
-[node name="TargetMinContainer" type="VBoxContainer" parent="RightSide"]
+[node name="HeadpartPreview" parent="RightSide" instance=ExtResource( 4 )]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 240.0
-margin/right = 50.0
-margin/bottom = 280.0
-alignment = 0
-
-[node name="TargetMinLabel" type="Label" parent="RightSide/TargetMinContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 183.0
-margin/bottom = 14.0
-text = "Target Min:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="TargetMinHContainer" type="HBoxContainer" parent="RightSide/TargetMinContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 183.0
-margin/bottom = 42.0
-alignment = 0
-
-[node name="TargetMinXSpinboxLabel" type="Label" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 5.0
-margin/right = 12.0
-margin/bottom = 19.0
-text = "X:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="TargetMinXSpinbox" type="SpinBox" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 16.0
-margin/top = 0.0
-margin/right = 90.0
-margin/bottom = 24.0
-range/min = 0.0
-range/max = 1.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-editable = false
-prefix = ""
-suffix = ""
-
-[node name="TargetMinYSpinboxLabel" type="Label" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 94.0
-margin/top = 5.0
-margin/right = 105.0
-margin/bottom = 19.0
-text = "Y:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="TargetMinYSpinbox" type="SpinBox" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 109.0
-margin/top = 0.0
-margin/right = 183.0
-margin/bottom = 24.0
-range/min = 0.0
-range/max = 1.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-editable = false
-prefix = ""
-suffix = ""
-
-[node name="TargetMaxContainer" type="VBoxContainer" parent="RightSide"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 290.0
-margin/right = 193.0
-margin/bottom = 332.0
-alignment = 0
-
-[node name="TargetMaxLabel" type="Label" parent="RightSide/TargetMaxContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 183.0
-margin/bottom = 14.0
-text = "Target Max:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="TargetMaxHContainer" type="HBoxContainer" parent="RightSide/TargetMaxContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 183.0
-margin/bottom = 42.0
-alignment = 0
-
-[node name="TargetMaxXSpinboxLabel" type="Label" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 5.0
-margin/right = 12.0
-margin/bottom = 19.0
-text = "X:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="TargetMaxXSpinbox" type="SpinBox" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 16.0
-margin/top = 0.0
-margin/right = 90.0
-margin/bottom = 24.0
-range/min = 0.0
-range/max = 1.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-editable = false
-prefix = ""
-suffix = ""
-
-[node name="TargetMaxYSpinboxLabel" type="Label" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 94.0
-margin/top = 5.0
-margin/right = 105.0
-margin/bottom = 19.0
-text = "Y:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="TargetMaxYSpinbox" type="SpinBox" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 109.0
-margin/top = 0.0
-margin/right = 183.0
-margin/bottom = 24.0
-range/min = 0.0
-range/max = 1.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-editable = false
-prefix = ""
-suffix = ""
+margin/left = 549.0
+margin/top = 11.0
+margin/right = 849.0
+margin/bottom = 311.0
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
@@ -391,20 +145,12 @@ suffix = ""
 
 [connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
 
-[connection signal="file_selected" from="RightSide/MeshFileMainContainer" to="." method="_on_MeshFileMainContainer_file_selected"]
+[connection signal="record_erased" from="RightSide/MeshpartControl" to="." method="_on_MeshpartControl_record_erased"]
 
-[connection signal="file_selected" from="RightSide/GenMorphFileMainContainer" to="." method="_on_GenMorphFileMainContainer_file_selected"]
+[connection signal="record_selected" from="RightSide/MeshpartControl" to="." method="_on_MeshpartControl_record_selected"]
 
 [connection signal="record_erased" from="RightSide/StampControl" to="." method="_on_StampControl_record_erased"]
 
 [connection signal="record_selected" from="RightSide/StampControl" to="." method="_on_StampControl_record_selected"]
-
-[connection signal="value_changed" from="RightSide/TargetMinContainer/TargetMinHContainer/TargetMinXSpinbox" to="." method="_on_TargetMinXSpinbox_value_changed"]
-
-[connection signal="value_changed" from="RightSide/TargetMinContainer/TargetMinHContainer/TargetMinYSpinbox" to="." method="_on_TargetMinYSpinbox_value_changed"]
-
-[connection signal="value_changed" from="RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxXSpinbox" to="." method="_on_TargetMaxXSpinbox_value_changed"]
-
-[connection signal="value_changed" from="RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxYSpinbox" to="." method="_on_TargetMaxYSpinbox_value_changed"]
 
 

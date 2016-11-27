@@ -48,6 +48,8 @@ func _save_database(p_filepath, p_records_name):
 		database_dictionary_array.push_back(dictionary_record)
 	
 	dictionary[p_records_name] = database_dictionary_array
+	Globals.set("cache/force_recache", true)
+	Globals.save()
 	_save_database_file(p_filepath, dictionary)
 
 func load_database_file(p_filepath, p_records_name):
