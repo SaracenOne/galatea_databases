@@ -726,6 +726,7 @@ has_clear_button = true
 
 [node name="CombinedMeshesContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -900,15 +901,16 @@ edit_alpha = false
 
 [node name="HairContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 540.0
-margin/top = 381.0
+margin/top = 421.0
 margin/right = 752.0
-margin/bottom = 471.0
+margin/bottom = 511.0
 alignment = 0
 
 [node name="HairRecord" parent="RightSide/HairContainer" instance=ExtResource( 6 )]
@@ -941,15 +943,16 @@ edit_alpha = false
 
 [node name="SkinToneContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 540.0
-margin/top = 461.0
+margin/top = 501.0
 margin/right = 752.0
-margin/bottom = 499.0
+margin/bottom = 539.0
 alignment = 0
 
 [node name="SkinToneLabel" type="Label" parent="RightSide/SkinToneContainer"]
@@ -1172,9 +1175,9 @@ edit_alpha = true
 [node name="DefaultBody" parent="RightSide" instance=ExtResource( 6 )]
 
 margin/left = 539.0
-margin/top = 511.0
+margin/top = 561.0
 margin/right = 993.0
-margin/bottom = 553.0
+margin/bottom = 603.0
 label = "Default Body:"
 record_name = ""
 disabled = true

@@ -12,6 +12,16 @@ signal new_record_add_successful(p_current_database, p_record)
 signal rename_record_successful(p_current_database, p_record)
 signal erase_record_successful(p_current_database, p_record)
 
+func setup_data():
+	if(get_tree().has_group("database_editor_root")):
+		galatea_databases = get_tree().get_nodes_in_group("database_editor_root")[0].get_galatea_databases()
+		editor_plugin = get_tree().get_nodes_in_group("database_editor_root")[0].get_editor_plugin()
+	if(galatea_databases):
+		galatea_databases_assigned()
+
+func _ready():
+	call_deferred("setup_data")
+
 func submit_new_record_callback(p_name):
 	if(galatea_databases):
 		if(current_database):
@@ -57,15 +67,3 @@ func submit_erase_record_callback(p_name):
 		
 func set_current_record_callback(p_record):
 	current_record = p_record
-
-func set_galatea_databases(p_galatea_databases):
-	galatea_databases = p_galatea_databases
-	
-	if(has_method("galatea_databases_assigned")):
-		galatea_databases_assigned()
-
-func set_editor_plugin(p_editor_plugin):
-	editor_plugin = p_editor_plugin
-	
-	if(has_method("editor_plugin_assigned")):
-		editor_plugin_assigned()

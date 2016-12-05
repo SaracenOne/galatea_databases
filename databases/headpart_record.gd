@@ -12,6 +12,7 @@ enum {HEADPART_HEAD,
 var headpart_type = HEADPART_HEAD
 var meshpart = null
 var stamp = null
+var character_creator_enabled = false
 
 static func get_headpart_from_string(p_string):
 	var lower_string = p_string.to_lower()
@@ -57,6 +58,9 @@ func _load_record(p_dictionary_record, p_databases):
 		
 	if(p_dictionary_record.has("stamp")):
 		stamp = p_databases.stamp_database.find_record_by_name(p_dictionary_record.stamp)
+		
+	if(p_dictionary_record.has("character_creator_enabled")):
+		character_creator_enabled = p_dictionary_record.character_creator_enabled
 	
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
@@ -68,6 +72,8 @@ func _save_record(p_dictionary_record, p_databases):
 	
 	if(stamp):
 		p_dictionary_record.stamp = stamp.id
+		
+	p_dictionary_record.character_creator_enabled = character_creator_enabled
 	
 func is_headpart_type(p_type):
 	return headpart_type == p_type

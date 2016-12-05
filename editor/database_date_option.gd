@@ -23,7 +23,6 @@ func day_value_changed(p_day):
 	emit_signal("day_changed", p_day)
 	
 func month_value_changed(p_month):
-	print(p_month)
 	emit_signal("month_changed", p_month)
 
 func _ready():

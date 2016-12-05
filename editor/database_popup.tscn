@@ -27,4 +27,6 @@ margin/top = 30.0
 margin/right = 30.0
 margin/bottom = 30.0
 
+[connection signal="about_to_show" from="." to="." method="_on_DatabasePopup_about_to_show"]
+
 

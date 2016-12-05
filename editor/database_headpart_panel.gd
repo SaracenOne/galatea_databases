@@ -8,12 +8,14 @@ var database_records = null
 export(NodePath) var headpart_type_control = NodePath()
 export(NodePath) var meshpart_control = NodePath()
 export(NodePath) var stamp_control = NodePath()
+export(NodePath) var character_creator_enabled_control = NodePath()
 
 export(NodePath) var headpart_preview = NodePath()
 
 onready var _headpart_type_control_node = get_node(headpart_type_control)
 onready var _meshpart_control_node = get_node(meshpart_control)
 onready var _stamp_control_node = get_node(stamp_control)
+onready var _character_creator_enabled_control = get_node(character_creator_enabled_control)
 
 onready var _headpart_preview = get_node(headpart_preview)
 
@@ -66,6 +68,9 @@ func set_current_record_callback(p_record):
 	else:
 		_meshpart_control_node.set_record_name("")
 	
+	_character_creator_enabled_control.set_disabled(false)
+	_character_creator_enabled_control.set_pressed(p_record.character_creator_enabled)
+	
 	setup_headpart_preview()
 	
 	_stamp_control_node.set_disabled(false)
@@ -73,7 +78,6 @@ func set_current_record_callback(p_record):
 		_stamp_control_node.set_record_name(p_record.stamp.id)
 	else:
 		_stamp_control_node.set_record_name("")
-	
 	##
 
 func _on_headpart_type_selected( p_id ):
@@ -116,15 +120,23 @@ func setup_headpart_preview():
 		else:
 			_headpart_preview.set_mesh(null)
 			_headpart_preview.set_material(null)
-
+	else:
+		_headpart_preview.set_mesh(null)
+		_headpart_preview.set_material(null)
+			
 func _on_MeshpartControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.meshpart = p_record
 		setup_headpart_preview()
 		current_database.mark_database_as_modified()
-
+		
 func _on_MeshpartControl_record_erased( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.meshpart = p_record
 		setup_headpart_preview()
+		current_database.mark_database_as_modified()
+		
+func _on_CharacterCreatorCheckBox_toggled( pressed ):
+	if(current_record):
+		current_record.character_creator_enabled = pressed
 		current_database.mark_database_as_modified()

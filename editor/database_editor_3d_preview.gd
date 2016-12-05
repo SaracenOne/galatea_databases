@@ -107,7 +107,6 @@ func set_mesh(p_mesh):
 	var aabb= mesh_instance.get_aabb()
 	zoom = max(aabb.size.x,aabb.size.y)
 	zoom += zoom
-	print(zoom)
 	
 	_update_rotation()
 			

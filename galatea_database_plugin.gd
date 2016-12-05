@@ -32,7 +32,7 @@ func _exit_tree():
 	_database_destroy_popup()
 			
 	# Nodes
-	remove_custom_type("Actor")
+	remove_custom_type("RecordInstance")
 	
 func database_interface_assign_databases(p_control):
 	for child in p_control.get_children():

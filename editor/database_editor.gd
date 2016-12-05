@@ -7,17 +7,14 @@ var editor_plugin = null
 func set_galatea_databases(p_galatea_database):
 	galatea_databases = p_galatea_database
 	
-func database_interface_assign_databases(p_control):
-	for child in p_control.get_children():
-		if(child.has_method("set_galatea_databases")):
-			child.call("set_galatea_databases", galatea_databases)
-		database_interface_assign_databases(child)
-
-func database_interface_assign_editor_plugin(p_control):
-	for child in p_control.get_children():
-		if(child.has_method("set_editor_plugin")):
-			child.call("set_editor_plugin", galatea_databases)
-		database_interface_assign_editor_plugin(child)
+func set_editor_plugin(p_editor_plugin):
+	editor_plugin = p_editor_plugin
+	
+func get_galatea_databases():
+	return galatea_databases
+	
+func get_editor_plugin():
+	return editor_plugin
 
 func _on_SaveButton_pressed():
 	if(galatea_databases):

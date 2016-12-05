@@ -8,8 +8,6 @@ var galatea_databases = null
 var galatea_database_path = "res://assets/database"
 var database_popup_button = null
 
-var database_popup_instance = null
-
 func _ready():
 	galatea_databases = galatea_databases_const.new(galatea_database_path)
 	
@@ -17,8 +15,11 @@ func _ready():
 	
 	database_interface_assign_databases(self)
 	
+	for tab in get_tree().get_nodes_in_group("database_editor_tab"):
+		if(tab.has_method("setup")):
+			tab.call("setup")
+	
 func database_interface_assign_databases(p_control):
 	for child in p_control.get_children():
 		if(child.has_method("set_galatea_databases")):
 			child.call("set_galatea_databases", galatea_databases)
-		database_interface_assign_databases(child)

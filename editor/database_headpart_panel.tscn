@@ -22,6 +22,7 @@ script/script = ExtResource( 1 )
 headpart_type_control = NodePath("RightSide/HeadpartTypeContainer/HeadpartTypeMenuButton")
 meshpart_control = NodePath("RightSide/MeshpartControl")
 stamp_control = NodePath("RightSide/StampControl")
+character_creator_enabled_control = NodePath("RightSide/CharacterCreatorCheckBox")
 headpart_preview = NodePath("RightSide/HeadpartPreview")
 
 [node name="LeftSide" type="Control" parent="."]
@@ -133,6 +134,25 @@ margin/top = 11.0
 margin/right = 849.0
 margin/bottom = 311.0
 
+[node name="CharacterCreatorCheckBox" type="CheckBox" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 169.0
+margin/right = 224.0
+margin/bottom = 192.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Avaliable in Character Creator"
+flat = false
+align = 0
+
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
@@ -152,5 +172,7 @@ margin/bottom = 311.0
 [connection signal="record_erased" from="RightSide/StampControl" to="." method="_on_StampControl_record_erased"]
 
 [connection signal="record_selected" from="RightSide/StampControl" to="." method="_on_StampControl_record_selected"]
+
+[connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
 
 
