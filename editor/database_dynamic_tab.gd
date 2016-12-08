@@ -9,6 +9,12 @@ func create_tab():
 		add_child(instance)
 		
 func erase_tab():
+	if(scene):
+		for child in get_children():
+			child.queue_free()
+			remove_child(child)
+			
+func set_galatea_databases(p_databases):
 	for child in get_children():
-		child.queue_free()
-		remove_child(child)
+		if(child.has_method("set_galatea_databases")):
+			child.call("set_galatea_databases", p_databases)

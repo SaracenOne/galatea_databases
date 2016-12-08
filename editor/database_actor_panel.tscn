@@ -55,7 +55,9 @@ body_scaler_table = NodePath("RightSide/ScalerTable/ScalerTableControl")
 body_scaler_value = NodePath("RightSide/ScalerTable/ScalerTableSpinBox")
 stamp_table = NodePath("RightSide/StampTable/StampTabelControl")
 stamp_color = NodePath("RightSide/StampTable/StampColorButton")
-default_body = NodePath("RightSide/DefaultBody")
+naked_clothing = NodePath("RightSide/NakedClothing")
+male_skin_texture_set = NodePath("RightSide/SkeletonPathContainer/MaleSkinTextureSet")
+female_skin_texture_set = NodePath("RightSide/SkeletonPathContainer/FemaleSkinTextureSet")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -724,6 +726,26 @@ file_type = "PackedScene"
 disabled = true
 has_clear_button = true
 
+[node name="MaleSkinTextureSet" parent="RightSide/SkeletonPathContainer" instance=ExtResource( 6 )]
+
+margin/top = 92.0
+margin/right = 520.0
+margin/bottom = 134.0
+label = "Male Skin Texture Set:"
+record_name = ""
+disabled = true
+has_clear_button = true
+
+[node name="FemaleSkinTextureSet" parent="RightSide/SkeletonPathContainer" instance=ExtResource( 6 )]
+
+margin/top = 138.0
+margin/right = 520.0
+margin/bottom = 180.0
+label = "Female Skin Texture Set:"
+record_name = ""
+disabled = true
+has_clear_button = true
+
 [node name="CombinedMeshesContainer" type="VBoxContainer" parent="RightSide"]
 
 editor/display_folded = true
@@ -1172,13 +1194,13 @@ flat = false
 color = Color( 1, 1, 1, 1 )
 edit_alpha = true
 
-[node name="DefaultBody" parent="RightSide" instance=ExtResource( 6 )]
+[node name="NakedClothing" parent="RightSide" instance=ExtResource( 6 )]
 
 margin/left = 539.0
 margin/top = 561.0
 margin/right = 993.0
 margin/bottom = 603.0
-label = "Default Body:"
+label = "Naked Clothing:"
 record_name = ""
 disabled = true
 has_clear_button = true
@@ -1228,6 +1250,14 @@ has_clear_button = true
 [connection signal="file_selected" from="RightSide/SkeletonPathContainer/MaleSkeletonPathContainer/MaleSkeletonPathControl" to="." method="_on_MaleSkeletonPathControl_file_selected"]
 
 [connection signal="file_selected" from="RightSide/SkeletonPathContainer/FemaleSkeletonPathContainer/FemaleSkeletonPathControl" to="." method="_on_FemaleSkeletonPathControl_file_selected"]
+
+[connection signal="record_erased" from="RightSide/SkeletonPathContainer/MaleSkinTextureSet" to="." method="_on_MaleSkinTextureSet_record_erased"]
+
+[connection signal="record_selected" from="RightSide/SkeletonPathContainer/MaleSkinTextureSet" to="." method="_on_MaleSkinTextureSet_record_selected"]
+
+[connection signal="record_erased" from="RightSide/SkeletonPathContainer/FemaleSkinTextureSet" to="." method="_on_FemaleSkinTextureSet_record_erased"]
+
+[connection signal="record_selected" from="RightSide/SkeletonPathContainer/FemaleSkinTextureSet" to="." method="_on_FemaleSkinTextureSet_record_selected"]
 
 [connection signal="record_erased" from="RightSide/CombinedMeshesContainer/HeadMeshRecord" to="." method="_on_HeadMeshRecord_record_erased"]
 
@@ -1287,8 +1317,8 @@ has_clear_button = true
 
 [connection signal="color_changed" from="RightSide/StampTable/StampColorButton" to="." method="_on_StampColorButton_color_changed"]
 
-[connection signal="record_erased" from="RightSide/DefaultBody" to="." method="_on_DefaultBody_record_erased"]
+[connection signal="record_erased" from="RightSide/NakedClothing" to="." method="_on_NakedClothing_record_erased"]
 
-[connection signal="record_selected" from="RightSide/DefaultBody" to="." method="_on_DefaultBody_record_selected"]
+[connection signal="record_selected" from="RightSide/NakedClothing" to="." method="_on_NakedClothing_record_selected"]
 
 

@@ -49,7 +49,11 @@ var mouth_color = Color(1.0, 1.0, 1.0, 1.0)
 var eyelashes = null
 var eyelashes_color = Color(1.0, 1.0, 1.0, 1.0)
 
-var default_body = null
+var naked_clothing = null
+
+var male_skin_texture_set = null
+var female_skin_texture_set = null
+
 var skin_color = Color(1.0, 1.0, 1.0, 1.0)
 
 var hair = null
@@ -219,10 +223,20 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("stats")):
 		stats = p_dictionary_record.stats
 		
-	if(p_dictionary_record.has("default_body")):
-		default_body = p_databases.clothing_database.find_record_by_name(p_dictionary_record.default_body)
+	if(p_dictionary_record.has("naked_clothing")):
+		naked_clothing = p_databases.clothing_database.find_record_by_name(p_dictionary_record.naked_clothing)
 	else:
-		default_body = null
+		naked_clothing = null
+		
+	if(p_dictionary_record.has("male_skin_texture_set")):
+		male_skin_texture_set = p_databases.texture_set_database.find_record_by_name(p_dictionary_record.male_skin_texture_set)
+	else:
+		male_skin_texture_set = null
+		
+	if(p_dictionary_record.has("female_skin_texture_set")):
+		female_skin_texture_set = p_databases.texture_set_database.find_record_by_name(p_dictionary_record.female_skin_texture_set)
+	else:
+		female_skin_texture_set = null
 		
 	if(p_dictionary_record.has("skin_color")):
 		skin_color = generic_database_const.convert_string_to_color(p_dictionary_record.skin_color)
@@ -321,10 +335,20 @@ func _save_record(p_dictionary_record, p_databases):
 		p_dictionary_record.eyelashes = ""
 	p_dictionary_record.eyelashes_color = eyelashes_color
 		
-	if(default_body):
-		p_dictionary_record.default_body = default_body.id
+	if(naked_clothing):
+		p_dictionary_record.naked_clothing = naked_clothing.id
 	else:
-		p_dictionary_record.default_body = ""
+		p_dictionary_record.naked_clothing = ""
+		
+	if(male_skin_texture_set):
+		p_dictionary_record.male_skin_texture_set = male_skin_texture_set.id
+	else:
+		p_dictionary_record.male_skin_texture_set = ""
+	if(female_skin_texture_set):
+		p_dictionary_record.female_skin_texture_set = female_skin_texture_set.id
+	else:
+		p_dictionary_record.female_skin_texture_set = ""
+		
 		
 	p_dictionary_record.skin_color = skin_color
 	

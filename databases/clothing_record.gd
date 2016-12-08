@@ -2,10 +2,26 @@ extends "generic_record.gd"
 
 const generic_database_const = preload("generic_database.gd")
 
+enum biped_enum {
+	BIPED_HEAD = 1 >> 1,
+	BIPED_UPPER_BODY = 1 >> 2,
+	BIPED_LOWER_BODY = 1 >> 3,
+	BIPED_HANDS = 1 >> 4,
+	BIPED_FEET = 1 >> 5,
+	# Stamp-based
+	BIPED_UPPER_UNDERWEAR = 1 >> 6,
+	BIPED_LOWER_UNDERWEAR = 1 >> 7,
+	BIPED_SOCKS = 1 >> 8,
+}
+
+const biped_name_array = ["Head", "Upper Body", "Lower Body", "Hands", "Feet", "Upper Underwear", "Lower Underwear", "Socks"]
+
 var printed_name = ""
 var clothing_parts = []
+var biped_flags = 0
 
-var stamp_table = {}
+var male_stamp_table = {}
+var female_stamp_table = {}
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
@@ -20,10 +36,18 @@ func _load_record(p_dictionary_record, p_databases):
 			if(clothing_part_record != null):
 				clothing_parts.append(clothing_part_record)
 				
-	stamp_table = {}
-	if(p_dictionary_record.has("stamp_table")):
-		for key in p_dictionary_record.stamp_table.keys():
-			stamp_table[key] = generic_database_const.convert_string_to_color(p_dictionary_record.stamp_table[key])
+	if(p_dictionary_record.has("biped_flags")):
+		biped_flags = int(p_dictionary_record.biped_flags)
+				
+	male_stamp_table = {}
+	if(p_dictionary_record.has("male_stamp_table")):
+		for key in p_dictionary_record.male_stamp_table.keys():
+			male_stamp_table[key] = generic_database_const.convert_string_to_color(p_dictionary_record.male_stamp_table[key])
+	
+	female_stamp_table = {}
+	if(p_dictionary_record.has("female_stamp_table")):
+		for key in p_dictionary_record.female_stamp_table.keys():
+			female_stamp_table[key] = generic_database_const.convert_string_to_color(p_dictionary_record.female_stamp_table[key])
 	
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
@@ -35,4 +59,7 @@ func _save_record(p_dictionary_record, p_databases):
 	for clothing_part in clothing_parts:
 		p_dictionary_record.clothing_parts.append(clothing_part.id)
 		
-	p_dictionary_record.stamp_table = stamp_table
+	p_dictionary_record.biped_flags = int(biped_flags)
+		
+	p_dictionary_record.male_stamp_table = male_stamp_table
+	p_dictionary_record.female_stamp_table = female_stamp_table

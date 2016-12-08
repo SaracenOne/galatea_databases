@@ -27,3 +27,9 @@ func _on_ReloadButton_pressed():
 	if(galatea_databases):
 		galatea_databases.load_all_databases()
 		database_interface_assign_databases(self)
+		
+func database_interface_assign_databases(p_control):
+	for child in p_control.get_children():
+		if(child.has_method("set_galatea_databases")):
+			child.call("set_galatea_databases", galatea_databases)
+		#database_interface_assign_databases(child)

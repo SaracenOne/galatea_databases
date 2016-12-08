@@ -30,7 +30,6 @@ func _create_record():
 	
 func get_record_inlined_code(p_database_record):
 	var dict = {}
-	dict["test1"] = ""
 	return dict
 	
 func _init(p_databases).(p_databases):

@@ -34,3 +34,9 @@ func erase_tab():
 	for child in get_children():
 		if(child.has_method("erase_tab")):
 			child.call("erase_tab")
+			
+func set_galatea_databases(p_databases):
+	galatea_databases = p_databases
+	for child in get_children():
+		if(child.has_method("set_galatea_databases")):
+			child.call("set_galatea_databases", galatea_databases)

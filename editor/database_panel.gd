@@ -18,6 +18,11 @@ func setup_data():
 		editor_plugin = get_tree().get_nodes_in_group("database_editor_root")[0].get_editor_plugin()
 	if(galatea_databases):
 		galatea_databases_assigned()
+		
+func set_galatea_databases(p_databases):
+	galatea_databases = p_databases
+	if(galatea_databases):
+		galatea_databases_assigned()
 
 func _ready():
 	call_deferred("setup_data")

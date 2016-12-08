@@ -99,7 +99,6 @@ scene = ExtResource( 4 )
 
 [node name="Characters" type="TabContainer" parent="DatabaseEditorTabs" groups=[ "database_editor_tab" ]]
 
-editor/display_folded = true
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1

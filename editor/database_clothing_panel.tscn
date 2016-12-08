@@ -20,8 +20,10 @@ margin/bottom = 0.0
 script/script = ExtResource( 1 )
 printed_name = NodePath("RightSide/PrintedNameContainer/PrintedNameLineEdit")
 clothing_parts = NodePath("RightSide/ClothingPartsContainer/ClothingPartsControl")
-stamp_table = NodePath("RightSide/StampTable/StampTableControl")
-stamp_color = NodePath("RightSide/StampTable/StampColorButton")
+male_stamp_table = NodePath("RightSide/MaleStampTable/MaleStampTableControl")
+male_stamp_color = NodePath("RightSide/MaleStampTable/MaleStampColorButton")
+female_stamp_table = NodePath("RightSide/FemaleStampTable/FemaleStampTableControl")
+female_stamp_color = NodePath("RightSide/FemaleStampTable/FemaleStampColorButton")
 biped = NodePath("RightSide/BipedContainer/BipedTree")
 
 [node name="LeftSide" type="Control" parent="."]
@@ -144,21 +146,20 @@ margin/right = 300.0
 margin/bottom = 273.0
 disabled = true
 
-[node name="StampTable" type="VBoxContainer" parent="RightSide"]
+[node name="MaleStampTable" type="VBoxContainer" parent="RightSide"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 10.0
+margin/left = 11.0
 margin/top = 360.0
-margin/right = 310.0
+margin/right = 311.0
 margin/bottom = 638.0
 alignment = 0
 
-[node name="StampTableLabel" type="Label" parent="RightSide/StampTable"]
+[node name="MaleStampTableLabel" type="Label" parent="RightSide/MaleStampTable"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = true
@@ -169,12 +170,12 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 300.0
 margin/bottom = 14.0
-text = "Stamp Table:"
+text = "Male Stamp Table:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="StampTableControl" parent="RightSide/StampTable" instance=ExtResource( 3 )]
+[node name="MaleStampTableControl" parent="RightSide/MaleStampTable" instance=ExtResource( 3 )]
 
 anchor/right = 0
 anchor/bottom = 0
@@ -185,7 +186,66 @@ margin/right = 300.0
 margin/bottom = 254.0
 disabled = true
 
-[node name="StampColorButton" type="ColorPickerButton" parent="RightSide/StampTable"]
+[node name="MaleStampColorButton" type="ColorPickerButton" parent="RightSide/MaleStampTable"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 258.0
+margin/right = 300.0
+margin/bottom = 278.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = true
+
+[node name="FemaleStampTable" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 320.0
+margin/top = 360.0
+margin/right = 620.0
+margin/bottom = 638.0
+alignment = 0
+
+[node name="FemaleStampTableLabel" type="Label" parent="RightSide/FemaleStampTable"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 300.0
+margin/bottom = 14.0
+text = "Female Stamp Table:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="FemaleStampTableControl" parent="RightSide/FemaleStampTable" instance=ExtResource( 3 )]
+
+anchor/right = 0
+anchor/bottom = 0
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/top = 18.0
+margin/right = 300.0
+margin/bottom = 254.0
+disabled = true
+
+[node name="FemaleStampColorButton" type="ColorPickerButton" parent="RightSide/FemaleStampTable"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -211,9 +271,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 330.0
+margin/left = 320.0
 margin/top = 20.0
-margin/right = 630.0
+margin/right = 620.0
 margin/bottom = 345.0
 alignment = 0
 
@@ -265,12 +325,22 @@ margin/bottom = 325.0
 
 [connection signal="record_selected" from="RightSide/ClothingPartsContainer/ClothingPartsControl" to="." method="_on_ClothingPartsControl_record_selected"]
 
-[connection signal="record_cell_selected" from="RightSide/StampTable/StampTableControl" to="." method="_on_StampTableControl_record_cell_selected"]
+[connection signal="record_cell_selected" from="RightSide/MaleStampTable/MaleStampTableControl" to="." method="_on_MaleStampTableControl_record_cell_selected"]
 
-[connection signal="record_erased" from="RightSide/StampTable/StampTableControl" to="." method="_on_StampTableControl_record_erased"]
+[connection signal="record_erased" from="RightSide/MaleStampTable/MaleStampTableControl" to="." method="_on_MaleStampTableControl_record_erased"]
 
-[connection signal="record_selected" from="RightSide/StampTable/StampTableControl" to="." method="_on_StampTableControl_record_selected"]
+[connection signal="record_selected" from="RightSide/MaleStampTable/MaleStampTableControl" to="." method="_on_MaleStampTableControl_record_selected"]
 
-[connection signal="color_changed" from="RightSide/StampTable/StampColorButton" to="." method="_on_StampColorButton_color_changed"]
+[connection signal="color_changed" from="RightSide/MaleStampTable/MaleStampColorButton" to="." method="_on_MaleStampColorButton_color_changed"]
+
+[connection signal="record_cell_selected" from="RightSide/FemaleStampTable/FemaleStampTableControl" to="." method="_on_FemaleStampTableControl_record_cell_selected"]
+
+[connection signal="record_erased" from="RightSide/FemaleStampTable/FemaleStampTableControl" to="." method="_on_FemaleStampTableControl_record_erased"]
+
+[connection signal="record_selected" from="RightSide/FemaleStampTable/FemaleStampTableControl" to="." method="_on_FemaleStampTableControl_record_selected"]
+
+[connection signal="color_changed" from="RightSide/FemaleStampTable/FemaleStampColorButton" to="." method="_on_FemaleStampColorButton_color_changed"]
+
+[connection signal="item_edited" from="RightSide/BipedContainer/BipedTree" to="." method="_on_BipedTree_item_edited"]
 
 
