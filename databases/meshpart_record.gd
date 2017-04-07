@@ -2,11 +2,11 @@ extends "generic_record.gd"
 
 const generic_database_const = preload("generic_database.gd")
 
-var mesh_path = ""
-var gen_morph_path = ""
+export(String) var mesh_path = ""
+export(String) var gen_morph_path = ""
 
-var target_min = Vector2(0.0, 0.0)
-var target_max = Vector2(1.0, 1.0)
+export(Vector2) var target_min = Vector2(0.0, 0.0)
+export(Vector2) var target_max = Vector2(1.0, 1.0)
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

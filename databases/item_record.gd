@@ -5,14 +5,14 @@ enum {ITEM_TYPE_UNKNOWN,
  ITEM_TYPE_KEY,
  ITEM_TYPE_CONSUMABLE}
 
-var printed_name = ""
-var description = ""
-var value = 0
-var item_type = ITEM_TYPE_UNKNOWN
-var icon_path = ""
-var pickup_sfx = ""
-var putdown_sfx = ""
-var can_gift = false
+export(String) var printed_name = ""
+export(String) var description = ""
+export(int) var value = 0
+export(int) var item_type = ITEM_TYPE_UNKNOWN
+export(String) var icon_path = ""
+export(String) var pickup_sfx = ""
+export(String) var putdown_sfx = ""
+export(bool) var can_gift = false
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

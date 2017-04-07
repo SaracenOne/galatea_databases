@@ -1,19 +1,19 @@
 extends "generic_record.gd"
 const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd")
 
-var printed_name = ""
-var scene_path = ""
-var skybox_path = ""
-var is_interior = false
+export(String) var printed_name = ""
+export(String) var scene_path = ""
+export(String) var skybox_path = ""
+export(bool) var is_interior = false
 
-var maximum_actor_capacity = -1
-var maximum_actor_capacity_includes_players = false
+export(int) var maximum_actor_capacity = -1
+export(bool) var maximum_actor_capacity_includes_players = false
 
-class LinkedLocationData:
-	var location = null
-	var distance = 0.0
+class LinkedLocationData extends Reosource:
+	export(Resource) var location = null
+	export(float) var distance = 0.0
 
-var linked_locations = []
+export(Array) var linked_locations = []
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

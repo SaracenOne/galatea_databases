@@ -1,8 +1,8 @@
 extends "generic_record.gd"
 
-var actor = null
-var is_reply = false
-var message_body = ""
+export(Resource) var actor = null
+export(bool) var is_reply = false
+export(String) var message_body = ""
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

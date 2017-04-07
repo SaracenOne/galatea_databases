@@ -2,11 +2,11 @@ extends "generic_record.gd"
 
 const generic_database_const = preload("generic_database.gd")
 
-var texture_set = null
-var target_min = Vector2(0.0, 0.0)
-var target_max = Vector2(1.0, 1.0)
-var uses_alpha = false
-var invert_alpha = false
+export(Resource) var texture_set = null
+export(Vector2) var target_min = Vector2(0.0, 0.0)
+export(Vector2) var target_max = Vector2(1.0, 1.0)
+export(bool) var uses_alpha = false
+export(bool) var invert_alpha = false
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

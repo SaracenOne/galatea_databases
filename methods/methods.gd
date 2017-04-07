@@ -8,27 +8,27 @@ const ARGUMENT_TYPE_FLOAT = 4
 const ARGUMENT_TYPE_STRING = 5
 const ARGUMENT_TYPE_OBJECT = 6
 
-class ArgumentOption extends Reference:
-	var option_name
-	var option_value
+class ArgumentOption extends Resource:
+	export(String) var option_name
+	export var option_value = 0
 	
 	func _init(p_option_name, p_option_value):
 		option_name = p_option_name
 		option_value = p_option_value
 
-class ArgumentItem extends Reference:
-	var name
-	var type
-	var options
+class ArgumentItem extends Resource:
+	export(String) var name = ""
+	export(int) var type = ARGUMENT_TYPE_ENUM
+	export(Array) var options = []
 	
 	func _init(p_name, p_type = ARGUMENT_TYPE_ENUM, p_options = []):
 		name = p_name
 		type = p_type
 		options = p_options
 
-class MethodItem extends Reference:
-	var arguments = []
-	var category = ""
+class MethodItem extends Resource:
+	export(Array) var arguments = []
+	export(String) var category = ""
 	
 	func _init(p_arguments = [], p_category = ""):
 		arguments = p_arguments

@@ -11,11 +11,11 @@ enum {TIME_SUNRISE,
  TIME_SUNSET,
  TIME_NIGHT}
 
-class CloudLayer extends Reference:
-	var cloud_path = ""
-	var scroll_x = 0.0
-	var scroll_y = 0.0
-	var alpha = 1.0
+class CloudLayer extends Resource:
+	export(String) var cloud_path = ""
+	export(float) var scroll_x = 0.0
+	export(float) var scroll_y = 0.0
+	export(float) var alpha = 1.0
 	
 	func load_object(p_dictionary_object):
 		if(p_dictionary_object.has("cloud_path")):
@@ -36,14 +36,14 @@ class CloudLayer extends Reference:
 		
 		return dictionary
 
-class ColorSet extends Reference:
-	var ambient_color = Color()
-	var clouds_color = Color()
-	var begin_fog_color = Color()
-	var end_fog_color = Color()
-	var sky_color = Color()
-	var sun_color = Color()
-	var light_color = Color()
+class ColorSet extends Resource:
+	export(Color) var ambient_color = Color()
+	export(Color) var clouds_color = Color()
+	export(Color) var begin_fog_color = Color()
+	export(Color) var end_fog_color = Color()
+	export(Color) var sky_color = Color()
+	export(Color) var sun_color = Color()
+	export(Color) var light_color = Color()
 	
 	func load_object(p_dictionary_object):
 		if(p_dictionary_object.has("ambient_color")):
@@ -73,15 +73,15 @@ class ColorSet extends Reference:
 		
 		return dictionary
 
-var wind_power = 0.0
-var wind_direction = 0.0
-var wind_variation = 0.0
-var min_temperature = 14.0 # Celsius
-var max_temperature = 14.0 # Celsius
-var precipitation = null
-var weather_classification = CLASSIFICATION_NONE
-var color_sets = {TIME_SUNRISE:ColorSet.new(), TIME_DAY:ColorSet.new(), TIME_SUNSET:ColorSet.new(), TIME_NIGHT:ColorSet.new()}
-var cloud_layers = [CloudLayer.new(), CloudLayer.new(), CloudLayer.new()]
+export(float) var wind_power = 0.0
+export(float) var wind_direction = 0.0
+export(float) var wind_variation = 0.0
+export(float) var min_temperature = 14.0 # Celsius
+export(float) var max_temperature = 14.0 # Celsius
+export(Resource) var precipitation = null
+export(int) var weather_classification = CLASSIFICATION_NONE
+export(Dictionary) var color_sets = {TIME_SUNRISE:ColorSet.new(), TIME_DAY:ColorSet.new(), TIME_SUNSET:ColorSet.new(), TIME_NIGHT:ColorSet.new()}
+export(Array) var cloud_layers = [CloudLayer.new(), CloudLayer.new(), CloudLayer.new()]
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

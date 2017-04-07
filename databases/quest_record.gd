@@ -1,8 +1,8 @@
 extends "generic_record.gd"
 
-var printed_name = ""
-var invisible = true
-var autostart = false
+export(String) var printed_name = ""
+export(bool) var invisible = true
+export(bool) var autostart = false
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

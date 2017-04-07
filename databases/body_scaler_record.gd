@@ -2,12 +2,12 @@ extends "generic_record.gd"
 
 const body_scaler_database_const = preload("body_scaler_database.gd")
 		
-class ScalerCommand extends Reference:
-	var command_id = body_scaler_database_const.COMMAND_SCALE
-	var command_value = Vector3(1.0, 1.0, 1.0)
-	var inverse = false
-	var min_value = 0.0
-	var max_value = 1.0
+class ScalerCommand extends Resource:
+	export(int) var command_id = body_scaler_database_const.COMMAND_SCALE
+	export(Vector3) var command_value = Vector3(1.0, 1.0, 1.0)
+	export(bool) var inverse = false
+	export(float) var min_value = 0.0
+	export(float) var max_value = 1.0
 	
 	func load_record(p_dictionary):
 		command_id = body_scaler_database_const.get_command_type_from_string(p_dictionary.command_id)
@@ -26,8 +26,8 @@ class ScalerCommand extends Reference:
 		
 		return dictionary
 		
-class ScalerBone extends Reference:
-	var scaler_commands = []
+class ScalerBone extends Resource:
+	export(Array) var scaler_commands = []
 	
 	func load_record(p_dictionary):
 		if(p_dictionary.has("scaler_commands")):
@@ -46,7 +46,7 @@ class ScalerBone extends Reference:
 		
 		return dictionary
 
-var scaler_bones = {}
+export(Dictionary) var scaler_bones = {}
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

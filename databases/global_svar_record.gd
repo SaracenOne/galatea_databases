@@ -5,8 +5,8 @@ const SVAR_TYPE_FLOAT = 1
 const SVAR_TYPE_STRING = 2
 const SVAR_TYPE_BOOLEAN = 3
 		
-var type = SVAR_TYPE_INTEGER
-var value = 0
+export(int) var type = SVAR_TYPE_INTEGER
+export var value = 0
 
 static func get_array_of_types_as_strings():
 	return ["integer", "float", "string", "boolean"]

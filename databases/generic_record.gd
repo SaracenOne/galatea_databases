@@ -1,7 +1,7 @@
 extends Resource
 
 const MAX_ID_SIZE = 32
-var id = ""
+export(String) var id = ""
 
 func get_raw_id():
 	var raw_id = id.to_ascii()

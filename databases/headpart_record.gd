@@ -9,10 +9,10 @@ enum {HEADPART_HEAD,
  HEADPART_EYELASHES,
  HEADPART_MAX}
 
-var headpart_type = HEADPART_HEAD
-var meshpart = null
-var stamp = null
-var character_creator_enabled = false
+export(int) var headpart_type = HEADPART_HEAD
+export(Resource) var meshpart = null
+export(Resource) var stamp = null
+export(bool) var character_creator_enabled = false
 
 static func get_headpart_from_string(p_string):
 	var lower_string = p_string.to_lower()

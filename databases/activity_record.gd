@@ -1,11 +1,11 @@
 extends "generic_record.gd"
 
-var printed_name = ""
-var description = ""
-var main_icon_path = ""
+export(String) var printed_name = ""
+export(String) var description = ""
+export(String) var main_icon_path = ""
 
-var activity_script_path = ""
-var valid_locations = []
+export(String) var activity_script_path = ""
+export(Array) var valid_locations = []
 
 var selectable = false
 

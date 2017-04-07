@@ -2,14 +2,14 @@ extends "generic_record.gd"
 
 const generic_database_const = preload("generic_database.gd")
 
-var texture_path = ""
-var shader_path = ""
-var sub_texture_count_xy = 1
-var box_size = 5.0
-var particle_density = 1.0
-var particle_rotation_velocity = 0.0
-var particle_size = Vector2(1.0, 1.0)
-var wind_multiplier = 0.0
+export(String) var texture_path = ""
+export(String) var shader_path = ""
+export(int) var sub_texture_count_xy = 1
+export(float) var box_size = 5.0
+export(float) var particle_density = 1.0
+export(float) var particle_rotation_velocity = 0.0
+export(Vector2) var particle_size = Vector2(1.0, 1.0)
+export(float) var wind_multiplier = 0.0
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

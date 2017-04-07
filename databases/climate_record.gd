@@ -1,10 +1,10 @@
 extends "generic_record.gd"
 
-class WeatherData extends Reference:
-	var priority = 50
+class WeatherData extends Resource:
+	export(int) var priority = 50
 
-var weather_data = {}
-var weather_list = []
+export(Dictionary) var weather_data = {}
+export(Array) var weather_list = []
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

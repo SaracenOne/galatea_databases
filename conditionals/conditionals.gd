@@ -20,14 +20,14 @@ const VALUE_TYPE_STRING = 1
 const VALUE_TYPE_SVAR = 2
 const VALUE_TYPE_BOOLEAN = 3
 
-class ConditionalItem:
-	var conditional_method = ""
-	var arguments = []
-	var operator = COMPARISON_OPERATOR_EQUALS
-	var value = 1.0
-	var value_type = VALUE_TYPE_FLOAT
-	var subject = CONDITIONAL_SUBJECT_SELF
-	var use_or = false
+class ConditionalItem extends Resource:
+	export(String) var conditional_method = ""
+	export(Array) var arguments = []
+	export(int) var operator = COMPARISON_OPERATOR_EQUALS
+	export(float) var value = 1.0
+	export(int) var value_type = VALUE_TYPE_FLOAT
+	export(int) var subject = CONDITIONAL_SUBJECT_SELF
+	export(bool) var use_or = false
 	
 	func copy(p_conditional_item):
 		conditional_method = p_conditional_item.conditional_method
@@ -38,7 +38,7 @@ class ConditionalItem:
 		subject = p_conditional_item.subject
 		use_or = p_conditional_item.use_or
 	
-var conditional_items = []
+export(Array) var conditional_items = []
 	
 func compare_vars(p_lvar, p_rvar, p_comparison_operator):
 	if(p_comparison_operator == COMPARISON_OPERATOR_EQUALS):

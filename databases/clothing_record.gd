@@ -16,12 +16,12 @@ enum biped_enum {
 
 const biped_name_array = ["Head", "Upper Body", "Lower Body", "Hands", "Feet", "Upper Underwear", "Lower Underwear", "Socks"]
 
-var printed_name = ""
-var clothing_parts = []
-var biped_flags = 0
+export(String) var printed_name = ""
+export(Array) var clothing_parts = []
+export(int) var biped_flags = 0
 
-var male_stamp_table = {}
-var female_stamp_table = {}
+export(Dictionary) var male_stamp_table = {}
+export(Dictionary) var female_stamp_table = {}
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

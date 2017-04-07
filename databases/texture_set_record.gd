@@ -1,6 +1,6 @@
 extends "generic_record.gd"
 
-var textures = {"diffuse":"", "normal":""}
+export(Dictionary) var textures = {"diffuse":"", "normal":""}
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

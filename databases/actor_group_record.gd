@@ -1,8 +1,8 @@
 extends "generic_record.gd"
 
-var printed_name = ""
-var description = ""
-var main_icon_path = ""
+export(String) var printed_name = ""
+export(String) var description = ""
+export(String) var main_icon_path = ""
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

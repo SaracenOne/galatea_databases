@@ -1,10 +1,10 @@
 extends "generic_record.gd"
 
-var male_model_path = ""
-var female_model_path = ""
+export(String) var male_model_path = ""
+export(String) var female_model_path = ""
 
-var male_model_materials = []
-var female_model_materials = []
+export(Array) var male_model_materials = []
+export(Array) var female_model_materials = []
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

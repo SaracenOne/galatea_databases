@@ -2,17 +2,17 @@ extends "generic_record.gd"
 
 const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd")
 
-var printed_name = ""
-var calendar_icon_path = ""
+export(String) var printed_name = ""
+export(String) var calendar_icon_path = ""
 
-var start_date_day = 1
-var start_date_month = OS.MONTH_JANUARY
+export(int) var start_date_day = 1
+export(int) var start_date_month = OS.MONTH_JANUARY
 
-var end_date_day = 1
-var end_date_month = OS.MONTH_JANUARY
+export(int) var end_date_day = 1
+export(int) var end_date_month = OS.MONTH_JANUARY
 
-var is_school_holiday = false
-var is_hidden = false
+export(bool) var is_school_holiday = false
+export(bool) var is_hidden = false
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

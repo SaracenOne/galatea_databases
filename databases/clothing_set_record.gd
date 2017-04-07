@@ -1,7 +1,7 @@
 extends "generic_record.gd"
 
-var printed_name = ""
-var clothing = []
+export(String) var printed_name = ""
+export(Array) var clothing = []
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

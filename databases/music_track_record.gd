@@ -22,14 +22,14 @@ static func get_string_from_track_type(p_track_type):
 	else:
 		""
 
-var track_title = ""
-var track_artist = ""
-var track_type = TRACK_TYPE_SINGLE_TRACK
-var contains_loop = false
-var loop_start = 0.0
-var track_path = ""
-var playable_on_music_player = false
-var conditionals = conditionals_const.new()
+export(String) var track_title = ""
+export(String) var track_artist = ""
+export(int) var track_type = TRACK_TYPE_SINGLE_TRACK
+export(bool) var contains_loop = false
+export(float) var loop_start = 0.0
+export(String) var track_path = ""
+export(bool) var playable_on_music_player = false
+export(Resource) var conditionals = conditionals_const.new()
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

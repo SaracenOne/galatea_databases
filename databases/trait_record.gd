@@ -1,12 +1,12 @@
 extends "generic_record.gd"
 		
-var printed_name = ""
-var description = ""
-var main_icon_path = ""
+export(String) var printed_name = ""
+export(String) var description = ""
+export(String) var main_icon_path = ""
 
-var visible_in_character_creator = false
+export(bool) var visible_in_character_creator = false
 
-var contradictory_traits = []
+export(Array) var contradictory_traits = []
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

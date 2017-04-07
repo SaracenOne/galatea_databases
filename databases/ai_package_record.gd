@@ -5,7 +5,7 @@ const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd
 const conditionals_const = preload("../conditionals/conditionals.gd")
 const ai_procedure_tree_const = preload("../ai/ai_procedure_tree.gd")
 
-class Schedule extends Reference:
+class Schedule extends Resource:
 	const DAY_FLAG_SUNDAY = 1
 	const DAY_FLAG_MONDAY = 2
 	const DAY_FLAG_TUESDAY = 4
@@ -17,13 +17,13 @@ class Schedule extends Reference:
 	const DAY_FLAG_WEEKDAYS = 62
 	const DAY_FLAG_WEEKENDS = 65
 
-	var duration = 0.0
+	export(float) var duration = 0.0
 
-	var start_minutes = -1
-	var start_hours = -1
+	export(int) var start_minutes = -1
+	export(int) var start_hours = -1
 
-	var week_month_flag = 0
-	var days_flag = 0
+	export(int) var week_month_flag = 0
+	export(int) var days_flag = 0
 
 var conditionals = conditionals_const.new()
 var schedule = Schedule.new()

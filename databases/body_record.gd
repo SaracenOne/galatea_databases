@@ -3,19 +3,19 @@ extends "generic_record.gd"
 const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd")
 const generic_database_const = preload("generic_database.gd")
 
-var skeleton_male_path = ""
-var skeleton_female_path = ""
+export(String) var skeleton_male_path = ""
+export(String) var skeleton_female_path = ""
 
-var head = null
-var eyes = null
-var eyebrows = null
-var mouth = null
-var eyelashes = null
+export(Resource) var head = null
+export(Resource) var eyes = null
+export(Resource) var eyebrows = null
+export(Resource) var mouth = null
+export(Resource) var eyelashes = null
 
-var naked_clothing = null
+export(Resource) var naked_clothing = null
 
-var male_skin_texture_set = null
-var female_skin_texture_set = null
+export(Resource) var male_skin_texture_set = null
+export(Resource) var female_skin_texture_set = null
 
 var body_scaler_table = {}
 
