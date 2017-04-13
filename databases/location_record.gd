@@ -9,7 +9,7 @@ export(bool) var is_interior = false
 export(int) var maximum_actor_capacity = -1
 export(bool) var maximum_actor_capacity_includes_players = false
 
-class LinkedLocationData extends Reosource:
+class LinkedLocationData extends Resource:
 	export(Resource) var location = null
 	export(float) var distance = 0.0
 
