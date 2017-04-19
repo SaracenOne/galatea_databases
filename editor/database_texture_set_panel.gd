@@ -11,8 +11,6 @@ onready var _texture_path_control = get_node(texture_path)
 onready var _texture_tree_control = get_node(texture_tree)
 onready var _texture_preview_control = get_node(texture_preview)
 
-#
-var database_records = null
 
 func _ready():
 	texture_path = NodePath("RightSide/TexturesContainer/TexturesContainerLeft/TexturesPathControl")
@@ -24,21 +22,8 @@ func _ready():
 	_texture_preview_control = get_node(texture_preview)
 
 func galatea_databases_assigned():
-	database_records = get_node("LeftSide/DatabaseRecords")
-	assert(database_records)
-
-	if not(is_connected("new_record_duplicate", database_records, "new_record_duplicate_callback")):
-		connect("new_record_duplicate", database_records, "new_record_duplicate_callback")
-
-	if not(is_connected("new_record_add_successful", database_records, "new_record_add_successful_callback")):
-		connect("new_record_add_successful", database_records, "new_record_add_successful_callback")
-
-	if not(is_connected("rename_record_successful", database_records, "rename_record_successful_callback")):
-		connect("rename_record_successful", database_records, "rename_record_successful_callback")
-
-	if not(is_connected("erase_record_successful", database_records, "erase_record_successful_callback")):
-		connect("erase_record_successful", database_records, "erase_record_successful_callback")
-
+	.galatea_databases_assigned()
+	
 	current_database = galatea_databases.texture_set_database
 	if(current_database != null):
 		database_records.populate_tree(current_database, null)

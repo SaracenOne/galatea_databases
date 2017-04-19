@@ -2,6 +2,7 @@ const activity_database_const = preload("activity_database.gd")
 const ai_package_database_const = preload("ai_package_database.gd")
 const actor_database_const = preload("actor_database.gd")
 const actor_group_database_const = preload("actor_group_database.gd")
+const body_database_const = preload("body_database.gd")
 const body_scaler_database_const = preload("body_scaler_database.gd")
 const calendar_event_database_const = preload("calendar_event_database.gd")
 const clothing_database_const = preload("clothing_database.gd")
@@ -29,6 +30,7 @@ var activity_database = null
 var ai_package_database = null
 var actor_database = null
 var actor_group_database = null
+var body_database = null
 var body_scaler_database = null
 var calendar_event_database = null
 var clothing_database = null
@@ -123,6 +125,10 @@ func init_databases():
 	actor_group_database = actor_group_database_const.new(self)
 	assert(actor_group_database)
 	database_list[actor_group_database_const.DATABASE_NAME] = actor_group_database
+	
+	body_database = body_database_const.new(self)
+	assert(body_database)
+	database_list[body_database_const.DATABASE_NAME] = body_database
 	
 	body_scaler_database = body_scaler_database_const.new(self)
 	assert(body_scaler_database)

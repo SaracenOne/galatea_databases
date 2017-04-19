@@ -14,12 +14,13 @@ export(bool) var y_rotation = true
 var zoom = 0.5
 var follow_target = Vector3(0.0, 0.0, 0.0)
 
-var viewport
-var mesh_instance
-var light1
-var light2
-var camera
-var mesh
+var viewport = null
+var mesh_instance = null
+var light1 = null
+var light2 = null
+var camera = null
+var mesh = null
+var scene = null
 
 func _input_event(p_event):
 	if (p_event.type==InputEvent.MOUSE_MOTION and p_event.button_mask & BUTTON_MASK_LEFT):
@@ -56,39 +57,40 @@ func _init():
 	viewport = Viewport.new()
 	var world = World.new()
 	viewport.set_world(world)
+	viewport.set_transparent_background(true)
+	
 	add_child(viewport)
 	viewport.set_disable_input(true)
-
+	
 	camera = Camera.new()
 	camera.set_transform(Transform(Matrix3(),Vector3(0,0,3)))
 	camera.set_perspective(45,0.0001,10000)
 	viewport.add_child(camera)
-
+	
 	light1 = DirectionalLight.new()
 	light1.set_transform(Transform().looking_at(Vector3(-1,-1,-1),Vector3(0,1,0)))
 	viewport.add_child(light1)
-
+	
 	light2 = DirectionalLight.new()
 	light2.set_transform(Transform().looking_at(Vector3(0,1,0),Vector3(0,0,1)))
 	light2.set_color(Light.COLOR_DIFFUSE, Color(0.7,0.7,0.7))
 	light2.set_color(Light.COLOR_SPECULAR, Color(0.7,0.7,0.7))
 	viewport.add_child(light2)
-
+	
 	mesh_instance = MeshInstance.new()
 	viewport.add_child(mesh_instance)
-
+	
 	set_custom_minimum_size(Vector2(1,150))
-
+	
 	var hb = HBoxContainer.new()
 	add_child(hb)
 	hb.set_area_as_parent_rect(2)
-
+	
 	hb.add_spacer(false)
-
+	
 	var vb_light = VBoxContainer.new()
 	hb.add_child(vb_light)
-
-
+	
 	first_enter=true
 	rot_x=0
 	rot_y=0
@@ -113,3 +115,25 @@ func set_mesh(p_mesh):
 func set_material(material):
 	if(mesh_instance):
 		mesh_instance.set_material_override(material)
+		
+func set_scene(p_scene):
+	if(scene):
+		scene.queue_free()
+		viewport.remove_child(scene)
+		scene = null
+		
+	if p_scene extends Spatial:
+		viewport.add_child(p_scene)
+		scene = p_scene
+		
+		rot_x=0
+		rot_y=0
+		zoom = max_zoom
+		
+		_update_rotation()
+		
+func clear_scene():
+	if(scene):
+		scene.queue_free()
+		viewport.remove_child(scene)
+		scene = null

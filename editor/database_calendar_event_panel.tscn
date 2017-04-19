@@ -5,7 +5,7 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/galatea_databases/editor/database_date_option.tscn" type="PackedScene" id=4]
 
-[node name="CalendarEventPanel" type="Control"]
+[node name="CalendarEventPanel" type="HSplitContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -18,6 +18,9 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+split/offset = -500
+split/collapsed = false
+split/dragger_visibility = 0
 script/script = ExtResource( 1 )
 printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameLineEdit")
 calendar_icon_path_control = NodePath("RightSide/CalendarIconContainer/CalendarIconFilePath")
@@ -30,33 +33,28 @@ is_hidden_control = NodePath("RightSide/FlagsContainer/IsHiddenCheckBox")
 [node name="LeftSide" type="Control" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/right = 2
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 0.2
-margin/bottom = 0.0
+margin/right = 294.0
+margin/bottom = 900.0
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
 [node name="RightSide" type="Control" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/left = 2
-anchor/right = 1
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 0.2
+margin/left = 306.0
 margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/right = 1600.0
+margin/bottom = 900.0
 
 [node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -100,8 +98,9 @@ margin/right = 317.0
 margin/bottom = 42.0
 placeholder/alpha = 0.6
 editable = false
+expand_to_len = false
 focus_mode = 2
-caret/caret_blink = true
+caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
 [node name="CalendarIconContainer" type="HBoxContainer" parent="RightSide"]
@@ -123,7 +122,6 @@ size_flags/horizontal = 3
 margin/right = 327.0
 margin/bottom = 64.0
 label = "Calendar Icon:"
-file_path = ""
 file_browser_title = "Open Image"
 file_type = "Texture"
 disabled = true
@@ -205,7 +203,6 @@ max_lines_visible = -1
 margin/top = 18.0
 margin/right = 317.0
 margin/bottom = 42.0
-disabled = false
 
 [node name="EndDateContainer" type="VBoxContainer" parent="RightSide/DateContainer"]
 
@@ -241,7 +238,6 @@ max_lines_visible = -1
 margin/top = 18.0
 margin/right = 317.0
 margin/bottom = 42.0
-disabled = false
 
 [node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -301,6 +297,10 @@ align = 0
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
+
+[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
 
 [connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
 

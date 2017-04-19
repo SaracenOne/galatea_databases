@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_headpart_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/galatea_databases/editor/database_editor_3d_preview.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/galatea_databases/editor/database_editor_3d_preview.tscn" type="PackedScene" id=5]
 
-[node name="HeadpartPanel" type="Control"]
+[node name="HeadpartPanel" type="HSplitContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -18,43 +19,43 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+split/offset = -500
+split/collapsed = false
+split/dragger_visibility = 1
 script/script = ExtResource( 1 )
 headpart_type_control = NodePath("RightSide/HeadpartTypeContainer/HeadpartTypeMenuButton")
 meshpart_control = NodePath("RightSide/MeshpartControl")
 stamp_control = NodePath("RightSide/StampControl")
+main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPathContainer")
+main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
 character_creator_enabled_control = NodePath("RightSide/CharacterCreatorCheckBox")
 headpart_preview = NodePath("RightSide/HeadpartPreview")
 
 [node name="LeftSide" type="Control" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/right = 2
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 0.2
-margin/bottom = 0.0
+margin/right = 294.0
+margin/bottom = 900.0
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
 [node name="RightSide" type="Control" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/left = 2
-anchor/right = 1
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 0.2
+margin/left = 306.0
 margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/right = 1600.0
+margin/bottom = 900.0
 
 [node name="HeadpartTypeContainer" type="VBoxContainer" parent="RightSide"]
 
@@ -127,12 +128,58 @@ record_name = ""
 disabled = true
 has_clear_button = true
 
-[node name="HeadpartPreview" parent="RightSide" instance=ExtResource( 4 )]
+[node name="MainIconPathContainer" type="HBoxContainer" parent="RightSide"]
 
-margin/left = 549.0
-margin/top = 11.0
-margin/right = 849.0
-margin/bottom = 311.0
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 170.0
+margin/right = 533.0
+margin/bottom = 234.0
+alignment = 0
+
+[node name="MainIconPathContainer" parent="RightSide/MainIconPathContainer" instance=ExtResource( 4 )]
+
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/right = 455.0
+margin/bottom = 64.0
+label = "Icon Path:"
+file_browser_title = "Load Image"
+file_type = "Texture"
+disabled = true
+has_clear_button = true
+
+[node name="MainIconPanel" type="Panel" parent="RightSide/MainIconPathContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+rect/min_size = Vector2( 64, 64 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 459.0
+margin/top = 0.0
+margin/right = 523.0
+margin/bottom = 64.0
+
+[node name="MainIconTexture" type="TextureFrame" parent="RightSide/MainIconPathContainer/MainIconPanel"]
+
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+stretch_mode = 0
 
 [node name="CharacterCreatorCheckBox" type="CheckBox" parent="RightSide"]
 
@@ -142,9 +189,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 169.0
+margin/top = 239.0
 margin/right = 224.0
-margin/bottom = 192.0
+margin/bottom = 262.0
 disabled = true
 toggle_mode = true
 enabled_focus_mode = 2
@@ -152,6 +199,13 @@ shortcut = null
 text = "Avaliable in Character Creator"
 flat = false
 align = 0
+
+[node name="HeadpartPreview" parent="RightSide" instance=ExtResource( 5 )]
+
+margin/left = 549.0
+margin/top = 11.0
+margin/right = 1061.0
+margin/bottom = 523.0
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
@@ -172,6 +226,8 @@ align = 0
 [connection signal="record_erased" from="RightSide/StampControl" to="." method="_on_StampControl_record_erased"]
 
 [connection signal="record_selected" from="RightSide/StampControl" to="." method="_on_StampControl_record_selected"]
+
+[connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPathContainer" to="." method="_on_MainIconPathContainer_file_selected"]
 
 [connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
 

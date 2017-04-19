@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_body_scaler_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 
-[node name="BodyScalerPanel" type="Control"]
+[node name="BodyScalerPanel" type="HSplitContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -16,6 +16,9 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+split/offset = -500
+split/collapsed = false
+split/dragger_visibility = 1
 script/script = ExtResource( 1 )
 vector_control_x = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/XVectorContainer/XVectorSpinBox")
 vector_control_y = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/YVectorContainer/YVectorSpinBox")
@@ -26,37 +29,35 @@ type_selection_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/C
 inverse_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/InverseCheckBox")
 min_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MinContainer/MinSpinbox")
 max_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MaxContainer/MaxSpinbox")
+character_creator_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/CharacterCreatorCheckBox")
+printed_name_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/PrintedNameContainer/PrintedNameLineEdit")
+default_value_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/DefaultValueContainer/DefaultValueSpinbox")
 
 [node name="LeftSide" type="Control" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/right = 2
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 0.2
-margin/bottom = 0.0
+margin/right = 294.0
+margin/bottom = 900.0
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
 [node name="RightSide" type="Control" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/left = 2
-anchor/right = 1
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 0.2
+margin/left = 306.0
 margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/right = 1600.0
+margin/bottom = 900.0
 
 [node name="BoneScalerArea" type="HBoxContainer" parent="RightSide"]
 
@@ -192,7 +193,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 304.0
 margin/top = 0.0
-margin/right = 1250.0
+margin/right = 1264.0
 margin/bottom = 870.0
 alignment = 0
 
@@ -205,7 +206,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 14.0
 text = "Commands:"
 align = 1
@@ -223,11 +224,12 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 18.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 430.0
 
 [node name="CommandsButtonContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -235,7 +237,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 434.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 454.0
 alignment = 0
 
@@ -248,7 +250,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 471.0
+margin/right = 478.0
 margin/bottom = 20.0
 toggle_mode = false
 enabled_focus_mode = 2
@@ -263,9 +265,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 475.0
+margin/left = 482.0
 margin/top = 0.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 20.0
 toggle_mode = false
 enabled_focus_mode = 2
@@ -282,7 +284,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 458.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 870.0
 alignment = 0
 
@@ -295,7 +297,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 20.0
 disabled = true
 toggle_mode = false
@@ -307,6 +309,7 @@ items = [ "Scale", null, false, false, false, 0, 0, null, "", false, "Position",
 
 [node name="XVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -314,7 +317,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 24.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 48.0
 alignment = 0
 
@@ -343,7 +346,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 16.0
 margin/top = 0.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 24.0
 range/min = -1007.0
 range/max = 1007.0
@@ -358,6 +361,7 @@ suffix = ""
 
 [node name="YVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -365,7 +369,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 52.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 76.0
 alignment = 0
 
@@ -394,7 +398,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 15.0
 margin/top = 0.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 24.0
 range/min = -1007.0
 range/max = 1007.0
@@ -409,6 +413,7 @@ suffix = ""
 
 [node name="ZVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -416,7 +421,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 80.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 104.0
 alignment = 0
 
@@ -445,7 +450,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 16.0
 margin/top = 0.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 24.0
 range/min = -1007.0
 range/max = 1007.0
@@ -467,7 +472,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 108.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 131.0
 disabled = true
 toggle_mode = true
@@ -486,7 +491,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 135.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 159.0
 alignment = 0
 
@@ -515,7 +520,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 32.0
 margin/top = 0.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 24.0
 range/min = -1007.0
 range/max = 1007.0
@@ -537,7 +542,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 163.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 187.0
 alignment = 0
 
@@ -566,13 +571,130 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 34.0
 margin/top = 0.0
-margin/right = 946.0
+margin/right = 960.0
 margin/bottom = 24.0
 range/min = -1007.0
 range/max = 1007.0
 range/step = 0.0
 range/page = 0.0
 range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="CharacterCreatorCheckBox" type="CheckBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 191.0
+margin/right = 960.0
+margin/bottom = 214.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Available in Character Creator"
+flat = false
+align = 0
+
+[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 218.0
+margin/right = 960.0
+margin/bottom = 260.0
+alignment = 0
+
+[node name="PrintedNameLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/PrintedNameContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 960.0
+margin/bottom = 14.0
+text = "Printed Name:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/PrintedNameContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 960.0
+margin/bottom = 42.0
+placeholder/alpha = 0.6
+editable = false
+expand_to_len = false
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="DefaultValueContainer" type="VBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 264.0
+margin/right = 960.0
+margin/bottom = 306.0
+alignment = 0
+
+[node name="DefaultValueLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/DefaultValueContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 960.0
+margin/bottom = 14.0
+text = "Default Value:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DefaultValueSpinbox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/DefaultValueContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 960.0
+margin/bottom = 42.0
+range/min = 0.0
+range/max = 255.0
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
 range/exp_edit = false
 range/rounded = false
 editable = true
@@ -617,52 +739,14 @@ suffix = ""
 
 [connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MaxContainer/MaxSpinbox" to="." method="_on_MaxSpinbox_value_changed"]
 
+[connection signal="toggled" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
+
+[connection signal="text_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
+
+[connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/DefaultValueContainer/DefaultValueSpinbox" to="." method="_on_DefaultValueSpinbox_value_changed"]
+
 [connection signal="about_to_show" from="NewEditRecordDialog" to="NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
 
 [connection signal="confirmed" from="NewEditRecordDialog" to="NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog 2" to="NewEditRecordDialog 2" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog 2" to="NewEditRecordDialog 2" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog 3" to="NewEditRecordDialog 3" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog 3" to="NewEditRecordDialog 3" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog 4" to="NewEditRecordDialog 4" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog 4" to="NewEditRecordDialog 4" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog 5" to="NewEditRecordDialog 5" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog 5" to="NewEditRecordDialog 5" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog 6" to="NewEditRecordDialog 6" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog 6" to="NewEditRecordDialog 6" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog 7" to="NewEditRecordDialog 7" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog 7" to="NewEditRecordDialog 7" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog 8" to="NewEditRecordDialog 8" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog 8" to="NewEditRecordDialog 8" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog 9" to="NewEditRecordDialog 9" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog 9" to="NewEditRecordDialog 9" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog 10" to="NewEditRecordDialog 10" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog 10" to="NewEditRecordDialog 10" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog 11" to="NewEditRecordDialog 11" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog 11" to="NewEditRecordDialog 11" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog 12" to="NewEditRecordDialog 12" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog 12" to="NewEditRecordDialog 12" method="_on_NewEditRecordDialog_confirmed"]
 
 

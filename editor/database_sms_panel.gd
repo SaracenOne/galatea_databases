@@ -9,27 +9,11 @@ onready var _actor_control = get_node(actor)
 onready var _message_body_control = get_node(message_body)
 onready var _is_reply_control = get_node(is_reply)
 
-#
-var database_records = null
-
 func _ready():
 	pass
 
 func galatea_databases_assigned():
-	database_records = get_node("LeftSide/DatabaseRecords")
-	assert(database_records)
-	
-	if not(is_connected("new_record_duplicate", database_records, "new_record_duplicate_callback")):
-		connect("new_record_duplicate", database_records, "new_record_duplicate_callback")
-		
-	if not(is_connected("new_record_add_successful", database_records, "new_record_add_successful_callback")):
-		connect("new_record_add_successful", database_records, "new_record_add_successful_callback")
-		
-	if not(is_connected("rename_record_successful", database_records, "rename_record_successful_callback")):
-		connect("rename_record_successful", database_records, "rename_record_successful_callback")
-		
-	if not(is_connected("erase_record_successful", database_records, "erase_record_successful_callback")):
-		connect("erase_record_successful", database_records, "erase_record_successful_callback")
+	.galatea_databases_assigned()
 	
 	current_database = galatea_databases.sms_database
 	if(current_database != null):

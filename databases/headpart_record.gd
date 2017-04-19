@@ -12,6 +12,7 @@ enum {HEADPART_HEAD,
 export(int) var headpart_type = HEADPART_HEAD
 export(Resource) var meshpart = null
 export(Resource) var stamp = null
+export(String) var main_icon_path = ""
 export(bool) var character_creator_enabled = false
 
 static func get_headpart_from_string(p_string):
@@ -59,6 +60,9 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("stamp")):
 		stamp = p_databases.stamp_database.find_record_by_name(p_dictionary_record.stamp)
 		
+	if(p_dictionary_record.has("main_icon_path")):
+		main_icon_path = p_dictionary_record.main_icon_path
+		
 	if(p_dictionary_record.has("character_creator_enabled")):
 		character_creator_enabled = p_dictionary_record.character_creator_enabled
 	
@@ -72,6 +76,8 @@ func _save_record(p_dictionary_record, p_databases):
 	
 	if(stamp):
 		p_dictionary_record.stamp = stamp.id
+		
+	p_dictionary_record.main_icon_path = main_icon_path
 		
 	p_dictionary_record.character_creator_enabled = character_creator_enabled
 	

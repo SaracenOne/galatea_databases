@@ -2,6 +2,10 @@ extends "generic_record.gd"
 
 const body_scaler_database_const = preload("body_scaler_database.gd")
 		
+export(bool) var character_creator = false
+export(String) var printed_name = ""
+export(int) var default_value = 0
+		
 class ScalerCommand extends Resource:
 	export(int) var command_id = body_scaler_database_const.COMMAND_SCALE
 	export(Vector3) var command_value = Vector3(1.0, 1.0, 1.0)
@@ -54,6 +58,15 @@ func _load_record(p_dictionary_record, p_databases):
 	
 	scaler_bones = {}
 	
+	if(p_dictionary_record.has("character_creator")):
+		character_creator = p_dictionary_record.character_creator
+		
+	if(p_dictionary_record.has("printed_name")):
+		printed_name = p_dictionary_record.printed_name
+		
+	if(p_dictionary_record.has("default_value")):
+		default_value = p_dictionary_record.default_value
+		
 	if(p_dictionary_record.has("scaler_bones")):
 		for bone_scaler_key in p_dictionary_record.scaler_bones.keys():
 			var bone_scaler_value = p_dictionary_record.scaler_bones[bone_scaler_key]
@@ -64,6 +77,10 @@ func _load_record(p_dictionary_record, p_databases):
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
 	._save_record(p_dictionary_record, p_databases)
+	
+	p_dictionary_record.character_creator = character_creator
+	p_dictionary_record.printed_name = printed_name
+	p_dictionary_record.default_value = default_value
 	
 	var scaler_bones_dict_array = {}
 	

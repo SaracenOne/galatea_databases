@@ -1,7 +1,7 @@
 extends "generic_database.gd"
 
 const generic_database_const = preload("generic_database.gd")
-const actor_record_const = preload("body_record.gd")
+const body_record_const = preload("body_record.gd")
 
 const DATABASE_IDENT = "BODY"
 const DATABASE_NAME = "body_database"

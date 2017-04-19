@@ -2,12 +2,12 @@ tool
 extends "database_panel.gd"
 
 const headpart_record_const = preload("../databases/headpart_record.gd")
-#
-var database_records = null
 
 export(NodePath) var headpart_type_control = NodePath()
 export(NodePath) var meshpart_control = NodePath()
 export(NodePath) var stamp_control = NodePath()
+export(NodePath) var main_icon_path_control = NodePath()
+export(NodePath) var main_icon_preview_control = NodePath()
 export(NodePath) var character_creator_enabled_control = NodePath()
 
 export(NodePath) var headpart_preview = NodePath()
@@ -15,6 +15,8 @@ export(NodePath) var headpart_preview = NodePath()
 onready var _headpart_type_control_node = get_node(headpart_type_control)
 onready var _meshpart_control_node = get_node(meshpart_control)
 onready var _stamp_control_node = get_node(stamp_control)
+onready var _main_icon_path_control_node = get_node(main_icon_path_control)
+onready var _main_icon_preview_control_node = get_node(main_icon_preview_control)
 onready var _character_creator_enabled_control = get_node(character_creator_enabled_control)
 
 onready var _headpart_preview = get_node(headpart_preview)
@@ -23,21 +25,8 @@ func _ready():
 	pass
 
 func galatea_databases_assigned():
-	database_records = get_node("LeftSide/DatabaseRecords")
-	assert(database_records)
-
-	if not(is_connected("new_record_duplicate", database_records, "new_record_duplicate_callback")):
-		connect("new_record_duplicate", database_records, "new_record_duplicate_callback")
-
-	if not(is_connected("new_record_add_successful", database_records, "new_record_add_successful_callback")):
-		connect("new_record_add_successful", database_records, "new_record_add_successful_callback")
-
-	if not(is_connected("rename_record_successful", database_records, "rename_record_successful_callback")):
-		connect("rename_record_successful", database_records, "rename_record_successful_callback")
-
-	if not(is_connected("erase_record_successful", database_records, "erase_record_successful_callback")):
-		connect("erase_record_successful", database_records, "erase_record_successful_callback")
-
+	.galatea_databases_assigned()
+	
 	current_database = galatea_databases.headpart_database
 	
 	var headpart_type_popup = _headpart_type_control_node.get_popup()
@@ -70,6 +59,19 @@ func set_current_record_callback(p_record):
 	
 	_character_creator_enabled_control.set_disabled(false)
 	_character_creator_enabled_control.set_pressed(p_record.character_creator_enabled)
+	
+	##
+	_main_icon_path_control_node.set_file_path(current_record.main_icon_path)
+	_main_icon_path_control_node.set_disabled(false)
+	
+	_main_icon_preview_control_node.set_texture(null)
+	var main_icon_texture = null
+	if(!p_record.main_icon_path.empty()):
+		main_icon_texture = load(p_record.main_icon_path)
+	if(main_icon_texture):
+		if(main_icon_texture extends Texture):
+			_main_icon_preview_control_node.set_texture(main_icon_texture)
+	##
 	
 	setup_headpart_preview()
 	
@@ -139,4 +141,18 @@ func _on_MeshpartControl_record_erased( p_record ):
 func _on_CharacterCreatorCheckBox_toggled( pressed ):
 	if(current_record):
 		current_record.character_creator_enabled = pressed
+		current_database.mark_database_as_modified()
+
+func _on_MainIconPathContainer_file_selected( p_path ):
+	if(current_record):
+		current_record.main_icon_path = p_path
+		
+		_main_icon_preview_control_node.set_texture(null)
+		var main_icon_texture = null
+		if(!p_path.empty()):
+			main_icon_texture = load(p_path)
+		if(main_icon_texture):
+			if(main_icon_texture extends Texture):
+				_main_icon_preview_control_node.set_texture(main_icon_texture)
+			
 		current_database.mark_database_as_modified()

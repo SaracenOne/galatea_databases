@@ -54,28 +54,12 @@ onready var _wind_power = get_node(wind_power)
 onready var _wind_direction = get_node(wind_direction)
 onready var _wind_variation = get_node(wind_variation)
 
-#
-var database_records = null
-
 func _ready():
 	_color_type_menu.get_popup().connect("item_pressed", self, "_color_type_selected")
 	_layer_number_menu.get_popup().connect("item_pressed", self, "_layer_number_selected")
 
 func galatea_databases_assigned():
-	database_records = get_node("LeftSide/DatabaseRecords")
-	assert(database_records)
-	
-	if not(is_connected("new_record_duplicate", database_records, "new_record_duplicate_callback")):
-		connect("new_record_duplicate", database_records, "new_record_duplicate_callback")
-		
-	if not(is_connected("new_record_add_successful", database_records, "new_record_add_successful_callback")):
-		connect("new_record_add_successful", database_records, "new_record_add_successful_callback")
-		
-	if not(is_connected("rename_record_successful", database_records, "rename_record_successful_callback")):
-		connect("rename_record_successful", database_records, "rename_record_successful_callback")
-		
-	if not(is_connected("erase_record_successful", database_records, "erase_record_successful_callback")):
-		connect("erase_record_successful", database_records, "erase_record_successful_callback")
+	.galatea_databases_assigned()
 	
 	current_database = galatea_databases.weather_database
 	if(current_database != null):
@@ -176,7 +160,7 @@ func set_layer_info_to_layer_number(p_layer_number):
 		var cloud_texture = null
 		if(!cloud_path.empty()):
 			cloud_texture = load(cloud_path)
-		if(cloud_path):
+		if(cloud_texture and cloud_path):
 			if(cloud_texture extends Texture):
 				_layer_texture_preview.set_texture(cloud_texture)
 		

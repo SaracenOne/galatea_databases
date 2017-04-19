@@ -7,7 +7,7 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=6]
 
-[node name="ActorPanel" type="Control"]
+[node name="ActorPanel" type="HSplitContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -20,6 +20,9 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+split/offset = -500
+split/collapsed = false
+split/dragger_visibility = 1
 script/script = ExtResource( 1 )
 family_name = NodePath("RightSide/FamilyNameVBoxContainer/FamilyNameLineEdit")
 given_name = NodePath("RightSide/GivenNameVBoxContainer/GivenNameLineEdit")
@@ -51,48 +54,40 @@ hair_color = NodePath("RightSide/HairContainer/HairColorPicker")
 skin_color = NodePath("RightSide/SkinToneContainer/SkinToneColorPicker")
 head_morph_table = NodePath("RightSide/MorphTableContainer/MorphTableTree")
 head_morph_value = NodePath("RightSide/MorphTableContainer/MorphTableSpinBox")
-body_scaler_table = NodePath("RightSide/ScalerTable/ScalerTableControl")
+body_scaler_table = NodePath("RightSide/ScalerTable/ScalerTableTree")
 body_scaler_value = NodePath("RightSide/ScalerTable/ScalerTableSpinBox")
 stamp_table = NodePath("RightSide/StampTable/StampTabelControl")
 stamp_color = NodePath("RightSide/StampTable/StampColorButton")
-naked_clothing = NodePath("RightSide/NakedClothing")
-male_skin_texture_set = NodePath("RightSide/SkeletonPathContainer/MaleSkinTextureSet")
-female_skin_texture_set = NodePath("RightSide/SkeletonPathContainer/FemaleSkinTextureSet")
+body = NodePath("RightSide/BodyControl")
 
 [node name="LeftSide" type="Control" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/right = 2
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 0.2
-margin/bottom = 0.0
+margin/right = 294.0
+margin/bottom = 900.0
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
 [node name="RightSide" type="Control" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/left = 2
-anchor/right = 1
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 0.2
+margin/left = 306.0
 margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/right = 1600.0
+margin/bottom = 900.0
 
 [node name="FamilyNameVBoxContainer" type="VBoxContainer" parent="RightSide"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -135,7 +130,7 @@ placeholder/alpha = 0.6
 editable = false
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = true
+caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
 [node name="GivenNameVBoxContainer" type="VBoxContainer" parent="RightSide"]
@@ -182,7 +177,7 @@ placeholder/alpha = 0.6
 editable = false
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = true
+caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
 [node name="NicknameVBoxContainer" type="VBoxContainer" parent="RightSide"]
@@ -230,7 +225,7 @@ placeholder/alpha = 0.6
 editable = false
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = true
+caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
 [node name="GenderVBoxContainer" type="VBoxContainer" parent="RightSide"]
@@ -661,91 +656,6 @@ margin/bottom = 0.0
 expand = true
 stretch_mode = 0
 
-[node name="SkeletonPathContainer" type="VBoxContainer" parent="RightSide"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 9.0
-margin/top = 513.0
-margin/right = 529.0
-margin/bottom = 614.0
-alignment = 0
-
-[node name="MaleSkeletonPathContainer" type="HBoxContainer" parent="RightSide/SkeletonPathContainer"]
-
-editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 520.0
-margin/bottom = 42.0
-alignment = 0
-
-[node name="MaleSkeletonPathControl" parent="RightSide/SkeletonPathContainer/MaleSkeletonPathContainer" instance=ExtResource( 5 )]
-
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/right = 520.0
-margin/bottom = 42.0
-label = "Male Skeleton Path"
-file_browser_title = "Open PackedScene"
-file_type = "PackedScene"
-disabled = true
-has_clear_button = true
-
-[node name="FemaleSkeletonPathContainer" type="HBoxContainer" parent="RightSide/SkeletonPathContainer"]
-
-editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 46.0
-margin/right = 520.0
-margin/bottom = 88.0
-alignment = 0
-
-[node name="FemaleSkeletonPathControl" parent="RightSide/SkeletonPathContainer/FemaleSkeletonPathContainer" instance=ExtResource( 5 )]
-
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/right = 520.0
-margin/bottom = 42.0
-label = "Female Skeleton Path"
-file_browser_title = "Open PackedScene"
-file_type = "PackedScene"
-disabled = true
-has_clear_button = true
-
-[node name="MaleSkinTextureSet" parent="RightSide/SkeletonPathContainer" instance=ExtResource( 6 )]
-
-margin/top = 92.0
-margin/right = 520.0
-margin/bottom = 134.0
-label = "Male Skin Texture Set:"
-record_name = ""
-disabled = true
-has_clear_button = true
-
-[node name="FemaleSkinTextureSet" parent="RightSide/SkeletonPathContainer" instance=ExtResource( 6 )]
-
-margin/top = 138.0
-margin/right = 520.0
-margin/bottom = 180.0
-label = "Female Skin Texture Set:"
-record_name = ""
-disabled = true
-has_clear_button = true
-
 [node name="CombinedMeshesContainer" type="VBoxContainer" parent="RightSide"]
 
 editor/display_folded = true
@@ -923,16 +833,15 @@ edit_alpha = false
 
 [node name="HairContainer" type="VBoxContainer" parent="RightSide"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 540.0
-margin/top = 421.0
+margin/top = 391.0
 margin/right = 752.0
-margin/bottom = 511.0
+margin/bottom = 481.0
 alignment = 0
 
 [node name="HairRecord" parent="RightSide/HairContainer" instance=ExtResource( 6 )]
@@ -972,9 +881,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 540.0
-margin/top = 501.0
+margin/top = 471.0
 margin/right = 752.0
-margin/bottom = 539.0
+margin/bottom = 509.0
 alignment = 0
 
 [node name="SkinToneLabel" type="Label" parent="RightSide/SkinToneContainer"]
@@ -1014,7 +923,6 @@ edit_alpha = false
 
 [node name="MorphTableContainer" type="VBoxContainer" parent="RightSide"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -1105,11 +1013,14 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ScalerTableControl" parent="RightSide/ScalerTable" instance=ExtResource( 4 )]
+[node name="ScalerTableTree" type="Tree" parent="RightSide/ScalerTable"]
 
-anchor/right = 0
-anchor/bottom = 0
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
 size_flags/vertical = 3
+margin/left = 0.0
 margin/top = 18.0
 margin/right = 214.0
 margin/bottom = 198.0
@@ -1143,10 +1054,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 1010.0
-margin/top = 10.0
-margin/right = 1224.0
-margin/bottom = 236.0
+margin/left = 780.0
+margin/top = 500.0
+margin/right = 994.0
+margin/bottom = 726.0
 alignment = 1
 
 [node name="StampTabelLabel" type="Label" parent="RightSide/StampTable"]
@@ -1194,13 +1105,13 @@ flat = false
 color = Color( 1, 1, 1, 1 )
 edit_alpha = true
 
-[node name="NakedClothing" parent="RightSide" instance=ExtResource( 6 )]
+[node name="BodyControl" parent="RightSide" instance=ExtResource( 6 )]
 
-margin/left = 539.0
-margin/top = 561.0
-margin/right = 993.0
-margin/bottom = 603.0
-label = "Naked Clothing:"
+margin/left = 10.0
+margin/top = 500.0
+margin/right = 532.0
+margin/bottom = 542.0
+label = "Body:"
 record_name = ""
 disabled = true
 has_clear_button = true
@@ -1247,18 +1158,6 @@ has_clear_button = true
 
 [connection signal="file_selected" from="RightSide/ContactIconContainer/ContactIconPathControl" to="." method="_on_ContactIconPathControl_file_selected"]
 
-[connection signal="file_selected" from="RightSide/SkeletonPathContainer/MaleSkeletonPathContainer/MaleSkeletonPathControl" to="." method="_on_MaleSkeletonPathControl_file_selected"]
-
-[connection signal="file_selected" from="RightSide/SkeletonPathContainer/FemaleSkeletonPathContainer/FemaleSkeletonPathControl" to="." method="_on_FemaleSkeletonPathControl_file_selected"]
-
-[connection signal="record_erased" from="RightSide/SkeletonPathContainer/MaleSkinTextureSet" to="." method="_on_MaleSkinTextureSet_record_erased"]
-
-[connection signal="record_selected" from="RightSide/SkeletonPathContainer/MaleSkinTextureSet" to="." method="_on_MaleSkinTextureSet_record_selected"]
-
-[connection signal="record_erased" from="RightSide/SkeletonPathContainer/FemaleSkinTextureSet" to="." method="_on_FemaleSkinTextureSet_record_erased"]
-
-[connection signal="record_selected" from="RightSide/SkeletonPathContainer/FemaleSkinTextureSet" to="." method="_on_FemaleSkinTextureSet_record_selected"]
-
 [connection signal="record_erased" from="RightSide/CombinedMeshesContainer/HeadMeshRecord" to="." method="_on_HeadMeshRecord_record_erased"]
 
 [connection signal="record_selected" from="RightSide/CombinedMeshesContainer/HeadMeshRecord" to="." method="_on_HeadMeshRecord_record_selected"]
@@ -1301,11 +1200,7 @@ has_clear_button = true
 
 [connection signal="value_changed" from="RightSide/MorphTableContainer/MorphTableSpinBox" to="." method="_on_MorphTableSpinBox_value_changed"]
 
-[connection signal="record_cell_selected" from="RightSide/ScalerTable/ScalerTableControl" to="." method="_on_ScalerTableControl_record_cell_selected"]
-
-[connection signal="record_erased" from="RightSide/ScalerTable/ScalerTableControl" to="." method="_on_ScalerTableControl_record_erased"]
-
-[connection signal="record_selected" from="RightSide/ScalerTable/ScalerTableControl" to="." method="_on_ScalerTableControl_record_selected"]
+[connection signal="cell_selected" from="RightSide/ScalerTable/ScalerTableTree" to="." method="_on_ScalerTableTree_cell_selected"]
 
 [connection signal="value_changed" from="RightSide/ScalerTable/ScalerTableSpinBox" to="." method="_on_ScalerTableSpinBox_value_changed"]
 
@@ -1317,8 +1212,8 @@ has_clear_button = true
 
 [connection signal="color_changed" from="RightSide/StampTable/StampColorButton" to="." method="_on_StampColorButton_color_changed"]
 
-[connection signal="record_erased" from="RightSide/NakedClothing" to="." method="_on_NakedClothing_record_erased"]
+[connection signal="record_erased" from="RightSide/BodyControl" to="." method="_on_BodyControl_record_erased"]
 
-[connection signal="record_selected" from="RightSide/NakedClothing" to="." method="_on_NakedClothing_record_selected"]
+[connection signal="record_selected" from="RightSide/BodyControl" to="." method="_on_BodyControl_record_selected"]
 
 

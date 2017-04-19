@@ -9,9 +9,10 @@ var editor_plugin = null
 
 func setup():
 	last_selected_tab = get_current_tab()
-	connect("tab_changed", self, "tab_changed")
-	if(is_root):
-		create_tab()
+	if not(is_connected("tab_changed", self, "tab_changed")):
+		connect("tab_changed", self, "tab_changed")
+		if(is_root):
+			create_tab()
 
 func tab_changed(p_tab):
 	var current_tab = p_tab
@@ -25,10 +26,11 @@ func tab_changed(p_tab):
 		child.call("create_tab")
 		
 func create_tab():
-	var child = get_child(last_selected_tab)
-	if(child):
-		if(child.has_method("create_tab")):
-			child.call("create_tab")
+	if last_selected_tab != -1:
+		var child = get_child(last_selected_tab)
+		if(child):
+			if(child.has_method("create_tab")):
+				child.call("create_tab")
 		
 func erase_tab():
 	for child in get_children():

@@ -49,15 +49,12 @@ var mouth_color = Color(1.0, 1.0, 1.0, 1.0)
 var eyelashes = null
 var eyelashes_color = Color(1.0, 1.0, 1.0, 1.0)
 
-var naked_clothing = null
-
-var male_skin_texture_set = null
-var female_skin_texture_set = null
-
 var skin_color = Color(1.0, 1.0, 1.0, 1.0)
 
 var hair = null
 var hair_color = Color(1.0, 1.0, 1.0, 1.0)
+
+var body = null
 
 var height = 1.0
 var body_scaler_table = {}
@@ -223,21 +220,6 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("stats")):
 		stats = p_dictionary_record.stats
 		
-	if(p_dictionary_record.has("naked_clothing")):
-		naked_clothing = p_databases.clothing_database.find_record_by_name(p_dictionary_record.naked_clothing)
-	else:
-		naked_clothing = null
-		
-	if(p_dictionary_record.has("male_skin_texture_set")):
-		male_skin_texture_set = p_databases.texture_set_database.find_record_by_name(p_dictionary_record.male_skin_texture_set)
-	else:
-		male_skin_texture_set = null
-		
-	if(p_dictionary_record.has("female_skin_texture_set")):
-		female_skin_texture_set = p_databases.texture_set_database.find_record_by_name(p_dictionary_record.female_skin_texture_set)
-	else:
-		female_skin_texture_set = null
-		
 	if(p_dictionary_record.has("skin_color")):
 		skin_color = generic_database_const.convert_string_to_color(p_dictionary_record.skin_color)
 		
@@ -246,6 +228,9 @@ func _load_record(p_dictionary_record, p_databases):
 		
 	if(p_dictionary_record.has("hair_color")):
 		hair_color = generic_database_const.convert_string_to_color(p_dictionary_record.hair_color)
+		
+	if(p_dictionary_record.has("body")):
+		body = p_databases.body_database.find_record_by_name(p_dictionary_record.body)
 		
 	if(p_dictionary_record.has("height")):
 		height = p_dictionary_record.height
@@ -335,21 +320,6 @@ func _save_record(p_dictionary_record, p_databases):
 		p_dictionary_record.eyelashes = ""
 	p_dictionary_record.eyelashes_color = eyelashes_color
 		
-	if(naked_clothing):
-		p_dictionary_record.naked_clothing = naked_clothing.id
-	else:
-		p_dictionary_record.naked_clothing = ""
-		
-	if(male_skin_texture_set):
-		p_dictionary_record.male_skin_texture_set = male_skin_texture_set.id
-	else:
-		p_dictionary_record.male_skin_texture_set = ""
-	if(female_skin_texture_set):
-		p_dictionary_record.female_skin_texture_set = female_skin_texture_set.id
-	else:
-		p_dictionary_record.female_skin_texture_set = ""
-		
-		
 	p_dictionary_record.skin_color = skin_color
 	
 	if(hair):
@@ -358,6 +328,9 @@ func _save_record(p_dictionary_record, p_databases):
 		p_dictionary_record.hair = ""
 	
 	p_dictionary_record.hair_color = hair_color
+	
+	if(body):
+		p_dictionary_record.body = body.id
 	
 	p_dictionary_record.height = height
 	p_dictionary_record.body_scaler_table = body_scaler_table

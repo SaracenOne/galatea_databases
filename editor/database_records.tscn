@@ -128,4 +128,12 @@ flat = false
 
 [connection signal="pressed" from="Panel/HBoxContainer/RenameButton" to="." method="_on_RenameButton_pressed"]
 
+[connection signal="about_to_show" from="NewEditRecordDialog2" to="NewEditRecordDialog2" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog2" to="NewEditRecordDialog2" method="_on_NewEditRecordDialog_confirmed"]
+
+[connection signal="about_to_show" from="NewEditRecordDialog3" to="NewEditRecordDialog3" method="_on_NewEditRecordDialog_about_to_show"]
+
+[connection signal="confirmed" from="NewEditRecordDialog3" to="NewEditRecordDialog3" method="_on_NewEditRecordDialog_confirmed"]
+
 

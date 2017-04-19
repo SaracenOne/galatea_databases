@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=1]
+[gd_scene load_steps=31 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_editor.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_master_dynamic_tab.gd" type="Script" id=2]
@@ -7,27 +7,29 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_actor_panel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/galatea_databases/editor/database_actor_group_panel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/galatea_databases/editor/database_ai_package_panel.tscn" type="PackedScene" id=7]
-[ext_resource path="res://addons/galatea_databases/editor/database_body_scaler_panel.tscn" type="PackedScene" id=8]
-[ext_resource path="res://addons/galatea_databases/editor/database_clothing_panel.tscn" type="PackedScene" id=9]
-[ext_resource path="res://addons/galatea_databases/editor/database_clothing_part_panel.tscn" type="PackedScene" id=10]
-[ext_resource path="res://addons/galatea_databases/editor/database_clothing_set_panel.tscn" type="PackedScene" id=11]
-[ext_resource path="res://addons/galatea_databases/editor/database_headpart_panel.tscn" type="PackedScene" id=12]
-[ext_resource path="res://addons/galatea_databases/editor/database_status_effect_panel.tscn" type="PackedScene" id=13]
-[ext_resource path="res://addons/galatea_databases/editor/database_trait_panel.tscn" type="PackedScene" id=14]
-[ext_resource path="res://addons/galatea_databases/editor/database_activity_panel.tscn" type="PackedScene" id=15]
-[ext_resource path="res://addons/galatea_databases/editor/database_calendar_event_panel.tscn" type="PackedScene" id=16]
-[ext_resource path="res://addons/galatea_databases/editor/database_quest_panel.tscn" type="PackedScene" id=17]
-[ext_resource path="res://addons/galatea_databases/editor/database_school_lesson_panel.tscn" type="PackedScene" id=18]
-[ext_resource path="res://addons/galatea_databases/editor/database_meshpart_panel.tscn" type="PackedScene" id=19]
-[ext_resource path="res://addons/galatea_databases/editor/database_material_type_panel.tscn" type="PackedScene" id=20]
-[ext_resource path="res://addons/galatea_databases/editor/database_stamp_panel.tscn" type="PackedScene" id=21]
-[ext_resource path="res://addons/galatea_databases/editor/database_texture_set_panel.tscn" type="PackedScene" id=22]
-[ext_resource path="res://addons/galatea_databases/editor/database_global_svars.tscn" type="PackedScene" id=23]
-[ext_resource path="res://addons/galatea_databases/editor/database_item_panel.tscn" type="PackedScene" id=24]
-[ext_resource path="res://addons/galatea_databases/editor/database_sms_panel.tscn" type="PackedScene" id=25]
-[ext_resource path="res://addons/galatea_databases/editor/database_location_panel.tscn" type="PackedScene" id=26]
-[ext_resource path="res://addons/galatea_databases/editor/database_precipitation_panel.tscn" type="PackedScene" id=27]
-[ext_resource path="res://addons/galatea_databases/editor/database_weather_panel.tscn" type="PackedScene" id=28]
+[ext_resource path="res://addons/galatea_databases/editor/database_body_panel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/galatea_databases/editor/database_body_scaler_panel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/galatea_databases/editor/database_clothing_panel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://addons/galatea_databases/editor/database_clothing_part_panel.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/galatea_databases/editor/database_clothing_set_panel.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/galatea_databases/editor/database_headpart_panel.tscn" type="PackedScene" id=13]
+[ext_resource path="res://addons/galatea_databases/editor/database_hair_panel.tscn" type="PackedScene" id=14]
+[ext_resource path="res://addons/galatea_databases/editor/database_status_effect_panel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/galatea_databases/editor/database_trait_panel.tscn" type="PackedScene" id=16]
+[ext_resource path="res://addons/galatea_databases/editor/database_activity_panel.tscn" type="PackedScene" id=17]
+[ext_resource path="res://addons/galatea_databases/editor/database_calendar_event_panel.tscn" type="PackedScene" id=18]
+[ext_resource path="res://addons/galatea_databases/editor/database_quest_panel.tscn" type="PackedScene" id=19]
+[ext_resource path="res://addons/galatea_databases/editor/database_school_lesson_panel.tscn" type="PackedScene" id=20]
+[ext_resource path="res://addons/galatea_databases/editor/database_meshpart_panel.tscn" type="PackedScene" id=21]
+[ext_resource path="res://addons/galatea_databases/editor/database_material_type_panel.tscn" type="PackedScene" id=22]
+[ext_resource path="res://addons/galatea_databases/editor/database_stamp_panel.tscn" type="PackedScene" id=23]
+[ext_resource path="res://addons/galatea_databases/editor/database_texture_set_panel.tscn" type="PackedScene" id=24]
+[ext_resource path="res://addons/galatea_databases/editor/database_global_svars.tscn" type="PackedScene" id=25]
+[ext_resource path="res://addons/galatea_databases/editor/database_item_panel.tscn" type="PackedScene" id=26]
+[ext_resource path="res://addons/galatea_databases/editor/database_sms_panel.tscn" type="PackedScene" id=27]
+[ext_resource path="res://addons/galatea_databases/editor/database_location_panel.tscn" type="PackedScene" id=28]
+[ext_resource path="res://addons/galatea_databases/editor/database_precipitation_panel.tscn" type="PackedScene" id=29]
+[ext_resource path="res://addons/galatea_databases/editor/database_weather_panel.tscn" type="PackedScene" id=30]
 
 [node name="DatabaseEditor" type="Panel" groups=[ "database_editor_root" ]]
 
@@ -166,7 +168,7 @@ margin/bottom = 4.0
 script/script = ExtResource( 3 )
 scene = ExtResource( 7 )
 
-[node name="Body Scalers" type="Control" parent="DatabaseEditorTabs/Characters"]
+[node name="Body" type="Control" parent="DatabaseEditorTabs/Characters"]
 
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
@@ -178,12 +180,12 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
 margin/top = 32.0
-margin/right = 4.0
-margin/bottom = 4.0
+margin/right = 1548.0
+margin/bottom = 752.0
 script/script = ExtResource( 3 )
 scene = ExtResource( 8 )
 
-[node name="Clothing" type="Control" parent="DatabaseEditorTabs/Characters"]
+[node name="Body Scalers" type="Control" parent="DatabaseEditorTabs/Characters"]
 
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
@@ -200,7 +202,7 @@ margin/bottom = 4.0
 script/script = ExtResource( 3 )
 scene = ExtResource( 9 )
 
-[node name="Clothing Parts" type="Control" parent="DatabaseEditorTabs/Characters"]
+[node name="Clothing" type="Control" parent="DatabaseEditorTabs/Characters"]
 
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
@@ -217,7 +219,7 @@ margin/bottom = 4.0
 script/script = ExtResource( 3 )
 scene = ExtResource( 10 )
 
-[node name="Clothing Sets" type="Control" parent="DatabaseEditorTabs/Characters"]
+[node name="Clothing Parts" type="Control" parent="DatabaseEditorTabs/Characters"]
 
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
@@ -234,7 +236,7 @@ margin/bottom = 4.0
 script/script = ExtResource( 3 )
 scene = ExtResource( 11 )
 
-[node name="Headparts" type="Control" parent="DatabaseEditorTabs/Characters"]
+[node name="Clothing Sets" type="Control" parent="DatabaseEditorTabs/Characters"]
 
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
@@ -251,7 +253,7 @@ margin/bottom = 4.0
 script/script = ExtResource( 3 )
 scene = ExtResource( 12 )
 
-[node name="Status Effects" type="Control" parent="DatabaseEditorTabs/Characters"]
+[node name="Headparts" type="Control" parent="DatabaseEditorTabs/Characters"]
 
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
@@ -268,7 +270,7 @@ margin/bottom = 4.0
 script/script = ExtResource( 3 )
 scene = ExtResource( 13 )
 
-[node name="Traits" type="Control" parent="DatabaseEditorTabs/Characters"]
+[node name="Hair" type="Control" parent="DatabaseEditorTabs/Characters"]
 
 visibility/visible = false
 rect/pivot = Vector2( 0, 0 )
@@ -284,6 +286,40 @@ margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
 scene = ExtResource( 14 )
+
+[node name="Status Effects" type="Control" parent="DatabaseEditorTabs/Characters"]
+
+visibility/visible = false
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+script/script = ExtResource( 3 )
+scene = ExtResource( 15 )
+
+[node name="Traits" type="Control" parent="DatabaseEditorTabs/Characters"]
+
+visibility/visible = false
+rect/pivot = Vector2( 0, 0 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+script/script = ExtResource( 3 )
+scene = ExtResource( 16 )
 
 [node name="Game Logic" type="TabContainer" parent="DatabaseEditorTabs" groups=[ "database_editor_tab" ]]
 
@@ -319,7 +355,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 15 )
+scene = ExtResource( 17 )
 
 [node name="Calendar Event" type="Control" parent="DatabaseEditorTabs/Game Logic"]
 
@@ -336,7 +372,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 16 )
+scene = ExtResource( 18 )
 
 [node name="Quests" type="Control" parent="DatabaseEditorTabs/Game Logic"]
 
@@ -353,7 +389,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 17 )
+scene = ExtResource( 19 )
 
 [node name="School Lesson" type="Control" parent="DatabaseEditorTabs/Game Logic"]
 
@@ -370,7 +406,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 18 )
+scene = ExtResource( 20 )
 
 [node name="Graphics" type="TabContainer" parent="DatabaseEditorTabs" groups=[ "database_editor_tab" ]]
 
@@ -406,7 +442,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 19 )
+scene = ExtResource( 21 )
 
 [node name="Material Types" type="Control" parent="DatabaseEditorTabs/Graphics"]
 
@@ -423,7 +459,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 20 )
+scene = ExtResource( 22 )
 
 [node name="Stamps" type="Control" parent="DatabaseEditorTabs/Graphics"]
 
@@ -440,7 +476,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 21 )
+scene = ExtResource( 23 )
 
 [node name="Texture Sets" type="Control" parent="DatabaseEditorTabs/Graphics"]
 
@@ -457,7 +493,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 22 )
+scene = ExtResource( 24 )
 
 [node name="Miscellaneous" type="TabContainer" parent="DatabaseEditorTabs" groups=[ "database_editor_tab" ]]
 
@@ -493,7 +529,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 23 )
+scene = ExtResource( 25 )
 
 [node name="Items" type="Control" parent="DatabaseEditorTabs/Miscellaneous"]
 
@@ -510,7 +546,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 24 )
+scene = ExtResource( 26 )
 
 [node name="SMS" type="Control" parent="DatabaseEditorTabs/Miscellaneous"]
 
@@ -527,7 +563,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 25 )
+scene = ExtResource( 27 )
 
 [node name="World" type="TabContainer" parent="DatabaseEditorTabs" groups=[ "database_editor_tab" ]]
 
@@ -562,7 +598,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 26 )
+scene = ExtResource( 28 )
 
 [node name="Precipitation" type="Control" parent="DatabaseEditorTabs/World"]
 
@@ -579,7 +615,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 27 )
+scene = ExtResource( 29 )
 
 [node name="Weather" type="Control" parent="DatabaseEditorTabs/World"]
 
@@ -596,7 +632,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 script/script = ExtResource( 3 )
-scene = ExtResource( 28 )
+scene = ExtResource( 30 )
 
 [node name="Panel" type="PanelContainer" parent="."]
 

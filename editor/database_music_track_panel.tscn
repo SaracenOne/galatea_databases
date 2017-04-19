@@ -5,7 +5,7 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/galatea_databases/editor/database_conditional_list.tscn" type="PackedScene" id=4]
 
-[node name="MusicTrackPanel" type="Control"]
+[node name="MusicTrackPanel" type="HSplitContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 anchor/right = 1
@@ -18,6 +18,9 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+split/offset = -500
+split/collapsed = false
+split/dragger_visibility = 1
 script/script = ExtResource( 1 )
 track_title = NodePath("RightSide/Left/TrackTitleContainer/TrackTitleControl")
 track_artist = NodePath("RightSide/Left/TrackArtistContainer/TrackArtistControl")
@@ -30,33 +33,28 @@ conditionals = NodePath("RightSide/Right/DatabaseConditionalList")
 [node name="LeftSide" type="Control" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/right = 2
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 0.2
-margin/bottom = 0.0
+margin/right = 292.0
+margin/bottom = 900.0
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
 [node name="RightSide" type="HBoxContainer" parent="."]
 
 rect/pivot = Vector2( 0, 0 )
-anchor/left = 2
-anchor/right = 1
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 0.2
+margin/left = 304.0
 margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/right = 1600.0
+margin/bottom = 900.0
 alignment = 0
 
 [node name="Left" type="Control" parent="RightSide"]
@@ -68,7 +66,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 638.0
+margin/right = 646.0
 margin/bottom = 900.0
 
 [node name="TrackTitleContainer" type="VBoxContainer" parent="RightSide/Left"]
@@ -116,7 +114,7 @@ placeholder/alpha = 0.6
 editable = false
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = true
+caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
 [node name="TrackArtistContainer" type="VBoxContainer" parent="RightSide/Left"]
@@ -164,7 +162,7 @@ placeholder/alpha = 0.6
 editable = false
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = true
+caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
 [node name="TrackFilePathControl" parent="RightSide/Left" instance=ExtResource( 3 )]
@@ -283,9 +281,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/left = 642.0
+margin/left = 650.0
 margin/top = 0.0
-margin/right = 1280.0
+margin/right = 1296.0
 margin/bottom = 900.0
 
 [node name="DatabaseConditionalList" parent="RightSide/Right" instance=ExtResource( 4 )]

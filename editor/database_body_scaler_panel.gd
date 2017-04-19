@@ -16,9 +16,10 @@ export(NodePath) var inverse_nodepath = NodePath()
 export(NodePath) var min_nodepath = NodePath()
 export(NodePath) var max_nodepath = NodePath()
 
+export(NodePath) var character_creator_nodepath = NodePath()
+export(NodePath) var printed_name_nodepath = NodePath()
+export(NodePath) var default_value_nodepath = NodePath()
 
-#
-var database_records = null
 onready var _bone_tree_control_node = get_node(bone_tree_nodepath)
 onready var _command_tree_control_node = get_node(command_tree_nodepath)
 
@@ -31,6 +32,10 @@ onready var _inverse_control_node = get_node(inverse_nodepath)
 
 onready var _min_control_node = get_node(min_nodepath)
 onready var _max_control_node = get_node(max_nodepath)
+
+onready var _character_creator_node = get_node(character_creator_nodepath)
+onready var _printed_name_node = get_node(printed_name_nodepath)
+onready var _default_value_node = get_node(default_value_nodepath)
 
 var bone = null
 var command = null
@@ -47,21 +52,8 @@ func _ready():
 	_type_selection_control_node.get_popup().connect("item_pressed", self, "type_selected")
 
 func galatea_databases_assigned():
-	database_records = get_node("LeftSide/DatabaseRecords")
-	assert(database_records)
-
-	if not(is_connected("new_record_duplicate", database_records, "new_record_duplicate_callback")):
-		connect("new_record_duplicate", database_records, "new_record_duplicate_callback")
-
-	if not(is_connected("new_record_add_successful", database_records, "new_record_add_successful_callback")):
-		connect("new_record_add_successful", database_records, "new_record_add_successful_callback")
-
-	if not(is_connected("rename_record_successful", database_records, "rename_record_successful_callback")):
-		connect("rename_record_successful", database_records, "rename_record_successful_callback")
-
-	if not(is_connected("erase_record_successful", database_records, "erase_record_successful_callback")):
-		connect("erase_record_successful", database_records, "erase_record_successful_callback")
-
+	.galatea_databases_assigned()
+	
 	current_database = galatea_databases.body_scaler_database
 
 	if(current_database != null):
@@ -78,6 +70,15 @@ func set_current_record_callback(p_record):
 	update_bone_tree()
 	update_command_tree()
 	update_command_data()
+	
+	_character_creator_node.set_disabled(false)
+	_character_creator_node.set_pressed(current_record.character_creator)
+	
+	_printed_name_node.set_editable(true)
+	_printed_name_node.set_text(current_record.printed_name)
+	
+	_default_value_node.set_step(1)
+	_default_value_node.set_value(current_record.default_value)
 
 ###
 
@@ -276,4 +277,19 @@ func _on_MaxSpinbox_value_changed( value ):
 func _on_InverseCheckBox_toggled( pressed ):
 	if(current_record and bone and command):
 		command.inverse = pressed
+		current_database.mark_database_as_modified()
+		
+func _on_CharacterCreatorCheckBox_toggled( pressed ):
+	if(current_record):
+		current_record.character_creator = pressed
+		current_database.mark_database_as_modified()
+
+func _on_PrintedNameLineEdit_text_changed( text ):
+	if(current_record):
+		current_record.printed_name = text
+		current_database.mark_database_as_modified()
+		
+func _on_DefaultValueSpinbox_value_changed( value ):
+	if(current_record):
+		current_record.default_value = value
 		current_database.mark_database_as_modified()

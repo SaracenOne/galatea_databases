@@ -2,8 +2,6 @@ tool
 extends "database_panel.gd"
 
 const headpart_record_const = preload("../databases/headpart_record.gd")
-#
-var database_records = null
 
 export(NodePath) var mesh_file_control = NodePath()
 export(NodePath) var gen_morph_file_control = NodePath()
@@ -29,21 +27,8 @@ func _ready():
 	pass
 
 func galatea_databases_assigned():
-	database_records = get_node("LeftSide/DatabaseRecords")
-	assert(database_records)
-
-	if not(is_connected("new_record_duplicate", database_records, "new_record_duplicate_callback")):
-		connect("new_record_duplicate", database_records, "new_record_duplicate_callback")
-
-	if not(is_connected("new_record_add_successful", database_records, "new_record_add_successful_callback")):
-		connect("new_record_add_successful", database_records, "new_record_add_successful_callback")
-
-	if not(is_connected("rename_record_successful", database_records, "rename_record_successful_callback")):
-		connect("rename_record_successful", database_records, "rename_record_successful_callback")
-
-	if not(is_connected("erase_record_successful", database_records, "erase_record_successful_callback")):
-		connect("erase_record_successful", database_records, "erase_record_successful_callback")
-
+	.galatea_databases_assigned()
+	
 	current_database = galatea_databases.meshpart_database
 
 	if(current_database != null):
