@@ -26,7 +26,7 @@ printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameContr
 scene_file_control = NodePath("RightSide/SceneFileMainContainer")
 main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPath")
 main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
-scene_preview = NodePath("RightSide/ScenePreview")
+scene_preview = NodePath("RightSide/ScenePreviewContainer/ScenePreview")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -167,12 +167,43 @@ margin/bottom = 0.0
 expand = true
 stretch_mode = 0
 
-[node name="ScenePreview" parent="RightSide" instance=ExtResource( 4 )]
+[node name="ScenePreviewContainer" type="VBoxContainer" parent="RightSide"]
 
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 210.0
+margin/top = 201.0
 margin/right = 522.0
-margin/bottom = 722.0
+margin/bottom = 737.0
+alignment = 0
+
+[node name="ScenePreview" parent="RightSide/ScenePreviewContainer" instance=ExtResource( 4 )]
+
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/right = 512.0
+margin/bottom = 512.0
+zoom_rate = 10.0
+
+[node name="CreateIconButton" type="Button" parent="RightSide/ScenePreviewContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 516.0
+margin/right = 512.0
+margin/bottom = 536.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Create Icon"
+flat = false
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
@@ -182,14 +213,12 @@ margin/bottom = 722.0
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameControl" to="." method="_on_printed_name_text_changed"]
 
 [connection signal="file_selected" from="RightSide/SceneFileMainContainer" to="." method="_on_scene_file_selected"]
 
 [connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPath" to="." method="_on_MainIconPath_file_selected"]
+
+[connection signal="pressed" from="RightSide/ScenePreviewContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
 
 

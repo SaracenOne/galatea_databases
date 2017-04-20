@@ -301,10 +301,6 @@ is_disabled = true
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="text_changed" from="RightSide/Left/TrackTitleContainer/TrackTitleControl" to="." method="_on_TrackTitleControl_text_changed"]
 
 [connection signal="text_changed" from="RightSide/Left/TrackArtistContainer/TrackArtistControl" to="." method="_on_TrackArtistControl_text_changed"]

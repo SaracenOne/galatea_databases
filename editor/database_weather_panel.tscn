@@ -777,10 +777,6 @@ suffix = ""
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="color_changed" from="RightSide/ColorContainer/ColorTimeContainer/SunriseContainer/SunriseColorPickerButton" to="." method="_on_SunriseColorPickerButton_color_changed"]
 
 [connection signal="color_changed" from="RightSide/ColorContainer/ColorTimeContainer/DayContainer/DayColorPickerButton" to="." method="_on_DayColorPickerButton_color_changed"]

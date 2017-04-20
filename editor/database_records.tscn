@@ -114,10 +114,6 @@ shortcut = null
 text = "Rename"
 flat = false
 
-[connection signal="about_to_show" from="NewEditRecordDialog" to="NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog" to="NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="cell_selected" from="RecordTree" to="." method="_on_RecordTree_cell_selected"]
 
 [connection signal="item_selected" from="RecordTree" to="." method="_on_RecordTree_item_selected"]
@@ -127,13 +123,3 @@ flat = false
 [connection signal="pressed" from="Panel/HBoxContainer/EraseButton" to="." method="_on_EraseButton_pressed"]
 
 [connection signal="pressed" from="Panel/HBoxContainer/RenameButton" to="." method="_on_RenameButton_pressed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog2" to="NewEditRecordDialog2" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog2" to="NewEditRecordDialog2" method="_on_NewEditRecordDialog_confirmed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog3" to="NewEditRecordDialog3" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog3" to="NewEditRecordDialog3" method="_on_NewEditRecordDialog_confirmed"]
-
-

@@ -222,10 +222,6 @@ items = [ "integer", null, false, false, false, 0, 0, null, "", false, "float", 
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="text_changed" from="RightSide/SvarValueContainer/SvarValueColumns/SvarValueContainerLeft/SvarValueLineEdit" to="." method="_on_SvarValueLineEdit_text_changed"]
 
 [connection signal="value_changed" from="RightSide/SvarValueContainer/SvarValueColumns/SvarValueContainerLeft/SvarValueSpinbox" to="." method="_on_SvarValueSpinbox_value_changed"]

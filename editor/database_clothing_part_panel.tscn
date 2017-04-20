@@ -129,10 +129,6 @@ has_clear_button = true
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="file_selected" from="RightSide/GendersContainer/GenderMaleContainer/MaleMeshControl" to="." method="_on_MaleMeshControl_file_selected"]
 
 [connection signal="file_selected" from="RightSide/GendersContainer/GenderFemaleContainer/FemaleMeshControl" to="." method="_on_FemaleMeshControl_file_selected"]

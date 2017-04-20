@@ -22,6 +22,11 @@ var camera = null
 var mesh = null
 var scene = null
 
+func _notification(what):
+	if what == Control.NOTIFICATION_RESIZED:
+		if(viewport):
+			viewport.set_rect(Rect2(Vector2(0.0, 0.0), get_size()))
+
 func _input_event(p_event):
 	if (p_event.type==InputEvent.MOUSE_MOTION and p_event.button_mask & BUTTON_MASK_LEFT):
 		if(x_rotation):
@@ -43,7 +48,7 @@ func _update_rotation():
 	elif(zoom > 5.0):
 		zoom = 5.0
 	
-	var aabb= mesh_instance.get_aabb()
+	var aabb = mesh_instance.get_aabb()
 	follow_target = aabb.pos + aabb.size*0.5
 	
 	camera.set_translation(follow_target)
@@ -53,18 +58,22 @@ func _update_rotation():
 	var end = Transform(camera.get_global_transform().basis, follow_target).xform(Vector3(0.0, 0.0, zoom))
 	camera.set_translation(end)
 
-func _init():
-	viewport = Viewport.new()
-	var world = World.new()
-	viewport.set_world(world)
-	viewport.set_transparent_background(true)
+func _ready():
+	if (first_enter):
+		first_enter=false
 	
-	add_child(viewport)
-	viewport.set_disable_input(true)
+	viewport = get_node("Viewport")
+	viewport.set_rect(Rect2(Vector2(0.0, 0.0), get_size()))
 	
+	get_node("TextureFrame").set_texture(viewport.get_render_target_texture())
+	
+	var environment = Environment.new()
+	environment.set_background(Environment.BG_KEEP)
+	 
 	camera = Camera.new()
 	camera.set_transform(Transform(Matrix3(),Vector3(0,0,3)))
 	camera.set_perspective(45,0.0001,10000)
+	camera.set_environment(environment)
 	viewport.add_child(camera)
 	
 	light1 = DirectionalLight.new()
@@ -94,10 +103,6 @@ func _init():
 	first_enter=true
 	rot_x=0
 	rot_y=0
-
-func _ready():
-	if (first_enter):
-		first_enter=false
 
 func set_mesh(p_mesh):
 	mesh=p_mesh

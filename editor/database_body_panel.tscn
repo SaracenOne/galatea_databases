@@ -279,10 +279,6 @@ margin/bottom = 762.0
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="file_selected" from="RightSide/MainContainers/SkeletonPathContainer/MaleSkeletonPathContainer/MaleSkeletonPathControl" to="." method="_on_MaleSkeletonPathControl_file_selected"]
 
 [connection signal="file_selected" from="RightSide/MainContainers/SkeletonPathContainer/FemaleSkeletonPathContainer/FemaleSkeletonPathControl" to="." method="_on_FemaleSkeletonPathControl_file_selected"]

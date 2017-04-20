@@ -1124,10 +1124,6 @@ has_clear_button = true
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="text_changed" from="RightSide/FamilyNameVBoxContainer/FamilyNameLineEdit" to="." method="_on_FamilyNameLineEdit_text_changed"]
 
 [connection signal="text_changed" from="RightSide/GivenNameVBoxContainer/GivenNameLineEdit" to="." method="_on_GivenNameLineEdit_text_changed"]

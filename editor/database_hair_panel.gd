@@ -17,8 +17,18 @@ onready var _main_icon_preview_control_node = get_node(main_icon_preview_control
 
 onready var _scene_preview_node = get_node(scene_preview)
 
+var editor_file_dialog = FileDialog.new()
+var cached_image = null
+
 func _ready():
-	pass
+	add_child(editor_file_dialog)
+	
+	editor_file_dialog.set_title("Save Image...");
+	editor_file_dialog.connect("file_selected", self, "_on_file_selected")
+	editor_file_dialog.set_mode(FileDialog.MODE_SAVE_FILE);
+	editor_file_dialog.set_access(FileDialog.ACCESS_RESOURCES);
+	editor_file_dialog.add_filter("*." + "png")
+	editor_file_dialog.set_current_path("res://")
 
 func galatea_databases_assigned():
 	.galatea_databases_assigned()
@@ -86,3 +96,23 @@ func _on_MainIconPath_file_selected( p_path ):
 				_main_icon_preview_control_node.set_texture(main_icon_texture)
 			
 		current_database.mark_database_as_modified()
+
+func _on_CreateIconButton_pressed():
+	if _scene_preview_node:
+		_scene_preview_node.viewport.queue_screen_capture()
+		var image = null
+		
+		while 1:
+			image = _scene_preview_node.viewport.get_screen_capture()
+			if image != null and image.empty() == false:
+				break
+		
+		if(image.empty() == false):
+			cached_image = image.resized(64, 64, 0)
+			
+			editor_file_dialog.set_current_file("icon.png")
+			editor_file_dialog.popup_centered_ratio()
+			
+func _on_file_selected(p_path):
+	if(cached_image != null):
+		cached_image.save_png(p_path)

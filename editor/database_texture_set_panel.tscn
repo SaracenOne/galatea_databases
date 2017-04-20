@@ -151,10 +151,6 @@ stretch_mode = 0
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="cell_selected" from="RightSide/TexturesContainer/TexturesContainerLeft/TexturesTree" to="." method="_on_TexturesTree_cell_selected"]
 
 [connection signal="file_selected" from="RightSide/TexturesContainer/TexturesContainerLeft/TexturesPathControl" to="." method="_on_TexturesPathControl_file_selected"]

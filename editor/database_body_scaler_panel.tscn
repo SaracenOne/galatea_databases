@@ -709,10 +709,6 @@ suffix = ""
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="about_to_show" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="LeftSide/DatabaseRecords/NewEditRecordDialog" to="LeftSide/DatabaseRecords/NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 [connection signal="cell_selected" from="RightSide/BoneScalerArea/BonesContainer/BonesTree" to="." method="_on_BonesTree_cell_selected"]
 
 [connection signal="pressed" from="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer/AddBoneButton" to="." method="_on_AddBoneButton_pressed"]
@@ -744,9 +740,4 @@ suffix = ""
 [connection signal="text_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
 
 [connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/DefaultValueContainer/DefaultValueSpinbox" to="." method="_on_DefaultValueSpinbox_value_changed"]
-
-[connection signal="about_to_show" from="NewEditRecordDialog" to="NewEditRecordDialog" method="_on_NewEditRecordDialog_about_to_show"]
-
-[connection signal="confirmed" from="NewEditRecordDialog" to="NewEditRecordDialog" method="_on_NewEditRecordDialog_confirmed"]
-
 
