@@ -29,7 +29,8 @@ stamp_control = NodePath("RightSide/StampControl")
 main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPathContainer")
 main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
 character_creator_enabled_control = NodePath("RightSide/CharacterCreatorCheckBox")
-headpart_preview = NodePath("RightSide/HeadpartPreview")
+scene_preview = NodePath("RightSide/HeadpartContainer/HeadpartPreview")
+capture_button = NodePath("RightSide/HeadpartContainer/ButtonContainer/CreateIconButton")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -200,12 +201,70 @@ text = "Avaliable in Character Creator"
 flat = false
 align = 0
 
-[node name="HeadpartPreview" parent="RightSide" instance=ExtResource( 5 )]
+[node name="HeadpartContainer" type="VBoxContainer" parent="RightSide"]
 
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
 margin/left = 549.0
 margin/top = 11.0
-margin/right = 1061.0
-margin/bottom = 523.0
+margin/right = 589.0
+margin/bottom = 51.0
+alignment = 0
+
+[node name="HeadpartPreview" parent="RightSide/HeadpartContainer" instance=ExtResource( 5 )]
+
+rect/min_size = Vector2( 256, 256 )
+
+[node name="ButtonContainer" type="HBoxContainer" parent="RightSide/HeadpartContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 260.0
+margin/right = 256.0
+margin/bottom = 280.0
+alignment = 0
+
+[node name="CreateIconButton" type="Button" parent="RightSide/HeadpartContainer/ButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 199.0
+margin/bottom = 20.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Create Icon"
+flat = false
+
+[node name="OrientButton" type="Button" parent="RightSide/HeadpartContainer/ButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 203.0
+margin/top = 0.0
+margin/right = 256.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Orient"
+flat = false
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
@@ -226,5 +285,9 @@ margin/bottom = 523.0
 [connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPathContainer" to="." method="_on_MainIconPathContainer_file_selected"]
 
 [connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
+
+[connection signal="pressed" from="RightSide/HeadpartContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
+
+[connection signal="pressed" from="RightSide/HeadpartContainer/ButtonContainer/OrientButton" to="." method="_on_OrientButton_pressed"]
 
 

@@ -27,6 +27,7 @@ scene_file_control = NodePath("RightSide/SceneFileMainContainer")
 main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPath")
 main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
 scene_preview = NodePath("RightSide/ScenePreviewContainer/ScenePreview")
+capture_button = NodePath("RightSide/ScenePreviewContainer/ButtonContainer/CreateIconButton")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -182,27 +183,60 @@ alignment = 0
 
 [node name="ScenePreview" parent="RightSide/ScenePreviewContainer" instance=ExtResource( 4 )]
 
+rect/min_size = Vector2( 512, 512 )
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/right = 512.0
 margin/bottom = 512.0
 zoom_rate = 10.0
+default_capture_filename = "icon.png"
 
-[node name="CreateIconButton" type="Button" parent="RightSide/ScenePreviewContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="RightSide/ScenePreviewContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 516.0
+margin/right = 512.0
+margin/bottom = 536.0
+alignment = 0
+
+[node name="CreateIconButton" type="Button" parent="RightSide/ScenePreviewContainer/ButtonContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 455.0
+margin/bottom = 20.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Create Icon"
+flat = false
+
+[node name="OrientButton" type="Button" parent="RightSide/ScenePreviewContainer/ButtonContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 516.0
+margin/left = 459.0
+margin/top = 0.0
 margin/right = 512.0
-margin/bottom = 536.0
+margin/bottom = 20.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Create Icon"
+text = "Orient"
 flat = false
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
@@ -219,6 +253,8 @@ flat = false
 
 [connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPath" to="." method="_on_MainIconPath_file_selected"]
 
-[connection signal="pressed" from="RightSide/ScenePreviewContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
+[connection signal="pressed" from="RightSide/ScenePreviewContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
+
+[connection signal="pressed" from="RightSide/ScenePreviewContainer/ButtonContainer/OrientButton" to="." method="_on_OrientButton_pressed"]
 
 

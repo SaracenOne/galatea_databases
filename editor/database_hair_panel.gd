@@ -8,6 +8,7 @@ export(NodePath) var main_icon_path_control = NodePath()
 export(NodePath) var main_icon_preview_control = NodePath()
 
 export(NodePath) var scene_preview = NodePath()
+export(NodePath) var capture_button = NodePath()
 
 onready var _printed_name_control_node = get_node(printed_name_control)
 onready var _scene_file_control_node = get_node(scene_file_control)
@@ -16,19 +17,7 @@ onready var _main_icon_path_control_node = get_node(main_icon_path_control)
 onready var _main_icon_preview_control_node = get_node(main_icon_preview_control)
 
 onready var _scene_preview_node = get_node(scene_preview)
-
-var editor_file_dialog = FileDialog.new()
-var cached_image = null
-
-func _ready():
-	add_child(editor_file_dialog)
-	
-	editor_file_dialog.set_title("Save Image...");
-	editor_file_dialog.connect("file_selected", self, "_on_file_selected")
-	editor_file_dialog.set_mode(FileDialog.MODE_SAVE_FILE);
-	editor_file_dialog.set_access(FileDialog.ACCESS_RESOURCES);
-	editor_file_dialog.add_filter("*." + "png")
-	editor_file_dialog.set_current_path("res://")
+onready var _capture_button_node = get_node(capture_button)
 
 func galatea_databases_assigned():
 	.galatea_databases_assigned()
@@ -60,6 +49,9 @@ func set_current_record_callback(p_record):
 	
 	_main_icon_path_control_node.set_file_path(current_record.main_icon_path)
 	_main_icon_path_control_node.set_disabled(false)
+	
+	_capture_button_node.set_disabled(false)
+	_scene_preview_node.set_default_capture_filename(current_record.id + "_icon.png")
 	
 	_main_icon_preview_control_node.set_texture(null)
 	var main_icon_texture = null
@@ -98,21 +90,10 @@ func _on_MainIconPath_file_selected( p_path ):
 		current_database.mark_database_as_modified()
 
 func _on_CreateIconButton_pressed():
-	if _scene_preview_node:
-		_scene_preview_node.viewport.queue_screen_capture()
-		var image = null
-		
-		while 1:
-			image = _scene_preview_node.viewport.get_screen_capture()
-			if image != null and image.empty() == false:
-				break
-		
-		if(image.empty() == false):
-			cached_image = image.resized(64, 64, 0)
-			
-			editor_file_dialog.set_current_file("icon.png")
-			editor_file_dialog.popup_centered_ratio()
-			
-func _on_file_selected(p_path):
-	if(cached_image != null):
-		cached_image.save_png(p_path)
+	if _scene_preview_node and _capture_button_node:
+		_scene_preview_node.save_preview_image()
+
+func _on_OrientButton_pressed():
+	_scene_preview_node.rot_x = -20.0
+	_scene_preview_node.rot_y = 45.0
+	_scene_preview_node._update_rotation()

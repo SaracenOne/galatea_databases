@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_editor_3d_preview.gd" type="Script" id=1]
 
@@ -8,7 +8,7 @@
 [node name="DatabaseEditor3DPreview" type="Panel"]
 
 rect/pivot = Vector2( 0, 0 )
-rect/min_size = Vector2( 1, 150 )
+rect/min_size = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -23,6 +23,7 @@ min_zoom = 0.0
 zoom_rate = 1.0
 x_rotation = true
 y_rotation = true
+default_capture_filename = ""
 
 [node name="Viewport" type="Viewport" parent="."]
 

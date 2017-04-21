@@ -21,9 +21,6 @@ export(NodePath) var traits = NodePath()
 export(NodePath) var contact_icon_path = NodePath()
 export(NodePath) var contact_icon_texture = NodePath()
 
-export(NodePath) var skeleton_male_path = NodePath()
-export(NodePath) var skeleton_female_path = NodePath()
-
 export(NodePath) var valid_contact = NodePath()
 export(NodePath) var is_storyline_actor = NodePath()
 
@@ -69,9 +66,6 @@ onready var _traits_control = get_node(traits)
 
 onready var _contact_icon_path_control = get_node(contact_icon_path)
 onready var _contact_icon_texture_control = get_node(contact_icon_texture)
-
-onready var _skeleton_male_path_control = get_node(skeleton_male_path)
-onready var _skeleton_female_path_control = get_node(skeleton_female_path)
 
 onready var _valid_contact_control = get_node(valid_contact)
 onready var _is_storyline_actor_control = get_node(is_storyline_actor)

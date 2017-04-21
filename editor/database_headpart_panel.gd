@@ -10,7 +10,8 @@ export(NodePath) var main_icon_path_control = NodePath()
 export(NodePath) var main_icon_preview_control = NodePath()
 export(NodePath) var character_creator_enabled_control = NodePath()
 
-export(NodePath) var headpart_preview = NodePath()
+export(NodePath) var scene_preview = NodePath()
+export(NodePath) var capture_button = NodePath()
 
 onready var _headpart_type_control_node = get_node(headpart_type_control)
 onready var _meshpart_control_node = get_node(meshpart_control)
@@ -19,7 +20,8 @@ onready var _main_icon_path_control_node = get_node(main_icon_path_control)
 onready var _main_icon_preview_control_node = get_node(main_icon_preview_control)
 onready var _character_creator_enabled_control = get_node(character_creator_enabled_control)
 
-onready var _headpart_preview = get_node(headpart_preview)
+onready var _scene_preview_node = get_node(scene_preview)
+onready var _capture_button_node = get_node(capture_button)
 
 func _ready():
 	pass
@@ -72,8 +74,10 @@ func set_current_record_callback(p_record):
 		if(main_icon_texture extends Texture):
 			_main_icon_preview_control_node.set_texture(main_icon_texture)
 	##
+	_capture_button_node.set_disabled(false)
+	_scene_preview_node.set_default_capture_filename(current_record.id + "_icon.png")
 	
-	setup_headpart_preview()
+	setup_scene_preview()
 	
 	_stamp_control_node.set_disabled(false)
 	if(p_record.stamp):
@@ -91,17 +95,17 @@ func _on_headpart_type_selected( p_id ):
 func _on_StampControl_record_selected( p_record ):
 	if(current_record):
 		current_record.stamp = p_record
-		setup_headpart_preview()
+		setup_scene_preview()
 		current_database.mark_database_as_modified()
 		
 func _on_StampControl_record_erased( p_record ):
 	if(current_record):
 		current_record.stamp = p_record
-		setup_headpart_preview()
+		setup_scene_preview()
 		current_database.mark_database_as_modified()
 		
 
-func setup_headpart_preview():
+func setup_scene_preview():
 	if(current_record.meshpart != null and current_record.meshpart.mesh_path != ""):
 		var mesh = load(current_record.meshpart.mesh_path)
 		if(mesh and mesh extends Mesh):
@@ -116,26 +120,26 @@ func setup_headpart_preview():
 				material = FixedMaterial.new()
 				material.set_texture(FixedMaterial.PARAM_DIFFUSE, texture)
 
-			if(_headpart_preview):
-				_headpart_preview.set_mesh(mesh)
-				_headpart_preview.set_material(material)
+			if(_scene_preview_node):
+				_scene_preview_node.set_mesh(mesh)
+				_scene_preview_node.set_material(material)
 		else:
-			_headpart_preview.set_mesh(null)
-			_headpart_preview.set_material(null)
+			_scene_preview_node.set_mesh(null)
+			_scene_preview_node.set_material(null)
 	else:
-		_headpart_preview.set_mesh(null)
-		_headpart_preview.set_material(null)
+		_scene_preview_node.set_mesh(null)
+		_scene_preview_node.set_material(null)
 			
 func _on_MeshpartControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.meshpart = p_record
-		setup_headpart_preview()
+		setup_scene_preview()
 		current_database.mark_database_as_modified()
 		
 func _on_MeshpartControl_record_erased( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.meshpart = p_record
-		setup_headpart_preview()
+		setup_scene_preview()
 		current_database.mark_database_as_modified()
 		
 func _on_CharacterCreatorCheckBox_toggled( pressed ):
@@ -156,3 +160,13 @@ func _on_MainIconPathContainer_file_selected( p_path ):
 				_main_icon_preview_control_node.set_texture(main_icon_texture)
 			
 		current_database.mark_database_as_modified()
+
+
+func _on_CreateIconButton_pressed():
+	if _scene_preview_node and _capture_button_node:
+		_scene_preview_node.save_preview_image()
+
+func _on_OrientButton_pressed():
+	_scene_preview_node.rot_x = -20.0
+	_scene_preview_node.rot_y = 45.0
+	_scene_preview_node._update_rotation()
