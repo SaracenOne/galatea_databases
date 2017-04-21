@@ -741,3 +741,4 @@ suffix = ""
 
 [connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/DefaultValueContainer/DefaultValueSpinbox" to="." method="_on_DefaultValueSpinbox_value_changed"]
 
+

@@ -11,56 +11,52 @@ enum {BLOODTYPE_A,
  BLOODTYPE_AB,
  BLOODTYPE_O}
 
-var gender = GENDER_MALE
+export(int) var gender = GENDER_MALE
 
-var age = 0
-var bloodtype = BLOODTYPE_A
+export(int) var age = 0
+export(int) var bloodtype = BLOODTYPE_A
 
-var date_of_birth_day = 0
-var date_of_birth_month = 0
+export(int) var date_of_birth_day = 0
+export(int) var date_of_birth_month = 0
 
-var given_name= ""
-var family_name = ""
-var nickname = ""
+export(String) var given_name= ""
+export(String) var family_name = ""
+export(String) var nickname = ""
 
-var is_valid_contact = false
-var is_storyline_actor = false
+export(bool) var is_valid_contact = false
+export(bool) var is_storyline_actor = false
 
-var contact_icon_path = ""
+export(String) var contact_icon_path = ""
 
-var skeleton_male_path = ""
-var skeleton_female_path = ""
+export(Array) var actor_groups = []
+export(Array) var traits = []
+export(Array) var ai_packages = []
 
-var actor_groups = []
-var traits = []
-var ai_packages = []
-
-var stats = {}
+export(Dictionary) var stats = {}
 
 # Appearence
-var head = null
-var head_color = Color(1.0, 1.0, 1.0, 1.0)
-var eyes = null
-var eyes_color = Color(1.0, 1.0, 1.0, 1.0)
-var eyebrows = null
-var eyebrows_color = Color(1.0, 1.0, 1.0, 1.0)
-var mouth = null
-var mouth_color = Color(1.0, 1.0, 1.0, 1.0)
-var eyelashes = null
-var eyelashes_color = Color(1.0, 1.0, 1.0, 1.0)
+export(Resource) var head = null
+export(Color) var head_color = Color(1.0, 1.0, 1.0, 1.0)
+export(Resource) var eyes = null
+export(Color) var eyes_color = Color(1.0, 1.0, 1.0, 1.0)
+export(Resource) var eyebrows = null
+export(Color) var eyebrows_color = Color(1.0, 1.0, 1.0, 1.0)
+export(Resource) var mouth = null
+export(Color) var mouth_color = Color(1.0, 1.0, 1.0, 1.0)
+export(Resource) var eyelashes = null
+export(Color) var eyelashes_color = Color(1.0, 1.0, 1.0, 1.0)
 
-var skin_color = Color(1.0, 1.0, 1.0, 1.0)
+export(Color) var skin_color = Color(1.0, 1.0, 1.0, 1.0)
 
-var hair = null
-var hair_color = Color(1.0, 1.0, 1.0, 1.0)
+export(Resource) var hair = null
+export(Color) var hair_color = Color(1.0, 1.0, 1.0, 1.0)
 
-var body = null
+export(Resource) var body = null
 
-var height = 1.0
-var body_scaler_table = {}
-var head_morph_table = {}
-var stamp_table = []
-var stamp_color_table = []
+export(float) var height = 1.0
+export(Dictionary) var body_scaler_table = {}
+export(Dictionary) var head_morph_table = {}
+export(Dictionary) var stamp_table = {}
 
 static func get_bloodtype_from_string(p_string):
 	var upper_string = p_string.to_upper()
@@ -148,11 +144,6 @@ func _load_record(p_dictionary_record, p_databases):
 		
 	if(p_dictionary_record.has("contact_icon_path")):
 		contact_icon_path = p_dictionary_record.contact_icon_path
-		
-	if(p_dictionary_record.has("skeleton_male_path")):
-		skeleton_male_path = p_dictionary_record.skeleton_male_path
-	if(p_dictionary_record.has("skeleton_female_path")):
-		skeleton_female_path = p_dictionary_record.skeleton_female_path
 	
 	if(p_dictionary_record.has("actor_groups")):
 		for actor_group_name in p_dictionary_record.actor_groups:
@@ -239,17 +230,11 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("head_morph_table")):
 		head_morph_table = p_dictionary_record.head_morph_table
 		
-	stamp_table = []
+	stamp_table = {}
 	if(p_dictionary_record.has("stamp_table")):
-		for stamp in p_dictionary_record.stamp_table:
-			var stamp_record = p_databases.stamp_database.find_record_by_name(p_dictionary_record.stamp)
-			stamp_table.append(stamp_record)
-			
-	stamp_color_table = []
-	if(p_dictionary_record.has("stamp_color_table")):
-		for color_string in p_dictionary_record.stamp_color_table:
-			var color = generic_database_const.convert_string_to_color(color_string)
-			stamp_color_table.append(color)
+		for stamp in p_dictionary_record.stamp_table.keys():
+			var stamp_record = p_databases.stamp_database.find_record_by_name(stamp)
+			stamp_table[stamp_record] = generic_database_const.convert_string_to_color(p_dictionary_record.stamp_table[stamp])
 		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
@@ -272,9 +257,6 @@ func _save_record(p_dictionary_record, p_databases):
 	
 	###
 	p_dictionary_record.contact_icon_path = contact_icon_path
-	
-	p_dictionary_record.skeleton_male_path = skeleton_male_path
-	p_dictionary_record.skeleton_female_path = skeleton_female_path
 	
 	p_dictionary_record.actor_groups = []
 	for actor_group in actor_groups:
@@ -335,10 +317,7 @@ func _save_record(p_dictionary_record, p_databases):
 	p_dictionary_record.height = height
 	p_dictionary_record.body_scaler_table = body_scaler_table
 	p_dictionary_record.head_morph_table = head_morph_table
-	p_dictionary_record.stamp_table = stamp_table
+	p_dictionary_record.stamp_table = {}
 	
-	for stamp in stamp_table:
-		p_dictionary_record.stamp_table.append(stamp.id)
-		
-	for color in stamp_color_table:
-			p_dictionary_record.stamp_color_table.append(color)
+	for stamp in stamp_table.keys():
+		p_dictionary_record.stamp_table[stamp.id] = stamp_table[stamp]

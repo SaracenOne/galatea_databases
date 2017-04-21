@@ -7,6 +7,8 @@ export(NodePath) var scene_file_control = NodePath()
 export(NodePath) var main_icon_path_control = NodePath()
 export(NodePath) var main_icon_preview_control = NodePath()
 
+export(NodePath) var character_creator_nodepath = NodePath()
+
 export(NodePath) var scene_preview = NodePath()
 export(NodePath) var capture_button = NodePath()
 
@@ -15,6 +17,8 @@ onready var _scene_file_control_node = get_node(scene_file_control)
 
 onready var _main_icon_path_control_node = get_node(main_icon_path_control)
 onready var _main_icon_preview_control_node = get_node(main_icon_preview_control)
+
+onready var _character_creator_node = get_node(character_creator_nodepath)
 
 onready var _scene_preview_node = get_node(scene_preview)
 onready var _capture_button_node = get_node(capture_button)
@@ -49,6 +53,9 @@ func set_current_record_callback(p_record):
 	
 	_main_icon_path_control_node.set_file_path(current_record.main_icon_path)
 	_main_icon_path_control_node.set_disabled(false)
+	
+	_character_creator_node.set_disabled(false)
+	_character_creator_node.set_pressed(current_record.character_creator)
 	
 	_capture_button_node.set_disabled(false)
 	_scene_preview_node.set_default_capture_filename(current_record.id + "_icon.png")
@@ -97,3 +104,8 @@ func _on_OrientButton_pressed():
 	_scene_preview_node.rot_x = -20.0
 	_scene_preview_node.rot_y = 45.0
 	_scene_preview_node._update_rotation()
+
+func _on_CharacterCreatorCheckBox_toggled( pressed ):
+	if(current_record):
+		current_record.character_creator = pressed
+		current_database.mark_database_as_modified()

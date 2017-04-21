@@ -334,57 +334,8 @@ alignment = 0
 
 [node name="ScenePreview" parent="RightSide/PreviewContainer" instance=ExtResource( 4 )]
 
-rect/min_size = Vector2( 256, 256 )
 margin/right = 261.0
 default_capture_filename = "icon.png"
-
-[node name="ButtonContainer" type="HBoxContainer" parent="RightSide/PreviewContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 260.0
-margin/right = 261.0
-margin/bottom = 280.0
-alignment = 0
-
-[node name="CreateIconButton" type="Button" parent="RightSide/PreviewContainer/ButtonContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 204.0
-margin/bottom = 20.0
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Create Icon"
-flat = false
-
-[node name="OrientButton" type="Button" parent="RightSide/PreviewContainer/ButtonContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 208.0
-margin/top = 0.0
-margin/right = 261.0
-margin/bottom = 20.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Orient"
-flat = false
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
@@ -405,7 +356,5 @@ flat = false
 [connection signal="value_changed" from="RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxXSpinbox" to="." method="_on_TargetMaxXSpinbox_value_changed"]
 
 [connection signal="value_changed" from="RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxYSpinbox" to="." method="_on_TargetMaxYSpinbox_value_changed"]
-
-[connection signal="pressed" from="RightSide/PreviewContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
 
 

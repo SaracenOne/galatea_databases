@@ -7,7 +7,7 @@ export(String) var main_icon_path = ""
 export(String) var activity_script_path = ""
 export(Array) var valid_locations = []
 
-var selectable = false
+export(bool) var selectable = false
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data

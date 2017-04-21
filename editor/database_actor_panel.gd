@@ -51,6 +51,8 @@ export(NodePath) var stamp_color = NodePath()
 
 export(NodePath) var body = NodePath()
 
+export(NodePath) var height = NodePath()
+
 onready var _family_name_control = get_node(family_name)
 onready var _given_name_control = get_node(given_name)
 onready var _nickname_control = get_node(nickname)
@@ -96,6 +98,8 @@ onready var _stamp_table_control = get_node(stamp_table)
 onready var _stamp_color_control = get_node(stamp_color)
 
 onready var _body_control = get_node(body)
+
+onready var _height_control = get_node(height)
 
 func _ready():
 	pass
@@ -185,10 +189,8 @@ func set_current_record_callback(p_record):
 	_head_morph_value_control.set_value(0.0)
 
 	var stamp_records = []
-	for stamp in current_record.stamp_table:
-		var record = galatea_databases.stamp_database.find_record_by_name(stamp)
-		if(record):
-			stamp_records.append(record)
+	for stamp in current_record.stamp_table.keys():
+		stamp_records.append(stamp)
 
 	_stamp_table_control.set_disabled(false)
 	_stamp_table_control.populate_tree(stamp_records, null)
@@ -275,7 +277,11 @@ func set_current_record_callback(p_record):
 		_body_control.set_record_name(p_record.body.id)
 	else:
 		_body_control.set_record_name("")
-
+		
+	_height_control.set_value(p_record.height)
+	_height_control.set_step(0.0001)
+	_height_control.set_editable(true)
+	
 	update_body_scalers()
 	update_morphs()
 
@@ -560,66 +566,14 @@ func _on_SkinToneColorPicker_color_changed( color ):
 	if(current_record):
 		current_record.skin_color = color
 		current_database.mark_database_as_modified()
-
-func _on_StampTableControl_record_cell_selected( p_record ):
-	if(current_record):
-		if(current_record.stamp_table.has(p_record) == true):
-			var id = current_record.stamp_table.find(p_record)
-			_stamp_color_control.set_color(current_record.stamp_color_table[id])
-		else:
-			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
-		_stamp_color_control.set_disabled(false)
-	else:
-		current_stamp = null
-
-func _on_StampTableControl_record_erased( p_record ):
-	if(current_record):
-		if(current_record.stamp_table.has(p_record) == true):
-			var id = current_record.stamp_table.find(p_record)
-			current_record.stamp_table.erase(id)
-			current_record.stamp_color_table.erase(id)
-			
-			var stamp_records = []
-			for stamp in current_record.stamp_table:
-				var record = galatea_databases.stamp_database.find_record_by_name(stamp)
-				if(record):
-					stamp_records.append(record)
-					
-			current_stamp = null
-			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
-			_stamp_color_control.set_disabled(true)
-			
-			_stamp_table_control.populate_tree(stamp_records, null)
-			current_database.mark_database_as_modified()
-			
-func _on_StampTableControl_record_selected( p_record ):
-	if(current_record and current_record != p_record):
-		if(current_record.stamp_table.has(p_record) == true):
-			return
-		else:
-			current_record.stamp_table.append(p_record)
-			current_record.stamp_color_table.append = Color(1.0, 1.0, 1.0)
-			
-			var stamp_records = []
-			for stamp in current_record.stamp_table:
-				var record = galatea_databases.stamp_database.find_record_by_name(stamp)
-				if(record):
-					stamp_records.append(record)
-					
-			current_stamp = null
-			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
-			_stamp_color_control.set_disabled(false)
-			
-			_stamp_table_control.populate_tree(stamp_records, null)
-			current_database.mark_database_as_modified()
-			
+		
 func _on_StampColorButton_color_changed( color ):
 	if(current_record):
 		if(_stamp_color_control):
 			if(current_stamp != null):
 				if(current_record.stamp_table.has(current_stamp) == true):
-					var id = current_record.stamp_table.find(current_stamp)
-					current_record.stamp_color_table[id] = color
+					print(current_stamp.id)
+					current_record.stamp_table[current_stamp] = color
 					current_database.mark_database_as_modified()
 					
 func _on_HeadMeshColor_color_changed( color ):
@@ -660,4 +614,59 @@ func _on_BodyControl_record_selected( p_record ):
 func _on_BodyControl_record_erased( p_record ):
 	if(current_record):
 		current_record.body = p_record
+		current_database.mark_database_as_modified()
+
+func _on_StampTabelControl_record_selected( p_record ):
+	if(current_record and current_record != p_record):
+		if(current_record.stamp_table.has(p_record) == true):
+			return
+		else:
+			current_record.stamp_table[p_record] = Color(1.0, 1.0, 1.0)
+			
+			var stamp_records = []
+			for stamp in current_record.stamp_table.keys():
+				var record = galatea_databases.stamp_database.find_record_by_name(stamp.id)
+				if(record):
+					stamp_records.append(record)
+					
+			current_stamp = null
+			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
+			_stamp_color_control.set_disabled(false)
+			
+			_stamp_table_control.populate_tree(stamp_records, null)
+			current_database.mark_database_as_modified()
+
+func _on_StampTabelControl_record_cell_selected( p_record ):
+	if(current_record):
+		current_stamp = p_record
+		print(current_stamp.id)
+		if(current_record.stamp_table.has(p_record) == true):
+			_stamp_color_control.set_color(current_record.stamp_table[p_record])
+		else:
+			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
+		_stamp_color_control.set_disabled(false)
+	else:
+		current_stamp = null
+		
+func _on_StampTabelControl_record_erased( p_record ):
+	if(current_record):
+		if(current_record.stamp_table.has(p_record) == true):
+			current_record.stamp_table.erase(p_record)
+			
+			var stamp_records = []
+			for stamp in current_record.stamp_table.keys():
+				var record = galatea_databases.stamp_database.find_record_by_name(stamp.id)
+				if(record):
+					stamp_records.append(record)
+					
+			current_stamp = null
+			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
+			_stamp_color_control.set_disabled(true)
+			
+			_stamp_table_control.populate_tree(stamp_records, null)
+			current_database.mark_database_as_modified()
+			
+func _on_HeightSpinBox_value_changed( value ):
+	if(current_record):
+		current_record.height = value
 		current_database.mark_database_as_modified()

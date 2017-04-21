@@ -8,7 +8,7 @@
 [node name="DatabaseEditor3DPreview" type="Panel"]
 
 rect/pivot = Vector2( 0, 0 )
-rect/min_size = Vector2( 0, 0 )
+rect/min_size = Vector2( 256, 256 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2

@@ -57,6 +57,7 @@ body_scaler_value = NodePath("RightSide/ScalerTable/ScalerTableSpinBox")
 stamp_table = NodePath("RightSide/StampTable/StampTabelControl")
 stamp_color = NodePath("RightSide/StampTable/StampColorButton")
 body = NodePath("RightSide/BodyControl")
+height = NodePath("RightSide/HeightContainer/HeightSpinBox")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -656,7 +657,6 @@ stretch_mode = 0
 
 [node name="CombinedMeshesContainer" type="VBoxContainer" parent="RightSide"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -666,6 +666,7 @@ margin/left = 540.0
 margin/top = 10.0
 margin/right = 752.0
 margin/bottom = 374.0
+custom_constants/separation = 0
 alignment = 1
 
 [node name="CombinedMeshesLabel" type="Label" parent="RightSide/CombinedMeshesContainer"]
@@ -676,9 +677,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 0.0
+margin/top = 20.0
 margin/right = 212.0
-margin/bottom = 14.0
+margin/bottom = 34.0
 text = "Combined Meshes:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -686,9 +687,9 @@ max_lines_visible = -1
 
 [node name="HeadMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
 
-margin/top = 18.0
+margin/top = 34.0
 margin/right = 212.0
-margin/bottom = 60.0
+margin/bottom = 76.0
 label = "Head:"
 record_name = ""
 disabled = true
@@ -702,9 +703,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 64.0
+margin/top = 76.0
 margin/right = 212.0
-margin/bottom = 84.0
+margin/bottom = 96.0
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -715,9 +716,9 @@ edit_alpha = false
 
 [node name="EyesMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
 
-margin/top = 88.0
+margin/top = 96.0
 margin/right = 212.0
-margin/bottom = 130.0
+margin/bottom = 138.0
 label = "Eyes:"
 record_name = ""
 disabled = true
@@ -731,9 +732,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 134.0
+margin/top = 138.0
 margin/right = 212.0
-margin/bottom = 154.0
+margin/bottom = 158.0
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -760,9 +761,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 204.0
+margin/top = 200.0
 margin/right = 212.0
-margin/bottom = 224.0
+margin/bottom = 220.0
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -773,9 +774,9 @@ edit_alpha = false
 
 [node name="MouthMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
 
-margin/top = 228.0
+margin/top = 220.0
 margin/right = 212.0
-margin/bottom = 270.0
+margin/bottom = 262.0
 label = "Mouth:"
 record_name = ""
 disabled = true
@@ -789,9 +790,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 274.0
+margin/top = 262.0
 margin/right = 212.0
-margin/bottom = 294.0
+margin/bottom = 282.0
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -802,9 +803,9 @@ edit_alpha = false
 
 [node name="EyelashesMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
 
-margin/top = 298.0
+margin/top = 282.0
 margin/right = 212.0
-margin/bottom = 340.0
+margin/bottom = 324.0
 label = "Eyelashes:"
 record_name = ""
 disabled = true
@@ -818,9 +819,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 344.0
+margin/top = 324.0
 margin/right = 212.0
-margin/bottom = 364.0
+margin/bottom = 344.0
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -1114,6 +1115,57 @@ record_name = ""
 disabled = true
 has_clear_button = true
 
+[node name="HeightContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 550.0
+margin/right = 210.0
+margin/bottom = 592.0
+alignment = 0
+
+[node name="HeightLabel" type="Label" parent="RightSide/HeightContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 200.0
+margin/bottom = 14.0
+text = "Height:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HeightSpinBox" type="SpinBox" parent="RightSide/HeightContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 200.0
+margin/bottom = 42.0
+range/min = 0.0
+range/max = 100.0
+range/step = 0.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+editable = false
+prefix = ""
+suffix = ""
+
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
@@ -1209,5 +1261,7 @@ has_clear_button = true
 [connection signal="record_erased" from="RightSide/BodyControl" to="." method="_on_BodyControl_record_erased"]
 
 [connection signal="record_selected" from="RightSide/BodyControl" to="." method="_on_BodyControl_record_selected"]
+
+[connection signal="value_changed" from="RightSide/HeightContainer/HeightSpinBox" to="." method="_on_HeightSpinBox_value_changed"]
 
 

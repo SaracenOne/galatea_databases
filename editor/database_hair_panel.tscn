@@ -26,6 +26,7 @@ printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameContr
 scene_file_control = NodePath("RightSide/SceneFileMainContainer")
 main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPath")
 main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
+character_creator_nodepath = NodePath("")
 scene_preview = NodePath("RightSide/ScenePreviewContainer/ScenePreview")
 capture_button = NodePath("RightSide/ScenePreviewContainer/ButtonContainer/CreateIconButton")
 
@@ -118,6 +119,7 @@ has_clear_button = true
 
 [node name="MainIconPathContainer" type="HBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -170,6 +172,7 @@ stretch_mode = 0
 
 [node name="ScenePreviewContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -239,6 +242,25 @@ shortcut = null
 text = "Orient"
 flat = false
 
+[node name="CharacterCreatorCheckBox" type="CheckBox" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 750.0
+margin/right = 224.0
+margin/bottom = 773.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Available in Character Creator"
+flat = false
+align = 0
+
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
@@ -257,4 +279,5 @@ flat = false
 
 [connection signal="pressed" from="RightSide/ScenePreviewContainer/ButtonContainer/OrientButton" to="." method="_on_OrientButton_pressed"]
 
+[connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
 

@@ -67,7 +67,7 @@ func load_database_file(p_filepath, p_records_name):
 		else:
 			var new_dictionary = {}
 			new_dictionary[p_records_name] = []
-			var json_string = new_dictionary.to_json()
+			var json_string = json_to_readable_json(new_dictionary.to_json())
 			
 			file.store_string(json_string)
 			
@@ -102,7 +102,7 @@ func _save_database_file(p_filepath, p_dictionary):
 		
 	file.seek(0)
 	
-	var json_string = p_dictionary.to_json()
+	var json_string = json_to_readable_json(p_dictionary.to_json())
 	file.store_string(json_string)
 	
 	file.close()
@@ -250,3 +250,23 @@ static func convert_string_to_color(p_str):
 			return Color(floats[0], floats[1], floats[2], floats[3])
 	
 	return Color(1.0, 1.0, 1.0, 1.0)
+	
+static func json_to_readable_json(json):
+	var tabs = 0;
+	var out = "";
+	var quoting = false;
+	var c = "";
+	var p = "";
+
+	for i in range(json.length()):
+		p = c;
+		c = json[i];
+	
+		out += c;
+		if c == "\"" and p != "\\" : quoting = not quoting;
+		if quoting : continue;
+		
+		if   c == "," : out+="\n"; for t in range(tabs) : out += "\t";
+		elif c == "{" : tabs+=1; out+="\n"; for t in range(tabs) : out += "\t";
+		elif c == "}" : tabs-=1; out+="\n"; for t in range(tabs) : out += "\t";
+	return out;
