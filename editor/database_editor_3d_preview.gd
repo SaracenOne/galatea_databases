@@ -5,6 +5,8 @@ var first_enter=true
 var rot_x = 0.0
 var rot_y = 0.0
 
+signal image_saved()
+
 export(float) var max_zoom = 5.0
 export(float) var min_zoom = 0.0
 export(float) var zoom_rate = 1.0
@@ -51,9 +53,6 @@ func _update_rotation():
 		zoom = 0.0
 	elif(zoom > 5.0):
 		zoom = 5.0
-	
-	var aabb = mesh_instance.get_aabb()
-	follow_target = aabb.pos + aabb.size*0.5
 	
 	camera.set_translation(follow_target)
 	camera.set_rotation(Vector3(0.0, 0.0, 0.0))
@@ -124,7 +123,8 @@ func set_mesh(p_mesh):
 	rot_x=0
 	rot_y=0
 
-	var aabb= mesh_instance.get_aabb()
+	var aabb = mesh_instance.get_aabb()
+	follow_target = aabb.pos + aabb.size * 0.5
 	zoom = max(aabb.size.x,aabb.size.y)
 	zoom += zoom
 	
@@ -174,6 +174,7 @@ func _attempt_preview_image_retrieval():
 func _on_file_selected(p_path):
 	if(cached_image != null):
 		cached_image.save_png(p_path)
+		emit_signal("image_saved")
 			
 func _process(p_delta):
 	_attempt_preview_image_retrieval()

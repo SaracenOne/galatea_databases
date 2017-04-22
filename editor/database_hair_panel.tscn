@@ -204,6 +204,7 @@ alignment = 0
 
 [node name="ScenePreview" parent="RightSide/ScenePreviewContainer" instance=ExtResource( 4 )]
 
+rect/min_size = Vector2( 1, 150 )
 size_flags/horizontal = 3
 size_flags/vertical = 3
 zoom_rate = 10.0
@@ -272,6 +273,8 @@ flat = false
 [connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPath" to="." method="_on_MainIconPath_file_selected"]
 
 [connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
+
+[connection signal="image_saved" from="RightSide/ScenePreviewContainer/ScenePreview" to="." method="_on_ScenePreview_image_saved"]
 
 [connection signal="pressed" from="RightSide/ScenePreviewContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
 
