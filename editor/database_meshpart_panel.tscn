@@ -334,7 +334,9 @@ alignment = 0
 
 [node name="ScenePreview" parent="RightSide/PreviewContainer" instance=ExtResource( 4 )]
 
+rect/min_size = Vector2( 1, 150 )
 margin/right = 261.0
+margin/bottom = 150.0
 default_capture_filename = "icon.png"
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]

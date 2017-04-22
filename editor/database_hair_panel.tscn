@@ -26,7 +26,7 @@ printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameContr
 scene_file_control = NodePath("RightSide/SceneFileMainContainer")
 main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPath")
 main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
-character_creator_nodepath = NodePath("")
+character_creator_nodepath = NodePath("RightSide/CharacterCreatorCheckBox")
 scene_preview = NodePath("RightSide/ScenePreviewContainer/ScenePreview")
 capture_button = NodePath("RightSide/ScenePreviewContainer/ButtonContainer/CreateIconButton")
 
@@ -170,27 +170,42 @@ margin/bottom = 0.0
 expand = true
 stretch_mode = 0
 
+[node name="CharacterCreatorCheckBox" type="CheckBox" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 200.0
+margin/right = 224.0
+margin/bottom = 223.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Available in Character Creator"
+flat = false
+align = 0
+
 [node name="ScenePreviewContainer" type="VBoxContainer" parent="RightSide"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 201.0
-margin/right = 522.0
-margin/bottom = 737.0
+margin/top = 241.0
+margin/right = 266.0
+margin/bottom = 521.0
 alignment = 0
 
 [node name="ScenePreview" parent="RightSide/ScenePreviewContainer" instance=ExtResource( 4 )]
 
-rect/min_size = Vector2( 512, 512 )
 size_flags/horizontal = 3
 size_flags/vertical = 3
-margin/right = 512.0
-margin/bottom = 512.0
 zoom_rate = 10.0
 default_capture_filename = "icon.png"
 
@@ -202,9 +217,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 516.0
-margin/right = 512.0
-margin/bottom = 536.0
+margin/top = 260.0
+margin/right = 256.0
+margin/bottom = 280.0
 alignment = 0
 
 [node name="CreateIconButton" type="Button" parent="RightSide/ScenePreviewContainer/ButtonContainer"]
@@ -216,7 +231,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 455.0
+margin/right = 199.0
 margin/bottom = 20.0
 disabled = true
 toggle_mode = false
@@ -232,34 +247,15 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 459.0
+margin/left = 203.0
 margin/top = 0.0
-margin/right = 512.0
+margin/right = 256.0
 margin/bottom = 20.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Orient"
 flat = false
-
-[node name="CharacterCreatorCheckBox" type="CheckBox" parent="RightSide"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 750.0
-margin/right = 224.0
-margin/bottom = 773.0
-disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-text = "Available in Character Creator"
-flat = false
-align = 0
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
@@ -275,9 +271,10 @@ align = 0
 
 [connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPath" to="." method="_on_MainIconPath_file_selected"]
 
+[connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
+
 [connection signal="pressed" from="RightSide/ScenePreviewContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
 
 [connection signal="pressed" from="RightSide/ScenePreviewContainer/ButtonContainer/OrientButton" to="." method="_on_OrientButton_pressed"]
 
-[connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
 
