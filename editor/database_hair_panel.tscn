@@ -27,6 +27,8 @@ scene_file_control = NodePath("RightSide/SceneFileMainContainer")
 main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPath")
 main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
 character_creator_nodepath = NodePath("RightSide/CharacterCreatorCheckBox")
+male_nodepath = NodePath("RightSide/GenderContainer/MaleCheckbox")
+female_nodepath = NodePath("RightSide/GenderContainer/FemaleCheckbox")
 scene_preview = NodePath("RightSide/ScenePreviewContainer/ScenePreview")
 capture_button = NodePath("RightSide/ScenePreviewContainer/ButtonContainer/CreateIconButton")
 
@@ -189,6 +191,57 @@ text = "Available in Character Creator"
 flat = false
 align = 0
 
+[node name="GenderContainer" type="HBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 230.0
+margin/right = 144.0
+margin/bottom = 253.0
+alignment = 0
+
+[node name="MaleCheckbox" type="CheckBox" parent="RightSide/GenderContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 57.0
+margin/bottom = 23.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Male"
+flat = false
+align = 0
+
+[node name="FemaleCheckbox" type="CheckBox" parent="RightSide/GenderContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 61.0
+margin/top = 0.0
+margin/right = 134.0
+margin/bottom = 23.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Female"
+flat = false
+align = 0
+
 [node name="ScenePreviewContainer" type="VBoxContainer" parent="RightSide"]
 
 rect/pivot = Vector2( 0, 0 )
@@ -197,9 +250,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 241.0
+margin/top = 271.0
 margin/right = 266.0
-margin/bottom = 521.0
+margin/bottom = 551.0
 alignment = 0
 
 [node name="ScenePreview" parent="RightSide/ScenePreviewContainer" instance=ExtResource( 4 )]
@@ -273,6 +326,10 @@ flat = false
 [connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPath" to="." method="_on_MainIconPath_file_selected"]
 
 [connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
+
+[connection signal="toggled" from="RightSide/GenderContainer/MaleCheckbox" to="." method="_on_MaleCheckbox_toggled"]
+
+[connection signal="toggled" from="RightSide/GenderContainer/FemaleCheckbox" to="." method="_on_FemaleCheckbox_toggled"]
 
 [connection signal="image_saved" from="RightSide/ScenePreviewContainer/ScenePreview" to="." method="_on_ScenePreview_image_saved"]
 

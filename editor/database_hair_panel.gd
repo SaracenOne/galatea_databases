@@ -11,6 +11,9 @@ export(NodePath) var main_icon_preview_control = NodePath()
 
 export(NodePath) var character_creator_nodepath = NodePath()
 
+export(NodePath) var male_nodepath = NodePath()
+export(NodePath) var female_nodepath = NodePath()
+
 export(NodePath) var scene_preview = NodePath()
 export(NodePath) var capture_button = NodePath()
 
@@ -21,6 +24,9 @@ onready var _main_icon_path_control_node = get_node(main_icon_path_control)
 onready var _main_icon_preview_control_node = get_node(main_icon_preview_control)
 
 onready var _character_creator_node = get_node(character_creator_nodepath)
+
+onready var _male_node = get_node(male_nodepath)
+onready var _female_node = get_node(female_nodepath)
 
 onready var _scene_preview_node = get_node(scene_preview)
 onready var _capture_button_node = get_node(capture_button)
@@ -85,6 +91,12 @@ func set_current_record_callback(p_record):
 	_character_creator_node.set_disabled(false)
 	_character_creator_node.set_pressed(current_record.character_creator)
 	
+	_male_node.set_disabled(false)
+	_male_node.set_pressed(current_record.male)
+	
+	_female_node.set_disabled(false)
+	_female_node.set_pressed(current_record.female)
+	
 	_capture_button_node.set_disabled(false)
 	_scene_preview_node.set_default_capture_filename(current_record.id + "_icon.png")
 	
@@ -122,7 +134,16 @@ func _on_CharacterCreatorCheckBox_toggled( pressed ):
 	if(current_record):
 		current_record.character_creator = pressed
 		current_database.mark_database_as_modified()
+		
+func _on_MaleCheckbox_toggled( pressed ):
+	if(current_record):
+		current_record.male = pressed
+		current_database.mark_database_as_modified()
 
-
+func _on_FemaleCheckbox_toggled( pressed ):
+	if(current_record):
+		current_record.female = pressed
+		current_database.mark_database_as_modified()
+		
 func _on_ScenePreview_image_saved():
 	update_icon_preview()
