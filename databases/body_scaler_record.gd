@@ -4,7 +4,7 @@ const body_scaler_database_const = preload("body_scaler_database.gd")
 		
 export(bool) var character_creator = false
 export(String) var printed_name = ""
-export(int) var default_value = 0
+export(float) var default_value = 0.0
 		
 class ScalerCommand extends Resource:
 	export(int) var command_id = body_scaler_database_const.COMMAND_SCALE

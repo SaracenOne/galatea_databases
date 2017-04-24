@@ -309,7 +309,6 @@ static func get_valid_morph_key_list(p_record):
 	return morph_key_list
 	
 static func get_valid_body_scaler_key_list(p_record):
-	print(p_record.body)
 	if(p_record and p_record.body):
 		if(p_record.gender == actor_record_const.GENDER_MALE):
 			return p_record.body.body_scaler_male_table
@@ -329,18 +328,18 @@ func update_body_scalers():
 
 	if(current_record):
 		var body_scaler_dictionary = {}
-		var body_scaler_keys = get_valid_body_scaler_key_list(current_record)
+		var body_scaler_array = get_valid_body_scaler_key_list(current_record)
 		
-		for body_scaler_key in body_scaler_keys:
-			if(current_record.body_scaler_table.keys().has(body_scaler_key)):
-				body_scaler_dictionary[body_scaler_key] = current_record.body_scaler_table[body_scaler_key]
+		for body_scaler in body_scaler_array:
+			if(current_record.body_scaler_table.keys().has(body_scaler.id)):
+				body_scaler_dictionary[body_scaler.id] = current_record.body_scaler_table[body_scaler.id]
 			else:
-				body_scaler_dictionary[body_scaler_key] = 0.0
+				body_scaler_dictionary[body_scaler.id] = body_scaler.default_value
 				
 			var tree_item = _head_morph_table_control.create_item(root)
 			tree_item.set_cell_mode(0, TreeItem.CELL_MODE_STRING)
-			tree_item.set_text(0, body_scaler_key)
-			tree_item.set_metadata(0, body_scaler_key)
+			tree_item.set_text(0, body_scaler.id)
+			tree_item.set_metadata(0, body_scaler.id)
 
 		current_record.body_scaler_table = body_scaler_dictionary
 
@@ -517,6 +516,7 @@ func _on_MorphTableTree_cell_selected():
 		if(_head_morph_table_control and _head_morph_value_control):
 			var tree_item = _head_morph_table_control.get_selected()
 			if(tree_item):
+				current_head_morph_key = tree_item.get_metadata(0)
 				var value = current_record.head_morph_table[tree_item.get_metadata(0)]
 				_head_morph_value_control.set_value(value)
 				_head_morph_value_control.set_step(0.000001)
@@ -527,6 +527,7 @@ func _on_ScalerTableTree_cell_selected():
 		if(_body_scaler_table_control and _body_scaler_value_control):
 			var tree_item = _body_scaler_table_control.get_selected()
 			if(tree_item):
+				current_body_scaler_key = tree_item.get_metadata(0)
 				var value = current_record.body_scaler_table[tree_item.get_metadata(0)]
 				_body_scaler_value_control.set_value(value)
 				_body_scaler_value_control.set_step(0.000001)
@@ -572,7 +573,6 @@ func _on_StampColorButton_color_changed( color ):
 		if(_stamp_color_control):
 			if(current_stamp != null):
 				if(current_record.stamp_table.has(current_stamp) == true):
-					print(current_stamp.id)
 					current_record.stamp_table[current_stamp] = color
 					current_database.mark_database_as_modified()
 					
@@ -639,7 +639,6 @@ func _on_StampTabelControl_record_selected( p_record ):
 func _on_StampTabelControl_record_cell_selected( p_record ):
 	if(current_record):
 		current_stamp = p_record
-		print(current_stamp.id)
 		if(current_record.stamp_table.has(p_record) == true):
 			_stamp_color_control.set_color(current_record.stamp_table[p_record])
 		else:

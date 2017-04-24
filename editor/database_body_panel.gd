@@ -52,16 +52,14 @@ func set_current_record_callback(p_record):
 	.set_current_record_callback(p_record)
 
 	var body_scaler_male_records = []
-	for body_scaler_key in p_record.body_scaler_male_table:
-		var record = galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key)
+	for record in p_record.body_scaler_male_table:
 		if(record):
-			body_scaler_male_records.append(galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key))
+			body_scaler_male_records.append(record)
 
 	var body_scaler_female_records = []
-	for body_scaler_key in p_record.body_scaler_female_table:
-		var record = galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key)
+	for record in p_record.body_scaler_female_table:
 		if(record):
-			body_scaler_female_records.append(galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key))
+			body_scaler_female_records.append(record)
 
 	_body_scaler_male_table_control.set_disabled(false)
 	_body_scaler_male_table_control.populate_tree(body_scaler_male_records, null)
@@ -131,14 +129,13 @@ func _on_MaleScalerTableControl_record_cell_selected( p_record ):
 
 func _on_MaleScalerTableControl_record_erased( p_record ):
 	if(current_record):
-		if(current_record.body_scaler_male_table.find(p_record.id) != -1):
-			current_record.body_scaler_male_table.remove(p_record.id)
+		if(current_record.body_scaler_male_table.find(p_record) != -1):
+			current_record.body_scaler_male_table.remove(p_record)
 			
 			var body_scaler_records = []
-			for body_scaler_key in current_record.body_scaler_male_table:
-				var record = galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key)
+			for record in current_record.body_scaler_male_table:
 				if(record):
-					body_scaler_records.append(galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key))
+					body_scaler_records.append(record)
 					
 			current_body_scaler_key = ""
 			
@@ -147,16 +144,15 @@ func _on_MaleScalerTableControl_record_erased( p_record ):
 			
 func _on_MaleScalerTableControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
-		if(current_record.body_scaler_male_table.find(p_record.id) != -1):
+		if(current_record.body_scaler_male_table.find(p_record) != -1):
 			return
 		else:
-			current_record.body_scaler_male_table.append(p_record.id)
+			current_record.body_scaler_male_table.append(p_record)
 			
 			var body_scaler_records = []
-			for body_scaler_key in current_record.body_scaler_male_table:
-				var record = galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key)
+			for record in current_record.body_scaler_male_table:
 				if(record):
-					body_scaler_records.append(galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key))
+					body_scaler_records.append(record)
 					
 			current_body_scaler_key = ""
 			
@@ -171,14 +167,13 @@ func _on_FemaleScalerTableControl_record_cell_selected( p_record ):
 
 func _on_FemaleScalerTableControl_record_erased( p_record ):
 	if(current_record):
-		if(current_record.body_scaler_female_table.find(p_record.id) != -1):
-			current_record.body_scaler_female_table.remove(p_record.id)
+		if(current_record.body_scaler_female_table.find(p_record) != -1):
+			current_record.body_scaler_female_table.remove(p_record)
 			
 			var body_scaler_records = []
-			for body_scaler_key in current_record.body_scaler_female_table:
-				var record = galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key)
+			for record in current_record.body_scaler_female_table:
 				if(record):
-					body_scaler_records.append(galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key))
+					body_scaler_records.append(record)
 					
 			current_body_scaler_key = ""
 			
@@ -187,16 +182,15 @@ func _on_FemaleScalerTableControl_record_erased( p_record ):
 			
 func _on_FemaleScalerTableControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
-		if(current_record.body_scaler_female_table.find(p_record.id) != -1):
+		if(current_record.body_scaler_female_table.find(p_record) != -1):
 			return
 		else:
-			current_record.body_scaler_female_table.append(p_record.id)
+			current_record.body_scaler_female_table.append(p_record)
 			
 			var body_scaler_records = []
-			for body_scaler_key in current_record.body_scaler_female_table:
-				var record = galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key)
+			for record in current_record.body_scaler_female_table:
 				if(record):
-					body_scaler_records.append(galatea_databases.body_scaler_database.find_record_by_name(body_scaler_key))
+					body_scaler_records.append(record)
 					
 			current_body_scaler_key = ""
 			

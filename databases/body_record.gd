@@ -38,11 +38,15 @@ func _load_record(p_dictionary_record, p_databases):
 	else:
 		female_skin_texture_set = null
 		
+	body_scaler_male_table = []
 	if(p_dictionary_record.has("body_scaler_male_table")):
-		body_scaler_male_table = p_dictionary_record.body_scaler_male_table
+		for id in p_dictionary_record.body_scaler_male_table:
+			body_scaler_male_table.append(p_databases.body_scaler_database.find_record_by_name(id))
 		
+	body_scaler_female_table = []
 	if(p_dictionary_record.has("body_scaler_female_table")):
-		body_scaler_female_table = p_dictionary_record.body_scaler_female_table
+		for id in p_dictionary_record.body_scaler_female_table:
+			body_scaler_female_table.append(p_databases.body_scaler_database.find_record_by_name(id))
 		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
@@ -73,5 +77,10 @@ func _save_record(p_dictionary_record, p_databases):
 	else:
 		p_dictionary_record.female_skin_texture_set = ""
 		
-	p_dictionary_record.body_scaler_male_table = body_scaler_male_table
-	p_dictionary_record.body_scaler_female_table = body_scaler_female_table
+	p_dictionary_record.body_scaler_male_table = []
+	for record in body_scaler_male_table:
+		p_dictionary_record.body_scaler_male_table.append(record.id)
+		
+	p_dictionary_record.body_scaler_female_table = []
+	for record in body_scaler_female_table:
+		p_dictionary_record.body_scaler_female_table.append(record.id)

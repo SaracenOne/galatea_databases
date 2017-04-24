@@ -77,7 +77,8 @@ func set_current_record_callback(p_record):
 	_printed_name_node.set_editable(true)
 	_printed_name_node.set_text(current_record.printed_name)
 	
-	_default_value_node.set_step(1)
+	_default_value_node.set_step(0.00001)
+	_default_value_node.set_editable(true)
 	_default_value_node.set_value(current_record.default_value)
 
 ###
@@ -125,7 +126,6 @@ func update_command_data():
 		_z_vector_control_node.set_step(0.0)
 		_z_vector_control_node.set_value(1.0)
 		
-		_inverse_control_node.set_disabled(true)
 		_inverse_control_node.set_pressed(false)
 		
 		_min_control_node.set_step(0.0)
@@ -145,7 +145,7 @@ func update_bone_tree():
 			var tree_item = _bone_tree_control_node.create_item(root)
 			tree_item.set_cell_mode(0, TreeItem.CELL_MODE_STRING)
 			tree_item.set_text(0, scaler_bone_key)
-			tree_item.set_metadata(0, current_record.scaler_bones[scaler_bone_key])
+			tree_item.set_metadata(0, scaler_bone_key)
 
 func update_command_tree():
 	_command_tree_control_node.clear()
@@ -153,13 +153,13 @@ func update_command_tree():
 	_command_tree_control_node.set_hide_root(true)
 
 	if(current_record and bone):
-			var integer = 0
-			for scaler_command in bone.scaler_commands:
-				var tree_item = _command_tree_control_node.create_item(root)
-				tree_item.set_cell_mode(0, TreeItem.CELL_MODE_STRING)
-				tree_item.set_text(0, str(integer))
-				tree_item.set_metadata(0, scaler_command)
-				integer += 1
+		var integer = 0
+		for scaler_command in bone.scaler_commands:
+			var tree_item = _command_tree_control_node.create_item(root)
+			tree_item.set_cell_mode(0, TreeItem.CELL_MODE_STRING)
+			tree_item.set_text(0, str(integer))
+			tree_item.set_metadata(0, scaler_command)
+			integer += 1
 
 func add_bone_name_received(p_string):
 	bone_new_edit_popup.disconnect("name_entry_commit", self, "add_bone_name_received")
@@ -175,9 +175,14 @@ func add_bone_name_received(p_string):
 func rename_bone_name_received(p_string):
 	bone_new_edit_popup.disconnect("name_entry_commit", self, "rename_bone_name_received")
 	if(current_record):
-		bone_new_edit_popup.hide()
-		update_bone_tree()
-		update_command_tree()
+		if(!current_record.scaler_bones.has(p_string)):
+			var tree_item = _bone_tree_control_node.get_selected()
+			current_record.scaler_bones[p_string] = current_record.scaler_bones[tree_item.get_metadata(0)]
+			current_record.scaler_bones.erase(tree_item.get_metadata(0))
+			
+			bone_new_edit_popup.hide()
+			update_bone_tree()
+			update_command_tree()
 		
 		current_database.mark_database_as_modified()
 
@@ -191,8 +196,13 @@ func _on_EraseBoneButton_pressed():
 	if(current_record):
 		var tree_item = _bone_tree_control_node.get_selected()
 		if(tree_item):
-			var record = tree_item.get_metadata(0)
-			emit_signal("submit_erase_record", record.id)
+			var key = tree_item.get_metadata(0)
+			current_record.scaler_bones.erase(key)
+			
+			bone = null
+			
+			update_bone_tree()
+			update_command_tree()
 
 func _on_RenameBoneButton_pressed():
 	if(current_record):
@@ -207,7 +217,7 @@ func _on_BonesTree_cell_selected():
 	if(current_record):
 		var tree_item = _bone_tree_control_node.get_selected()
 
-		bone = tree_item.get_metadata(0)
+		bone = current_record.scaler_bones[tree_item.get_metadata(0)]
 		command = null
 
 		update_command_tree()

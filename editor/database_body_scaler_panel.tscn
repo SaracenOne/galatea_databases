@@ -76,7 +76,6 @@ alignment = 0
 
 [node name="BonesContainer" type="VBoxContainer" parent="RightSide/BoneScalerArea"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 rect/min_size = Vector2( 300, 0 )
 focus/ignore_mouse = false
@@ -309,7 +308,6 @@ items = [ "Scale", null, false, false, false, 0, 0, null, "", false, "Position",
 
 [node name="XVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -361,7 +359,6 @@ suffix = ""
 
 [node name="YVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -413,7 +410,6 @@ suffix = ""
 
 [node name="ZVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -697,7 +693,7 @@ range/page = 0.0
 range/value = 0.0
 range/exp_edit = false
 range/rounded = false
-editable = true
+editable = false
 prefix = ""
 suffix = ""
 
