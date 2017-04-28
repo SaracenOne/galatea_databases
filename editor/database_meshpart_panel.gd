@@ -38,6 +38,11 @@ func galatea_databases_assigned():
 	else:
 		printerr("meshpart_database is null")
 
+func orient_scene_preview():
+	_scene_preview_node.rot_x = -20.0
+	_scene_preview_node.rot_y = 45.0
+	_scene_preview_node._update_rotation()
+
 func set_current_record_callback(p_record):
 	.set_current_record_callback(p_record)
 
@@ -64,6 +69,9 @@ func set_current_record_callback(p_record):
 	_target_max_y_control_node.set_step(0.0000001)
 	_target_max_y_control_node.set_editable(true)
 	_target_max_y_control_node.set_value(p_record.target_max.y)
+	
+	_capture_button_node.set_disabled(false)
+	_scene_preview_node.set_default_capture_filename(current_record.id + "_icon.png")
 
 	##
 
@@ -110,11 +118,14 @@ func setup_scene_preview():
 		else:
 			_scene_preview_node.set_mesh(null)
 			_scene_preview_node.set_material(null)
+			
+		orient_scene_preview()
 
 
 func _on_CreateIconButton_pressed():
-	pass # replace with function body
+	if _scene_preview_node and _capture_button_node:
+		_scene_preview_node.save_preview_image()
 
 
 func _on_OrientButton_pressed():
-	pass # replace with function body
+	orient_scene_preview()

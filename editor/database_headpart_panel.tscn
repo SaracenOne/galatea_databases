@@ -29,8 +29,8 @@ stamp_control = NodePath("RightSide/StampControl")
 main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPathContainer")
 main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
 character_creator_enabled_control = NodePath("RightSide/CharacterCreatorCheckBox")
-scene_preview = NodePath("RightSide/HeadpartContainer/HeadpartPreview")
-capture_button = NodePath("RightSide/HeadpartContainer/ButtonContainer/CreateIconButton")
+scene_preview = NodePath("RightSide/PreviewContainer/ScenePreview")
+capture_button = NodePath("RightSide/PreviewContainer/ButtonContainer/CreateIconButton")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -201,24 +201,24 @@ text = "Avaliable in Character Creator"
 flat = false
 align = 0
 
-[node name="HeadpartContainer" type="VBoxContainer" parent="RightSide"]
+[node name="PreviewContainer" type="VBoxContainer" parent="RightSide"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/horizontal = 3
+size_flags/vertical = 3
 margin/left = 549.0
 margin/top = 11.0
-margin/right = 589.0
-margin/bottom = 51.0
+margin/right = 691.0
+margin/bottom = 185.0
 alignment = 0
 
-[node name="HeadpartPreview" parent="RightSide/HeadpartContainer" instance=ExtResource( 5 )]
+[node name="ScenePreview" parent="RightSide/PreviewContainer" instance=ExtResource( 5 )]
 
-rect/min_size = Vector2( 256, 256 )
+default_capture_filename = "icon.png"
 
-[node name="ButtonContainer" type="HBoxContainer" parent="RightSide/HeadpartContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="RightSide/PreviewContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -231,7 +231,7 @@ margin/right = 256.0
 margin/bottom = 280.0
 alignment = 0
 
-[node name="CreateIconButton" type="Button" parent="RightSide/HeadpartContainer/ButtonContainer"]
+[node name="CreateIconButton" type="Button" parent="RightSide/PreviewContainer/ButtonContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -249,7 +249,7 @@ shortcut = null
 text = "Create Icon"
 flat = false
 
-[node name="OrientButton" type="Button" parent="RightSide/HeadpartContainer/ButtonContainer"]
+[node name="OrientButton" type="Button" parent="RightSide/PreviewContainer/ButtonContainer"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -286,8 +286,8 @@ flat = false
 
 [connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
 
-[connection signal="pressed" from="RightSide/HeadpartContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
+[connection signal="pressed" from="RightSide/PreviewContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
 
-[connection signal="pressed" from="RightSide/HeadpartContainer/ButtonContainer/OrientButton" to="." method="_on_OrientButton_pressed"]
+[connection signal="pressed" from="RightSide/PreviewContainer/ButtonContainer/OrientButton" to="." method="_on_OrientButton_pressed"]
 
 

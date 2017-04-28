@@ -4,7 +4,6 @@
 
 [sub_resource type="World" id=1]
 
-
 [node name="DatabaseEditor3DPreview" type="Panel"]
 
 rect/pivot = Vector2( 0, 0 )

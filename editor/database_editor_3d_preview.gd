@@ -92,8 +92,6 @@ func _ready():
 	mesh_instance = MeshInstance.new()
 	viewport.add_child(mesh_instance)
 	
-	set_custom_minimum_size(Vector2(1,150))
-	
 	var hb = HBoxContainer.new()
 	add_child(hb)
 	hb.set_area_as_parent_rect(2)

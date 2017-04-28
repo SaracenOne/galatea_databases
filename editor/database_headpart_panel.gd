@@ -84,6 +84,8 @@ func set_current_record_callback(p_record):
 		_stamp_control_node.set_record_name(p_record.stamp.id)
 	else:
 		_stamp_control_node.set_record_name("")
+		
+	orient_scene_preview()
 	##
 
 func _on_headpart_type_selected( p_id ):
@@ -129,6 +131,8 @@ func setup_scene_preview():
 	else:
 		_scene_preview_node.set_mesh(null)
 		_scene_preview_node.set_material(null)
+		
+	orient_scene_preview()
 			
 func _on_MeshpartControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
@@ -166,7 +170,10 @@ func _on_CreateIconButton_pressed():
 	if _scene_preview_node and _capture_button_node:
 		_scene_preview_node.save_preview_image()
 
-func _on_OrientButton_pressed():
+func orient_scene_preview():
 	_scene_preview_node.rot_x = -20.0
 	_scene_preview_node.rot_y = 45.0
 	_scene_preview_node._update_rotation()
+
+func _on_OrientButton_pressed():
+	orient_scene_preview()
