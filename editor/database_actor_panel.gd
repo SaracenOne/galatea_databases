@@ -284,29 +284,6 @@ func set_current_record_callback(p_record):
 	
 	update_body_scalers()
 	update_morphs()
-
-static func get_valid_morph_key_list(p_record):
-	var morph_key_list = []
-	var morph_paths = []
-
-	if(p_record):
-		if(p_record.head and p_record.head.meshpart and p_record.head.meshpart.gen_morph_path):
-			morph_paths.append(p_record.head.meshpart.gen_morph_path)
-		if(p_record.eyes and p_record.eyes.meshpart and p_record.eyes.meshpart.gen_morph_path):
-			morph_paths.append(p_record.eyes.meshpart.gen_morph_path)
-		if(p_record.eyebrows and p_record.eyebrows.meshpart and p_record.eyebrows.meshpart.gen_morph_path):
-			morph_paths.append(p_record.eyebrows.meshpart.gen_morph_path)
-		if(p_record.eyelashes and p_record.eyelashes.meshpart and p_record.eyelashes.meshpart.gen_morph_path):
-			morph_paths.append(p_record.eyelashes.meshpart.gen_morph_path)
-
-		for morph_path in morph_paths:
-			var morph_data_collection = load(morph_path)
-			if(morph_data_collection):
-				for morph_data in morph_data_collection.morph_data_array:
-					if(!morph_key_list.has(morph_data.name)):
-						morph_key_list.append(morph_data.name)
-
-	return morph_key_list
 	
 static func get_valid_body_scaler_key_list(p_record):
 	if(p_record and p_record.body):
@@ -354,7 +331,7 @@ func update_morphs():
 
 	if(current_record):
 		var morph_dictionary = {}
-		var morph_key_list = get_valid_morph_key_list(current_record)
+		var morph_key_list = current_record.get_valid_blend_key_list()
 
 		for morph_key in morph_key_list:
 			if(current_record.head_morph_table.keys().has(morph_key)):

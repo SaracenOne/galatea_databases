@@ -321,3 +321,25 @@ func _save_record(p_dictionary_record, p_databases):
 	
 	for stamp in stamp_table.keys():
 		p_dictionary_record.stamp_table[stamp.id] = stamp_table[stamp]
+		
+func get_valid_blend_key_list():
+	var blend_key_list = []
+	var blend_key_paths = []
+
+	if(head and head.meshpart and head.meshpart.gen_morph_path):
+		blend_key_paths.append(head.meshpart.gen_morph_path)
+	if(eyes and eyes.meshpart and eyes.meshpart.gen_morph_path):
+		blend_key_paths.append(eyes.meshpart.gen_morph_path)
+	if(eyebrows and eyebrows.meshpart and eyebrows.meshpart.gen_morph_path):
+		blend_key_paths.append(eyebrows.meshpart.gen_morph_path)
+	if(eyelashes and eyelashes.meshpart and eyelashes.meshpart.gen_morph_path):
+		blend_key_paths.append(eyelashes.meshpart.gen_morph_path)
+
+	for blend_key_path in blend_key_paths:
+		var blend_data_collection = load(blend_key_path)
+		if(blend_data_collection):
+			for blend_data in blend_data_collection.blend_shape_data:
+				if(!blend_key_list.has(blend_data.name)):
+					blend_key_list.append(blend_data.name)
+
+	return blend_key_list
