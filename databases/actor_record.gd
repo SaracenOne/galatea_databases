@@ -52,6 +52,7 @@ export(Resource) var hair = null
 export(Color) var hair_color = Color(1.0, 1.0, 1.0, 1.0)
 
 export(Resource) var body = null
+export(Resource) var default_clothing_set = null
 
 export(float) var height = 1.0
 export(Dictionary) var body_scaler_table = {}
@@ -223,6 +224,9 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("body")):
 		body = p_databases.body_database.find_record_by_name(p_dictionary_record.body)
 		
+	if(p_dictionary_record.has("default_clothing_set")):
+		default_clothing_set = p_databases.clothing_set_database.find_record_by_name(p_dictionary_record.default_clothing_set)
+		
 	if(p_dictionary_record.has("height")):
 		height = p_dictionary_record.height
 	if(p_dictionary_record.has("body_scaler_table")):
@@ -313,6 +317,9 @@ func _save_record(p_dictionary_record, p_databases):
 	
 	if(body):
 		p_dictionary_record.body = body.id
+		
+	if(default_clothing_set):
+		p_dictionary_record.default_clothing_set = default_clothing_set.id
 	
 	p_dictionary_record.height = height
 	p_dictionary_record.body_scaler_table = body_scaler_table

@@ -57,6 +57,7 @@ body_scaler_value = NodePath("RightSide/ScalerTable/ScalerTableSpinBox")
 stamp_table = NodePath("RightSide/StampTable/StampTabelControl")
 stamp_color = NodePath("RightSide/StampTable/StampColorButton")
 body = NodePath("RightSide/BodyControl")
+default_clothing_set = NodePath("RightSide/DefaultClothingSetControl")
 height = NodePath("RightSide/HeightContainer/HeightSpinBox")
 
 [node name="LeftSide" type="Control" parent="."]
@@ -1106,11 +1107,22 @@ edit_alpha = true
 
 [node name="BodyControl" parent="RightSide" instance=ExtResource( 6 )]
 
-margin/left = 10.0
+margin/left = 12.0
 margin/top = 500.0
-margin/right = 532.0
+margin/right = 534.0
 margin/bottom = 542.0
 label = "Body:"
+record_name = ""
+disabled = true
+has_clear_button = true
+
+[node name="DefaultClothingSetControl" parent="RightSide" instance=ExtResource( 6 )]
+
+margin/left = 12.0
+margin/top = 560.0
+margin/right = 534.0
+margin/bottom = 602.0
+label = "Default Clothing Set:"
 record_name = ""
 disabled = true
 has_clear_button = true
@@ -1123,9 +1135,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 550.0
+margin/top = 610.0
 margin/right = 210.0
-margin/bottom = 592.0
+margin/bottom = 652.0
 alignment = 0
 
 [node name="HeightLabel" type="Label" parent="RightSide/HeightContainer"]
@@ -1261,6 +1273,10 @@ suffix = ""
 [connection signal="record_erased" from="RightSide/BodyControl" to="." method="_on_BodyControl_record_erased"]
 
 [connection signal="record_selected" from="RightSide/BodyControl" to="." method="_on_BodyControl_record_selected"]
+
+[connection signal="record_erased" from="RightSide/DefaultClothingSetControl" to="." method="_on_DefaultClothingSetControl_record_erased"]
+
+[connection signal="record_selected" from="RightSide/DefaultClothingSetControl" to="." method="_on_DefaultClothingSetControl_record_selected"]
 
 [connection signal="value_changed" from="RightSide/HeightContainer/HeightSpinBox" to="." method="_on_HeightSpinBox_value_changed"]
 

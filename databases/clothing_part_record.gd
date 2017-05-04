@@ -6,6 +6,8 @@ export(String) var female_model_path = ""
 export(Array) var male_model_materials = []
 export(Array) var female_model_materials = []
 
+export(bool) var is_attachment = false
+
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
 	._load_record(p_dictionary_record, p_databases)
@@ -23,6 +25,9 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("female_model_materials")):
 		for female_model_material in p_dictionary_record.female_model_materials:
 			female_model_materials.append(female_model_material)
+			
+	if(p_dictionary_record.has("is_attachment")):
+		is_attachment = p_dictionary_record.is_attachment
 
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
@@ -38,3 +43,5 @@ func _save_record(p_dictionary_record, p_databases):
 	p_dictionary_record.female_model_materials = []
 	for female_model_material in female_model_materials:
 		p_dictionary_record.female_model_materials.append(female_model_material)
+		
+	p_dictionary_record.is_attachment = is_attachment

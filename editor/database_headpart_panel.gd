@@ -60,7 +60,7 @@ func set_current_record_callback(p_record):
 		_meshpart_control_node.set_record_name("")
 	
 	_character_creator_enabled_control.set_disabled(false)
-	_character_creator_enabled_control.set_pressed(p_record.character_creator_enabled)
+	_character_creator_enabled_control.set_pressed(p_record.character_creator)
 	
 	##
 	_main_icon_path_control_node.set_file_path(current_record.main_icon_path)
@@ -148,7 +148,7 @@ func _on_MeshpartControl_record_erased( p_record ):
 		
 func _on_CharacterCreatorCheckBox_toggled( pressed ):
 	if(current_record):
-		current_record.character_creator_enabled = pressed
+		current_record.character_creator = pressed
 		current_database.mark_database_as_modified()
 
 func _on_MainIconPathContainer_file_selected( p_path ):

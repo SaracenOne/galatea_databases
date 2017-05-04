@@ -41,12 +41,16 @@ func _load_record(p_dictionary_record, p_databases):
 	body_scaler_male_table = []
 	if(p_dictionary_record.has("body_scaler_male_table")):
 		for id in p_dictionary_record.body_scaler_male_table:
-			body_scaler_male_table.append(p_databases.body_scaler_database.find_record_by_name(id))
+			var body_scaler = p_databases.body_scaler_database.find_record_by_name(id)
+			if body_scaler:
+				body_scaler_male_table.append(body_scaler)
 		
 	body_scaler_female_table = []
 	if(p_dictionary_record.has("body_scaler_female_table")):
 		for id in p_dictionary_record.body_scaler_female_table:
-			body_scaler_female_table.append(p_databases.body_scaler_database.find_record_by_name(id))
+			var body_scaler = p_databases.body_scaler_database.find_record_by_name(id)
+			if body_scaler:
+				body_scaler_female_table.append(body_scaler)
 		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data

@@ -23,6 +23,7 @@ split/dragger_visibility = 1
 script/script = ExtResource( 1 )
 male_mesh = NodePath("RightSide/GendersContainer/GenderMaleContainer/MaleMeshControl")
 female_mesh = NodePath("RightSide/GendersContainer/GenderFemaleContainer/FemaleMeshControl")
+is_attachment = NodePath("RightSide/IsAttachmentCheckBox")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -121,6 +122,25 @@ file_type = "Mesh"
 disabled = true
 has_clear_button = true
 
+[node name="IsAttachmentCheckBox" type="CheckBox" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 60.0
+margin/right = 127.0
+margin/bottom = 83.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Is Attachment"
+flat = false
+align = 0
+
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
@@ -132,5 +152,7 @@ has_clear_button = true
 [connection signal="file_selected" from="RightSide/GendersContainer/GenderMaleContainer/MaleMeshControl" to="." method="_on_MaleMeshControl_file_selected"]
 
 [connection signal="file_selected" from="RightSide/GendersContainer/GenderFemaleContainer/FemaleMeshControl" to="." method="_on_FemaleMeshControl_file_selected"]
+
+[connection signal="toggled" from="RightSide/IsAttachmentCheckBox" to="." method="_on_IsAttachmentCheckBox_toggled"]
 
 

@@ -50,6 +50,7 @@ export(NodePath) var stamp_table = NodePath()
 export(NodePath) var stamp_color = NodePath()
 
 export(NodePath) var body = NodePath()
+export(NodePath) var default_clothing_set = NodePath()
 
 export(NodePath) var height = NodePath()
 
@@ -100,6 +101,7 @@ onready var _stamp_color_control = get_node(stamp_color)
 onready var _body_control = get_node(body)
 
 onready var _height_control = get_node(height)
+onready var _default_clothing_set_control = get_node(default_clothing_set)
 
 func _ready():
 	pass
@@ -138,6 +140,7 @@ func galatea_databases_assigned():
 		
 		_hair_control.assign_database(galatea_databases.hair_database)
 		_body_control.assign_database(galatea_databases.body_database)
+		_default_clothing_set_control.assign_database(galatea_databases.clothing_set_database)
 		
 	else:
 		printerr("actor_databases is null")
@@ -277,6 +280,12 @@ func set_current_record_callback(p_record):
 		_body_control.set_record_name(p_record.body.id)
 	else:
 		_body_control.set_record_name("")
+		
+	_default_clothing_set_control.set_disabled(false)
+	if(p_record.default_clothing_set):
+		_default_clothing_set_control.set_record_name(p_record.default_clothing_set.id)
+	else:
+		_default_clothing_set_control.set_record_name("")
 		
 	_height_control.set_value(p_record.height)
 	_height_control.set_step(0.0001)
@@ -645,4 +654,14 @@ func _on_StampTabelControl_record_erased( p_record ):
 func _on_HeightSpinBox_value_changed( value ):
 	if(current_record):
 		current_record.height = value
+		current_database.mark_database_as_modified()
+
+func _on_DefaultClothingSetControl_record_selected( p_record ):
+	if(current_record):
+		current_record.default_clothing_set = p_record
+		current_database.mark_database_as_modified()
+
+func _on_DefaultClothingSetControl_record_erased( p_record ):
+	if(current_record):
+		current_record.default_clothing_set = p_record
 		current_database.mark_database_as_modified()

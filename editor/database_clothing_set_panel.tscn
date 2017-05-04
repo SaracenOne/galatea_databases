@@ -21,7 +21,7 @@ split/offset = -500
 split/collapsed = false
 split/dragger_visibility = 1
 script/script = ExtResource( 1 )
-clothing = NodePath("RightSide/MainContainer/ClothesControl")
+clothes = NodePath("RightSide/MainContainer/ClothesControl")
 printed_name = NodePath("RightSide/MainContainer/PrintedNameLineEdit")
 
 [node name="LeftSide" type="Control" parent="."]

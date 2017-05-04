@@ -16,6 +16,7 @@ export(NodePath) var female_stamp_table = NodePath()
 export(NodePath) var female_stamp_color = NodePath()
 
 export(NodePath) var biped = NodePath()
+export(NodePath) var depth = NodePath()
 
 onready var _printed_name_control = get_node(printed_name)
 onready var _clothing_parts_control = get_node(clothing_parts)
@@ -27,10 +28,8 @@ onready var _female_stamp_table_control = get_node(female_stamp_table)
 onready var _female_stamp_color_control = get_node(female_stamp_color)
 
 onready var _biped_control = get_node(biped)
+onready var _depth_control = get_node(depth)
 
-func _ready():
-	_biped_control = get_node("RightSide/BipedContainer/BipedTree")
-	
 func galatea_databases_assigned():
 	.galatea_databases_assigned()
 	
@@ -87,6 +86,9 @@ func set_current_record_callback(p_record):
 		item.set_text(0, str(clothing_record_const.biped_name_array[i]))
 		item.set_editable(0, true)
 		item.set_checked(0, current_record.biped_flags & (1 << i))
+		
+	_depth_control.set_editable(true)
+	_depth_control.set_value(p_record.depth)
 	
 func _on_PrintedNameLineEdit_text_changed( text ):
 	if(current_record):
@@ -240,3 +242,7 @@ func _on_BipedTree_item_edited():
 			if(item == null):
 				break
 		current_record.biped_flags = biped_flags
+
+func _on_DepthSpinBox_value_changed( value ):
+	if(current_record):
+		current_record.depth = int(value)

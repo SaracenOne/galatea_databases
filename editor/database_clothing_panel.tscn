@@ -28,6 +28,7 @@ male_stamp_color = NodePath("RightSide/MaleStampTable/MaleStampColorButton")
 female_stamp_table = NodePath("RightSide/FemaleStampTable/FemaleStampTableControl")
 female_stamp_color = NodePath("RightSide/FemaleStampTable/FemaleStampColorButton")
 biped = NodePath("RightSide/BipedContainer/BipedTree")
+depth = NodePath("RightSide/DepthContainer/DepthSpinBox")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -303,6 +304,57 @@ margin/top = 18.0
 margin/right = 300.0
 margin/bottom = 325.0
 
+[node name="DepthContainer" type="VBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 650.0
+margin/right = 620.0
+margin/bottom = 692.0
+alignment = 0
+
+[node name="DepthLabel" type="Label" parent="RightSide/DepthContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 610.0
+margin/bottom = 14.0
+text = "Depth:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DepthSpinBox" type="SpinBox" parent="RightSide/DepthContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 610.0
+margin/bottom = 42.0
+range/min = -10.0
+range/max = 10.0
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = false
+prefix = ""
+suffix = ""
+
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
@@ -336,5 +388,7 @@ margin/bottom = 325.0
 [connection signal="color_changed" from="RightSide/FemaleStampTable/FemaleStampColorButton" to="." method="_on_FemaleStampColorButton_color_changed"]
 
 [connection signal="item_edited" from="RightSide/BipedContainer/BipedTree" to="." method="_on_BipedTree_item_edited"]
+
+[connection signal="value_changed" from="RightSide/DepthContainer/DepthSpinBox" to="." method="_on_DepthSpinBox_value_changed"]
 
 
