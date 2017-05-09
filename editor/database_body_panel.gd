@@ -40,7 +40,7 @@ func galatea_databases_assigned():
 		_body_scaler_male_table_control.assign_database(galatea_databases.body_scaler_database)
 		_body_scaler_female_table_control.assign_database(galatea_databases.body_scaler_database)
 
-		_naked_clothing_control.assign_database(galatea_databases.clothing_database)
+		_naked_clothing_control.assign_database(galatea_databases.clothing_set_database)
 
 		_male_skin_texture_set.assign_database(galatea_databases.texture_set_database)
 		_female_skin_texture_set.assign_database(galatea_databases.texture_set_database)
@@ -74,8 +74,8 @@ func set_current_record_callback(p_record):
 	_skeleton_female_path_control.set_file_path(p_record.skeleton_female_path)
 
 	_naked_clothing_control.set_disabled(false)
-	if(p_record.naked_clothing):
-		_naked_clothing_control.set_record_name(p_record.naked_clothing.id)
+	if(p_record.naked_clothing_set):
+		_naked_clothing_control.set_record_name(p_record.naked_clothing_set.id)
 	else:
 		_naked_clothing_control.set_record_name("")
 		
@@ -199,10 +199,10 @@ func _on_FemaleScalerTableControl_record_selected( p_record ):
 
 func _on_NakedClothing_record_selected( p_record ):
 	if(current_record):
-		current_record.naked_clothing = p_record
+		current_record.naked_clothing_set = p_record
 		current_database.mark_database_as_modified()
 		
 func _on_NakedClothing_record_erased( p_record ):
 	if(current_record):
-		current_record.naked_clothing = p_record
+		current_record.naked_clothing_set = p_record
 		current_database.mark_database_as_modified()

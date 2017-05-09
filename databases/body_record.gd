@@ -6,7 +6,7 @@ const generic_database_const = preload("generic_database.gd")
 export(String) var skeleton_male_path = ""
 export(String) var skeleton_female_path = ""
 
-export(Resource) var naked_clothing = null
+export(Resource) var naked_clothing_set = null
 
 export(Resource) var male_skin_texture_set = null
 export(Resource) var female_skin_texture_set = null
@@ -23,10 +23,10 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("skeleton_female_path")):
 		skeleton_female_path = p_dictionary_record.skeleton_female_path
 	
-	if(p_dictionary_record.has("naked_clothing")):
-		naked_clothing = p_databases.clothing_database.find_record_by_name(p_dictionary_record.naked_clothing)
+	if(p_dictionary_record.has("naked_clothing_set")):
+		naked_clothing_set = p_databases.clothing_set_database.find_record_by_name(p_dictionary_record.naked_clothing_set)
 	else:
-		naked_clothing = null
+		naked_clothing_set = null
 		
 	if(p_dictionary_record.has("male_skin_texture_set")):
 		male_skin_texture_set = p_databases.texture_set_database.find_record_by_name(p_dictionary_record.male_skin_texture_set)
@@ -66,10 +66,10 @@ func _save_record(p_dictionary_record, p_databases):
 	else:
 		p_dictionary_record.skeleton_female_path = ""
 	
-	if(naked_clothing):
-		p_dictionary_record.naked_clothing = naked_clothing.id
+	if(naked_clothing_set):
+		p_dictionary_record.naked_clothing_set = naked_clothing_set.id
 	else:
-		p_dictionary_record.naked_clothing = ""
+		p_dictionary_record.naked_clothing_set = ""
 		
 	if(male_skin_texture_set):
 		p_dictionary_record.male_skin_texture_set = male_skin_texture_set.id
