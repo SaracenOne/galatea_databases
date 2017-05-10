@@ -106,7 +106,6 @@ caret/caret_blink_speed = 0.65
 
 [node name="ClothingPartsContainer" type="VBoxContainer" parent="RightSide"]
 
-editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false

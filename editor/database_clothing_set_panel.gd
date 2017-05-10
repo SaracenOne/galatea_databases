@@ -28,7 +28,6 @@ func set_current_record_callback(p_record):
 	_printed_name_control.set_text(current_record.printed_name)
 	_printed_name_control.set_editable(true)
 
-	print(p_record.get_property_list())
 	_clothes_control.set_disabled(false)
 	_clothes_control.populate_tree(p_record.clothes, null)
 

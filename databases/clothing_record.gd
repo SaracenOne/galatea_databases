@@ -47,12 +47,14 @@ func _load_record(p_dictionary_record, p_databases):
 	male_stamp_table = {}
 	if(p_dictionary_record.has("male_stamp_table")):
 		for key in p_dictionary_record.male_stamp_table.keys():
-			male_stamp_table[key] = generic_database_const.convert_string_to_color(p_dictionary_record.male_stamp_table[key])
+			var stamp = p_databases.stamp_database.find_record_by_name(key)
+			male_stamp_table[stamp] = generic_database_const.convert_string_to_color(p_dictionary_record.male_stamp_table[key])
 	
 	female_stamp_table = {}
 	if(p_dictionary_record.has("female_stamp_table")):
 		for key in p_dictionary_record.female_stamp_table.keys():
-			female_stamp_table[key] = generic_database_const.convert_string_to_color(p_dictionary_record.female_stamp_table[key])
+			var stamp = p_databases.stamp_database.find_record_by_name(key)
+			female_stamp_table[stamp] = generic_database_const.convert_string_to_color(p_dictionary_record.female_stamp_table[key])
 	
 	if(p_dictionary_record.has("depth")):
 		depth = p_dictionary_record.depth
@@ -69,6 +71,12 @@ func _save_record(p_dictionary_record, p_databases):
 		
 	p_dictionary_record.biped_flags = int(biped_flags)
 		
-	p_dictionary_record.male_stamp_table = male_stamp_table
-	p_dictionary_record.female_stamp_table = female_stamp_table
+	p_dictionary_record.male_stamp_table = {}
+	for key in male_stamp_table:
+		p_dictionary_record.male_stamp_table[key.id] = male_stamp_table[key]
+		
+	p_dictionary_record.female_stamp_table = {}
+	for key in female_stamp_table:
+		p_dictionary_record.female_stamp_table[key.id] = female_stamp_table[key]
+		
 	p_dictionary_record.depth = int(depth)

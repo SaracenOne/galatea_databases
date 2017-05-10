@@ -3,8 +3,8 @@ extends "database_panel.gd"
 
 const clothing_record_const = preload("res://addons/galatea_databases/databases/clothing_record.gd")
 
-var current_male_stamp_key = ""
-var current_female_stamp_key = ""
+var current_male_stamp_key = null
+var current_female_stamp_key = null
 
 export(NodePath) var printed_name = NodePath()
 export(NodePath) var clothing_parts = NodePath()
@@ -55,27 +55,23 @@ func set_current_record_callback(p_record):
 	
 	var stamp_records = []
 	for stamp_key in p_record.male_stamp_table.keys():
-		var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
-		if(record):
-			stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+		stamp_records.append(stamp_key)
 			
 	_male_stamp_table_control.set_disabled(false)
 	_male_stamp_table_control.populate_tree(stamp_records, null)
 	_male_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 	_male_stamp_color_control.set_disabled(true)
-	current_male_stamp_key = ""
+	current_male_stamp_key = null
 			
-	stamp_records = []
+	var stamp_records = []
 	for stamp_key in p_record.female_stamp_table.keys():
-		var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
-		if(record):
-			stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+		stamp_records.append(stamp_key)
 			
 	_female_stamp_table_control.set_disabled(false)
 	_female_stamp_table_control.populate_tree(stamp_records, null)
 	_female_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 	_female_stamp_color_control.set_disabled(true)
-	current_female_stamp_key = ""
+	current_female_stamp_key = null
 	
 	_biped_control.set_hide_root(true)
 	_biped_control.clear()
@@ -113,28 +109,26 @@ func _on_ClothingPartsControl_record_selected( p_record ):
 			
 func _on_MaleStampTableControl_record_cell_selected( p_record ):
 	if(current_record):
-		current_male_stamp_key = p_record.id
+		current_male_stamp_key = p_record
 		
-		if(current_record.male_stamp_table.has(p_record.id) == true):
-			_male_stamp_color_control.set_color(current_record.male_stamp_table[p_record.id])
+		if(current_record.male_stamp_table.has(p_record) == true):
+			_male_stamp_color_control.set_color(current_record.male_stamp_table[p_record])
 		else:
 			_male_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 		_male_stamp_color_control.set_disabled(false)
 	else:
-		current_male_stamp_key = ""
+		current_male_stamp_key = null
 		
 func _on_MaleStampTableControl_record_erased( p_record ):
 	if(current_record):
-		if(current_record.male_stamp_table.has(p_record.id) == true):
-			current_record.male_stamp_table.erase(p_record.id)
+		if(current_record.male_stamp_table.has(p_record) == true):
+			current_record.male_stamp_table.erase(p_record)
 			
 			var stamp_records = []
 			for stamp_key in current_record.male_stamp_table.keys():
-				var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
-				if(record):
-					stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+				stamp_records.append(stamp_key)
 			
-			current_male_stamp_key = ""
+			current_male_stamp_key = null
 			_male_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 			_male_stamp_color_control.set_disabled(true)
 			
@@ -143,18 +137,16 @@ func _on_MaleStampTableControl_record_erased( p_record ):
 			
 func _on_MaleStampTableControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
-		if(current_record.male_stamp_table.has(p_record.id) == true):
+		if(current_record.male_stamp_table.has(p_record) == true):
 			return
 		else:
-			current_record.male_stamp_table[p_record.id] = Color(1.0, 1.0, 1.0)
+			current_record.male_stamp_table[p_record] = Color(1.0, 1.0, 1.0)
 			
 			var stamp_records = []
 			for stamp_key in current_record.male_stamp_table.keys():
-				var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
-				if(record):
-					stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+				stamp_records.append(stamp_key)
 					
-			current_male_stamp_key = ""
+			current_male_stamp_key = null
 			_male_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 			_male_stamp_color_control.set_disabled(false)
 			
@@ -164,36 +156,33 @@ func _on_MaleStampTableControl_record_selected( p_record ):
 func _on_MaleStampColorButton_color_changed( color ):
 	if(current_record):
 		if(_male_stamp_color_control):
-			if(current_male_stamp_key != ""):
-				if(current_record.male_stamp_table.has(current_male_stamp_key) == true):
-					current_record.male_stamp_table[current_male_stamp_key] = color
-					
-					current_database.mark_database_as_modified()
+			if(current_male_stamp_key != null):
+				current_record.male_stamp_table[current_male_stamp_key] = color
+				
+				current_database.mark_database_as_modified()
 
 func _on_FemaleStampTableControl_record_cell_selected( p_record ):
 	if(current_record):
-		current_female_stamp_key = p_record.id
+		current_female_stamp_key = p_record
 		
-		if(current_record.female_stamp_table.has(p_record.id) == true):
-			_female_stamp_color_control.set_color(current_record.female_stamp_table[p_record.id])
+		if(current_record.female_stamp_table.has(p_record) == true):
+			_female_stamp_color_control.set_color(current_record.female_stamp_table[p_record])
 		else:
 			_female_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 		_female_stamp_color_control.set_disabled(false)
 	else:
-		current_female_stamp_key = ""
+		current_female_stamp_key = null
 
 func _on_FemaleStampTableControl_record_erased( p_record ):
 	if(current_record):
-		if(current_record.female_stamp_table.has(p_record.id) == true):
-			current_record.female_stamp_table.erase(p_record.id)
+		if(current_record.female_stamp_table.has(p_record) == true):
+			current_record.female_stamp_table.erase(p_record)
 			
 			var stamp_records = []
 			for stamp_key in current_record.female_stamp_table.keys():
-				var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
-				if(record):
-					stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+				stamp_records.append(stamp_key)
 			
-			current_male_stamp_key = ""
+			current_female_stamp_key = null
 			_female_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 			_female_stamp_color_control.set_disabled(true)
 			
@@ -202,18 +191,16 @@ func _on_FemaleStampTableControl_record_erased( p_record ):
 
 func _on_FemaleStampTableControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
-		if(current_record.female_stamp_table.has(p_record.id) == true):
+		if(current_record.female_stamp_table.has(p_record) == true):
 			return
 		else:
-			current_record.female_stamp_table[p_record.id] = Color(1.0, 1.0, 1.0)
+			current_record.female_stamp_table[p_record] = Color(1.0, 1.0, 1.0)
 			
 			var stamp_records = []
 			for stamp_key in current_record.female_stamp_table.keys():
-				var record = galatea_databases.stamp_database.find_record_by_name(stamp_key)
-				if(record):
-					stamp_records.append(galatea_databases.stamp_database.find_record_by_name(stamp_key))
+				stamp_records.append(stamp_key)
 					
-			current_female_stamp_key = ""
+			current_female_stamp_key = null
 			_female_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 			_female_stamp_color_control.set_disabled(false)
 			
@@ -223,11 +210,10 @@ func _on_FemaleStampTableControl_record_selected( p_record ):
 func _on_FemaleStampColorButton_color_changed( color ):
 	if(current_record):
 		if(_female_stamp_color_control):
-			if(current_female_stamp_key != ""):
-				if(current_record.female_stamp_table.has(current_female_stamp_key) == true):
-					current_record.female_stamp_table[current_female_stamp_key] = color
-					
-					current_database.mark_database_as_modified()
+			if(current_female_stamp_key != null):
+				current_record.female_stamp_table[current_female_stamp_key] = color
+				
+				current_database.mark_database_as_modified()
 					
 func _on_BipedTree_item_edited():
 	if(current_record):

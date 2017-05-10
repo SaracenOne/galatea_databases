@@ -6,7 +6,7 @@ const headpart_record_const = preload("../databases/headpart_record.gd")
 
 var current_body_scaler_key = ""
 var current_head_morph_key = ""
-var current_stamp = ""
+var current_stamp = null
 
 export(NodePath) var family_name = NodePath()
 export(NodePath) var given_name = NodePath()
