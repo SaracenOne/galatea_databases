@@ -24,10 +24,10 @@ func _load_record(p_dictionary_record, p_databases):
 		target_max = generic_database_const.convert_string_to_vector_2(p_dictionary_record.target_max)
 		
 	if(p_dictionary_record.has("uses_alpha")):
-		uses_alpha = uses_alpha
+		uses_alpha = p_dictionary_record.uses_alpha
 		
 	if(p_dictionary_record.has("invert_alpha")):
-		invert_alpha = invert_alpha
+		invert_alpha = p_dictionary_record.invert_alpha
 
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
