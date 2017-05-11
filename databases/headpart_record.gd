@@ -14,6 +14,7 @@ export(Resource) var meshpart = null
 export(Resource) var stamp = null
 export(String) var main_icon_path = ""
 export(bool) var character_creator = false
+export(bool) var use_hair_color = false
 
 static func get_headpart_from_string(p_string):
 	var lower_string = p_string.to_lower()
@@ -65,6 +66,9 @@ func _load_record(p_dictionary_record, p_databases):
 		
 	if(p_dictionary_record.has("character_creator")):
 		character_creator = p_dictionary_record.character_creator
+		
+	if(p_dictionary_record.has("use_hair_color")):
+		use_hair_color = p_dictionary_record.use_hair_color
 	
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
@@ -80,6 +84,7 @@ func _save_record(p_dictionary_record, p_databases):
 	p_dictionary_record.main_icon_path = main_icon_path
 		
 	p_dictionary_record.character_creator = character_creator
+	p_dictionary_record.use_hair_color = use_hair_color
 	
 func is_headpart_type(p_type):
 	return headpart_type == p_type

@@ -9,6 +9,7 @@ export(NodePath) var stamp_control = NodePath()
 export(NodePath) var main_icon_path_control = NodePath()
 export(NodePath) var main_icon_preview_control = NodePath()
 export(NodePath) var character_creator_enabled_control = NodePath()
+export(NodePath) var use_hair_color_control = NodePath()
 
 export(NodePath) var scene_preview = NodePath()
 export(NodePath) var capture_button = NodePath()
@@ -18,7 +19,8 @@ onready var _meshpart_control_node = get_node(meshpart_control)
 onready var _stamp_control_node = get_node(stamp_control)
 onready var _main_icon_path_control_node = get_node(main_icon_path_control)
 onready var _main_icon_preview_control_node = get_node(main_icon_preview_control)
-onready var _character_creator_enabled_control = get_node(character_creator_enabled_control)
+onready var _character_creator_enabled_control_node = get_node(character_creator_enabled_control)
+onready var _use_hair_color_control_node = get_node(use_hair_color_control)
 
 onready var _scene_preview_node = get_node(scene_preview)
 onready var _capture_button_node = get_node(capture_button)
@@ -59,8 +61,11 @@ func set_current_record_callback(p_record):
 	else:
 		_meshpart_control_node.set_record_name("")
 	
-	_character_creator_enabled_control.set_disabled(false)
-	_character_creator_enabled_control.set_pressed(p_record.character_creator)
+	_character_creator_enabled_control_node.set_disabled(false)
+	_character_creator_enabled_control_node.set_pressed(p_record.character_creator)
+	
+	_use_hair_color_control_node.set_disabled(false)
+	_use_hair_color_control_node.set_pressed(p_record.use_hair_color)
 	
 	##
 	_main_icon_path_control_node.set_file_path(current_record.main_icon_path)
@@ -150,7 +155,12 @@ func _on_CharacterCreatorCheckBox_toggled( pressed ):
 	if(current_record):
 		current_record.character_creator = pressed
 		current_database.mark_database_as_modified()
-
+		
+func _on_UseHairColorCheckBox_toggled( pressed ):
+	if(current_record):
+		current_record.use_hair_color = pressed
+		current_database.mark_database_as_modified()
+		
 func _on_MainIconPathContainer_file_selected( p_path ):
 	if(current_record):
 		current_record.main_icon_path = p_path

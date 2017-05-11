@@ -29,6 +29,7 @@ stamp_control = NodePath("RightSide/StampControl")
 main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPathContainer")
 main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
 character_creator_enabled_control = NodePath("RightSide/CharacterCreatorCheckBox")
+use_hair_color_control = NodePath("RightSide/UseHairColorCheckBox")
 scene_preview = NodePath("RightSide/PreviewContainer/ScenePreview")
 capture_button = NodePath("RightSide/PreviewContainer/ButtonContainer/CreateIconButton")
 
@@ -201,6 +202,25 @@ text = "Avaliable in Character Creator"
 flat = false
 align = 0
 
+[node name="UseHairColorCheckBox" type="CheckBox" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 269.0
+margin/right = 224.0
+margin/bottom = 292.0
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Uses Hair Color"
+flat = false
+align = 0
+
 [node name="PreviewContainer" type="VBoxContainer" parent="RightSide"]
 
 rect/pivot = Vector2( 0, 0 )
@@ -285,6 +305,8 @@ flat = false
 [connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPathContainer" to="." method="_on_MainIconPathContainer_file_selected"]
 
 [connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
+
+[connection signal="toggled" from="RightSide/UseHairColorCheckBox" to="." method="_on_UseHairColorCheckBox_toggled"]
 
 [connection signal="pressed" from="RightSide/PreviewContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
 
