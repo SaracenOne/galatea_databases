@@ -2,6 +2,7 @@ extends "generic_record.gd"
 
 export(String) var printed_name = ""
 export(Array) var clothes = []
+export(bool) var precache_stamps = false
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
@@ -15,6 +16,9 @@ func _load_record(p_dictionary_record, p_databases):
 			var clothing_instance = p_databases.clothing_database.find_record_by_name(clothing_name)
 			if(clothing_instance != null):
 				clothes.append(clothing_instance)
+				
+	if(p_dictionary_record.has("precache_stamps")):
+		precache_stamps = p_dictionary_record.precache_stamps
 	
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
@@ -25,3 +29,5 @@ func _save_record(p_dictionary_record, p_databases):
 	p_dictionary_record.clothes = []
 	for clothing_instance in clothes:
 		p_dictionary_record.clothes.append(clothing_instance.id)
+		
+	p_dictionary_record.precache_stamps = precache_stamps
