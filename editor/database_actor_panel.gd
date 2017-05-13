@@ -522,7 +522,7 @@ func _on_ScalerTableTree_cell_selected():
 func _on_MorphTableSpinBox_value_changed( value ):
 	if(current_record):
 		if(_head_morph_value_control):
-			if(_head_morph_value_control != ""):
+			if(current_head_morph_key != ""):
 				if(current_record.head_morph_table.has(current_head_morph_key) == true):
 					current_record.head_morph_table[current_head_morph_key] = value
 					current_database.mark_database_as_modified()
