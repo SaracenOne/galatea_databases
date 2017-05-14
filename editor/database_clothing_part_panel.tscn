@@ -24,6 +24,7 @@ script/script = ExtResource( 1 )
 male_mesh = NodePath("RightSide/GendersContainer/GenderMaleContainer/MaleMeshControl")
 female_mesh = NodePath("RightSide/GendersContainer/GenderFemaleContainer/FemaleMeshControl")
 is_attachment = NodePath("RightSide/IsAttachmentCheckBox")
+bone_attachment_name = NodePath("RightSide/AttachmentBoneNameContainer/AttachmentBoneNameLineEdit")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -66,6 +67,7 @@ alignment = 0
 
 [node name="GenderMaleContainer" type="VBoxContainer" parent="RightSide/GendersContainer"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -101,6 +103,7 @@ margin/bottom = 42.0
 
 [node name="GenderFemaleContainer" type="VBoxContainer" parent="RightSide/GendersContainer"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -141,6 +144,53 @@ text = "Is Attachment"
 flat = false
 align = 0
 
+[node name="AttachmentBoneNameContainer" type="HBoxContainer" parent="RightSide"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 90.0
+margin/right = 481.0
+margin/bottom = 114.0
+alignment = 0
+
+[node name="AttachmentBoneNameLabel" type="Label" parent="RightSide/AttachmentBoneNameContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 5.0
+margin/right = 158.0
+margin/bottom = 19.0
+text = "Attachment Bone Name:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AttachmentBoneNameLineEdit" type="LineEdit" parent="RightSide/AttachmentBoneNameContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 162.0
+margin/top = 0.0
+margin/right = 471.0
+margin/bottom = 24.0
+placeholder/alpha = 0.6
+editable = false
+expand_to_len = false
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
@@ -154,5 +204,7 @@ align = 0
 [connection signal="file_selected" from="RightSide/GendersContainer/GenderFemaleContainer/FemaleMeshControl" to="." method="_on_FemaleMeshControl_file_selected"]
 
 [connection signal="toggled" from="RightSide/IsAttachmentCheckBox" to="." method="_on_IsAttachmentCheckBox_toggled"]
+
+[connection signal="text_changed" from="RightSide/AttachmentBoneNameContainer/AttachmentBoneNameLineEdit" to="." method="_on_AttachmentBoneNameLineEdit_text_changed"]
 
 

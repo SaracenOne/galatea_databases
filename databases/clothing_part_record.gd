@@ -7,6 +7,7 @@ export(Array) var male_model_materials = []
 export(Array) var female_model_materials = []
 
 export(bool) var is_attachment = false
+export(String) var bone_attachment_name = ""
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
@@ -28,6 +29,9 @@ func _load_record(p_dictionary_record, p_databases):
 			
 	if(p_dictionary_record.has("is_attachment")):
 		is_attachment = p_dictionary_record.is_attachment
+		
+	if(p_dictionary_record.has("bone_attachment_name")):
+		bone_attachment_name = p_dictionary_record.bone_attachment_name
 
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
@@ -45,3 +49,4 @@ func _save_record(p_dictionary_record, p_databases):
 		p_dictionary_record.female_model_materials.append(female_model_material)
 		
 	p_dictionary_record.is_attachment = is_attachment
+	p_dictionary_record.bone_attachment_name = bone_attachment_name
