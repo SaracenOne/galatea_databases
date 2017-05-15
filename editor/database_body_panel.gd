@@ -12,8 +12,8 @@ export(NodePath) var body_scaler_female_table = NodePath()
 
 export(NodePath) var naked_clothing = NodePath()
 
-export(NodePath) var male_skin_texture_set = NodePath()
-export(NodePath) var female_skin_texture_set = NodePath()
+export(NodePath) var male_skin_stamp = NodePath()
+export(NodePath) var female_skin_stamp = NodePath()
 
 onready var _skeleton_male_path_control = get_node(skeleton_male_path)
 onready var _skeleton_female_path_control = get_node(skeleton_female_path)
@@ -23,8 +23,8 @@ onready var _body_scaler_female_table_control = get_node(body_scaler_female_tabl
 
 onready var _naked_clothing_control = get_node(naked_clothing)
 
-onready var _male_skin_texture_set = get_node(male_skin_texture_set)
-onready var _female_skin_texture_set = get_node(female_skin_texture_set)
+onready var _male_skin_stamp = get_node(male_skin_stamp)
+onready var _female_skin_stamp = get_node(female_skin_stamp)
 
 func _ready():
 	pass
@@ -42,8 +42,8 @@ func galatea_databases_assigned():
 
 		_naked_clothing_control.assign_database(galatea_databases.clothing_set_database)
 
-		_male_skin_texture_set.assign_database(galatea_databases.texture_set_database)
-		_female_skin_texture_set.assign_database(galatea_databases.texture_set_database)
+		_male_skin_stamp.assign_database(galatea_databases.stamp_database)
+		_female_skin_stamp.assign_database(galatea_databases.stamp_database)
 
 	else:
 		printerr("body_databases is null")
@@ -79,17 +79,17 @@ func set_current_record_callback(p_record):
 	else:
 		_naked_clothing_control.set_record_name("")
 		
-	_male_skin_texture_set.set_disabled(false)
-	if(p_record.male_skin_texture_set):
-		_male_skin_texture_set.set_record_name(p_record.male_skin_texture_set.id)
+	_male_skin_stamp.set_disabled(false)
+	if(p_record.male_skin_stamp):
+		_male_skin_stamp.set_record_name(p_record.male_skin_stamp.id)
 	else:
-		_male_skin_texture_set.set_record_name("")
+		_male_skin_stamp.set_record_name("")
 		
-	_female_skin_texture_set.set_disabled(false)
-	if(p_record.female_skin_texture_set):
-		_female_skin_texture_set.set_record_name(p_record.female_skin_texture_set.id)
+	_female_skin_stamp.set_disabled(false)
+	if(p_record.female_skin_stamp):
+		_female_skin_stamp.set_record_name(p_record.female_skin_stamp.id)
 	else:
-		_female_skin_texture_set.set_record_name("")
+		_female_skin_stamp.set_record_name("")
 
 func _on_MaleSkeletonPathControl_file_selected( p_path ):
 	if(current_record):
@@ -103,22 +103,22 @@ func _on_FemaleSkeletonPathControl_file_selected( p_path ):
 
 func _on_MaleSkinTextureSet_record_selected( p_record ):
 	if(current_record):
-		current_record.male_skin_texture_set = p_record
+		current_record.male_skin_stamp = p_record
 		current_database.mark_database_as_modified()
 
 func _on_MaleSkinTextureSet_record_erased( p_record ):
 	if(current_record):
-		current_record.male_skin_texture_set = p_record
+		current_record.male_skin_stamp = p_record
 		current_database.mark_database_as_modified()
 
 func _on_FemaleSkinTextureSet_record_selected( p_record ):
 	if(current_record):
-		current_record.female_skin_texture_set = p_record
+		current_record.female_skin_stamp = p_record
 		current_database.mark_database_as_modified()
 
 func _on_FemaleSkinTextureSet_record_erased( p_record ):
 	if(current_record):
-		current_record.female_skin_texture_set = p_record
+		current_record.female_skin_stamp = p_record
 		current_database.mark_database_as_modified()
 
 func _on_MaleScalerTableControl_record_cell_selected( p_record ):

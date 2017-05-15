@@ -28,8 +28,8 @@ skeleton_female_path = NodePath("RightSide/MainContainers/SkeletonPathContainer/
 body_scaler_male_table = NodePath("RightSide/MainContainers/ScalerTableContainer/MaleScalerTable/MaleScalerTableControl")
 body_scaler_female_table = NodePath("RightSide/MainContainers/ScalerTableContainer/FemaleScalerTable/FemaleScalerTableControl")
 naked_clothing = NodePath("RightSide/MainContainers/NakedClothing")
-male_skin_texture_set = NodePath("RightSide/MainContainers/TextureSetContainer/MaleSkinTextureSet")
-female_skin_texture_set = NodePath("RightSide/MainContainers/TextureSetContainer/FemaleSkinTextureSet")
+male_skin_stamp = NodePath("RightSide/MainContainers/StampContainer/MaleSkinStamp")
+female_skin_stamp = NodePath("RightSide/MainContainers/StampContainer/FemaleSkinStamp")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -136,7 +136,7 @@ file_type = "PackedScene"
 disabled = true
 has_clear_button = true
 
-[node name="TextureSetContainer" type="HBoxContainer" parent="RightSide/MainContainers"]
+[node name="StampContainer" type="HBoxContainer" parent="RightSide/MainContainers"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -149,25 +149,25 @@ margin/right = 1294.0
 margin/bottom = 88.0
 alignment = 0
 
-[node name="MaleSkinTextureSet" parent="RightSide/MainContainers/TextureSetContainer" instance=ExtResource( 4 )]
+[node name="MaleSkinStamp" parent="RightSide/MainContainers/StampContainer" instance=ExtResource( 4 )]
 
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/right = 645.0
 margin/bottom = 42.0
-label = "Male Skin Texture Set:"
+label = "Male Skin Stamp:"
 record_name = ""
 disabled = true
 has_clear_button = true
 
-[node name="FemaleSkinTextureSet" parent="RightSide/MainContainers/TextureSetContainer" instance=ExtResource( 4 )]
+[node name="FemaleSkinStamp" parent="RightSide/MainContainers/StampContainer" instance=ExtResource( 4 )]
 
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 649.0
 margin/right = 1294.0
 margin/bottom = 42.0
-label = "Female Skin Texture Set:"
+label = "Female Skin Stamp:"
 record_name = ""
 disabled = true
 has_clear_button = true
@@ -283,13 +283,13 @@ margin/bottom = 762.0
 
 [connection signal="file_selected" from="RightSide/MainContainers/SkeletonPathContainer/FemaleSkeletonPathContainer/FemaleSkeletonPathControl" to="." method="_on_FemaleSkeletonPathControl_file_selected"]
 
-[connection signal="record_erased" from="RightSide/MainContainers/TextureSetContainer/MaleSkinTextureSet" to="." method="_on_MaleSkinTextureSet_record_erased"]
+[connection signal="record_erased" from="RightSide/MainContainers/StampContainer/MaleSkinStamp" to="." method="_on_MaleSkinTextureSet_record_erased"]
 
-[connection signal="record_selected" from="RightSide/MainContainers/TextureSetContainer/MaleSkinTextureSet" to="." method="_on_MaleSkinTextureSet_record_selected"]
+[connection signal="record_selected" from="RightSide/MainContainers/StampContainer/MaleSkinStamp" to="." method="_on_MaleSkinTextureSet_record_selected"]
 
-[connection signal="record_erased" from="RightSide/MainContainers/TextureSetContainer/FemaleSkinTextureSet" to="." method="_on_FemaleSkinTextureSet_record_erased"]
+[connection signal="record_erased" from="RightSide/MainContainers/StampContainer/FemaleSkinStamp" to="." method="_on_FemaleSkinTextureSet_record_erased"]
 
-[connection signal="record_selected" from="RightSide/MainContainers/TextureSetContainer/FemaleSkinTextureSet" to="." method="_on_FemaleSkinTextureSet_record_selected"]
+[connection signal="record_selected" from="RightSide/MainContainers/StampContainer/FemaleSkinStamp" to="." method="_on_FemaleSkinTextureSet_record_selected"]
 
 [connection signal="record_erased" from="RightSide/MainContainers/NakedClothing" to="." method="_on_NakedClothing_record_erased"]
 

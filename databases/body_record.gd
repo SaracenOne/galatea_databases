@@ -8,8 +8,8 @@ export(String) var skeleton_female_path = ""
 
 export(Resource) var naked_clothing_set = null
 
-export(Resource) var male_skin_texture_set = null
-export(Resource) var female_skin_texture_set = null
+export(Resource) var male_skin_stamp = null
+export(Resource) var female_skin_stamp = null
 
 export(Array) var body_scaler_male_table = []
 export(Array) var body_scaler_female_table = []
@@ -28,15 +28,15 @@ func _load_record(p_dictionary_record, p_databases):
 	else:
 		naked_clothing_set = null
 		
-	if(p_dictionary_record.has("male_skin_texture_set")):
-		male_skin_texture_set = p_databases.texture_set_database.find_record_by_name(p_dictionary_record.male_skin_texture_set)
+	if(p_dictionary_record.has("male_skin_stamp")):
+		male_skin_stamp = p_databases.stamp_database.find_record_by_name(p_dictionary_record.male_skin_stamp)
 	else:
-		male_skin_texture_set = null
+		male_skin_stamp = null
 		
-	if(p_dictionary_record.has("female_skin_texture_set")):
-		female_skin_texture_set = p_databases.texture_set_database.find_record_by_name(p_dictionary_record.female_skin_texture_set)
+	if(p_dictionary_record.has("female_skin_stamp")):
+		female_skin_stamp = p_databases.stamp_database.find_record_by_name(p_dictionary_record.female_skin_stamp)
 	else:
-		female_skin_texture_set = null
+		female_skin_stamp = null
 		
 	body_scaler_male_table = []
 	if(p_dictionary_record.has("body_scaler_male_table")):
@@ -71,15 +71,15 @@ func _save_record(p_dictionary_record, p_databases):
 	else:
 		p_dictionary_record.naked_clothing_set = ""
 		
-	if(male_skin_texture_set):
-		p_dictionary_record.male_skin_texture_set = male_skin_texture_set.id
+	if(male_skin_stamp):
+		p_dictionary_record.male_skin_stamp = male_skin_stamp.id
 	else:
-		p_dictionary_record.male_skin_texture_set = ""
+		p_dictionary_record.male_skin_stamp = ""
 		
-	if(female_skin_texture_set):
-		p_dictionary_record.female_skin_texture_set = female_skin_texture_set.id
+	if(female_skin_stamp):
+		p_dictionary_record.female_skin_stamp = female_skin_stamp.id
 	else:
-		p_dictionary_record.female_skin_texture_set = ""
+		p_dictionary_record.female_skin_stamp = ""
 		
 	p_dictionary_record.body_scaler_male_table = []
 	for record in body_scaler_male_table:
