@@ -25,6 +25,8 @@ split/dragger_visibility = 1
 script/script = ExtResource( 1 )
 skeleton_male_path = NodePath("RightSide/MainContainers/SkeletonPathContainer/MaleSkeletonPathContainer/MaleSkeletonPathControl")
 skeleton_female_path = NodePath("RightSide/MainContainers/SkeletonPathContainer/FemaleSkeletonPathContainer/FemaleSkeletonPathControl")
+physics_male_path = NodePath("RightSide/MainContainers/PhysicsPathContainer/MalePhysicsPathContainer/MalePhysicsPathControl")
+physics_female_path = NodePath("RightSide/MainContainers/PhysicsPathContainer/FemalePhysicsPathContainer/FemalePhysicsPathControl")
 body_scaler_male_table = NodePath("RightSide/MainContainers/ScalerTableContainer/MaleScalerTable/MaleScalerTableControl")
 body_scaler_female_table = NodePath("RightSide/MainContainers/ScalerTableContainer/FemaleScalerTable/FemaleScalerTableControl")
 naked_clothing = NodePath("RightSide/MainContainers/NakedClothing")
@@ -74,6 +76,7 @@ alignment = 0
 
 [node name="SkeletonPathContainer" type="HBoxContainer" parent="RightSide/MainContainers"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -136,7 +139,7 @@ file_type = "PackedScene"
 disabled = true
 has_clear_button = true
 
-[node name="StampContainer" type="HBoxContainer" parent="RightSide/MainContainers"]
+[node name="PhysicsPathContainer" type="HBoxContainer" parent="RightSide/MainContainers"]
 
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
@@ -147,6 +150,70 @@ margin/left = 0.0
 margin/top = 46.0
 margin/right = 1294.0
 margin/bottom = 88.0
+alignment = 0
+
+[node name="MalePhysicsPathContainer" type="HBoxContainer" parent="RightSide/MainContainers/PhysicsPathContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 645.0
+margin/bottom = 42.0
+alignment = 0
+
+[node name="MalePhysicsPathControl" parent="RightSide/MainContainers/PhysicsPathContainer/MalePhysicsPathContainer" instance=ExtResource( 3 )]
+
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/right = 645.0
+margin/bottom = 42.0
+label = "Male Physics Path"
+file_browser_title = "Open PackedScene"
+file_type = "PackedScene"
+disabled = true
+has_clear_button = true
+
+[node name="FemalePhysicsPathContainer" type="HBoxContainer" parent="RightSide/MainContainers/PhysicsPathContainer"]
+
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 649.0
+margin/top = 0.0
+margin/right = 1294.0
+margin/bottom = 42.0
+alignment = 0
+
+[node name="FemalePhysicsPathControl" parent="RightSide/MainContainers/PhysicsPathContainer/FemalePhysicsPathContainer" instance=ExtResource( 3 )]
+
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/right = 645.0
+margin/bottom = 42.0
+label = "Female Physics Path"
+file_browser_title = "Open PackedScene"
+file_type = "PackedScene"
+disabled = true
+has_clear_button = true
+
+[node name="StampContainer" type="HBoxContainer" parent="RightSide/MainContainers"]
+
+editor/display_folded = true
+rect/pivot = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 92.0
+margin/right = 1294.0
+margin/bottom = 134.0
 alignment = 0
 
 [node name="MaleSkinStamp" parent="RightSide/MainContainers/StampContainer" instance=ExtResource( 4 )]
@@ -174,9 +241,9 @@ has_clear_button = true
 
 [node name="NakedClothing" parent="RightSide/MainContainers" instance=ExtResource( 4 )]
 
-margin/top = 92.0
+margin/top = 138.0
 margin/right = 1294.0
-margin/bottom = 134.0
+margin/bottom = 180.0
 label = "Naked Clothing:"
 record_name = ""
 disabled = true
@@ -184,13 +251,14 @@ has_clear_button = true
 
 [node name="ScalerTableContainer" type="HBoxContainer" parent="RightSide/MainContainers"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 138.0
+margin/top = 184.0
 margin/right = 1294.0
 margin/bottom = 900.0
 alignment = 0
@@ -205,7 +273,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 645.0
-margin/bottom = 762.0
+margin/bottom = 716.0
 alignment = 1
 
 [node name="MaleScalerTableLabel" type="Label" parent="RightSide/MainContainers/ScalerTableContainer/MaleScalerTable"]
@@ -231,7 +299,7 @@ anchor/bottom = 0
 size_flags/vertical = 3
 margin/top = 18.0
 margin/right = 645.0
-margin/bottom = 762.0
+margin/bottom = 716.0
 
 [node name="FemaleScalerTable" type="VBoxContainer" parent="RightSide/MainContainers/ScalerTableContainer"]
 
@@ -243,7 +311,7 @@ size_flags/vertical = 2
 margin/left = 649.0
 margin/top = 0.0
 margin/right = 1294.0
-margin/bottom = 762.0
+margin/bottom = 716.0
 alignment = 1
 
 [node name="FemaleScalerTableLabel" type="Label" parent="RightSide/MainContainers/ScalerTableContainer/FemaleScalerTable"]
@@ -269,7 +337,7 @@ anchor/bottom = 0
 size_flags/vertical = 3
 margin/top = 18.0
 margin/right = 645.0
-margin/bottom = 762.0
+margin/bottom = 716.0
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
@@ -282,6 +350,10 @@ margin/bottom = 762.0
 [connection signal="file_selected" from="RightSide/MainContainers/SkeletonPathContainer/MaleSkeletonPathContainer/MaleSkeletonPathControl" to="." method="_on_MaleSkeletonPathControl_file_selected"]
 
 [connection signal="file_selected" from="RightSide/MainContainers/SkeletonPathContainer/FemaleSkeletonPathContainer/FemaleSkeletonPathControl" to="." method="_on_FemaleSkeletonPathControl_file_selected"]
+
+[connection signal="file_selected" from="RightSide/MainContainers/PhysicsPathContainer/MalePhysicsPathContainer/MalePhysicsPathControl" to="." method="_on_MalePhysicsPathControl_file_selected"]
+
+[connection signal="file_selected" from="RightSide/MainContainers/PhysicsPathContainer/FemalePhysicsPathContainer/FemalePhysicsPathControl" to="." method="_on_FemalePhysicsPathControl_file_selected"]
 
 [connection signal="record_erased" from="RightSide/MainContainers/StampContainer/MaleSkinStamp" to="." method="_on_MaleSkinTextureSet_record_erased"]
 

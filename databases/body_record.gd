@@ -6,6 +6,9 @@ const generic_database_const = preload("generic_database.gd")
 export(String) var skeleton_male_path = ""
 export(String) var skeleton_female_path = ""
 
+export(String) var physics_male_path = ""
+export(String) var physics_female_path = ""
+
 export(Resource) var naked_clothing_set = null
 
 export(Resource) var male_skin_stamp = null
@@ -22,6 +25,11 @@ func _load_record(p_dictionary_record, p_databases):
 		skeleton_male_path = p_dictionary_record.skeleton_male_path
 	if(p_dictionary_record.has("skeleton_female_path")):
 		skeleton_female_path = p_dictionary_record.skeleton_female_path
+		
+	if(p_dictionary_record.has("physics_male_path")):
+		physics_male_path = p_dictionary_record.physics_male_path
+	if(p_dictionary_record.has("physics_female_path")):
+		physics_female_path = p_dictionary_record.physics_female_path
 	
 	if(p_dictionary_record.has("naked_clothing_set")):
 		naked_clothing_set = p_databases.clothing_set_database.find_record_by_name(p_dictionary_record.naked_clothing_set)
@@ -65,6 +73,16 @@ func _save_record(p_dictionary_record, p_databases):
 		p_dictionary_record.skeleton_female_path = skeleton_female_path
 	else:
 		p_dictionary_record.skeleton_female_path = ""
+		
+	if(physics_male_path):
+		p_dictionary_record.physics_male_path = physics_male_path
+	else:
+		p_dictionary_record.physics_male_path = ""
+		
+	if(physics_female_path):
+		p_dictionary_record.physics_female_path = physics_female_path
+	else:
+		p_dictionary_record.physics_female_path = ""
 	
 	if(naked_clothing_set):
 		p_dictionary_record.naked_clothing_set = naked_clothing_set.id

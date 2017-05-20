@@ -7,6 +7,9 @@ var current_stamp = ""
 export(NodePath) var skeleton_male_path = NodePath()
 export(NodePath) var skeleton_female_path = NodePath()
 
+export(NodePath) var physics_male_path = NodePath()
+export(NodePath) var physics_female_path = NodePath()
+
 export(NodePath) var body_scaler_male_table = NodePath()
 export(NodePath) var body_scaler_female_table = NodePath()
 
@@ -17,6 +20,9 @@ export(NodePath) var female_skin_stamp = NodePath()
 
 onready var _skeleton_male_path_control = get_node(skeleton_male_path)
 onready var _skeleton_female_path_control = get_node(skeleton_female_path)
+
+onready var _physics_male_path_control = get_node(physics_male_path)
+onready var _physics_female_path_control = get_node(physics_female_path)
 
 onready var _body_scaler_male_table_control = get_node(body_scaler_male_table)
 onready var _body_scaler_female_table_control = get_node(body_scaler_female_table)
@@ -72,6 +78,12 @@ func set_current_record_callback(p_record):
 
 	_skeleton_female_path_control.set_disabled(false)
 	_skeleton_female_path_control.set_file_path(p_record.skeleton_female_path)
+	
+	_physics_male_path_control.set_disabled(false)
+	_physics_male_path_control.set_file_path(p_record.physics_male_path)
+
+	_physics_female_path_control.set_disabled(false)
+	_physics_female_path_control.set_file_path(p_record.physics_female_path)
 
 	_naked_clothing_control.set_disabled(false)
 	if(p_record.naked_clothing_set):
@@ -100,7 +112,17 @@ func _on_FemaleSkeletonPathControl_file_selected( p_path ):
 	if(current_record):
 		current_record.skeleton_female_path = p_path
 		current_database.mark_database_as_modified()
-
+		
+func _on_MalePhysicsPathControl_file_selected( p_path ):
+	if(current_record):
+		current_record.physics_male_path = p_path
+		current_database.mark_database_as_modified()
+	
+func _on_FemalePhysicsPathControl_file_selected( p_path ):
+	if(current_record):
+		current_record.physics_female_path = p_path
+		current_database.mark_database_as_modified()
+	
 func _on_MaleSkinTextureSet_record_selected( p_record ):
 	if(current_record):
 		current_record.male_skin_stamp = p_record
