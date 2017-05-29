@@ -22,16 +22,16 @@ split/offset = -500
 split/collapsed = false
 split/dragger_visibility = 1
 script/script = ExtResource( 1 )
-printed_name_control = NodePath("")
-scene_file_control = NodePath("")
-physics_file_control = NodePath("")
-main_icon_path_control = NodePath("")
-main_icon_preview_control = NodePath("")
-character_creator_nodepath = NodePath("")
-male_nodepath = NodePath("")
-female_nodepath = NodePath("")
-scene_preview = NodePath("")
-capture_button = NodePath("")
+printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameControl")
+scene_file_control = NodePath("RightSide/SceneFileMainContainer")
+physics_file_control = NodePath("RightSide/PhysicsFileMainContainer")
+main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPath")
+main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
+character_creator_nodepath = NodePath("RightSide/CharacterCreatorCheckBox")
+male_nodepath = NodePath("RightSide/GenderContainer/MaleCheckbox")
+female_nodepath = NodePath("RightSide/GenderContainer/FemaleCheckbox")
+scene_preview = NodePath("RightSide/ScenePreviewContainer/ScenePreview")
+capture_button = NodePath("RightSide/ScenePreviewContainer/ButtonContainer/CreateIconButton")
 
 [node name="LeftSide" type="Control" parent="."]
 
