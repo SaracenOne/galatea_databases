@@ -1,10 +1,11 @@
 tool
 extends "database_panel.gd"
 
-const hair_const = preload("res://addons/armature_physics/hair.gd")
+const hair_const = preload("res://addons/avatar/hair.gd")
 
 export(NodePath) var printed_name_control = NodePath()
 export(NodePath) var scene_file_control = NodePath()
+export(NodePath) var physics_file_control = NodePath()
 
 export(NodePath) var main_icon_path_control = NodePath()
 export(NodePath) var main_icon_preview_control = NodePath()
@@ -19,6 +20,7 @@ export(NodePath) var capture_button = NodePath()
 
 onready var _printed_name_control_node = get_node(printed_name_control)
 onready var _scene_file_control_node = get_node(scene_file_control)
+onready var _physics_file_control_node = get_node(physics_file_control)
 
 onready var _main_icon_path_control_node = get_node(main_icon_path_control)
 onready var _main_icon_preview_control_node = get_node(main_icon_preview_control)
@@ -85,6 +87,9 @@ func set_current_record_callback(p_record):
 	_scene_file_control_node.set_file_path(current_record.scene_path)
 	_scene_file_control_node.set_disabled(false)
 	
+	_physics_file_control_node.set_file_path(current_record.physics_path)
+	_physics_file_control_node.set_disabled(false)
+	
 	_main_icon_path_control_node.set_file_path(current_record.main_icon_path)
 	_main_icon_path_control_node.set_disabled(false)
 	
@@ -114,6 +119,11 @@ func _on_scene_file_selected(p_path):
 		current_database.mark_database_as_modified()
 		
 		update_scene_preview()
+	
+func _on_PhysicsFileMainContainer_file_selected( p_path ):
+	if(current_record):
+		current_record.physics_path = p_path
+		current_database.mark_database_as_modified()
 		
 func _on_MainIconPath_file_selected( p_path ):
 	if(current_record):

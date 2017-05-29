@@ -22,15 +22,16 @@ split/offset = -500
 split/collapsed = false
 split/dragger_visibility = 1
 script/script = ExtResource( 1 )
-printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameControl")
-scene_file_control = NodePath("RightSide/SceneFileMainContainer")
-main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPath")
-main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
-character_creator_nodepath = NodePath("RightSide/CharacterCreatorCheckBox")
-male_nodepath = NodePath("RightSide/GenderContainer/MaleCheckbox")
-female_nodepath = NodePath("RightSide/GenderContainer/FemaleCheckbox")
-scene_preview = NodePath("RightSide/ScenePreviewContainer/ScenePreview")
-capture_button = NodePath("RightSide/ScenePreviewContainer/ButtonContainer/CreateIconButton")
+printed_name_control = NodePath("")
+scene_file_control = NodePath("")
+physics_file_control = NodePath("")
+main_icon_path_control = NodePath("")
+main_icon_preview_control = NodePath("")
+character_creator_nodepath = NodePath("")
+male_nodepath = NodePath("")
+female_nodepath = NodePath("")
+scene_preview = NodePath("")
+capture_button = NodePath("")
 
 [node name="LeftSide" type="Control" parent="."]
 
@@ -119,6 +120,18 @@ file_type = "PackedScene"
 disabled = true
 has_clear_button = true
 
+[node name="PhysicsFileMainContainer" parent="RightSide" instance=ExtResource( 3 )]
+
+margin/left = 10.0
+margin/top = 140.0
+margin/right = 532.0
+margin/bottom = 182.0
+label = "Physics File:"
+file_browser_title = "Open Scene"
+file_type = "PackedScene"
+disabled = true
+has_clear_button = true
+
 [node name="MainIconPathContainer" type="HBoxContainer" parent="RightSide"]
 
 editor/display_folded = true
@@ -128,9 +141,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 130.0
+margin/top = 190.0
 margin/right = 600.0
-margin/bottom = 194.0
+margin/bottom = 254.0
 alignment = 0
 
 [node name="MainIconPath" parent="RightSide/MainIconPathContainer" instance=ExtResource( 3 )]
@@ -180,9 +193,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 200.0
+margin/top = 260.0
 margin/right = 224.0
-margin/bottom = 223.0
+margin/bottom = 283.0
 disabled = true
 toggle_mode = true
 enabled_focus_mode = 2
@@ -193,15 +206,16 @@ align = 0
 
 [node name="GenderContainer" type="HBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 230.0
+margin/top = 290.0
 margin/right = 144.0
-margin/bottom = 253.0
+margin/bottom = 313.0
 alignment = 0
 
 [node name="MaleCheckbox" type="CheckBox" parent="RightSide/GenderContainer"]
@@ -244,15 +258,16 @@ align = 0
 
 [node name="ScenePreviewContainer" type="VBoxContainer" parent="RightSide"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 271.0
+margin/top = 331.0
 margin/right = 266.0
-margin/bottom = 551.0
+margin/bottom = 611.0
 alignment = 0
 
 [node name="ScenePreview" parent="RightSide/ScenePreviewContainer" instance=ExtResource( 4 )]
@@ -322,6 +337,8 @@ flat = false
 [connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameControl" to="." method="_on_printed_name_text_changed"]
 
 [connection signal="file_selected" from="RightSide/SceneFileMainContainer" to="." method="_on_scene_file_selected"]
+
+[connection signal="file_selected" from="RightSide/PhysicsFileMainContainer" to="." method="_on_PhysicsFileMainContainer_file_selected"]
 
 [connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPath" to="." method="_on_MainIconPath_file_selected"]
 

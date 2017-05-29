@@ -154,6 +154,7 @@ alignment = 0
 
 [node name="MalePhysicsPathContainer" type="HBoxContainer" parent="RightSide/MainContainers/PhysicsPathContainer"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -179,6 +180,7 @@ has_clear_button = true
 
 [node name="FemalePhysicsPathContainer" type="HBoxContainer" parent="RightSide/MainContainers/PhysicsPathContainer"]
 
+editor/display_folded = true
 rect/pivot = Vector2( 0, 0 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
