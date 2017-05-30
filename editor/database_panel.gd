@@ -14,9 +14,11 @@ signal rename_record_successful(p_current_database, p_record)
 signal erase_record_successful(p_current_database, p_record)
 
 func setup_data():
-	if(get_tree().has_group("database_editor_root")):
-		galatea_databases = get_tree().get_nodes_in_group("database_editor_root")[0].get_galatea_databases()
-		editor_plugin = get_tree().get_nodes_in_group("database_editor_root")[0].get_editor_plugin()
+	var tree = get_tree()
+	if tree:
+		if(tree.has_group("database_editor_root")):
+			galatea_databases = tree.get_nodes_in_group("database_editor_root")[0].get_galatea_databases()
+			editor_plugin = tree.get_nodes_in_group("database_editor_root")[0].get_editor_plugin()
 	if(galatea_databases):
 		galatea_databases_assigned()
 	
