@@ -62,7 +62,7 @@ placeholder/alpha = 0.6
 editable = false
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = true
+caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
 [node name="LoadButton" type="Button" parent="Container"]

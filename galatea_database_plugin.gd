@@ -3,13 +3,37 @@ extends EditorPlugin
 
 const galatea_databases_const = preload("databases/galatea_databases.gd")
 const database_popup_const = preload("editor/database_popup.tscn")
+const database_list_const_popup = preload("editor/database_list.tscn")
+const record_instance_node_const = preload("instances/record_instance_node.gd")
 
 var galatea_databases = null
 
 var galatea_database_path = "res://assets/database"
 var database_popup_button = null
+var select_record_button = null
+
+var selected_node = null
 
 var database_popup_instance = null
+var database_list_instance = null
+
+func _init():
+	print("Setting up Galatea database plugin")
+
+func handles(p_object):
+	if p_object extends record_instance_node_const:
+		return true
+	return false
+	
+func edit(p_object):
+	print(p_object.get_name())
+	selected_node = p_object
+	
+func make_visible(p_visible):
+	if (p_visible):
+		select_record_button.show()
+	else:
+		select_record_button.hide()
 
 func _enter_tree():
 	galatea_databases = galatea_databases_const.new(galatea_database_path)
@@ -19,12 +43,21 @@ func _enter_tree():
 	database_popup_button = Button.new()
 	database_popup_button.set_text("Database Editor")
 	database_popup_button.set_tooltip("Open tool for editing Galatea's game databases.")
-	database_popup_button.connect("pressed", self, "database_popup_requested")
+	database_popup_button.connect("pressed", self, "_database_popup_requested")
 	
 	add_control_to_container(CONTAINER_TOOLBAR, database_popup_button)
 	
+	select_record_button = Button.new()
+	select_record_button.set_text("Select record...")
+	select_record_button.set_tooltip("Choose a database record for this instance node.")
+	select_record_button.connect("pressed", self, "_select_record_requested")
+	select_record_button.hide()
+	
+	add_control_to_container(CONTAINER_SPATIAL_EDITOR_MENU, select_record_button)
+	
 	# Nodes 
-	add_custom_type("RecordInstance", "Position3D", preload("nodes/record_instance_node.gd"), null)
+	add_custom_type("ActorInstanceNode", "Position3D", preload("instances/actor_instance_node.gd"), null)
+	add_custom_type("ItemInstanceNode", "Position3D", preload("instances/item_instance_node.gd"), null)
 	
 func _exit_tree():
 	galatea_databases = null
@@ -32,7 +65,8 @@ func _exit_tree():
 	_database_destroy_popup()
 			
 	# Nodes
-	remove_custom_type("RecordInstance")
+	remove_custom_type("ActorInstanceNode")
+	remove_custom_type("ItemInstanceNode")
 	
 func database_interface_assign_databases(p_control):
 	for child in p_control.get_children():
@@ -63,7 +97,7 @@ func database_popup_dismissed_callback():
 		print("The databases have not been modified")
 		_database_destroy_popup()
 	
-func database_popup_requested():
+func _database_popup_requested():
 	_database_destroy_popup()
 	
 	database_popup_instance = database_popup_const.instance()
@@ -79,3 +113,27 @@ func database_popup_requested():
 		return FAILED
 	
 	return OK
+	
+func _select_record_requested():
+	selected_node.set_databases(galatea_databases)
+	var database = selected_node.get_valid_database()
+	
+	database_list_instance = database_list_const_popup.instance()
+	get_base_control().add_child(database_list_instance)
+	database_list_instance.connect("popup_hide", self, "_select_record_dismissed")
+	database_list_instance.connect("record_selected", self, "_select_record_selected")
+	database_list_instance.populate_tree(database)
+	database_list_instance.popup_centered_ratio()
+	
+func _select_record_dismissed():
+	if database_list_instance:
+		if(database_list_instance.is_inside_tree()):
+			database_list_instance.queue_free()
+			database_list_instance = null
+	
+func _select_record_selected(p_record):
+	get_undo_redo().create_action("selected database_entry")
+	get_undo_redo().add_do_property(selected_node, "id", p_record.id)
+	get_undo_redo().add_undo_property(selected_node, "id", selected_node.id)
+	get_undo_redo().commit_action()
+	_select_record_dismissed()
