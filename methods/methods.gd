@@ -77,5 +77,17 @@ static func get_master_method_dict():
 	dict["has_calendar_event"] = MethodItem.new([ArgumentItem.new("p_event", ARGUMENT_TYPE_OBJECT, {"database":"calendar_event_database"})])
 	dict["is_in_location"] = MethodItem.new([ArgumentItem.new("p_location", ARGUMENT_TYPE_OBJECT, {"database":"location_database"})])
 	dict["is_player"] = MethodItem.new([ArgumentItem.new("p_is_player", ARGUMENT_TYPE_BOOL)])
+
+	dict["is_actor_instance_in_location"] = MethodItem.new([
+		ArgumentItem.new("p_actor", ARGUMENT_TYPE_OBJECT, {"database":"actor_database"}),
+		ArgumentItem.new("p_location", ARGUMENT_TYPE_OBJECT, {"database":"location_database"})])
+
+	dict["get_global_svar"] = MethodItem.new([
+		ArgumentItem.new("p_svar", ARGUMENT_TYPE_OBJECT, {"database":"global_svar_database"})])
+
+	dict["is_freeroaming"] = MethodItem.new()
+
+	#dict["get_actor_stat"] = MethodItem.new([
+	#	ArgumentItem.new("p_actor", ARGUMENT_TYPE_OBJECT, {"database":"actor_database"})])
 		
 	return dict

@@ -8,6 +8,7 @@ const calendar_event_database_const = preload("calendar_event_database.gd")
 const clothing_database_const = preload("clothing_database.gd")
 const clothing_part_database_const = preload("clothing_part_database.gd")
 const clothing_set_database_const = preload("clothing_set_database.gd")
+const event_database_const = preload("event_database.gd")
 const global_svar_database_const = preload("global_svar_database.gd")
 const hair_database_const = preload("hair_database.gd")
 const headpart_database_const = preload("headpart_database.gd")
@@ -36,6 +37,7 @@ var calendar_event_database = null
 var clothing_database = null
 var clothing_part_database = null
 var clothing_set_database = null
+var event_database = null
 var global_svar_database = null
 var hair_database = null
 var headpart_database = null
@@ -149,6 +151,10 @@ func init_databases():
 	clothing_set_database = clothing_set_database_const.new(self)
 	assert(clothing_set_database)
 	database_list[clothing_set_database_const.DATABASE_NAME] = clothing_set_database
+	
+	event_database = event_database_const.new(self)
+	assert(event_database)
+	database_list[event_database_const.DATABASE_NAME] = event_database
 	
 	global_svar_database = global_svar_database_const.new(self)
 	assert(global_svar_database)
