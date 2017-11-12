@@ -53,22 +53,22 @@ func set_current_record_callback(p_record):
 	_clothing_parts_control.set_disabled(false)
 	_clothing_parts_control.populate_tree(p_record.clothing_parts, null)
 	
-	var stamp_records = []
+	var male_stamp_records = []
 	for stamp_key in p_record.male_stamp_table.keys():
-		stamp_records.append(stamp_key)
+		male_stamp_records.append(stamp_key)
 			
 	_male_stamp_table_control.set_disabled(false)
-	_male_stamp_table_control.populate_tree(stamp_records, null)
+	_male_stamp_table_control.populate_tree(male_stamp_records, null)
 	_male_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 	_male_stamp_color_control.set_disabled(true)
 	current_male_stamp_key = null
 			
-	var stamp_records = []
+	var female_stamp_records = []
 	for stamp_key in p_record.female_stamp_table.keys():
-		stamp_records.append(stamp_key)
+		female_stamp_records.append(stamp_key)
 			
 	_female_stamp_table_control.set_disabled(false)
-	_female_stamp_table_control.populate_tree(stamp_records, null)
+	_female_stamp_table_control.populate_tree(female_stamp_records, null)
 	_female_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
 	_female_stamp_color_control.set_disabled(true)
 	current_female_stamp_key = null

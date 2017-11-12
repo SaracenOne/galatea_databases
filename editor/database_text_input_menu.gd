@@ -14,7 +14,7 @@ func confirm_text_selection(p_text):
 	hide()
 
 func _ready():
-	line_edit = get_node("LineEdit")
+	line_edit = get_node("TextInputMenuContainer/LineEdit")
 	assert(line_edit)
 
 func _on_SelectButton_pressed():

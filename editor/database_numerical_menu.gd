@@ -18,7 +18,7 @@ func confirm_numerical_selection(p_value):
 	hide()
 
 func _ready():
-	spinbox = get_node("NumericalSpinbox")
+	spinbox = get_node("NumericalMenuContainer/NumericalSpinbox")
 	assert(spinbox)
 
 func _on_SelectButton_pressed():

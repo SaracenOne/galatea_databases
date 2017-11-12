@@ -1,26 +1,25 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_event_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_conditional_list.tscn" type="PackedScene" id=3]
 
+
 [node name="EventPanel" type="HSplitContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-split/offset = -500
-split/collapsed = false
-split/dragger_visibility = 1
-script/script = ExtResource( 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+split_offset = -300
+collapsed = false
+dragger_visibility = 1
+script = ExtResource( 1 )
 adv_label = NodePath("RightSide/Left/ADVLabelContainer/ADVLabelLineEdit")
 priority = NodePath("RightSide/Left/PriorityContainer/PrioritySpinbox")
 manual = NodePath("RightSide/Left/ManualContainer/ManualCheckBox")
@@ -28,67 +27,80 @@ conditionals = NodePath("RightSide/Right/DatabaseConditionalList")
 
 [node name="LeftSide" type="Control" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 292.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 167.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
 [node name="RightSide" type="HBoxContainer" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 304.0
-margin/top = 0.0
-margin/right = 1600.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 179.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 0
 
-[node name="Left" type="Control" parent="RightSide"]
+[node name="Left" type="VBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 646.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 420.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
 
 [node name="ADVLabelContainer" type="VBoxContainer" parent="RightSide/Left"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 10.0
-margin/right = 254.0
-margin/bottom = 50.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 420.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
+_sections_unfolded = [ "Mouse", "Size Flags" ]
 
 [node name="ADVLabelDescription" type="Label" parent="RightSide/Left/ADVLabelContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 69.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "ADV Label:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -96,46 +108,56 @@ max_lines_visible = -1
 
 [node name="ADVLabelLineEdit" type="LineEdit" parent="RightSide/Left/ADVLabelContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 244.0
-margin/bottom = 42.0
-placeholder/alpha = 0.6
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 420.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 editable = false
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+_sections_unfolded = [ "Size Flags" ]
 
 [node name="PriorityContainer" type="VBoxContainer" parent="RightSide/Left"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 60.0
-margin/right = 254.0
-margin/bottom = 102.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 46.0
+margin_right = 420.0
+margin_bottom = 88.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
+_sections_unfolded = [ "Size Flags" ]
 
 [node name="PriorityDescription" type="Label" parent="RightSide/Left/PriorityContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 50.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Priority:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -143,50 +165,60 @@ max_lines_visible = -1
 
 [node name="PrioritySpinbox" type="SpinBox" parent="RightSide/Left/PriorityContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 244.0
-margin/bottom = 42.0
-range/min = -9999.0
-range/max = 9999.0
-range/step = 1.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 420.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+min_value = -9999.0
+max_value = 9999.0
+step = 1.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
 editable = false
 prefix = ""
 suffix = ""
+_sections_unfolded = [ "Size Flags" ]
 
 [node name="ManualContainer" type="VBoxContainer" parent="RightSide/Left"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 110.0
-margin/right = 254.0
-margin/bottom = 152.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 92.0
+margin_right = 420.0
+margin_bottom = 133.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
+_sections_unfolded = [ "Size Flags" ]
 
 [node name="ManualDescription" type="Label" parent="RightSide/Left/ManualContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 50.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Manual:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -194,39 +226,50 @@ max_lines_visible = -1
 
 [node name="ManualCheckBox" type="CheckBox" parent="RightSide/Left/ManualContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 244.0
-margin/bottom = 41.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 420.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 disabled = true
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
+group = null
 flat = false
 align = 0
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="Right" type="Control" parent="RightSide"]
+[node name="Right" type="VBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 650.0
-margin/top = 0.0
-margin/right = 1296.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 424.0
+margin_right = 845.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
 
 [node name="DatabaseConditionalList" parent="RightSide/Right" instance=ExtResource( 3 )]
 
-anchor/right = 1
-margin/right = 0.0
-margin/bottom = 200.0
+margin_right = 421.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
 is_disabled = true
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]

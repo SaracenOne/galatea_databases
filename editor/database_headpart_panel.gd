@@ -38,8 +38,8 @@ func galatea_databases_assigned():
 	headpart_type_popup.clear()
 	for i in range(0, headpart_record_const.HEADPART_MAX):
 		headpart_type_popup.add_item(headpart_record_const.get_string_from_headpart(i), i) 
-	if(!headpart_type_popup.is_connected("item_pressed", self, "_on_headpart_type_selected")):
-		headpart_type_popup.connect("item_pressed", self, "_on_headpart_type_selected")
+	if(!headpart_type_popup.is_connected("id_pressed", self, "_on_headpart_type_selected")):
+		headpart_type_popup.connect("id_pressed", self, "_on_headpart_type_selected")
 	
 	_meshpart_control_node.assign_database(galatea_databases.meshpart_database)
 	_stamp_control_node.assign_database(galatea_databases.stamp_database)
@@ -76,7 +76,7 @@ func set_current_record_callback(p_record):
 	if(!p_record.main_icon_path.empty()):
 		main_icon_texture = load(p_record.main_icon_path)
 	if(main_icon_texture):
-		if(main_icon_texture extends Texture):
+		if(main_icon_texture is Texture):
 			_main_icon_preview_control_node.set_texture(main_icon_texture)
 	##
 	_capture_button_node.set_disabled(false)
@@ -114,22 +114,22 @@ func _on_StampControl_record_erased( p_record ):
 
 func setup_scene_preview():
 	if(current_record.meshpart != null and current_record.meshpart.mesh_path != ""):
-		var mesh = load(current_record.meshpart.mesh_path)
-		if(mesh and mesh extends Mesh):
-			var texture = null
-			var material = null
+		var preview_mesh = load(current_record.meshpart.mesh_path)
+		if(preview_mesh and preview_mesh is Mesh):
+			var preview_texture = null
+			var preview_material = null
 			
 			if(current_record.stamp):
 				if(current_record.stamp.texture_set):
-					texture = load(current_record.stamp.texture_set.textures["diffuse"])
+					preview_texture = load(current_record.stamp.texture_set.textures["diffuse"])
 			
-			if(texture and texture extends Texture):
-				material = FixedMaterial.new()
-				material.set_texture(FixedMaterial.PARAM_DIFFUSE, texture)
+			if(preview_texture and preview_texture is Texture):
+				preview_material = SpatialMaterial.new()
+				preview_material.set_albedo(preview_texture)
 
 			if(_scene_preview_node):
-				_scene_preview_node.set_mesh(mesh)
-				_scene_preview_node.set_material(material)
+				_scene_preview_node.set_mesh(preview_mesh)
+				_scene_preview_node.set_material(preview_material)
 		else:
 			_scene_preview_node.set_mesh(null)
 			_scene_preview_node.set_material(null)
@@ -170,7 +170,7 @@ func _on_MainIconPathContainer_file_selected( p_path ):
 		if(!p_path.empty()):
 			main_icon_texture = load(p_path)
 		if(main_icon_texture):
-			if(main_icon_texture extends Texture):
+			if(main_icon_texture is Texture):
 				_main_icon_preview_control_node.set_texture(main_icon_texture)
 			
 		current_database.mark_database_as_modified()

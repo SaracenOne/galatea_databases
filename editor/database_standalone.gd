@@ -9,6 +9,9 @@ var galatea_database_path = "res://assets/database"
 var database_popup_button = null
 
 func _ready():
+	OS.set_window_size(Vector2(1600, 900))
+	OS.set_window_position(Vector2(0, 0))
+	
 	galatea_databases = galatea_databases_const.new(galatea_database_path)
 	
 	galatea_databases.load_all_databases()

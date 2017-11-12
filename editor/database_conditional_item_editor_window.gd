@@ -76,9 +76,9 @@ func setup_controls():
 	if(_operator_selection_node):
 		var operator_popup = _operator_selection_node.get_popup()
 		operator_popup.clear()
-		if(operator_popup.is_connected("item_pressed", self, "operator_type_selected")):
-			operator_popup.disconnect("item_pressed", self, "operator_type_selected")
-		operator_popup.connect("item_pressed", self, "operator_type_selected")
+		if(operator_popup.is_connected("id_pressed", self, "operator_type_selected")):
+			operator_popup.disconnect("id_pressed", self, "operator_type_selected")
+		operator_popup.connect("id_pressed", self, "operator_type_selected")
 		var operator_string_array = conditionals_const.get_array_of_operator_strings()
 		
 		for i in range(0, operator_string_array.size()):
@@ -96,9 +96,9 @@ func setup_controls():
 	if(_value_type_selection_node):
 		var value_type_popup = _value_type_selection_node.get_popup()
 		value_type_popup.clear()
-		if(value_type_popup.is_connected("item_pressed", self, "value_type_selected")):
-			value_type_popup.disconnet("item_pressed", self, "value_type_selected")
-		value_type_popup.connect("item_pressed", self, "value_type_selected")
+		if(value_type_popup.is_connected("id_pressed", self, "value_type_selected")):
+			value_type_popup.disconnet("id_pressed", self, "value_type_selected")
+		value_type_popup.connect("id_pressed", self, "value_type_selected")
 		var value_type_string_array = conditionals_const.get_array_of_value_type_strings()
 		
 		for i in range(0, value_type_string_array.size()):
@@ -106,9 +106,9 @@ func setup_controls():
 			
 	if(_subject_selection_node):
 		var subject_selection_popup = _subject_selection_node.get_popup()
-		if(subject_selection_popup.is_connected("item_pressed", self, "subject_selected")):
-			subject_selection_popup.disconnect("item_pressed", self, "subject_selected")
-		subject_selection_popup.connect("item_pressed", self, "subject_selected")
+		if(subject_selection_popup.is_connected("id_pressed", self, "subject_selected")):
+			subject_selection_popup.disconnect("id_pressed", self, "subject_selected")
+		subject_selection_popup.connect("id_pressed", self, "subject_selected")
 		var subject_string_array = conditionals_const.get_array_of_subjects()
 		
 		subject_selection_popup.clear()

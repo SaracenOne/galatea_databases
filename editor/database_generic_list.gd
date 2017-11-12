@@ -10,7 +10,7 @@ signal list_item_selected(p_item)
 
 func _notification(what):
 	if(what == Popup.NOTIFICATION_POST_POPUP):
-		get_node("Panel/HBoxContainer/ConfirmButton").set_disabled(true)
+		get_node("DatabaseListContainer/ButtonContainer/ConfirmButton").set_disabled(true)
 		
 func confirm_item_selection(p_item):
 	emit_signal("list_item_selected", p_item)
@@ -30,7 +30,7 @@ func populate_tree(p_list):
 		printerr("List tree is null!")
 		
 func _ready():
-	list_tree = get_node("ListTree")
+	list_tree = get_node("DatabaseListContainer/ListTree")
 	assert(list_tree)
 	
 	list_tree.set_select_mode(Tree.SELECT_SINGLE)
@@ -50,4 +50,4 @@ func _on_ListTree_cell_selected():
 	if(list_tree):
 		var tree_item = list_tree.get_selected()
 		if(tree_item):
-			get_node("Panel/HBoxContainer/ConfirmButton").set_disabled(false)
+			get_node("DatabaseListContainer/ButtonContainer/ConfirmButton").set_disabled(false)

@@ -114,7 +114,7 @@ func populate_tree(p_list):
 func _ready():
 	master_method_dict = methods_const.get_master_method_dict()
 	
-	list_tree = get_node("ListTree")
+	list_tree = get_node("DatabaseConditionalList/ListTree")
 	assert(list_tree)
 	
 	list_tree.set_select_mode(Tree.SELECT_SINGLE)

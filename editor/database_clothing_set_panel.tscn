@@ -1,82 +1,90 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_clothing_set_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=3]
 
+
 [node name="ClothingSetPanel" type="HSplitContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-split/offset = -500
-split/collapsed = false
-split/dragger_visibility = 1
-script/script = ExtResource( 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+split_offset = -300
+collapsed = false
+dragger_visibility = 1
+script = ExtResource( 1 )
 clothes = NodePath("RightSide/MainContainer/ClothesControl")
 printed_name = NodePath("RightSide/MainContainer/PrintedNameLineEdit")
 precache_stamps = NodePath("RightSide/MainContainer/PrecacheStampsCheckbox")
 
 [node name="LeftSide" type="Control" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 294.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 206.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
 [node name="RightSide" type="Control" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 306.0
-margin/top = 0.0
-margin/right = 1600.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 218.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="MainContainer" type="VBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 15.0
-margin/right = 10.0
-margin/bottom = 15.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 15.0
+margin_right = 10.0
+margin_bottom = 15.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 0
 
 [node name="PrintedNameLabel" type="Label" parent="RightSide/MainContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1274.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 92.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Printed Name:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -84,32 +92,38 @@ max_lines_visible = -1
 
 [node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/MainContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 1274.0
-margin/bottom = 42.0
-placeholder/alpha = 0.6
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 58.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
 
 [node name="ClothesLabel" type="Label" parent="RightSide/MainContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 46.0
-margin/right = 1274.0
-margin/bottom = 60.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 164.0
+margin_right = 56.0
+margin_bottom = 178.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
 text = "Clothing:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -117,29 +131,31 @@ max_lines_visible = -1
 
 [node name="ClothesControl" parent="RightSide/MainContainer" instance=ExtResource( 3 )]
 
-anchor/right = 0
-anchor/bottom = 0
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/top = 64.0
-margin/right = 1274.0
-margin/bottom = 843.0
+margin_top = 310.0
+margin_right = 806.0
+margin_bottom = 452.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 disabled = true
 
 [node name="PrecacheStampsCheckbox" type="CheckBox" parent="RightSide/MainContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 847.0
-margin/right = 1274.0
-margin/bottom = 870.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 456.0
+margin_right = 135.0
+margin_bottom = 479.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "Precache Stamps"
 flat = false
 align = 0

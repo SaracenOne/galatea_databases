@@ -50,7 +50,7 @@ func set_current_record_callback(p_record):
 	if(!p_record.main_icon_path.empty()):
 		main_icon_texture = load(p_record.main_icon_path)
 	if(main_icon_texture):
-		if(main_icon_texture extends Texture):
+		if(main_icon_texture is Texture):
 			_main_icon_preview_control_node.set_texture(main_icon_texture)
 	
 	_activity_script_path_control_node.set_file_path(current_record.activity_script_path)
@@ -107,7 +107,7 @@ func _on_MainIconPath_file_selected( p_path ):
 		if(!p_path.empty()):
 			main_icon_texture = load(p_path)
 		if(main_icon_texture):
-			if(main_icon_texture extends Texture):
+			if(main_icon_texture is Texture):
 				_main_icon_preview_control_node.set_texture(main_icon_texture)
 			
 		current_database.mark_database_as_modified()

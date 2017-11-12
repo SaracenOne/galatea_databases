@@ -1,1182 +1,1466 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_actor_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_date_option.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=5]
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=6]
+
 
 [node name="ActorPanel" type="HSplitContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-split/offset = -500
-split/collapsed = false
-split/dragger_visibility = 1
-script/script = ExtResource( 1 )
-family_name = NodePath("RightSide/FamilyNameVBoxContainer/FamilyNameLineEdit")
-given_name = NodePath("RightSide/GivenNameVBoxContainer/GivenNameLineEdit")
-nickname = NodePath("RightSide/NicknameVBoxContainer/NicknameLineEdit")
-gender = NodePath("RightSide/GenderVBoxContainer/GenderOptionButton")
-date_of_birth = NodePath("RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions")
-age = NodePath("RightSide/AgeVBoxContainer/AgeControl")
-blood_type = NodePath("RightSide/BloodTypeVBoxContainer/BloodTypeControl")
-actor_groups = NodePath("RightSide/ActorGroupsContainer/ActorGroupsControl")
-traits = NodePath("RightSide/TraitsContainer/TraitsControl")
-contact_icon_path = NodePath("RightSide/ContactIconContainer/ContactIconPathControl")
-contact_icon_texture = NodePath("RightSide/ContactIconContainer/ContactIconTextureFrame/ContactIconTexture")
-valid_contact = NodePath("RightSide/FlagsContainer/ValidContactContainer/ValidContactCheckbox")
-is_storyline_actor = NodePath("RightSide/FlagsContainer/IsStorylineActorContainer/IsStorylineActorCheckbox")
-head = NodePath("RightSide/CombinedMeshesContainer/HeadMeshRecord")
-head_color = NodePath("RightSide/CombinedMeshesContainer/HeadMeshColor")
-eyes = NodePath("RightSide/CombinedMeshesContainer/EyesMeshRecord")
-eyes_color = NodePath("RightSide/CombinedMeshesContainer/EyesMeshColor")
-eyebrows = NodePath("RightSide/CombinedMeshesContainer/EyebrowsMeshRecord")
-eyebrows_color = NodePath("RightSide/CombinedMeshesContainer/EyebrowsMeshColo")
-mouth = NodePath("RightSide/CombinedMeshesContainer/MouthMeshRecord")
-mouth_color = NodePath("RightSide/CombinedMeshesContainer/MouthMeshColor")
-eyelashes = NodePath("RightSide/CombinedMeshesContainer/EyelashesMeshRecord")
-eyelashes_color = NodePath("RightSide/CombinedMeshesContainer/EyelashesColor")
-hair = NodePath("RightSide/HairContainer/HairRecord")
-hair_color = NodePath("RightSide/HairContainer/HairColorPicker")
-skin_color = NodePath("RightSide/SkinToneContainer/SkinToneColorPicker")
-head_morph_table = NodePath("RightSide/MorphTableContainer/MorphTableTree")
-head_morph_value = NodePath("RightSide/MorphTableContainer/MorphTableSpinBox")
-body_scaler_table = NodePath("RightSide/ScalerTable/ScalerTableTree")
-body_scaler_value = NodePath("RightSide/ScalerTable/ScalerTableSpinBox")
-stamp_table = NodePath("RightSide/StampTable/StampTabelControl")
-stamp_color = NodePath("RightSide/StampTable/StampColorButton")
-body = NodePath("RightSide/BodyControl")
-default_clothing_set = NodePath("RightSide/DefaultClothingSetControl")
-height = NodePath("RightSide/HeightContainer/HeightSpinBox")
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+split_offset = -300
+collapsed = false
+dragger_visibility = 1
+script = ExtResource( 1 )
+family_name = NodePath("RightSide/Columns/Column1/FamilyNameVBoxContainer/FamilyNameLineEdit")
+given_name = NodePath("RightSide/Columns/Column1/GivenNameVBoxContainer/GivenNameLineEdit")
+nickname = NodePath("RightSide/Columns/Column1/NicknameVBoxContainer/NicknameLineEdit")
+gender = NodePath("RightSide/Columns/Column1/GenderVBoxContainer/GenderOptionButton")
+date_of_birth = NodePath("RightSide/Columns/Column1/DateOfBirthVBoxContainer/DateOfBirthOptions")
+age = NodePath("RightSide/Columns/Column1/AgeVBoxContainer/AgeControl")
+blood_type = NodePath("RightSide/Columns/Column1/BloodTypeVBoxContainer/BloodTypeControl")
+actor_groups = NodePath("RightSide/Columns/Column2/ActorGroupsContainer/ActorGroupsControl")
+traits = NodePath("RightSide/Columns/Column2/TraitsContainer/TraitsControl")
+contact_icon_path = NodePath("RightSide/Columns/Column1/ContactIconContainer/ContactIconPathControl")
+contact_icon_texture = NodePath("RightSide/Columns/Column1/ContactIconContainer/ContactIconTextureFrame/ContactIconTexture")
+valid_contact = NodePath("RightSide/Columns/Column1/FlagsContainer/ValidContactContainer/ValidContactCheckbox")
+is_storyline_actor = NodePath("RightSide/Columns/Column1/FlagsContainer/IsStorylineActorContainer/IsStorylineActorCheckbox")
+head = NodePath("RightSide/Columns/Column3/CombinedMeshesContainer/HeadMeshRecord")
+head_color = NodePath("RightSide/Columns/Column3/CombinedMeshesContainer/HeadMeshColor")
+eyes = NodePath("RightSide/Columns/Column3/CombinedMeshesContainer/EyesMeshRecord")
+eyes_color = NodePath("RightSide/Columns/Column3/CombinedMeshesContainer/EyesMeshColor")
+eyebrows = NodePath("RightSide/Columns/Column3/CombinedMeshesContainer/EyebrowsMeshRecord")
+eyebrows_color = NodePath("RightSide/Columns/Column3/CombinedMeshesContainer/EyebrowsMeshColo")
+mouth = NodePath("RightSide/Columns/Column3/CombinedMeshesContainer/MouthMeshRecord")
+mouth_color = NodePath("RightSide/Columns/Column3/CombinedMeshesContainer/MouthMeshColor")
+eyelashes = NodePath("RightSide/Columns/Column3/CombinedMeshesContainer/EyelashesMeshRecord")
+eyelashes_color = NodePath("RightSide/Columns/Column3/CombinedMeshesContainer/EyelashesColor")
+hair = NodePath("RightSide/Columns/Column3/HairContainer/HairRecord")
+hair_color = NodePath("RightSide/Columns/Column3/HairContainer/HairColorPicker")
+skin_color = NodePath("RightSide/Columns/Column3/SkinToneContainer/SkinToneColorPicker")
+head_morph_table = NodePath("RightSide/Columns/Column4/MorphTableContainer/MorphTableTree")
+head_morph_value = NodePath("RightSide/Columns/Column4/MorphTableContainer/MorphTableSpinBox")
+body_scaler_table = NodePath("RightSide/Columns/Column4/ScalerTable/ScalerTableTree")
+body_scaler_value = NodePath("RightSide/Columns/Column4/ScalerTable/ScalerTableSpinBox")
+stamp_table = NodePath("RightSide/Columns/Column4/StampTable/StampTabelControl")
+stamp_color = NodePath("RightSide/Columns/Column4/StampTable/StampColorButton")
+body = NodePath("RightSide/Columns/Column1/BodyControl")
+default_clothing_set = NodePath("RightSide/Columns/Column1/DefaultClothingSetControl")
+height = NodePath("RightSide/Columns/Column1/HeightContainer/HeightSpinBox")
 
 [node name="LeftSide" type="Control" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 294.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 206.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
 [node name="RightSide" type="Control" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 306.0
-margin/top = 0.0
-margin/right = 1600.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 218.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="FamilyNameVBoxContainer" type="VBoxContainer" parent="RightSide"]
+[node name="Columns" type="HBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 10.0
-margin/right = 254.0
-margin/bottom = 52.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Column1" type="VBoxContainer" parent="RightSide/Columns"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 198.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Size Flags", "Theme" ]
+
+[node name="FamilyNameVBoxContainer" type="VBoxContainer" parent="RightSide/Columns/Column1"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 198.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="FamilyNameDescription" type="Label" parent="RightSide/FamilyNameVBoxContainer"]
+[node name="FamilyNameDescription" type="Label" parent="RightSide/Columns/Column1/FamilyNameVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 88.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Family Name:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="FamilyNameLineEdit" type="LineEdit" parent="RightSide/FamilyNameVBoxContainer"]
+[node name="FamilyNameLineEdit" type="LineEdit" parent="RightSide/Columns/Column1/FamilyNameVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 244.0
-margin/bottom = 42.0
-placeholder/alpha = 0.6
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 editable = false
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="GivenNameVBoxContainer" type="VBoxContainer" parent="RightSide"]
+[node name="GivenNameVBoxContainer" type="VBoxContainer" parent="RightSide/Columns/Column1"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 60.0
-margin/right = 254.0
-margin/bottom = 100.0
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 46.0
+margin_right = 198.0
+margin_bottom = 88.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="GivenNameDescription" type="Label" parent="RightSide/GivenNameVBoxContainer"]
+[node name="GivenNameDescription" type="Label" parent="RightSide/Columns/Column1/GivenNameVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 83.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Given Name:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="GivenNameLineEdit" type="LineEdit" parent="RightSide/GivenNameVBoxContainer"]
+[node name="GivenNameLineEdit" type="LineEdit" parent="RightSide/Columns/Column1/GivenNameVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 244.0
-margin/bottom = 42.0
-placeholder/alpha = 0.6
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 editable = false
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="NicknameVBoxContainer" type="VBoxContainer" parent="RightSide"]
+[node name="NicknameVBoxContainer" type="VBoxContainer" parent="RightSide/Columns/Column1"]
 
 editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 110.0
-margin/right = 254.0
-margin/bottom = 150.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 92.0
+margin_right = 198.0
+margin_bottom = 134.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="NicknameDescription" type="Label" parent="RightSide/NicknameVBoxContainer"]
+[node name="NicknameDescription" type="Label" parent="RightSide/Columns/Column1/NicknameVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 68.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Nickname:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="NicknameLineEdit" type="LineEdit" parent="RightSide/NicknameVBoxContainer"]
+[node name="NicknameLineEdit" type="LineEdit" parent="RightSide/Columns/Column1/NicknameVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 244.0
-margin/bottom = 42.0
-placeholder/alpha = 0.6
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 editable = false
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="GenderVBoxContainer" type="VBoxContainer" parent="RightSide"]
+[node name="GenderVBoxContainer" type="VBoxContainer" parent="RightSide/Columns/Column1"]
 
 editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 161.0
-margin/right = 254.0
-margin/bottom = 199.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 138.0
+margin_right = 198.0
+margin_bottom = 176.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="GenderDescription" type="Label" parent="RightSide/GenderVBoxContainer"]
+[node name="GenderDescription" type="Label" parent="RightSide/Columns/Column1/GenderVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 51.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Gender:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="GenderOptionButton" type="OptionButton" parent="RightSide/GenderVBoxContainer"]
+[node name="GenderOptionButton" type="OptionButton" parent="RightSide/Columns/Column1/GenderVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 244.0
-margin/bottom = 38.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "Male"
 flat = false
 align = 0
 selected = 0
 items = [ "Male", null, false, -1, null, "Female", null, false, -1, null ]
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="DateOfBirthVBoxContainer" type="VBoxContainer" parent="RightSide"]
+[node name="DateOfBirthVBoxContainer" type="VBoxContainer" parent="RightSide/Columns/Column1"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 210.0
-margin/right = 254.0
-margin/bottom = 250.0
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 180.0
+margin_right = 198.0
+margin_bottom = 222.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="DateOfBirthLabel" type="Label" parent="RightSide/DateOfBirthVBoxContainer"]
+[node name="DateOfBirthLabel" type="Label" parent="RightSide/Columns/Column1/DateOfBirthVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 85.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Date of Birth:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="DateOfBirthOptions" parent="RightSide/DateOfBirthVBoxContainer" instance=ExtResource( 3 )]
+[node name="DateOfBirthOptions" parent="RightSide/Columns/Column1/DateOfBirthVBoxContainer" instance=ExtResource( 3 )]
 
-margin/top = 18.0
-margin/bottom = 42.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="AgeVBoxContainer" type="VBoxContainer" parent="RightSide"]
+[node name="AgeVBoxContainer" type="VBoxContainer" parent="RightSide/Columns/Column1"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 270.0
-margin/right = 254.0
-margin/bottom = 310.0
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 226.0
+margin_right = 198.0
+margin_bottom = 268.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="AgeLabel" type="Label" parent="RightSide/AgeVBoxContainer"]
+[node name="AgeLabel" type="Label" parent="RightSide/Columns/Column1/AgeVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 28.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Age:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="AgeControl" type="SpinBox" parent="RightSide/AgeVBoxContainer"]
+[node name="AgeControl" type="SpinBox" parent="RightSide/Columns/Column1/AgeVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 244.0
-margin/bottom = 42.0
-range/min = 0.0
-range/max = 999.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 0.0
+max_value = 999.0
+step = 0.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
 editable = false
 prefix = ""
 suffix = ""
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="BloodTypeVBoxContainer" type="VBoxContainer" parent="RightSide"]
+[node name="BloodTypeVBoxContainer" type="VBoxContainer" parent="RightSide/Columns/Column1"]
 
 editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 320.0
-margin/right = 254.0
-margin/bottom = 356.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 272.0
+margin_right = 198.0
+margin_bottom = 310.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="BloodTypeDescription" type="Label" parent="RightSide/BloodTypeVBoxContainer"]
+[node name="BloodTypeDescription" type="Label" parent="RightSide/Columns/Column1/BloodTypeVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 71.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Blood Type"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="BloodTypeControl" type="OptionButton" parent="RightSide/BloodTypeVBoxContainer"]
+[node name="BloodTypeControl" type="OptionButton" parent="RightSide/Columns/Column1/BloodTypeVBoxContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 244.0
-margin/bottom = 38.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "A"
 flat = false
 align = 0
 selected = 0
 items = [ "A", null, false, -1, null, "B", null, false, -1, null, "AB", null, false, -1, null, "O", null, false, -1, null ]
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="ActorGroupsContainer" type="VBoxContainer" parent="RightSide"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 280.0
-margin/top = 10.0
-margin/right = 524.0
-margin/bottom = 163.0
-alignment = 1
-
-[node name="ActorGroupsLabel" type="Label" parent="RightSide/ActorGroupsContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
-text = "Actor Groups:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="ActorGroupsControl" parent="RightSide/ActorGroupsContainer" instance=ExtResource( 4 )]
-
-anchor/right = 0
-anchor/bottom = 0
-size_flags/vertical = 3
-margin/top = 18.0
-margin/right = 244.0
-margin/bottom = 153.0
-
-[node name="TraitsContainer" type="VBoxContainer" parent="RightSide"]
+[node name="ContactIconContainer" type="HBoxContainer" parent="RightSide/Columns/Column1"]
 
 editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 280.0
-margin/top = 180.0
-margin/right = 524.0
-margin/bottom = 333.0
-alignment = 1
-
-[node name="TraitsLabel" type="Label" parent="RightSide/TraitsContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 14.0
-text = "Traits:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="TraitsControl" parent="RightSide/TraitsContainer" instance=ExtResource( 4 )]
-
-anchor/right = 0
-anchor/bottom = 0
-size_flags/vertical = 3
-margin/top = 18.0
-margin/right = 244.0
-margin/bottom = 153.0
-disabled = true
-
-[node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
-
-editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 440.0
-margin/right = 254.0
-margin/bottom = 463.0
-alignment = 1
-
-[node name="ValidContactContainer" type="HBoxContainer" parent="RightSide/FlagsContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 244.0
-margin/bottom = 23.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 314.0
+margin_right = 198.0
+margin_bottom = 378.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 0
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="ValidContactCheckbox" type="CheckBox" parent="RightSide/FlagsContainer/ValidContactContainer"]
+[node name="ContactIconPathControl" parent="RightSide/Columns/Column1/ContactIconContainer" instance=ExtResource( 4 )]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 26.0
-margin/bottom = 23.0
-disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-flat = false
-align = 0
-
-[node name="ValidContactLabel" type="Label" parent="RightSide/FlagsContainer/ValidContactContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 30.0
-margin/top = 4.0
-margin/right = 113.0
-margin/bottom = 18.0
-text = "Valid Contact"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="IsStorylineActorContainer" type="HBoxContainer" parent="RightSide/FlagsContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 27.0
-margin/right = 244.0
-margin/bottom = 50.0
-alignment = 0
-
-[node name="IsStorylineActorCheckbox" type="CheckBox" parent="RightSide/FlagsContainer/IsStorylineActorContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 26.0
-margin/bottom = 23.0
-disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-flat = false
-align = 0
-
-[node name="IsStorylineActorLabel" type="Label" parent="RightSide/FlagsContainer/IsStorylineActorContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 30.0
-margin/top = 4.0
-margin/right = 140.0
-margin/bottom = 18.0
-text = "Is Storyline Actor"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="ContactIconContainer" type="HBoxContainer" parent="RightSide"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 370.0
-margin/right = 521.0
-margin/bottom = 434.0
-alignment = 0
-
-[node name="ContactIconPathControl" parent="RightSide/ContactIconContainer" instance=ExtResource( 5 )]
-
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/right = 443.0
-margin/bottom = 64.0
+anchor_right = 0.0
+margin_right = 116.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Margin", "Size Flags" ]
 label = "Contact Icon Path:"
 file_browser_title = "Open Image"
 file_type = "Texture"
 disabled = true
 has_clear_button = true
 
-[node name="ContactIconTextureFrame" type="Panel" parent="RightSide/ContactIconContainer"]
+[node name="ContactIconTextureFrame" type="Panel" parent="RightSide/Columns/Column1/ContactIconContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-rect/min_size = Vector2( 64, 64 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 447.0
-margin/top = 0.0
-margin/right = 511.0
-margin/bottom = 64.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 120.0
+margin_right = 198.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="ContactIconTexture" type="TextureFrame" parent="RightSide/ContactIconContainer/ContactIconTextureFrame"]
+[node name="ContactIconTexture" type="TextureRect" parent="RightSide/Columns/Column1/ContactIconContainer/ContactIconTextureFrame"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-rect/min_size = Vector2( 64, 64 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
 expand = true
 stretch_mode = 0
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="CombinedMeshesContainer" type="VBoxContainer" parent="RightSide"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 540.0
-margin/top = 10.0
-margin/right = 752.0
-margin/bottom = 374.0
-custom_constants/separation = 0
-alignment = 1
-
-[node name="CombinedMeshesLabel" type="Label" parent="RightSide/CombinedMeshesContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 20.0
-margin/right = 212.0
-margin/bottom = 34.0
-text = "Combined Meshes:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="HeadMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
-
-margin/top = 34.0
-margin/right = 212.0
-margin/bottom = 76.0
-label = "Head:"
-record_name = ""
-disabled = true
-has_clear_button = true
-
-[node name="HeadMeshColor" type="ColorPickerButton" parent="RightSide/CombinedMeshesContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 76.0
-margin/right = 212.0
-margin/bottom = 96.0
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-flat = false
-color = Color( 1, 1, 1, 1 )
-edit_alpha = false
-
-[node name="EyesMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
-
-margin/top = 96.0
-margin/right = 212.0
-margin/bottom = 138.0
-label = "Eyes:"
-record_name = ""
-disabled = true
-has_clear_button = true
-
-[node name="EyesMeshColor" type="ColorPickerButton" parent="RightSide/CombinedMeshesContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 138.0
-margin/right = 212.0
-margin/bottom = 158.0
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-flat = false
-color = Color( 1, 1, 1, 1 )
-edit_alpha = false
-
-[node name="EyebrowsMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
-
-margin/top = 158.0
-margin/right = 212.0
-margin/bottom = 200.0
-label = "Eyebrows:"
-record_name = ""
-disabled = true
-has_clear_button = true
-
-[node name="EyebrowsMeshColo" type="ColorPickerButton" parent="RightSide/CombinedMeshesContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 200.0
-margin/right = 212.0
-margin/bottom = 220.0
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-flat = false
-color = Color( 1, 1, 1, 1 )
-edit_alpha = false
-
-[node name="MouthMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
-
-margin/top = 220.0
-margin/right = 212.0
-margin/bottom = 262.0
-label = "Mouth:"
-record_name = ""
-disabled = true
-has_clear_button = true
-
-[node name="MouthMeshColor" type="ColorPickerButton" parent="RightSide/CombinedMeshesContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 262.0
-margin/right = 212.0
-margin/bottom = 282.0
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-flat = false
-color = Color( 1, 1, 1, 1 )
-edit_alpha = false
-
-[node name="EyelashesMeshRecord" parent="RightSide/CombinedMeshesContainer" instance=ExtResource( 6 )]
-
-margin/top = 282.0
-margin/right = 212.0
-margin/bottom = 324.0
-label = "Eyelashes:"
-record_name = ""
-disabled = true
-has_clear_button = true
-
-[node name="EyelashesColor" type="ColorPickerButton" parent="RightSide/CombinedMeshesContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 324.0
-margin/right = 212.0
-margin/bottom = 344.0
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-flat = false
-color = Color( 1, 1, 1, 1 )
-edit_alpha = false
-
-[node name="HairContainer" type="VBoxContainer" parent="RightSide"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 540.0
-margin/top = 391.0
-margin/right = 752.0
-margin/bottom = 481.0
-alignment = 0
-
-[node name="HairRecord" parent="RightSide/HairContainer" instance=ExtResource( 6 )]
-
-margin/right = 212.0
-margin/bottom = 42.0
-label = "Hair:"
-record_name = ""
-disabled = true
-has_clear_button = true
-
-[node name="HairColorPicker" type="ColorPickerButton" parent="RightSide/HairContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 46.0
-margin/right = 212.0
-margin/bottom = 66.0
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-flat = false
-color = Color( 1, 1, 1, 1 )
-edit_alpha = false
-
-[node name="SkinToneContainer" type="VBoxContainer" parent="RightSide"]
+[node name="FlagsContainer" type="VBoxContainer" parent="RightSide/Columns/Column1"]
 
 editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 540.0
-margin/top = 471.0
-margin/right = 752.0
-margin/bottom = 509.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 382.0
+margin_right = 198.0
+margin_bottom = 432.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="ValidContactContainer" type="HBoxContainer" parent="RightSide/Columns/Column1/FlagsContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 198.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 0
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="SkinToneLabel" type="Label" parent="RightSide/SkinToneContainer"]
+[node name="ValidContactCheckbox" type="CheckBox" parent="RightSide/Columns/Column1/FlagsContainer/ValidContactContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 212.0
-margin/bottom = 14.0
-text = "Skin Tone:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="SkinToneColorPicker" type="ColorPickerButton" parent="RightSide/SkinToneContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 212.0
-margin/bottom = 38.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 109.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 disabled = true
-toggle_mode = false
+toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
+group = null
+text = "Valid Contact"
 flat = false
-color = Color( 1, 1, 1, 1 )
-edit_alpha = false
+align = 0
 
-[node name="MorphTableContainer" type="VBoxContainer" parent="RightSide"]
+[node name="IsStorylineActorContainer" type="HBoxContainer" parent="RightSide/Columns/Column1/FlagsContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 780.0
-margin/top = 10.0
-margin/right = 994.0
-margin/bottom = 236.0
-alignment = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 27.0
+margin_right = 198.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="MorphTableLabel" type="Label" parent="RightSide/MorphTableContainer"]
+[node name="IsStorylineActorCheckbox" type="CheckBox" parent="RightSide/Columns/Column1/FlagsContainer/IsStorylineActorContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 214.0
-margin/bottom = 14.0
-text = "Morph Table:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="MorphTableTree" type="Tree" parent="RightSide/MorphTableContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 214.0
-margin/bottom = 198.0
-
-[node name="MorphTableSpinBox" type="SpinBox" parent="RightSide/MorphTableContainer"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 202.0
-margin/right = 214.0
-margin/bottom = 226.0
-range/min = 0.0
-range/max = 1.0
-range/step = 0.0
-range/page = 0.0
-range/value = 0.0
-range/exp_edit = false
-range/rounded = false
-editable = false
-prefix = ""
-suffix = ""
-
-[node name="ScalerTable" type="VBoxContainer" parent="RightSide"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 780.0
-margin/top = 250.0
-margin/right = 994.0
-margin/bottom = 476.0
-alignment = 1
-
-[node name="ScalerTableLabel" type="Label" parent="RightSide/ScalerTable"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 214.0
-margin/bottom = 14.0
-text = "Scaler Table:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="ScalerTableTree" type="Tree" parent="RightSide/ScalerTable"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 214.0
-margin/bottom = 198.0
-
-[node name="ScalerTableSpinBox" type="SpinBox" parent="RightSide/ScalerTable"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 202.0
-margin/right = 214.0
-margin/bottom = 226.0
-range/min = 0.0
-range/max = 1.0
-range/step = 0.0
-range/page = 0.0
-range/value = 0.0
-range/exp_edit = false
-range/rounded = false
-editable = false
-prefix = ""
-suffix = ""
-
-[node name="StampTable" type="VBoxContainer" parent="RightSide"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 780.0
-margin/top = 500.0
-margin/right = 994.0
-margin/bottom = 726.0
-alignment = 1
-
-[node name="StampTabelLabel" type="Label" parent="RightSide/StampTable"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 214.0
-margin/bottom = 14.0
-text = "Stamp Table:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="StampTabelControl" parent="RightSide/StampTable" instance=ExtResource( 4 )]
-
-anchor/right = 0
-anchor/bottom = 0
-size_flags/vertical = 3
-margin/top = 18.0
-margin/right = 214.0
-margin/bottom = 202.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 170.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 disabled = true
-
-[node name="StampColorButton" type="ColorPickerButton" parent="RightSide/StampTable"]
-
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 206.0
-margin/right = 214.0
-margin/bottom = 226.0
-disabled = true
-toggle_mode = false
+toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
+group = null
+text = "Is Storyline ActorLabel"
 flat = false
-color = Color( 1, 1, 1, 1 )
-edit_alpha = true
+align = 0
 
-[node name="BodyControl" parent="RightSide" instance=ExtResource( 6 )]
+[node name="BodyControl" parent="RightSide/Columns/Column1" instance=ExtResource( 5 )]
 
-margin/left = 12.0
-margin/top = 500.0
-margin/right = 534.0
-margin/bottom = 542.0
+margin_top = 436.0
+margin_right = 198.0
+margin_bottom = 478.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+_sections_unfolded = [ "Size Flags" ]
 label = "Body:"
-record_name = ""
 disabled = true
 has_clear_button = true
 
-[node name="DefaultClothingSetControl" parent="RightSide" instance=ExtResource( 6 )]
+[node name="DefaultClothingSetControl" parent="RightSide/Columns/Column1" instance=ExtResource( 5 )]
 
-margin/left = 12.0
-margin/top = 560.0
-margin/right = 534.0
-margin/bottom = 602.0
+margin_top = 482.0
+margin_right = 198.0
+margin_bottom = 524.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+_sections_unfolded = [ "Size Flags" ]
 label = "Default Clothing Set:"
-record_name = ""
 disabled = true
 has_clear_button = true
 
-[node name="HeightContainer" type="VBoxContainer" parent="RightSide"]
+[node name="HeightContainer" type="VBoxContainer" parent="RightSide/Columns/Column1"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 610.0
-margin/right = 210.0
-margin/bottom = 652.0
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 528.0
+margin_right = 198.0
+margin_bottom = 570.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 0
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="HeightLabel" type="Label" parent="RightSide/HeightContainer"]
+[node name="HeightLabel" type="Label" parent="RightSide/Columns/Column1/HeightContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 200.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 46.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Height:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HeightSpinBox" type="SpinBox" parent="RightSide/HeightContainer"]
+[node name="HeightSpinBox" type="SpinBox" parent="RightSide/Columns/Column1/HeightContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 200.0
-margin/bottom = 42.0
-range/min = 0.0
-range/max = 100.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 0.0
+max_value = 100.0
+step = 0.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
 editable = false
 prefix = ""
 suffix = ""
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Column2" type="VBoxContainer" parent="RightSide/Columns"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 202.0
+margin_right = 400.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Theme" ]
+
+[node name="ActorGroupsContainer" type="VBoxContainer" parent="RightSide/Columns/Column2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 198.0
+margin_bottom = 298.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="ActorGroupsLabel" type="Label" parent="RightSide/Columns/Column2/ActorGroupsContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 88.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Actor Groups:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ActorGroupsControl" parent="RightSide/Columns/Column2/ActorGroupsContainer" instance=ExtResource( 6 )]
+
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 298.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Anchor", "Margin", "Size Flags" ]
+
+[node name="TraitsContainer" type="VBoxContainer" parent="RightSide/Columns/Column2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 302.0
+margin_right = 198.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="TraitsLabel" type="Label" parent="RightSide/Columns/Column2/TraitsContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 39.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Traits:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TraitsControl" parent="RightSide/Columns/Column2/TraitsContainer" instance=ExtResource( 6 )]
+
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 298.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Anchor", "Margin", "Size Flags" ]
+disabled = true
+
+[node name="Column3" type="VBoxContainer" parent="RightSide/Columns"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 404.0
+margin_right = 602.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Theme" ]
+
+[node name="CombinedMeshesContainer" type="VBoxContainer" parent="RightSide/Columns/Column3"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 198.0
+margin_bottom = 324.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_constants/separation = 0
+alignment = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="CombinedMeshesLabel" type="Label" parent="RightSide/Columns/Column3/CombinedMeshesContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 123.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Combined Meshes:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HeadMeshRecord" parent="RightSide/Columns/Column3/CombinedMeshesContainer" instance=ExtResource( 5 )]
+
+margin_top = 14.0
+margin_right = 198.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
+label = "Head:"
+disabled = true
+has_clear_button = true
+
+[node name="HeadMeshColor" type="ColorPickerButton" parent="RightSide/Columns/Column3/CombinedMeshesContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 56.0
+margin_right = 198.0
+margin_bottom = 76.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="EyesMeshRecord" parent="RightSide/Columns/Column3/CombinedMeshesContainer" instance=ExtResource( 5 )]
+
+margin_top = 76.0
+margin_right = 198.0
+margin_bottom = 118.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
+label = "Eyes:"
+disabled = true
+has_clear_button = true
+
+[node name="EyesMeshColor" type="ColorPickerButton" parent="RightSide/Columns/Column3/CombinedMeshesContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 118.0
+margin_right = 198.0
+margin_bottom = 138.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="EyebrowsMeshRecord" parent="RightSide/Columns/Column3/CombinedMeshesContainer" instance=ExtResource( 5 )]
+
+margin_top = 138.0
+margin_right = 198.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
+label = "Eyebrows:"
+disabled = true
+has_clear_button = true
+
+[node name="EyebrowsMeshColo" type="ColorPickerButton" parent="RightSide/Columns/Column3/CombinedMeshesContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 180.0
+margin_right = 198.0
+margin_bottom = 200.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="MouthMeshRecord" parent="RightSide/Columns/Column3/CombinedMeshesContainer" instance=ExtResource( 5 )]
+
+margin_top = 200.0
+margin_right = 198.0
+margin_bottom = 242.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
+label = "Mouth:"
+disabled = true
+has_clear_button = true
+
+[node name="MouthMeshColor" type="ColorPickerButton" parent="RightSide/Columns/Column3/CombinedMeshesContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 242.0
+margin_right = 198.0
+margin_bottom = 262.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="EyelashesMeshRecord" parent="RightSide/Columns/Column3/CombinedMeshesContainer" instance=ExtResource( 5 )]
+
+margin_top = 262.0
+margin_right = 198.0
+margin_bottom = 304.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
+label = "Eyelashes:"
+disabled = true
+has_clear_button = true
+
+[node name="EyelashesColor" type="ColorPickerButton" parent="RightSide/Columns/Column3/CombinedMeshesContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 304.0
+margin_right = 198.0
+margin_bottom = 324.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="HairContainer" type="VBoxContainer" parent="RightSide/Columns/Column3"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 328.0
+margin_right = 198.0
+margin_bottom = 394.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="HairRecord" parent="RightSide/Columns/Column3/HairContainer" instance=ExtResource( 5 )]
+
+margin_right = 198.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
+label = "Hair:"
+disabled = true
+has_clear_button = true
+
+[node name="HairColorPicker" type="ColorPickerButton" parent="RightSide/Columns/Column3/HairContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 46.0
+margin_right = 198.0
+margin_bottom = 66.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="SkinToneContainer" type="VBoxContainer" parent="RightSide/Columns/Column3"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 398.0
+margin_right = 198.0
+margin_bottom = 436.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="SkinToneLabel" type="Label" parent="RightSide/Columns/Column3/SkinToneContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 65.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Skin Tone:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SkinToneColorPicker" type="ColorPickerButton" parent="RightSide/Columns/Column3/SkinToneContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Column4" type="VBoxContainer" parent="RightSide/Columns"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 606.0
+margin_right = 806.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Theme" ]
+
+[node name="MorphTableContainer" type="VBoxContainer" parent="RightSide/Columns/Column4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 197.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="MorphTableLabel" type="Label" parent="RightSide/Columns/Column4/MorphTableContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Morph Table:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="MorphTableTree" type="Tree" parent="RightSide/Columns/Column4/MorphTableContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 200.0
+margin_bottom = 169.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="MorphTableSpinBox" type="SpinBox" parent="RightSide/Columns/Column4/MorphTableContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 173.0
+margin_right = 200.0
+margin_bottom = 197.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+min_value = 0.0
+max_value = 1.0
+step = 0.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+editable = false
+prefix = ""
+suffix = ""
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="ScalerTable" type="VBoxContainer" parent="RightSide/Columns/Column4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 201.0
+margin_right = 200.0
+margin_bottom = 398.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="ScalerTableLabel" type="Label" parent="RightSide/Columns/Column4/ScalerTable"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Scaler Table:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="ScalerTableTree" type="Tree" parent="RightSide/Columns/Column4/ScalerTable"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 200.0
+margin_bottom = 169.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags", "Theme" ]
+
+[node name="ScalerTableSpinBox" type="SpinBox" parent="RightSide/Columns/Column4/ScalerTable"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 173.0
+margin_right = 200.0
+margin_bottom = 197.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+min_value = 0.0
+max_value = 1.0
+step = 0.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+editable = false
+prefix = ""
+suffix = ""
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="StampTable" type="VBoxContainer" parent="RightSide/Columns/Column4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 402.0
+margin_right = 200.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="StampTabelLabel" type="Label" parent="RightSide/Columns/Column4/StampTable"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 1
+size_flags_vertical = 0
+text = "Stamp Table:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="StampTabelControl" parent="RightSide/Columns/Column4/StampTable" instance=ExtResource( 6 )]
+
+margin_top = 18.0
+margin_right = 200.0
+margin_bottom = 174.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Anchor", "Margin", "Size Flags" ]
+disabled = true
+
+[node name="StampColorButton" type="ColorPickerButton" parent="RightSide/Columns/Column4/StampTable"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 178.0
+margin_right = 200.0
+margin_bottom = 198.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = true
+_sections_unfolded = [ "Size Flags" ]
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
 
@@ -1186,98 +1470,98 @@ suffix = ""
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="text_changed" from="RightSide/FamilyNameVBoxContainer/FamilyNameLineEdit" to="." method="_on_FamilyNameLineEdit_text_changed"]
+[connection signal="text_changed" from="RightSide/Columns/Column1/FamilyNameVBoxContainer/FamilyNameLineEdit" to="." method="_on_FamilyNameLineEdit_text_changed"]
 
-[connection signal="text_changed" from="RightSide/GivenNameVBoxContainer/GivenNameLineEdit" to="." method="_on_GivenNameLineEdit_text_changed"]
+[connection signal="text_changed" from="RightSide/Columns/Column1/GivenNameVBoxContainer/GivenNameLineEdit" to="." method="_on_GivenNameLineEdit_text_changed"]
 
-[connection signal="text_changed" from="RightSide/NicknameVBoxContainer/NicknameLineEdit" to="." method="_on_NicknameLineEdit_text_changed"]
+[connection signal="text_changed" from="RightSide/Columns/Column1/NicknameVBoxContainer/NicknameLineEdit" to="." method="_on_NicknameLineEdit_text_changed"]
 
-[connection signal="item_selected" from="RightSide/GenderVBoxContainer/GenderOptionButton" to="." method="_on_GenderOptionButton_item_selected"]
+[connection signal="item_selected" from="RightSide/Columns/Column1/GenderVBoxContainer/GenderOptionButton" to="." method="_on_GenderOptionButton_item_selected"]
 
-[connection signal="day_changed" from="RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions" to="." method="_on_DateOfBirthOption_day_changed"]
+[connection signal="day_changed" from="RightSide/Columns/Column1/DateOfBirthVBoxContainer/DateOfBirthOptions" to="." method="_on_DateOfBirthOption_day_changed"]
 
-[connection signal="month_changed" from="RightSide/DateOfBirthVBoxContainer/DateOfBirthOptions" to="." method="_on_DateOfBirthOptions_month_changed"]
+[connection signal="month_changed" from="RightSide/Columns/Column1/DateOfBirthVBoxContainer/DateOfBirthOptions" to="." method="_on_DateOfBirthOptions_month_changed"]
 
-[connection signal="value_changed" from="RightSide/AgeVBoxContainer/AgeControl" to="." method="_on_AgeSpinbox_value_changed"]
+[connection signal="value_changed" from="RightSide/Columns/Column1/AgeVBoxContainer/AgeControl" to="." method="_on_AgeSpinbox_value_changed"]
 
-[connection signal="item_selected" from="RightSide/BloodTypeVBoxContainer/BloodTypeControl" to="." method="_on_BloodTypeControl_item_selected"]
+[connection signal="item_selected" from="RightSide/Columns/Column1/BloodTypeVBoxContainer/BloodTypeControl" to="." method="_on_BloodTypeControl_item_selected"]
 
-[connection signal="record_erased" from="RightSide/ActorGroupsContainer/ActorGroupsControl" to="." method="_on_ActorGroupsControl_record_erased"]
+[connection signal="file_selected" from="RightSide/Columns/Column1/ContactIconContainer/ContactIconPathControl" to="." method="_on_ContactIconPathControl_file_selected"]
 
-[connection signal="record_selected" from="RightSide/ActorGroupsContainer/ActorGroupsControl" to="." method="_on_ActorGroupsControl_record_selected"]
+[connection signal="toggled" from="RightSide/Columns/Column1/FlagsContainer/ValidContactContainer/ValidContactCheckbox" to="." method="_on_ValidContactCheckbox_toggled"]
 
-[connection signal="record_erased" from="RightSide/TraitsContainer/TraitsControl" to="." method="_on_TraitsControl_record_erased"]
+[connection signal="toggled" from="RightSide/Columns/Column1/FlagsContainer/IsStorylineActorContainer/IsStorylineActorCheckbox" to="." method="_on_IsStorylineActorCheckbox_toggled"]
 
-[connection signal="record_selected" from="RightSide/TraitsContainer/TraitsControl" to="." method="_on_TraitsControl_record_selected"]
+[connection signal="record_erased" from="RightSide/Columns/Column1/BodyControl" to="." method="_on_BodyControl_record_erased"]
 
-[connection signal="toggled" from="RightSide/FlagsContainer/ValidContactContainer/ValidContactCheckbox" to="." method="_on_ValidContactCheckbox_toggled"]
+[connection signal="record_selected" from="RightSide/Columns/Column1/BodyControl" to="." method="_on_BodyControl_record_selected"]
 
-[connection signal="toggled" from="RightSide/FlagsContainer/IsStorylineActorContainer/IsStorylineActorCheckbox" to="." method="_on_IsStorylineActorCheckbox_toggled"]
+[connection signal="record_erased" from="RightSide/Columns/Column1/DefaultClothingSetControl" to="." method="_on_DefaultClothingSetControl_record_erased"]
 
-[connection signal="file_selected" from="RightSide/ContactIconContainer/ContactIconPathControl" to="." method="_on_ContactIconPathControl_file_selected"]
+[connection signal="record_selected" from="RightSide/Columns/Column1/DefaultClothingSetControl" to="." method="_on_DefaultClothingSetControl_record_selected"]
 
-[connection signal="record_erased" from="RightSide/CombinedMeshesContainer/HeadMeshRecord" to="." method="_on_HeadMeshRecord_record_erased"]
+[connection signal="value_changed" from="RightSide/Columns/Column1/HeightContainer/HeightSpinBox" to="." method="_on_HeightSpinBox_value_changed"]
 
-[connection signal="record_selected" from="RightSide/CombinedMeshesContainer/HeadMeshRecord" to="." method="_on_HeadMeshRecord_record_selected"]
+[connection signal="record_erased" from="RightSide/Columns/Column2/ActorGroupsContainer/ActorGroupsControl" to="." method="_on_ActorGroupsControl_record_erased"]
 
-[connection signal="color_changed" from="RightSide/CombinedMeshesContainer/HeadMeshColor" to="." method="_on_HeadMeshColor_color_changed"]
+[connection signal="record_selected" from="RightSide/Columns/Column2/ActorGroupsContainer/ActorGroupsControl" to="." method="_on_ActorGroupsControl_record_selected"]
 
-[connection signal="record_erased" from="RightSide/CombinedMeshesContainer/EyesMeshRecord" to="." method="_on_EyesMeshRecord_record_erased"]
+[connection signal="record_erased" from="RightSide/Columns/Column2/TraitsContainer/TraitsControl" to="." method="_on_TraitsControl_record_erased"]
 
-[connection signal="record_selected" from="RightSide/CombinedMeshesContainer/EyesMeshRecord" to="." method="_on_EyesMeshRecord_record_selected"]
+[connection signal="record_selected" from="RightSide/Columns/Column2/TraitsContainer/TraitsControl" to="." method="_on_TraitsControl_record_selected"]
 
-[connection signal="color_changed" from="RightSide/CombinedMeshesContainer/EyesMeshColor" to="." method="_on_EyesMeshColor_color_changed"]
+[connection signal="record_erased" from="RightSide/Columns/Column3/CombinedMeshesContainer/HeadMeshRecord" to="." method="_on_HeadMeshRecord_record_erased"]
 
-[connection signal="record_erased" from="RightSide/CombinedMeshesContainer/EyebrowsMeshRecord" to="." method="_on_EyebrowsMeshRecord_record_erased"]
+[connection signal="record_selected" from="RightSide/Columns/Column3/CombinedMeshesContainer/HeadMeshRecord" to="." method="_on_HeadMeshRecord_record_selected"]
 
-[connection signal="record_selected" from="RightSide/CombinedMeshesContainer/EyebrowsMeshRecord" to="." method="_on_EyebrowsMeshRecord_record_selected"]
+[connection signal="color_changed" from="RightSide/Columns/Column3/CombinedMeshesContainer/HeadMeshColor" to="." method="_on_HeadMeshColor_color_changed"]
 
-[connection signal="color_changed" from="RightSide/CombinedMeshesContainer/EyebrowsMeshColo" to="." method="_on_EyebrowsMeshColo_color_changed"]
+[connection signal="record_erased" from="RightSide/Columns/Column3/CombinedMeshesContainer/EyesMeshRecord" to="." method="_on_EyesMeshRecord_record_erased"]
 
-[connection signal="record_erased" from="RightSide/CombinedMeshesContainer/MouthMeshRecord" to="." method="_on_MouthMeshRecord_record_erased"]
+[connection signal="record_selected" from="RightSide/Columns/Column3/CombinedMeshesContainer/EyesMeshRecord" to="." method="_on_EyesMeshRecord_record_selected"]
 
-[connection signal="record_selected" from="RightSide/CombinedMeshesContainer/MouthMeshRecord" to="." method="_on_MouthMeshRecord_record_selected"]
+[connection signal="color_changed" from="RightSide/Columns/Column3/CombinedMeshesContainer/EyesMeshColor" to="." method="_on_EyesMeshColor_color_changed"]
 
-[connection signal="color_changed" from="RightSide/CombinedMeshesContainer/MouthMeshColor" to="." method="_on_MouthMeshColor_color_changed"]
+[connection signal="record_erased" from="RightSide/Columns/Column3/CombinedMeshesContainer/EyebrowsMeshRecord" to="." method="_on_EyebrowsMeshRecord_record_erased"]
 
-[connection signal="record_erased" from="RightSide/CombinedMeshesContainer/EyelashesMeshRecord" to="." method="_on_EyelashesMeshRecord_record_erased"]
+[connection signal="record_selected" from="RightSide/Columns/Column3/CombinedMeshesContainer/EyebrowsMeshRecord" to="." method="_on_EyebrowsMeshRecord_record_selected"]
 
-[connection signal="record_selected" from="RightSide/CombinedMeshesContainer/EyelashesMeshRecord" to="." method="_on_EyelashesMeshRecord_record_selected"]
+[connection signal="color_changed" from="RightSide/Columns/Column3/CombinedMeshesContainer/EyebrowsMeshColo" to="." method="_on_EyebrowsMeshColo_color_changed"]
 
-[connection signal="color_changed" from="RightSide/CombinedMeshesContainer/EyelashesColor" to="." method="_on_EyelashesColor_color_changed"]
+[connection signal="record_erased" from="RightSide/Columns/Column3/CombinedMeshesContainer/MouthMeshRecord" to="." method="_on_MouthMeshRecord_record_erased"]
 
-[connection signal="record_erased" from="RightSide/HairContainer/HairRecord" to="." method="_on_HairRecord_record_erased"]
+[connection signal="record_selected" from="RightSide/Columns/Column3/CombinedMeshesContainer/MouthMeshRecord" to="." method="_on_MouthMeshRecord_record_selected"]
 
-[connection signal="record_selected" from="RightSide/HairContainer/HairRecord" to="." method="_on_HairRecord_record_selected"]
+[connection signal="color_changed" from="RightSide/Columns/Column3/CombinedMeshesContainer/MouthMeshColor" to="." method="_on_MouthMeshColor_color_changed"]
 
-[connection signal="color_changed" from="RightSide/HairContainer/HairColorPicker" to="." method="_on_HairColorPicker_color_changed"]
+[connection signal="record_erased" from="RightSide/Columns/Column3/CombinedMeshesContainer/EyelashesMeshRecord" to="." method="_on_EyelashesMeshRecord_record_erased"]
 
-[connection signal="color_changed" from="RightSide/SkinToneContainer/SkinToneColorPicker" to="." method="_on_SkinToneColorPicker_color_changed"]
+[connection signal="record_selected" from="RightSide/Columns/Column3/CombinedMeshesContainer/EyelashesMeshRecord" to="." method="_on_EyelashesMeshRecord_record_selected"]
 
-[connection signal="cell_selected" from="RightSide/MorphTableContainer/MorphTableTree" to="." method="_on_MorphTableTree_cell_selected"]
+[connection signal="color_changed" from="RightSide/Columns/Column3/CombinedMeshesContainer/EyelashesColor" to="." method="_on_EyelashesColor_color_changed"]
 
-[connection signal="value_changed" from="RightSide/MorphTableContainer/MorphTableSpinBox" to="." method="_on_MorphTableSpinBox_value_changed"]
+[connection signal="record_erased" from="RightSide/Columns/Column3/HairContainer/HairRecord" to="." method="_on_HairRecord_record_erased"]
 
-[connection signal="cell_selected" from="RightSide/ScalerTable/ScalerTableTree" to="." method="_on_ScalerTableTree_cell_selected"]
+[connection signal="record_selected" from="RightSide/Columns/Column3/HairContainer/HairRecord" to="." method="_on_HairRecord_record_selected"]
 
-[connection signal="value_changed" from="RightSide/ScalerTable/ScalerTableSpinBox" to="." method="_on_ScalerTableSpinBox_value_changed"]
+[connection signal="color_changed" from="RightSide/Columns/Column3/HairContainer/HairColorPicker" to="." method="_on_HairColorPicker_color_changed"]
 
-[connection signal="record_cell_selected" from="RightSide/StampTable/StampTabelControl" to="." method="_on_StampTabelControl_record_cell_selected"]
+[connection signal="color_changed" from="RightSide/Columns/Column3/SkinToneContainer/SkinToneColorPicker" to="." method="_on_SkinToneColorPicker_color_changed"]
 
-[connection signal="record_erased" from="RightSide/StampTable/StampTabelControl" to="." method="_on_StampTabelControl_record_erased"]
+[connection signal="cell_selected" from="RightSide/Columns/Column4/MorphTableContainer/MorphTableTree" to="." method="_on_MorphTableTree_cell_selected"]
 
-[connection signal="record_selected" from="RightSide/StampTable/StampTabelControl" to="." method="_on_StampTabelControl_record_selected"]
+[connection signal="value_changed" from="RightSide/Columns/Column4/MorphTableContainer/MorphTableSpinBox" to="." method="_on_MorphTableSpinBox_value_changed"]
 
-[connection signal="color_changed" from="RightSide/StampTable/StampColorButton" to="." method="_on_StampColorButton_color_changed"]
+[connection signal="cell_selected" from="RightSide/Columns/Column4/ScalerTable/ScalerTableTree" to="." method="_on_ScalerTableTree_cell_selected"]
 
-[connection signal="record_erased" from="RightSide/BodyControl" to="." method="_on_BodyControl_record_erased"]
+[connection signal="value_changed" from="RightSide/Columns/Column4/ScalerTable/ScalerTableSpinBox" to="." method="_on_ScalerTableSpinBox_value_changed"]
 
-[connection signal="record_selected" from="RightSide/BodyControl" to="." method="_on_BodyControl_record_selected"]
+[connection signal="record_cell_selected" from="RightSide/Columns/Column4/StampTable/StampTabelControl" to="." method="_on_StampTabelControl_record_cell_selected"]
 
-[connection signal="record_erased" from="RightSide/DefaultClothingSetControl" to="." method="_on_DefaultClothingSetControl_record_erased"]
+[connection signal="record_erased" from="RightSide/Columns/Column4/StampTable/StampTabelControl" to="." method="_on_StampTabelControl_record_erased"]
 
-[connection signal="record_selected" from="RightSide/DefaultClothingSetControl" to="." method="_on_DefaultClothingSetControl_record_selected"]
+[connection signal="record_selected" from="RightSide/Columns/Column4/StampTable/StampTabelControl" to="." method="_on_StampTabelControl_record_selected"]
 
-[connection signal="value_changed" from="RightSide/HeightContainer/HeightSpinBox" to="." method="_on_HeightSpinBox_value_changed"]
+[connection signal="color_changed" from="RightSide/Columns/Column4/StampTable/StampColorButton" to="." method="_on_StampColorButton_color_changed"]
 
 

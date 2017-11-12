@@ -20,7 +20,7 @@ signal menu_dismissed
 
 func _notification(what):
 	if(what == Popup.NOTIFICATION_POST_POPUP):
-		get_node("Panel/HBoxContainer/EditButton").set_disabled(true)
+		get_node("DatabaseListContainer/ButtonContainer/EditButton").set_disabled(true)
 		
 func assign_databases(p_databases):
 	databases = p_databases
@@ -62,7 +62,7 @@ func confirm_argument_selection(p_value):
 	set_arguments(method_arguments, template_arguments)
 		
 func _ready():
-	argument_tree = get_node("ArgumentTree")
+	argument_tree = get_node("DatabaseListContainer/ArgumentTree")
 	assert(argument_tree)
 	
 	argument_tree.set_select_mode(Tree.SELECT_SINGLE)
@@ -83,7 +83,7 @@ func _on_ArgumentTree_cell_selected():
 	if(argument_tree):
 		var tree_item = argument_tree.get_selected()
 		if(tree_item):
-			get_node("Panel/HBoxContainer/EditButton").set_disabled(false)
+			get_node("DatabaseListContainer/ButtonContainer/EditButton").set_disabled(false)
 			
 func _on_EditButton_pressed():
 	if(argument_tree):

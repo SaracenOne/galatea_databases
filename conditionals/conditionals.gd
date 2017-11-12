@@ -66,7 +66,7 @@ func run_conditional_items_for_subject(p_subject, p_global_svar_table):
 				target = p_subject
 			elif(conditional.subject == CONDITIONAL_SUBJECT_TARGET):
 				if(p_subject.has_method("get_target")):
-					var target = p_subject.call("get_target")
+					target = p_subject.call("get_target")
 					
 			var result = false
 			if(target):

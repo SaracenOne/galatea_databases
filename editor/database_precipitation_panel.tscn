@@ -1,26 +1,25 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_precipitation_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
 
+
 [node name="PrecipitationPanel" type="HSplitContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-split/offset = -500
-split/collapsed = false
-split/dragger_visibility = 1
-script/script = ExtResource( 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+split_offset = -300
+collapsed = false
+dragger_visibility = 1
+script = ExtResource( 1 )
 texture_path = NodePath("RightSide/TexturePathContainer/TexturePathControl")
 texture_path_texture = NodePath("RightSide/TexturePathContainer/TexturePathTextureFrame/TexturePathTexture")
 shader_path = NodePath("RightSide/ShaderPath/ShaderPathControl")
@@ -34,49 +33,59 @@ particle_size_y = NodePath("RightSide/ParticleSizeContainer/ParticleSizeControlY
 
 [node name="LeftSide" type="Control" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 294.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 206.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
 [node name="RightSide" type="Control" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 306.0
-margin/top = 0.0
-margin/right = 1600.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 218.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="TexturePathContainer" type="HBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 20.0
-margin/right = 521.0
-margin/bottom = 84.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 521.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 0
 
 [node name="TexturePathControl" parent="RightSide/TexturePathContainer" instance=ExtResource( 3 )]
 
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/right = 443.0
-margin/bottom = 64.0
+anchor_right = 0.0
+margin_right = 253.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 label = "Texture Path"
 file_browser_title = "Open Image"
 file_type = "Texture"
@@ -85,53 +94,59 @@ has_clear_button = true
 
 [node name="TexturePathTextureFrame" type="Panel" parent="RightSide/TexturePathContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-rect/min_size = Vector2( 64, 64 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 447.0
-margin/top = 0.0
-margin/right = 511.0
-margin/bottom = 64.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 257.0
+margin_right = 321.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 
-[node name="TexturePathTexture" type="TextureFrame" parent="RightSide/TexturePathContainer/TexturePathTextureFrame"]
+[node name="TexturePathTexture" type="TextureRect" parent="RightSide/TexturePathContainer/TexturePathTextureFrame"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-rect/min_size = Vector2( 64, 64 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 expand = true
 stretch_mode = 0
 
 [node name="ShaderPath" type="HBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 80.0
-margin/right = 521.0
-margin/bottom = 144.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 80.0
+margin_right = 521.0
+margin_bottom = 144.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 0
 
 [node name="ShaderPathControl" parent="RightSide/ShaderPath" instance=ExtResource( 3 )]
 
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/right = 511.0
-margin/bottom = 64.0
+anchor_right = 0.0
+margin_right = 511.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 label = "Shader Path"
 file_browser_title = "Open Shader"
 file_type = "Shader"
@@ -140,28 +155,34 @@ has_clear_button = true
 
 [node name="SubTextureCountContainer" type="VBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 150.0
-margin/right = 162.0
-margin/bottom = 192.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 150.0
+margin_right = 162.0
+margin_bottom = 192.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 1
 
 [node name="SubTextureCountXYLabel" type="Label" parent="RightSide/SubTextureCountContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 152.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 135.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "SubTexture Count XY:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -169,50 +190,59 @@ max_lines_visible = -1
 
 [node name="SubTextureCountXYControl" type="SpinBox" parent="RightSide/SubTextureCountContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 152.0
-margin/bottom = 42.0
-range/min = 1.0
-range/max = 64.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 74.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+min_value = 1.0
+max_value = 64.0
+step = 0.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
 editable = false
 prefix = ""
 suffix = ""
 
 [node name="BoxSizeContainer" type="VBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 180.0
-margin/top = 150.0
-margin/right = 332.0
-margin/bottom = 192.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 180.0
+margin_top = 150.0
+margin_right = 332.0
+margin_bottom = 192.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 1
 
 [node name="BoxSizeLabel" type="Label" parent="RightSide/BoxSizeContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 152.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 58.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Box Size:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -220,50 +250,59 @@ max_lines_visible = -1
 
 [node name="BoxSizeControl" type="SpinBox" parent="RightSide/BoxSizeContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 152.0
-margin/bottom = 42.0
-range/min = 0.0
-range/max = 2096.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 74.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+min_value = 0.0
+max_value = 2096.0
+step = 0.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
 editable = false
 prefix = ""
 suffix = ""
 
 [node name="WindMultiplerContainer" type="VBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 180.0
-margin/top = 200.0
-margin/right = 332.0
-margin/bottom = 242.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 180.0
+margin_top = 200.0
+margin_right = 332.0
+margin_bottom = 242.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 1
 
 [node name="WindMultiplerLabel" type="Label" parent="RightSide/WindMultiplerContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 152.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 103.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Wind Multiplier:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -271,50 +310,59 @@ max_lines_visible = -1
 
 [node name="WindMultiplierControl" type="SpinBox" parent="RightSide/WindMultiplerContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 152.0
-margin/bottom = 42.0
-range/min = 0.0
-range/max = 2096.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 74.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+min_value = 0.0
+max_value = 2096.0
+step = 0.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
 editable = false
 prefix = ""
 suffix = ""
 
 [node name="ParticleDensityContainer" type="VBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 200.0
-margin/right = 162.0
-margin/bottom = 242.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 200.0
+margin_right = 162.0
+margin_bottom = 242.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 1
 
 [node name="ParticleDensityLabel" type="Label" parent="RightSide/ParticleDensityContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 152.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 105.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Particle Density:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -322,50 +370,59 @@ max_lines_visible = -1
 
 [node name="ParticleDensityControl" type="SpinBox" parent="RightSide/ParticleDensityContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 152.0
-margin/bottom = 42.0
-range/min = 0.0
-range/max = 2096.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 74.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+min_value = 0.0
+max_value = 2096.0
+step = 0.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
 editable = false
 prefix = ""
 suffix = ""
 
 [node name="ParticleRotationVelocityContainer" type="VBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 180.0
-margin/top = 250.0
-margin/right = 332.0
-margin/bottom = 292.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 180.0
+margin_top = 250.0
+margin_right = 332.0
+margin_bottom = 292.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 1
 
 [node name="ParticleRotationVelocityLabel" type="Label" parent="RightSide/ParticleRotationVelocityContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 164.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 164.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Particle Rotation Velocity:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -373,50 +430,59 @@ max_lines_visible = -1
 
 [node name="ParticleRotationVelocityControl" type="SpinBox" parent="RightSide/ParticleRotationVelocityContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 164.0
-margin/bottom = 42.0
-range/min = -2096.0
-range/max = 2096.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 74.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+min_value = -2096.0
+max_value = 2096.0
+step = 0.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
 editable = false
 prefix = ""
 suffix = ""
 
 [node name="ParticleSizeContainer" type="VBoxContainer" parent="RightSide"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 260.0
-margin/right = 162.0
-margin/bottom = 348.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 260.0
+margin_right = 162.0
+margin_bottom = 348.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 1
 
 [node name="ParticleSizeLabelX" type="Label" parent="RightSide/ParticleSizeContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 152.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 94.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Particle Size X:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -424,37 +490,43 @@ max_lines_visible = -1
 
 [node name="ParticleSizeControlX" type="SpinBox" parent="RightSide/ParticleSizeContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 152.0
-margin/bottom = 42.0
-range/min = 0.0
-range/max = 2096.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 74.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+min_value = 0.0
+max_value = 2096.0
+step = 0.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
 editable = false
 prefix = ""
 suffix = ""
 
 [node name="ParticleSizeLabelY" type="Label" parent="RightSide/ParticleSizeContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 46.0
-margin/right = 152.0
-margin/bottom = 60.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 46.0
+margin_right = 93.0
+margin_bottom = 60.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Particle Size Y:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -462,22 +534,25 @@ max_lines_visible = -1
 
 [node name="ParticleSizeControlY" type="SpinBox" parent="RightSide/ParticleSizeContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 64.0
-margin/right = 152.0
-margin/bottom = 88.0
-range/min = 0.0
-range/max = 2096.0
-range/step = 0.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 64.0
+margin_right = 74.0
+margin_bottom = 88.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+min_value = 0.0
+max_value = 2096.0
+step = 0.0
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
 editable = false
 prefix = ""
 suffix = ""

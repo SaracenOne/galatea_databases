@@ -10,7 +10,7 @@ signal record_selected(p_record)
 
 func _notification(what):
 	if(what == Popup.NOTIFICATION_POST_POPUP):
-		get_node("Panel/HBoxContainer/ConfirmButton").set_disabled(true)
+		get_node("DatabaseListContainer/ButtonContainer/ConfirmButton").set_disabled(true)
 		
 func confirm_record_selection(p_record):
 	emit_signal("record_selected", p_record)
@@ -69,7 +69,7 @@ func populate_tree(p_database, p_rules = []):
 		printerr("Record Tree is null!")
 		
 func _ready():
-	record_tree = get_node("RecordTree")
+	record_tree = get_node("DatabaseListContainer/RecordTree")
 	assert(record_tree)
 	
 	record_tree.set_select_mode(Tree.SELECT_SINGLE)
@@ -85,9 +85,8 @@ func _on_ConfirmButton_pressed():
 			if(record):
 				confirm_record_selection(record)
 			
-
 func _on_RecordTree_cell_selected():
 	if(record_tree):
 		var tree_item = record_tree.get_selected()
 		if(tree_item):
-			get_node("Panel/HBoxContainer/ConfirmButton").set_disabled(false)
+			get_node("DatabaseListContainer/ButtonContainer/ConfirmButton").set_disabled(false)

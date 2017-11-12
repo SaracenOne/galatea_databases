@@ -1,108 +1,118 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_records_reference.gd" type="Script" id=1]
 
+
 [node name="DatabaseRecordsReference" type="Control"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-script/script = ExtResource( 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 100.0
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 1 )
+_sections_unfolded = [ "Anchor", "Margin" ]
 disabled = false
 
-[node name="RecordTree" type="Tree" parent="."]
+[node name="DatabaseRecordsReferenceContainer" type="VBoxContainer" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 50.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Margin" ]
 
-[node name="Panel" type="Panel" parent="."]
+[node name="RecordTree" type="Tree" parent="DatabaseRecordsReferenceContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/top = 1
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 50.0
-margin/right = 0.0
-margin/bottom = 0.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 100.0
+margin_bottom = 76.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="ButtonContainer" type="HBoxContainer" parent="DatabaseRecordsReferenceContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 10.0
-margin/right = 10.0
-margin/bottom = 10.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 80.0
+margin_right = 100.0
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 1
+size_flags_vertical = 0
 alignment = 1
+_sections_unfolded = [ "Mouse", "Size Flags" ]
 
-[node name="AddButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="AddButton" type="Button" parent="DatabaseRecordsReferenceContainer/ButtonContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 788.0
-margin/bottom = 30.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 48.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "Add"
 flat = false
 
-[node name="EraseButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="EraseButton" type="Button" parent="DatabaseRecordsReferenceContainer/ButtonContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 792.0
-margin/top = 0.0
-margin/right = 1580.0
-margin/bottom = 30.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "Erase"
 flat = false
 
-[connection signal="cell_selected" from="RecordTree" to="." method="_on_RecordTree_cell_selected"]
+[connection signal="cell_selected" from="DatabaseRecordsReferenceContainer/RecordTree" to="." method="_on_RecordTree_cell_selected"]
 
-[connection signal="item_selected" from="RecordTree" to="." method="_on_RecordTree_item_selected"]
+[connection signal="item_selected" from="DatabaseRecordsReferenceContainer/RecordTree" to="." method="_on_RecordTree_item_selected"]
 
-[connection signal="pressed" from="Panel/HBoxContainer/AddButton" to="." method="_on_AddButton_pressed"]
+[connection signal="pressed" from="DatabaseRecordsReferenceContainer/ButtonContainer/AddButton" to="." method="_on_AddButton_pressed"]
 
-[connection signal="pressed" from="Panel/HBoxContainer/EraseButton" to="." method="_on_EraseButton_pressed"]
+[connection signal="pressed" from="DatabaseRecordsReferenceContainer/ButtonContainer/EraseButton" to="." method="_on_EraseButton_pressed"]
 
 

@@ -1,21 +1,25 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_conditional_item_editor_window.gd" type="Script" id=1]
 
+
 [node name="WindowDialog" type="WindowDialog"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 0
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 800.0
-margin/bottom = 150.0
-popup/exclusive = true
-window/title = "Conditional Item Editor"
-script/script = ExtResource( 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 800.0
+margin_bottom = 150.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+popup_exclusive = true
+window_title = "Conditional Item Editor"
+resizable = false
+script = ExtResource( 1 )
 method_selection = NodePath("ConditionalItemEditor/Row1/Column1/MethodButton")
 arguments_selection = NodePath("ConditionalItemEditor/Row1/Column2/ArgumentButton")
 operator_selection = NodePath("ConditionalItemEditor/Row1/Column3/OperatorButton")
@@ -30,60 +34,68 @@ or_checkbox = NodePath("ConditionalItemEditor/Row1/Column5/OrCheckBox")
 
 [node name="ConditionalItemEditor" type="VBoxContainer" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 10.0
-margin/right = 10.0
-margin/bottom = 10.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 10.0
+margin_bottom = 10.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 custom_constants/separation = 20
 alignment = 0
 
 [node name="Row1" type="HBoxContainer" parent="ConditionalItemEditor"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 780.0
-margin/bottom = 90.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 643.0
+margin_bottom = 90.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 custom_constants/separation = 14
 alignment = 0
 
 [node name="Column1" type="VBoxContainer" parent="ConditionalItemEditor/Row1"]
 
 editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-rect/min_size = Vector2( 100, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 237.0
-margin/bottom = 90.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 100.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 100, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 2
 alignment = 0
 
 [node name="MethodLabel" type="Label" parent="ConditionalItemEditor/Row1/Column1"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 237.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 53.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Method:"
 align = 1
 percent_visible = 1.0
@@ -92,32 +104,38 @@ max_lines_visible = -1
 
 [node name="MethodButton" type="Button" parent="ConditionalItemEditor/Row1/Column1"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 237.0
-margin/bottom = 38.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 12.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 toggle_mode = false
-click_on_press = true
 enabled_focus_mode = 0
 shortcut = null
+group = null
 flat = false
 
 [node name="SubjectLabel" type="Label" parent="ConditionalItemEditor/Row1/Column1"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 42.0
-margin/right = 237.0
-margin/bottom = 56.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 42.0
+margin_right = 51.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Subject:"
 align = 1
 percent_visible = 1.0
@@ -126,46 +144,55 @@ max_lines_visible = -1
 
 [node name="SubjectButton" type="MenuButton" parent="ConditionalItemEditor/Row1/Column1"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 60.0
-margin/right = 237.0
-margin/bottom = 80.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 60.0
+margin_right = 12.0
+margin_bottom = 80.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 toggle_mode = false
-click_on_press = true
+action_mode = 0
 enabled_focus_mode = 0
 shortcut = null
+group = null
 flat = false
 items = [ "self", null, false, false, false, 0, 0, null, "", false, "target", null, false, false, false, 1, 0, null, "", false, "reference", null, false, false, false, 2, 0, null, "", false, "global", null, false, false, false, 3, 0, null, "", false ]
 
 [node name="Column2" type="VBoxContainer" parent="ConditionalItemEditor/Row1"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 251.0
-margin/top = 0.0
-margin/right = 451.0
-margin/bottom = 90.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 114.0
+margin_right = 314.0
+margin_bottom = 80.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 0
 
 [node name="ArgumentsLabel" type="Label" parent="ConditionalItemEditor/Row1/Column2"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 200.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 74.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Arguments:"
 align = 1
 percent_visible = 1.0
@@ -174,34 +201,40 @@ max_lines_visible = -1
 
 [node name="ArgumentButton" type="Button" parent="ConditionalItemEditor/Row1/Column2"]
 
-rect/pivot = Vector2( 0, 0 )
-rect/min_size = Vector2( 200, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 200.0
-margin/bottom = 38.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 200.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 200, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 toggle_mode = false
-click_on_press = true
 enabled_focus_mode = 0
 shortcut = null
+group = null
 text = "nil"
 flat = false
 
 [node name="SourceLabel" type="Label" parent="ConditionalItemEditor/Row1/Column2"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 42.0
-margin/right = 200.0
-margin/bottom = 56.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 42.0
+margin_right = 47.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Source:"
 align = 1
 percent_visible = 1.0
@@ -210,47 +243,55 @@ max_lines_visible = -1
 
 [node name="SourceButton" type="Button" parent="ConditionalItemEditor/Row1/Column2"]
 
-rect/pivot = Vector2( 0, 0 )
-rect/min_size = Vector2( 200, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 60.0
-margin/right = 200.0
-margin/bottom = 80.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 60.0
+margin_right = 200.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 200, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 toggle_mode = false
-click_on_press = true
 enabled_focus_mode = 0
 shortcut = null
+group = null
 text = "nil"
 flat = false
 
 [node name="Column3" type="VBoxContainer" parent="ConditionalItemEditor/Row1"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 465.0
-margin/top = 0.0
-margin/right = 526.0
-margin/bottom = 90.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 328.0
+margin_right = 389.0
+margin_bottom = 83.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 0
 
 [node name="OperatorLabel" type="Label" parent="ConditionalItemEditor/Row1/Column3"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 61.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 61.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Operator:"
 align = 1
 percent_visible = 1.0
@@ -259,34 +300,41 @@ max_lines_visible = -1
 
 [node name="OperatorButton" type="MenuButton" parent="ConditionalItemEditor/Row1/Column3"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 61.0
-margin/bottom = 38.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 61.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 toggle_mode = false
-click_on_press = true
+action_mode = 0
 enabled_focus_mode = 0
 shortcut = null
+group = null
 text = "=="
 flat = false
 items = [ "==", null, false, false, false, 0, 0, null, "", false, "!=", null, false, false, false, 1, 0, null, "", false, ">", null, false, false, false, 2, 0, null, "", false, "<", null, false, false, false, 3, 0, null, "", false, ">=", null, false, false, false, 4, 0, null, "", false, "<=", null, false, false, false, 5, 0, null, "", false ]
 
 [node name="SwapLabel" type="Label" parent="ConditionalItemEditor/Row1/Column3"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 42.0
-margin/right = 61.0
-margin/bottom = 56.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 42.0
+margin_right = 36.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Swap:"
 align = 1
 percent_visible = 1.0
@@ -295,59 +343,70 @@ max_lines_visible = -1
 
 [node name="SwapContainer" type="HBoxContainer" parent="ConditionalItemEditor/Row1/Column3"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 60.0
-margin/right = 61.0
-margin/bottom = 83.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 60.0
+margin_right = 26.0
+margin_bottom = 83.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 1
 
 [node name="SwapCheckBox" type="CheckBox" parent="ConditionalItemEditor/Row1/Column3/SwapContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 17.0
-margin/top = 0.0
-margin/right = 43.0
-margin/bottom = 23.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 26.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
+group = null
 flat = false
 align = 0
 
 [node name="Column4" type="VBoxContainer" parent="ConditionalItemEditor/Row1"]
 
-rect/pivot = Vector2( 0, 0 )
-rect/min_size = Vector2( 200, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 540.0
-margin/top = 0.0
-margin/right = 740.0
-margin/bottom = 90.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 403.0
+margin_right = 603.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 200, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 0
 
 [node name="ValueLabel" type="Label" parent="ConditionalItemEditor/Row1/Column4"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 200.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 39.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Value:"
 align = 1
 percent_visible = 1.0
@@ -356,73 +415,83 @@ max_lines_visible = -1
 
 [node name="ValueContainer" type="VBoxContainer" parent="ConditionalItemEditor/Row1/Column4"]
 
-rect/pivot = Vector2( 0, 0 )
-rect/min_size = Vector2( 50, 30 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 200.0
-margin/bottom = 48.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 200.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 50, 30 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 2
 alignment = 0
 
 [node name="ValueButton" type="Button" parent="ConditionalItemEditor/Row1/Column4/ValueContainer"]
 
-visibility/visible = false
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 200.0
-margin/bottom = 20.0
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+group = null
 flat = false
 
 [node name="ValueLineEdit" type="LineEdit" parent="ConditionalItemEditor/Row1/Column4/ValueContainer"]
 
-visibility/visible = false
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 200.0
-margin/bottom = 24.0
-placeholder/alpha = 0.6
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 align = 1
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = true
-caret/caret_blink_speed = 0.65
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
 
 [node name="ValueSpinBox" type="SpinBox" parent="ConditionalItemEditor/Row1/Column4/ValueContainer"]
 
-visibility/visible = false
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 200.0
-margin/bottom = 24.0
-range/min = 0.0
-range/max = 100.0
-range/step = 0.001
-range/page = 0.0
-range/value = 0.0
-range/exp_edit = true
-range/rounded = false
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+min_value = 0.0
+max_value = 100.0
+step = 0.001
+page = 0.0
+value = 0.0
+exp_edit = true
+rounded = false
 editable = true
 prefix = ""
 suffix = ""
@@ -430,46 +499,53 @@ suffix = ""
 [node name="CheckBoxCenter" type="HBoxContainer" parent="ConditionalItemEditor/Row1/Column4/ValueContainer"]
 
 editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 200.0
-margin/bottom = 0.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 1
 
 [node name="CheckBox" type="CheckBox" parent="ConditionalItemEditor/Row1/Column4/ValueContainer/CheckBoxCenter"]
 
-visibility/visible = false
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 87.0
-margin/top = 0.0
-margin/right = 113.0
-margin/bottom = 23.0
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 87.0
+margin_right = 113.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
+group = null
 flat = false
 align = 0
 
 [node name="ValueTypeLabel" type="Label" parent="ConditionalItemEditor/Row1/Column4"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 52.0
-margin/right = 200.0
-margin/bottom = 66.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 52.0
+margin_right = 73.0
+margin_bottom = 66.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Value Type:"
 align = 1
 percent_visible = 1.0
@@ -478,47 +554,56 @@ max_lines_visible = -1
 
 [node name="ValueTypeMenuButton" type="MenuButton" parent="ConditionalItemEditor/Row1/Column4"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 70.0
-margin/right = 200.0
-margin/bottom = 90.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 70.0
+margin_right = 12.0
+margin_bottom = 90.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 toggle_mode = true
-click_on_press = true
+action_mode = 0
 enabled_focus_mode = 2
 shortcut = null
+group = null
 flat = false
 align = 0
-items = [  ]
+items = [ "float", null, false, false, false, 0, 0, null, "", false, "string", null, false, false, false, 1, 0, null, "", false, "svar", null, false, false, false, 2, 0, null, "", false, "boolean", null, false, false, false, 3, 0, null, "", false ]
 
 [node name="Column5" type="VBoxContainer" parent="ConditionalItemEditor/Row1"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 754.0
-margin/top = 0.0
-margin/right = 780.0
-margin/bottom = 90.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 617.0
+margin_right = 643.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 alignment = 1
 
 [node name="OrLabel" type="Label" parent="ConditionalItemEditor/Row1/Column5"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 24.0
-margin/right = 26.0
-margin/bottom = 38.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 20.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Or:"
 align = 1
 percent_visible = 1.0
@@ -527,66 +612,80 @@ max_lines_visible = -1
 
 [node name="OrCheckBox" type="CheckBox" parent="ConditionalItemEditor/Row1/Column5"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 42.0
-margin/right = 26.0
-margin/bottom = 65.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 26.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
+group = null
 flat = false
 align = 0
 
 [node name="Row2" type="HBoxContainer" parent="ConditionalItemEditor"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 110.0
-margin/right = 780.0
-margin/bottom = 130.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 110.0
+margin_right = 130.0
+margin_bottom = 130.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 custom_constants/separation = 14
 alignment = 0
 
 [node name="ConfirmButton" type="Button" parent="ConditionalItemEditor/Row2"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 383.0
-margin/bottom = 20.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 62.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "Confirm"
 flat = false
 
 [node name="CancelButton" type="Button" parent="ConditionalItemEditor/Row2"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 397.0
-margin/top = 0.0
-margin/right = 780.0
-margin/bottom = 20.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 76.0
+margin_right = 130.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "Cancel"
 flat = false
 

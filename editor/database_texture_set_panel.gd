@@ -55,7 +55,7 @@ func update_preview():
 		var preview_texture = load(current_record.textures[currently_selected_texture])
 		
 		if(preview_texture):
-			if(preview_texture extends Texture):
+			if(preview_texture is Texture):
 				_texture_preview_control.set_texture(preview_texture)
 	else:
 		_texture_preview_control.set_texture(null)

@@ -48,7 +48,7 @@ func update_icon_preview():
 	if(current_record and current_record.main_icon_path.empty() == false):
 		main_icon_texture = load(current_record.main_icon_path)
 	if(main_icon_texture):
-		if(main_icon_texture extends Texture):
+		if(main_icon_texture is Texture):
 			_main_icon_preview_control_node.set_texture(main_icon_texture)
 		
 func orient_scene_preview():
@@ -61,7 +61,7 @@ func update_scene_preview():
 		_scene_preview_node.clear_scene()
 		var file_path = _scene_file_control_node.get_file_path()
 		var scene_file = load(file_path)
-		if(scene_file != null and scene_file extends PackedScene):
+		if(scene_file != null and scene_file is PackedScene):
 			var scene_instance = scene_file.instance()
 			
 			if(scene_instance):
@@ -69,7 +69,7 @@ func update_scene_preview():
 			
 			# Center camera
 			_scene_preview_node.follow_target = Vector3()
-			if scene_instance extends hair_const:
+			if scene_instance is hair_const:
 				var mesh_instance = scene_instance.get_hair_mesh_instance()
 				if mesh_instance:
 					var aabb = mesh_instance.get_aabb()

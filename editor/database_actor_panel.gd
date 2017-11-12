@@ -199,7 +199,7 @@ func set_current_record_callback(p_record):
 	_stamp_table_control.populate_tree(stamp_records, null)
 
 	current_stamp = null
-	_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
+	_stamp_color_control.set_pick_color(Color(1.0, 1.0, 1.0))
 	_stamp_color_control.set_disabled(true)
 
 	_contact_icon_path_control.set_disabled(false)
@@ -209,7 +209,7 @@ func set_current_record_callback(p_record):
 	if(!p_record.contact_icon_path.empty()):
 		contact_icon_texture = load(p_record.contact_icon_path)
 	if(contact_icon_texture):
-		if(contact_icon_texture extends Texture):
+		if(contact_icon_texture is Texture):
 			_contact_icon_texture_control.set_texture(contact_icon_texture)
 
 	_valid_contact_control.set_disabled(false)
@@ -221,46 +221,46 @@ func set_current_record_callback(p_record):
 	_head_control.set_disabled(false)
 	if(p_record.head):
 		_head_control.set_record_name(p_record.head.id)
-		_head_color_control.set_color(p_record.head_color)
+		_head_color_control.set_pick_color(p_record.head_color)
 		_head_color_control.set_disabled(false)
 	else:
 		_head_control.set_record_name("")
-		_head_color_control.set_color(Color(1.0, 1.0, 1.0, 1.0))
+		_head_color_control.set_pick_color(Color(1.0, 1.0, 1.0, 1.0))
 		_head_color_control.set_disabled(true)
 	_eyes_control.set_disabled(false)
 	if(p_record.eyes):
 		_eyes_control.set_record_name(p_record.eyes.id)
-		_eyes_color_control.set_color(p_record.eyes_color)
+		_eyes_color_control.set_pick_color(p_record.eyes_color)
 		_eyes_color_control.set_disabled(false)
 	else:
 		_eyes_control.set_record_name("")
-		_eyes_color_control.set_color(Color(1.0, 1.0, 1.0, 1.0))
+		_eyes_color_control.set_pick_color(Color(1.0, 1.0, 1.0, 1.0))
 		_eyes_color_control.set_disabled(true)
 	_eyebrows_control.set_disabled(false)
 	if(p_record.eyebrows):
 		_eyebrows_control.set_record_name(p_record.eyebrows.id)
-		_eyebrows_color_control.set_color(p_record.eyelashes_color)
+		_eyebrows_color_control.set_pick_color(p_record.eyelashes_color)
 		_eyebrows_color_control.set_disabled(false)
 	else:
 		_eyebrows_control.set_record_name("")
-		_eyebrows_color_control.set_color(Color(1.0, 1.0, 1.0, 1.0))
+		_eyebrows_color_control.set_pick_color(Color(1.0, 1.0, 1.0, 1.0))
 		_eyebrows_color_control.set_disabled(true)
 	_mouth_control.set_disabled(false)
 	if(p_record.mouth):
 		_mouth_control.set_record_name(p_record.mouth.id)
-		_mouth_color_control.set_color(p_record.mouth_control)
+		_mouth_color_control.set_pick_color(p_record.mouth_control)
 		_mouth_color_control.set_disabled(false)
 	else:
 		_mouth_control.set_record_name("")
-		_mouth_color_control.set_color(Color(1.0, 1.0, 1.0, 1.0))
+		_mouth_color_control.set_pick_color(Color(1.0, 1.0, 1.0, 1.0))
 		_mouth_color_control.set_disabled(true)
 	_eyelashes_control.set_disabled(false)
 	if(p_record.eyelashes):
 		_eyelashes_control.set_record_name(p_record.eyelashes.id)
-		_eyelashes_control.set_color(p_record.eyelashes_control)
+		_eyelashes_control.set_pick_color(p_record.eyelashes_control)
 	else:
 		_eyelashes_control.set_record_name("")
-		_eyelashes_color_control.set_color(Color(1.0, 1.0, 1.0, 1.0))
+		_eyelashes_color_control.set_pick_color(Color(1.0, 1.0, 1.0, 1.0))
 		_eyelashes_color_control.set_disabled(true)
 
 	_hair_control.set_disabled(false)
@@ -270,10 +270,10 @@ func set_current_record_callback(p_record):
 		_hair_control.set_record_name("")
 
 	_hair_color_control.set_disabled(false)
-	_hair_color_control.set_color(p_record.hair_color)
+	_hair_color_control.set_pick_color(p_record.hair_color)
 
 	_skin_color_control.set_disabled(false)
-	_skin_color_control.set_color(p_record.skin_color)
+	_skin_color_control.set_pick_color(p_record.skin_color)
 
 	_body_control.set_disabled(false)
 	if(p_record.body):
@@ -436,7 +436,7 @@ func _on_ContactIconPathControl_file_selected( p_path ):
 		if(!p_path.empty()):
 			contact_icon_texture = load(p_path)
 		if(contact_icon_texture):
-			if(contact_icon_texture extends Texture):
+			if(contact_icon_texture is Texture):
 				_contact_icon_texture_control.set_texture(contact_icon_texture)
 
 		current_database.mark_database_as_modified()

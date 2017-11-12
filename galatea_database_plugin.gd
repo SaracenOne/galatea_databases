@@ -6,6 +6,7 @@ const database_popup_const = preload("editor/database_popup.tscn")
 const database_list_const_popup = preload("editor/database_list.tscn")
 const record_instance_node_const = preload("instances/record_instance_node.gd")
 
+var editor_interface = null
 var galatea_databases = null
 
 var galatea_database_path = "res://assets/database"
@@ -21,21 +22,22 @@ func _init():
 	print("Setting up Galatea database plugin")
 
 func handles(p_object):
-	if p_object extends record_instance_node_const:
+	if p_object is record_instance_node_const:
 		return true
 	return false
 	
 func edit(p_object):
-	print(p_object.get_name())
 	selected_node = p_object
 	
 func make_visible(p_visible):
-	if (p_visible):
-		select_record_button.show()
-	else:
-		select_record_button.hide()
+	if select_record_button:
+		if (p_visible):
+			select_record_button.show()
+		else:
+			select_record_button.hide()
 
 func _enter_tree():
+	editor_interface = get_editor_interface()
 	galatea_databases = galatea_databases_const.new(galatea_database_path)
 	
 	galatea_databases.load_all_databases()
@@ -56,17 +58,26 @@ func _enter_tree():
 	add_control_to_container(CONTAINER_SPATIAL_EDITOR_MENU, select_record_button)
 	
 	# Nodes 
-	add_custom_type("ActorInstanceNode", "Position3D", preload("instances/actor_instance_node.gd"), null)
-	add_custom_type("ItemInstanceNode", "Position3D", preload("instances/item_instance_node.gd"), null)
+	add_custom_type("ActorInstance", "Position3D", preload("instances/actor_instance_node.gd"), null)
+	add_custom_type("ItemInstance", "Position3D", preload("instances/item_instance_node.gd"), null)
 	
 func _exit_tree():
+	if database_popup_button:
+		database_popup_button.queue_free()
+		database_popup_button.get_parent().remove_child(database_popup_button)
+	
+	if select_record_button:
+		select_record_button.queue_free()
+		select_record_button.get_parent().remove_child(database_popup_button)
+	
+	editor_interface = null
 	galatea_databases = null
 	
 	_database_destroy_popup()
 			
 	# Nodes
-	remove_custom_type("ActorInstanceNode")
-	remove_custom_type("ItemInstanceNode")
+	remove_custom_type("ActorInstance")
+	remove_custom_type("ItemInstance")
 	
 func database_interface_assign_databases(p_control):
 	for child in p_control.get_children():
@@ -104,7 +115,7 @@ func _database_popup_requested():
 	database_popup_instance.connect("popup_hide", self, "database_popup_dismissed_callback")
 	
 	if(database_popup_instance):
-		get_base_control().add_child(database_popup_instance)
+		editor_interface.get_base_control().add_child(database_popup_instance)
 		database_popup_instance.popup_centered()
 		database_interface_assign_databases(database_popup_instance)
 		database_interface_assign_editor_plugin(database_popup_instance)
@@ -119,7 +130,7 @@ func _select_record_requested():
 	var database = selected_node.get_valid_database()
 	
 	database_list_instance = database_list_const_popup.instance()
-	get_base_control().add_child(database_list_instance)
+	editor_interface.get_base_control().add_child(database_list_instance)
 	database_list_instance.connect("popup_hide", self, "_select_record_dismissed")
 	database_list_instance.connect("record_selected", self, "_select_record_selected")
 	database_list_instance.populate_tree(database)

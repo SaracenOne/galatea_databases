@@ -38,7 +38,7 @@ func _ready():
 	
 	if(_svar_type_node):
 		var svar_type_popup = _svar_type_node.get_popup()
-		svar_type_popup.connect("item_pressed", self, "svar_type_selected")
+		svar_type_popup.connect("id_pressed", self, "svar_type_selected")
 		
 		var types = global_svar_record_const.get_array_of_types_as_strings()
 		svar_type_popup.clear()

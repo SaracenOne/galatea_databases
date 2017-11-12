@@ -14,7 +14,7 @@ func confirm_boolean_selection(p_bool):
 	hide()
 
 func _ready():
-	check_button = get_node("CheckButton")
+	check_button = get_node("BooleanMenuContainer/CheckButton")
 	assert(check_button)
 
 func _on_SelectButton_pressed():

@@ -15,8 +15,8 @@ export(bool) var disabled = false setget set_disabled, get_disabled
 
 func set_disabled(p_bool):
 	disabled = p_bool
-	if(has_node("Panel/HBoxContainer/AddButton")):
-		var button = get_node("Panel/HBoxContainer/AddButton")
+	if(has_node("DatabaseRecordsReferenceContainer/ButtonContainer/AddButton")):
+		var button = get_node("DatabaseRecordsReferenceContainer/ButtonContainer/AddButton")
 		if(button):
 			button.set_disabled(p_bool)
 
@@ -52,7 +52,7 @@ func populate_tree(p_records_array, p_selection_record):
 		printerr("Record Tree is null!")
 		
 func _ready():
-	record_tree = get_node("RecordTree")
+	record_tree = get_node("DatabaseRecordsReferenceContainer/RecordTree")
 	assert(record_tree)
 	
 	record_tree.set_select_mode(Tree.SELECT_SINGLE)
@@ -67,8 +67,8 @@ func _on_RecordTree_cell_selected():
 	var tree_item = record_tree.get_selected()
 	var record = tree_item.get_metadata(0)
 	
-	if(has_node("Panel/HBoxContainer/EraseButton")):
-		get_node("Panel/HBoxContainer/EraseButton").set_disabled(false)
+	if(has_node("DatabaseRecordsReferenceContainer/ButtonContainer/EraseButton")):
+		get_node("DatabaseRecordsReferenceContainer/ButtonContainer/EraseButton").set_disabled(false)
 		
 	emit_signal("record_cell_selected", record)
 		

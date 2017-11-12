@@ -49,7 +49,7 @@ func _ready():
 	error_dialog.set_exclusive(true)
 	add_child(error_dialog)
 	
-	_type_selection_control_node.get_popup().connect("item_pressed", self, "type_selected")
+	_type_selection_control_node.get_popup().connect("id_pressed", self, "type_selected")
 
 func galatea_databases_assigned():
 	.galatea_databases_assigned()

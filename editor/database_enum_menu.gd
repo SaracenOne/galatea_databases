@@ -8,7 +8,7 @@ signal enum_selected(p_enum)
 
 func _notification(what):
 	if(what == Popup.NOTIFICATION_POST_POPUP):
-		get_node("Panel/HBoxContainer/SelectButton").set_disabled(true)
+		get_node("EnumListContainer/ButtonContainer/SelectButton").set_disabled(true)
 
 func set_enums(p_enum_names, p_enum_values):
 	if(enum_tree):
@@ -29,7 +29,7 @@ func confirm_enum_selection(p_enum):
 	hide()
 
 func _ready():
-	enum_tree = get_node("EnumTree")
+	enum_tree = get_node("EnumListContainer/EnumTree")
 	assert(enum_tree)
 
 	enum_tree.set_select_mode(Tree.SELECT_SINGLE)
@@ -50,4 +50,4 @@ func _on_EnumTree_cell_selected():
 	if(enum_tree):
 		var tree_item = enum_tree.get_selected()
 		if(tree_item):
-			get_node("Panel/HBoxContainer/SelectButton").set_disabled(false)
+			get_node("EnumListContainer/ButtonContainer/SelectButton").set_disabled(false)

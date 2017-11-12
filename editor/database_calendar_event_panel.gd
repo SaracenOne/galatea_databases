@@ -43,7 +43,7 @@ func set_current_record_callback(p_record):
 	if(!p_record.calendar_icon_path.empty()):
 		calendar_icon_texture = load(p_record.calendar_icon_path)
 	if(calendar_icon_texture):
-		if(calendar_icon_texture extends Texture):
+		if(calendar_icon_texture is Texture):
 			_calendar_icon_preview_control_node.set_texture(calendar_icon_texture)
 			
 	_date_start_control_node.set_disabled(false)
@@ -75,7 +75,7 @@ func _on_CalendarIconFilePath_file_selected( p_path ):
 		if(!p_path.empty()):
 			calendar_icon_texture = load(p_path)
 		if(calendar_icon_texture):
-			if(calendar_icon_texture extends Texture):
+			if(calendar_icon_texture is Texture):
 				_calendar_icon_preview_control_node.set_texture(calendar_icon_texture)
 			
 		current_database.mark_database_as_modified()

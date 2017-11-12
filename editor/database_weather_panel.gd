@@ -161,7 +161,7 @@ func set_layer_info_to_layer_number(p_layer_number):
 		if(!cloud_path.empty()):
 			cloud_texture = load(cloud_path)
 		if(cloud_texture and cloud_path):
-			if(cloud_texture extends Texture):
+			if(cloud_texture is Texture):
 				_layer_texture_preview.set_texture(cloud_texture)
 		
 		_layer_scroll_x.set_value(current_record.cloud_layers[p_layer_number].scroll_x)
@@ -257,7 +257,7 @@ func _on_TextureFilePathControl_file_selected( p_path ):
 		if(!p_path.empty()):
 			cloud_texture = load(p_path)
 		if(p_path):
-			if(cloud_texture extends Texture):
+			if(cloud_texture is Texture):
 				_layer_texture_preview.set_texture(cloud_texture)
 
 

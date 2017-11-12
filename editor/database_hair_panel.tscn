@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_hair_panel.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
@@ -7,322 +7,391 @@
 
 [node name="HairPanel" type="HSplitContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-split/offset = -500
-split/collapsed = false
-split/dragger_visibility = 1
-script/script = ExtResource( 1 )
-printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameControl")
-scene_file_control = NodePath("RightSide/SceneFileMainContainer")
-physics_file_control = NodePath("RightSide/PhysicsFileMainContainer")
-main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPath")
-main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
-character_creator_nodepath = NodePath("RightSide/CharacterCreatorCheckBox")
-male_nodepath = NodePath("RightSide/GenderContainer/MaleCheckbox")
-female_nodepath = NodePath("RightSide/GenderContainer/FemaleCheckbox")
-scene_preview = NodePath("RightSide/ScenePreviewContainer/ScenePreview")
-capture_button = NodePath("RightSide/ScenePreviewContainer/ButtonContainer/CreateIconButton")
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+split_offset = -300
+collapsed = false
+dragger_visibility = 1
+script = ExtResource( 1 )
+printed_name_control = NodePath("RightSide/Container/PrintedNameContainer/PrintedNameControl")
+scene_file_control = NodePath("RightSide/Container/SceneFileMainContainer")
+physics_file_control = NodePath("RightSide/Container/PhysicsFileMainContainer")
+main_icon_path_control = NodePath("RightSide/Container/MainIconPathContainer/MainIconPath")
+main_icon_preview_control = NodePath("RightSide/Container/MainIconPathContainer/MainIconPanel/MainIconTexture")
+character_creator_nodepath = NodePath("RightSide/Container/CharacterCreatorCheckBox")
+male_nodepath = NodePath("RightSide/Container/GenderContainer/MaleCheckbox")
+female_nodepath = NodePath("RightSide/Container/GenderContainer/FemaleCheckbox")
+scene_preview = NodePath("RightSide/Container/ScenePreviewContainer/ScenePreview")
+capture_button = NodePath("RightSide/Container/ScenePreviewContainer/ButtonContainer/CreateIconButton")
 
 [node name="LeftSide" type="Control" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 294.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 206.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
 
 [node name="RightSide" type="Control" parent="."]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 306.0
-margin/top = 0.0
-margin/right = 1600.0
-margin/bottom = 900.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 218.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide"]
+[node name="Container" type="VBoxContainer" parent="RightSide"]
 
-editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 30.0
-margin/right = 410.0
-margin/bottom = 70.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 1
+size_flags_vertical = 1
 alignment = 0
 
-[node name="PrintedNameLabel" type="Label" parent="RightSide/PrintedNameContainer"]
+[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide/Container"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 400.0
-margin/bottom = 14.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 806.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="PrintedNameLabel" type="Label" parent="RightSide/Container/PrintedNameContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 92.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
 text = "Printed Name:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="PrintedNameControl" type="LineEdit" parent="RightSide/PrintedNameContainer"]
+[node name="PrintedNameControl" type="LineEdit" parent="RightSide/Container/PrintedNameContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 18.0
-margin/right = 400.0
-margin/bottom = 42.0
-placeholder/alpha = 0.6
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 806.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 max_length = 64
 editable = false
 expand_to_len = false
 focus_mode = 2
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="SceneFileMainContainer" parent="RightSide" instance=ExtResource( 3 )]
+[node name="SceneFileMainContainer" parent="RightSide/Container" instance=ExtResource( 3 )]
 
-margin/left = 10.0
-margin/top = 80.0
-margin/right = 532.0
-margin/bottom = 120.0
+anchor_right = 0.0
+margin_top = 46.0
+margin_right = 806.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+_sections_unfolded = [ "Margin", "Size Flags" ]
 label = "Scene File:"
 file_browser_title = "Open Scene"
 file_type = "PackedScene"
 disabled = true
 has_clear_button = true
 
-[node name="PhysicsFileMainContainer" parent="RightSide" instance=ExtResource( 3 )]
+[node name="PhysicsFileMainContainer" parent="RightSide/Container" instance=ExtResource( 3 )]
 
-margin/left = 10.0
-margin/top = 140.0
-margin/right = 532.0
-margin/bottom = 182.0
+anchor_right = 0.0
+margin_top = 92.0
+margin_right = 806.0
+margin_bottom = 134.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+_sections_unfolded = [ "Margin", "Size Flags" ]
 label = "Physics File:"
 file_browser_title = "Open Scene"
 file_type = "PackedScene"
 disabled = true
 has_clear_button = true
 
-[node name="MainIconPathContainer" type="HBoxContainer" parent="RightSide"]
+[node name="MainIconPathContainer" type="HBoxContainer" parent="RightSide/Container"]
 
 editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 190.0
-margin/right = 600.0
-margin/bottom = 254.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 138.0
+margin_right = 806.0
+margin_bottom = 202.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 0
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="MainIconPath" parent="RightSide/MainIconPathContainer" instance=ExtResource( 3 )]
+[node name="MainIconPath" parent="RightSide/Container/MainIconPathContainer" instance=ExtResource( 3 )]
 
-size_flags/horizontal = 3
-margin/bottom = 64.0
+anchor_right = 0.0
+margin_right = 401.0
+size_flags_horizontal = 3
 label = "Icon Path:"
 file_browser_title = "Load Image"
 file_type = "Texture"
 disabled = true
 has_clear_button = true
 
-[node name="MainIconPanel" type="Panel" parent="RightSide/MainIconPathContainer"]
+[node name="MainIconPanel" type="Panel" parent="RightSide/Container/MainIconPathContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-rect/min_size = Vector2( 64, 64 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 526.0
-margin/top = 0.0
-margin/right = 590.0
-margin/bottom = 64.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 405.0
+margin_right = 469.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 
-[node name="MainIconTexture" type="TextureFrame" parent="RightSide/MainIconPathContainer/MainIconPanel"]
+[node name="MainIconTexture" type="TextureRect" parent="RightSide/Container/MainIconPathContainer/MainIconPanel"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 2
 expand = true
 stretch_mode = 0
 
-[node name="CharacterCreatorCheckBox" type="CheckBox" parent="RightSide"]
+[node name="CharacterCreatorCheckBox" type="CheckBox" parent="RightSide/Container"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 260.0
-margin/right = 224.0
-margin/bottom = 283.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 206.0
+margin_right = 806.0
+margin_bottom = 229.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 disabled = true
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "Available in Character Creator"
 flat = false
 align = 0
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="GenderContainer" type="HBoxContainer" parent="RightSide"]
+[node name="GenderContainer" type="HBoxContainer" parent="RightSide/Container"]
 
 editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 290.0
-margin/right = 144.0
-margin/bottom = 313.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 233.0
+margin_right = 806.0
+margin_bottom = 256.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 0
+_sections_unfolded = [ "Size Flags", "Theme" ]
 
-[node name="MaleCheckbox" type="CheckBox" parent="RightSide/GenderContainer"]
+[node name="MaleCheckbox" type="CheckBox" parent="RightSide/Container/GenderContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 57.0
-margin/bottom = 23.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 57.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 disabled = true
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "Male"
 flat = false
 align = 0
 
-[node name="FemaleCheckbox" type="CheckBox" parent="RightSide/GenderContainer"]
+[node name="FemaleCheckbox" type="CheckBox" parent="RightSide/Container/GenderContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 61.0
-margin/top = 0.0
-margin/right = 134.0
-margin/bottom = 23.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 405.0
+margin_right = 478.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 disabled = true
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "Female"
 flat = false
 align = 0
 
-[node name="ScenePreviewContainer" type="VBoxContainer" parent="RightSide"]
+[node name="ScenePreviewContainer" type="VBoxContainer" parent="RightSide/Container"]
 
-editor/display_folded = true
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 331.0
-margin/right = 266.0
-margin/bottom = 611.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 260.0
+margin_right = 806.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 0
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="ScenePreview" parent="RightSide/ScenePreviewContainer" instance=ExtResource( 4 )]
+[node name="ScenePreview" parent="RightSide/Container/ScenePreviewContainer" instance=ExtResource( 4 )]
 
-rect/min_size = Vector2( 1, 150 )
-size_flags/horizontal = 3
-size_flags/vertical = 3
+margin_right = 806.0
+margin_bottom = 316.0
+rect_min_size = Vector2( 1, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+_sections_unfolded = [ "Size Flags" ]
 zoom_rate = 10.0
 default_capture_filename = "icon.png"
 
-[node name="ButtonContainer" type="HBoxContainer" parent="RightSide/ScenePreviewContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="RightSide/Container/ScenePreviewContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 260.0
-margin/right = 256.0
-margin/bottom = 280.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 320.0
+margin_right = 806.0
+margin_bottom = 340.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 0
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="CreateIconButton" type="Button" parent="RightSide/ScenePreviewContainer/ButtonContainer"]
+[node name="CreateIconButton" type="Button" parent="RightSide/Container/ScenePreviewContainer/ButtonContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 199.0
-margin/bottom = 20.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 401.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "Create Icon"
 flat = false
 
-[node name="OrientButton" type="Button" parent="RightSide/ScenePreviewContainer/ButtonContainer"]
+[node name="OrientButton" type="Button" parent="RightSide/Container/ScenePreviewContainer/ButtonContainer"]
 
-rect/pivot = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 203.0
-margin/top = 0.0
-margin/right = 256.0
-margin/bottom = 20.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 405.0
+margin_right = 458.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+group = null
 text = "Orient"
 flat = false
 
@@ -334,24 +403,24 @@ flat = false
 
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
 
-[connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameControl" to="." method="_on_printed_name_text_changed"]
+[connection signal="text_changed" from="RightSide/Container/PrintedNameContainer/PrintedNameControl" to="." method="_on_printed_name_text_changed"]
 
-[connection signal="file_selected" from="RightSide/SceneFileMainContainer" to="." method="_on_scene_file_selected"]
+[connection signal="file_selected" from="RightSide/Container/SceneFileMainContainer" to="." method="_on_scene_file_selected"]
 
-[connection signal="file_selected" from="RightSide/PhysicsFileMainContainer" to="." method="_on_PhysicsFileMainContainer_file_selected"]
+[connection signal="file_selected" from="RightSide/Container/PhysicsFileMainContainer" to="." method="_on_PhysicsFileMainContainer_file_selected"]
 
-[connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPath" to="." method="_on_MainIconPath_file_selected"]
+[connection signal="file_selected" from="RightSide/Container/MainIconPathContainer/MainIconPath" to="." method="_on_MainIconPath_file_selected"]
 
-[connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
+[connection signal="toggled" from="RightSide/Container/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
 
-[connection signal="toggled" from="RightSide/GenderContainer/MaleCheckbox" to="." method="_on_MaleCheckbox_toggled"]
+[connection signal="toggled" from="RightSide/Container/GenderContainer/MaleCheckbox" to="." method="_on_MaleCheckbox_toggled"]
 
-[connection signal="toggled" from="RightSide/GenderContainer/FemaleCheckbox" to="." method="_on_FemaleCheckbox_toggled"]
+[connection signal="toggled" from="RightSide/Container/GenderContainer/FemaleCheckbox" to="." method="_on_FemaleCheckbox_toggled"]
 
-[connection signal="image_saved" from="RightSide/ScenePreviewContainer/ScenePreview" to="." method="_on_ScenePreview_image_saved"]
+[connection signal="image_saved" from="RightSide/Container/ScenePreviewContainer/ScenePreview" to="." method="_on_ScenePreview_image_saved"]
 
-[connection signal="pressed" from="RightSide/ScenePreviewContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
+[connection signal="pressed" from="RightSide/Container/ScenePreviewContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
 
-[connection signal="pressed" from="RightSide/ScenePreviewContainer/ButtonContainer/OrientButton" to="." method="_on_OrientButton_pressed"]
+[connection signal="pressed" from="RightSide/Container/ScenePreviewContainer/ButtonContainer/OrientButton" to="." method="_on_OrientButton_pressed"]
 
 

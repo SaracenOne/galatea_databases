@@ -122,7 +122,7 @@ func populate_tree(p_database, p_selection_record):
 		printerr("Record Tree is null!")
 		
 func _ready():
-	record_tree = get_node("RecordTree")
+	record_tree = get_node("DatabaseRecordsContainer/RecordTree")
 	assert(record_tree)
 	
 	record_tree.set_select_mode(Tree.SELECT_SINGLE)
@@ -134,7 +134,7 @@ func _on_RecordTree_cell_selected():
 	var tree_item = record_tree.get_selected()
 	var record = tree_item.get_metadata(0)
 	
-	get_node("Panel/HBoxContainer/EraseButton").set_disabled(false)
-	get_node("Panel/HBoxContainer/RenameButton").set_disabled(false)
+	get_node("DatabaseRecordsContainer/ButtonContainer/EraseButton").set_disabled(false)
+	get_node("DatabaseRecordsContainer/ButtonContainer/RenameButton").set_disabled(false)
 	
 	emit_signal("set_current_record", record)

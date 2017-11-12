@@ -46,7 +46,7 @@ func set_current_record_callback(p_record):
 	if(!p_record.texture_path.empty()):
 		particle_texture = load(p_record.texture_path)
 	if(particle_texture):
-		if(particle_texture extends Texture):
+		if(particle_texture is Texture):
 			_texture_path_texture_control.set_texture(particle_texture)
 			
 	_shader_path_control.set_disabled(false)
@@ -89,7 +89,7 @@ func _on_TexturePathControl_file_selected( p_path ):
 		if(!current_record.texture_path.empty()):
 			particle_texture = load(current_record.texture_path)
 		if(particle_texture):
-			if(particle_texture extends Texture):
+			if(particle_texture is Texture):
 				_texture_path_texture_control.set_texture(particle_texture)
 		
 func _on_ShaderPathControl_file_selected( p_path ):

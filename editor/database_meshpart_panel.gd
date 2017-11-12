@@ -108,13 +108,13 @@ func _on_TargetMaxYSpinbox_value_changed( value ):
 
 func setup_scene_preview():
 	if(current_record.mesh_path != ""):
-		var mesh = load(current_record.mesh_path)
-		if(mesh and mesh extends Mesh):
-			var material = null
+		var preview_mesh = load(current_record.mesh_path)
+		if(preview_mesh and preview_mesh is Mesh):
+			var preview_material = null
 			
 			if(_scene_preview_node):
-				_scene_preview_node.set_mesh(mesh)
-				_scene_preview_node.set_material(material)
+				_scene_preview_node.set_mesh(preview_mesh)
+				_scene_preview_node.set_material(preview_material)
 		else:
 			_scene_preview_node.set_mesh(null)
 			_scene_preview_node.set_material(null)

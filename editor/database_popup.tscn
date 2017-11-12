@@ -1,31 +1,32 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/galatea_databases/editor/database_popup.gd" type="Script" id=1]
 [ext_resource path="res://addons/galatea_databases/editor/database_editor.tscn" type="PackedScene" id=2]
 
 [node name="DatabasePopup" type="WindowDialog"]
 
-rect/pivot = Vector2( 0, 0 )
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 50.0
-margin/top = 50.0
-margin/right = 50.0
-margin/bottom = 50.0
-popup/exclusive = true
-window/title = "Database Editor"
-script/script = ExtResource( 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -600.0
+margin_top = -400.0
+margin_right = 840.0
+margin_bottom = 500.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+popup_exclusive = true
+window_title = "Database Editor"
+resizable = false
+script = ExtResource( 1 )
+_sections_unfolded = [ "Rect" ]
 
 [node name="DatabaseEditor" parent="." instance=ExtResource( 2 )]
 
-margin/left = 30.0
-margin/top = 30.0
-margin/right = 30.0
-margin/bottom = 30.0
+_sections_unfolded = [ "Grow Direction", "Margin", "Rect", "Size Flags", "Theme" ]
 
 [connection signal="about_to_show" from="." to="." method="_on_DatabasePopup_about_to_show"]
 

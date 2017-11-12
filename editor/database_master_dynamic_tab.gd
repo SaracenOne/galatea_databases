@@ -15,7 +15,6 @@ func setup():
 			create_tab()
 
 func tab_changed(p_tab):
-	var current_tab = p_tab
 	var child = get_child(last_selected_tab)
 	if(child.has_method("erase_tab")):
 		child.call("erase_tab")

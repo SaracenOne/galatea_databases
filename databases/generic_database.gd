@@ -14,9 +14,9 @@ func load_database_values():
 	pass
 	
 func _load_database_values(p_database_path, p_records_name):
-	if(cached_dictionary != null):
+	if(typeof(cached_dictionary) == TYPE_DICTIONARY):
 		var dictionary_records = get_dictionary_records_array(cached_dictionary, p_database_path, p_records_name)
-		if(dictionary_records != null):
+		if(typeof(dictionary_records) == TYPE_ARRAY):
 			for i in range(0, dictionary_records.size()):
 				var dictionary_record = dictionary_records[i]
 				var database_record = database_records[dictionary_record.id]
@@ -48,8 +48,8 @@ func _save_database(p_filepath, p_records_name):
 		database_dictionary_array.push_back(dictionary_record)
 	
 	dictionary[p_records_name] = database_dictionary_array
-	Globals.set("cache/force_recache", true)
-	Globals.save()
+	ProjectSettings.set("cache/force_recache", true)
+	ProjectSettings.save()
 	_save_database_file(p_filepath, dictionary)
 
 func load_database_file(p_filepath, p_records_name):
@@ -67,7 +67,7 @@ func load_database_file(p_filepath, p_records_name):
 		else:
 			var new_dictionary = {}
 			new_dictionary[p_records_name] = []
-			var json_string = json_to_readable_json(new_dictionary.to_json())
+			var json_string = json_to_readable_json(to_json(new_dictionary))
 			
 			file.store_string(json_string)
 			
@@ -82,13 +82,12 @@ func load_database_file(p_filepath, p_records_name):
 		printerr("load_database_file(%s) failed file buffer string length == 0", p_filepath)
 		return null
 		
-	var dictionary = Dictionary()
-	var json_error = dictionary.parse_json(file_buffer_string)
+	var dictionary = parse_json(file_buffer_string)
 	
-	if(json_error == OK):
+	if(typeof(dictionary) == TYPE_DICTIONARY):
 		return dictionary
 	else:
-		printerr("load_database_file(%s) failed to parse json: error_code: %u", p_filepath, json_error)
+		printerr("load_database_file(%s) failed to parse json", p_filepath)
 		return null
 		
 func _save_database_file(p_filepath, p_dictionary):
@@ -102,7 +101,7 @@ func _save_database_file(p_filepath, p_dictionary):
 		
 	file.seek(0)
 	
-	var json_string = json_to_readable_json(p_dictionary.to_json())
+	var json_string = json_to_readable_json(to_json(p_dictionary))
 	file.store_string(json_string)
 	
 	file.close()
@@ -110,7 +109,7 @@ func _save_database_file(p_filepath, p_dictionary):
 	return OK
 	
 func get_dictionary_records_array(p_dictionary, p_database_path, p_records_name):
-	if(p_dictionary != null):
+	if(typeof(p_dictionary) == TYPE_DICTIONARY):
 		if(p_dictionary.keys().size() == 1):
 			if(p_dictionary.keys()[0] == p_records_name):
 				var dictionary_records = p_dictionary[p_dictionary.keys()[0]]
@@ -128,7 +127,7 @@ func get_dictionary_records_array(p_dictionary, p_database_path, p_records_name)
 func _load_database_ids(p_database_path, p_records_name):
 	cached_dictionary = load_database_file(p_database_path, p_records_name)
 	var dictionary_records = get_dictionary_records_array(cached_dictionary, p_database_path, p_records_name)
-	if(dictionary_records != null):
+	if(typeof(dictionary_records) == TYPE_ARRAY):
 		for i in range(0, dictionary_records.size()):
 			var new_record = _create_record()
 			assert(new_record)
@@ -266,7 +265,18 @@ static func json_to_readable_json(json):
 		if c == "\"" and p != "\\" : quoting = not quoting;
 		if quoting : continue;
 		
-		if   c == "," : out+="\n"; for t in range(tabs) : out += "\t";
-		elif c == "{" : tabs+=1; out+="\n"; for t in range(tabs) : out += "\t";
-		elif c == "}" : tabs-=1; out+="\n"; for t in range(tabs) : out += "\t";
+		if c == "," :
+			out+="\n"
+			for t in range(tabs): 
+				out += "\t";
+		elif c == "{": 
+			tabs += 1
+			out += "\n"
+			for t in range(tabs):
+				out += "\t"
+		elif c == "}": 
+			tabs-=1
+			out+="\n"
+			for t in range(tabs): 
+				out += "\t"
 	return out;
