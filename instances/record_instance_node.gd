@@ -1,5 +1,5 @@
-extends Node
 tool
+extends Spatial
 
 var databases = null
 export(String) var id = "" setget set_id
@@ -15,4 +15,8 @@ func set_databases(p_databases):
 	databases = p_databases
 	
 func _ready():
-	set_scene_instance_load_placeholder(true)
+	if Engine.is_editor_hint():
+		set_scene_instance_load_placeholder(true)
+	else:
+		if is_inside_tree():
+			queue_free()
