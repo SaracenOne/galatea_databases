@@ -1,6 +1,7 @@
 tool
 extends EditorPlugin
 
+const compiler_const = preload("compiler/compiler.gd")
 const galatea_databases_const = preload("databases/galatea_databases.gd")
 const database_popup_const = preload("editor/database_popup.tscn")
 const database_list_const_popup = preload("editor/database_list.tscn")
@@ -20,6 +21,11 @@ var database_list_instance = null
 
 func _init():
 	print("Setting up Galatea database plugin")
+	
+func save_external_data():
+	if galatea_databases:
+		print("Compiling databases...")
+		compiler_const.compile_location_data(galatea_databases)
 
 func handles(p_object):
 	if p_object is record_instance_node_const:
@@ -58,8 +64,8 @@ func _enter_tree():
 	add_control_to_container(CONTAINER_SPATIAL_EDITOR_MENU, select_record_button)
 	
 	# Nodes 
-	add_custom_type("ActorInstance", "Position3D", preload("instances/actor_instance_node.gd"), null)
-	add_custom_type("ItemInstance", "Position3D", preload("instances/item_instance_node.gd"), null)
+	add_custom_type("ActorInstance", "Spatial", preload("instances/actor_instance_node.gd"), null)
+	add_custom_type("ItemInstance", "Spatial", preload("instances/item_instance_node.gd"), null)
 	
 func _exit_tree():
 	if database_popup_button:

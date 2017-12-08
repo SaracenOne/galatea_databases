@@ -13,3 +13,6 @@ func get_valid_database():
 
 func set_databases(p_databases):
 	databases = p_databases
+	
+func _ready():
+	set_scene_instance_load_placeholder(true)
