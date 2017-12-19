@@ -4,14 +4,13 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
 
-[node name="ItemPanel" type="HSplitContainer"]
+[node name="ItemPanel" type="HSplitContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -26,9 +25,10 @@ item_type_control = NodePath("RightSide/Container/ItemTypeContainer/ItemTypeOpti
 icon_file_control = NodePath("RightSide/Container/IconFilePathControl")
 pickup_sfx_control = NodePath("RightSide/Container/PickupSFXPathControl")
 putdown_sfx_control = NodePath("RightSide/Container/PutdownSFXPathControl")
-can_gift_control = NodePath("RightSide/Container/CanGiftContainer/CanGiftCheckBox")
+can_gift_control = NodePath("RightSide/Container/FlagsContainer/CanGiftContainer/CanGiftCheckBox")
+invisible_in_inventory_control = NodePath("RightSide/Container/FlagsContainer/InvisibleInInventory/InvisibleInInventoryCheckbox")
 
-[node name="LeftSide" type="Control" parent="."]
+[node name="LeftSide" type="Control" parent="." index="0"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -38,14 +38,13 @@ anchor_bottom = 0.0
 margin_right = 294.0
 margin_bottom = 800.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
+[node name="DatabaseRecords" parent="LeftSide" index="0" instance=ExtResource( 2 )]
 
-[node name="RightSide" type="Control" parent="."]
+[node name="RightSide" type="Control" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -55,25 +54,23 @@ margin_left = 306.0
 margin_right = 1200.0
 margin_bottom = 800.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Container" type="VBoxContainer" parent="RightSide"]
+[node name="Container" type="VBoxContainer" parent="RightSide" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide/Container"]
+[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide/Container" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -82,14 +79,13 @@ anchor_bottom = 0.0
 margin_right = 894.0
 margin_bottom = 42.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 0
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="PrintedNameLabel" type="Label" parent="RightSide/Container/PrintedNameContainer"]
+[node name="PrintedNameLabel" type="Label" parent="RightSide/Container/PrintedNameContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -98,7 +94,6 @@ anchor_bottom = 0.0
 margin_right = 92.0
 margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
@@ -107,7 +102,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/Container/PrintedNameContainer"]
+[node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/Container/PrintedNameContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -117,18 +112,17 @@ margin_top = 18.0
 margin_right = 894.0
 margin_bottom = 42.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-expand_to_len = false
 focus_mode = 2
 placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
+context_menu_enabled = true
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="DescriptionContainer" type="VBoxContainer" parent="RightSide/Container"]
+[node name="DescriptionContainer" type="VBoxContainer" parent="RightSide/Container" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -136,16 +130,15 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 46.0
 margin_right = 894.0
-margin_bottom = 547.0
+margin_bottom = 546.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="DescriptionLabel" type="Label" parent="RightSide/Container/DescriptionContainer"]
+[node name="DescriptionLabel" type="Label" parent="RightSide/Container/DescriptionContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -154,7 +147,6 @@ anchor_bottom = 0.0
 margin_right = 78.0
 margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
@@ -163,7 +155,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="DescriptionTextEdit" type="TextEdit" parent="RightSide/Container/DescriptionContainer"]
+[node name="DescriptionTextEdit" type="TextEdit" parent="RightSide/Container/DescriptionContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -171,41 +163,45 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 18.0
 margin_right = 894.0
-margin_bottom = 501.0
+margin_bottom = 500.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text = ""
+readonly = false
+highlight_current_line = false
 syntax_highlighting = false
 show_line_numbers = false
 highlight_all_occurrences = false
+override_selected_font_color = false
+context_menu_enabled = true
 smooth_scrolling = false
 v_scroll_speed = 80.0
+hiding_enabled = 0
 caret_block_mode = false
 caret_blink = false
 caret_blink_speed = 0.65
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="ValueContainer" type="VBoxContainer" parent="RightSide/Container"]
+[node name="ValueContainer" type="VBoxContainer" parent="RightSide/Container" index="2"]
 
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 551.0
+margin_top = 550.0
 margin_right = 894.0
-margin_bottom = 593.0
+margin_bottom = 592.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 0
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="ValueLabel" type="Label" parent="RightSide/Container/ValueContainer"]
+[node name="ValueLabel" type="Label" parent="RightSide/Container/ValueContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -214,7 +210,6 @@ anchor_bottom = 0.0
 margin_right = 39.0
 margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
@@ -223,7 +218,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ValueSpinBox" type="SpinBox" parent="RightSide/Container/ValueContainer"]
+[node name="ValueSpinBox" type="SpinBox" parent="RightSide/Container/ValueContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -233,7 +228,6 @@ margin_top = 18.0
 margin_right = 74.0
 margin_bottom = 42.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -248,25 +242,24 @@ editable = true
 prefix = ""
 suffix = ""
 
-[node name="ItemTypeContainer" type="VBoxContainer" parent="RightSide/Container"]
+[node name="ItemTypeContainer" type="VBoxContainer" parent="RightSide/Container" index="3"]
 
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 597.0
+margin_top = 596.0
 margin_right = 894.0
-margin_bottom = 635.0
+margin_bottom = 634.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 0
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="ItemTypeLabel" type="Label" parent="RightSide/Container/ItemTypeContainer"]
+[node name="ItemTypeLabel" type="Label" parent="RightSide/Container/ItemTypeContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -275,7 +268,6 @@ anchor_bottom = 0.0
 margin_right = 69.0
 margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
@@ -284,7 +276,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ItemTypeOptionButton" type="OptionButton" parent="RightSide/Container/ItemTypeContainer"]
+[node name="ItemTypeOptionButton" type="OptionButton" parent="RightSide/Container/ItemTypeContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -294,7 +286,6 @@ margin_top = 18.0
 margin_right = 69.0
 margin_bottom = 38.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -309,12 +300,12 @@ align = 0
 selected = 0
 items = [ "Misc", null, false, 1, null, "Key", null, false, 2, null, "Consumable", null, false, 3, null ]
 
-[node name="IconFilePathControl" parent="RightSide/Container" instance=ExtResource( 3 )]
+[node name="IconFilePathControl" parent="RightSide/Container" index="4" instance=ExtResource( 3 )]
 
 anchor_right = 0.0
-margin_top = 639.0
+margin_top = 638.0
 margin_right = 894.0
-margin_bottom = 681.0
+margin_bottom = 680.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 _sections_unfolded = [ "Margin", "Size Flags" ]
@@ -324,12 +315,12 @@ file_type = "Texture"
 disabled = true
 has_clear_button = true
 
-[node name="PickupSFXPathControl" parent="RightSide/Container" instance=ExtResource( 3 )]
+[node name="PickupSFXPathControl" parent="RightSide/Container" index="5" instance=ExtResource( 3 )]
 
 anchor_right = 0.0
-margin_top = 685.0
+margin_top = 684.0
 margin_right = 894.0
-margin_bottom = 727.0
+margin_bottom = 726.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 _sections_unfolded = [ "Margin", "Size Flags" ]
@@ -339,12 +330,12 @@ file_type = "AudioStreamSample"
 disabled = true
 has_clear_button = true
 
-[node name="PutdownSFXPathControl" parent="RightSide/Container" instance=ExtResource( 3 )]
+[node name="PutdownSFXPathControl" parent="RightSide/Container" index="6" instance=ExtResource( 3 )]
 
 anchor_right = 0.0
-margin_top = 731.0
+margin_top = 730.0
 margin_right = 894.0
-margin_bottom = 773.0
+margin_bottom = 772.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 _sections_unfolded = [ "Margin", "Size Flags" ]
@@ -354,25 +345,38 @@ file_type = "AudioStreamSample"
 disabled = true
 has_clear_button = true
 
-[node name="CanGiftContainer" type="HBoxContainer" parent="RightSide/Container"]
+[node name="FlagsContainer" type="HBoxContainer" parent="RightSide/Container" index="7"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 777.0
-margin_right = 84.0
+margin_top = 776.0
+margin_right = 254.0
 margin_bottom = 800.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="CanGiftLabel" type="Label" parent="RightSide/Container/CanGiftContainer"]
+[node name="CanGiftContainer" type="HBoxContainer" parent="RightSide/Container/FlagsContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 82.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="CanGiftLabel" type="Label" parent="RightSide/Container/FlagsContainer/CanGiftContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -381,7 +385,6 @@ anchor_bottom = 0.0
 margin_right = 54.0
 margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
@@ -390,17 +393,70 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="CanGiftCheckBox" type="CheckBox" parent="RightSide/Container/CanGiftContainer"]
+[node name="CanGiftCheckBox" type="CheckBox" parent="RightSide/Container/FlagsContainer/CanGiftContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 58.0
-margin_right = 84.0
-margin_bottom = 23.0
+margin_right = 82.0
+margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+disabled = true
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+align = 0
+
+[node name="InvisibleInInventory" type="HBoxContainer" parent="RightSide/Container/FlagsContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 86.0
+margin_right = 254.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="InvisibleInInventoryLabel" type="Label" parent="RightSide/Container/FlagsContainer/InvisibleInInventory" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 140.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Invisible in Inventory:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="InvisibleInInventoryCheckbox" type="CheckBox" parent="RightSide/Container/FlagsContainer/InvisibleInInventory" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 144.0
+margin_right = 168.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -434,6 +490,8 @@ align = 0
 
 [connection signal="file_selected" from="RightSide/Container/PutdownSFXPathControl" to="." method="_on_PutdownSFXPathControl_file_selected"]
 
-[connection signal="toggled" from="RightSide/Container/CanGiftContainer/CanGiftCheckBox" to="." method="_on_CanGiftCheckBox_toggled"]
+[connection signal="toggled" from="RightSide/Container/FlagsContainer/CanGiftContainer/CanGiftCheckBox" to="." method="_on_CanGiftCheckBox_toggled"]
+
+[connection signal="toggled" from="RightSide/Container/FlagsContainer/InvisibleInInventory/InvisibleInInventoryCheckbox" to="." method="_on_InvisibleInInventoryCheckbox_toggled"]
 
 

@@ -9,6 +9,7 @@ export(NodePath) var icon_file_control = NodePath()
 export(NodePath) var pickup_sfx_control = NodePath()
 export(NodePath) var putdown_sfx_control = NodePath()
 export(NodePath) var can_gift_control = NodePath()
+export(NodePath) var invisible_in_inventory_control = NodePath()
 
 onready var _printed_name_control_node = get_node(printed_name_control)
 onready var _description_control_node = get_node(description_control)
@@ -18,6 +19,7 @@ onready var _icon_file_control_node = get_node(icon_file_control)
 onready var _pickup_sfx_control_node = get_node(pickup_sfx_control)
 onready var _putdown_sfx_control_node = get_node(putdown_sfx_control)
 onready var _can_gift_control_node = get_node(can_gift_control)
+onready var _invisible_in_inventory_control_node = get_node(invisible_in_inventory_control)
 
 func _ready():
 	pass
@@ -57,6 +59,9 @@ func set_current_record_callback(p_record):
 	
 	_can_gift_control_node.set_pressed(current_record.can_gift)
 	_can_gift_control_node.set_disabled(false)
+	
+	_invisible_in_inventory_control_node.set_pressed(current_record.invisible_in_inventory)
+	_invisible_in_inventory_control_node.set_disabled(false)
 
 func _on_PrintedNameLineEdit_text_changed( text ):
 	if(current_record):
@@ -96,4 +101,10 @@ func _on_PutdownSFXPathControl_file_selected( p_path ):
 func _on_CanGiftCheckBox_toggled( pressed ):
 	if(current_record):
 		current_record.can_gift = pressed
+		current_database.mark_database_as_modified()
+
+
+func _on_InvisibleInInventoryCheckbox_toggled( pressed ):
+	if(current_record):
+		current_record.invisible_in_inventory = pressed
 		current_database.mark_database_as_modified()

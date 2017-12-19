@@ -13,6 +13,7 @@ export(String) var icon_path = ""
 export(String) var pickup_sfx = ""
 export(String) var putdown_sfx = ""
 export(bool) var can_gift = false
+export(bool) var invisible_in_inventory = false
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
@@ -49,6 +50,9 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("can_gift")):
 		can_gift = p_dictionary_record.can_gift
 		
+	if(p_dictionary_record.has("invisible_in_inventory")):
+		invisible_in_inventory = p_dictionary_record.invisible_in_inventory
+		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
 	._save_record(p_dictionary_record, p_databases)
@@ -70,3 +74,4 @@ func _save_record(p_dictionary_record, p_databases):
 	p_dictionary_record.pickup_sfx = pickup_sfx
 	p_dictionary_record.putdown_sfx = putdown_sfx
 	p_dictionary_record.can_gift = can_gift
+	p_dictionary_record.invisible_in_inventory = invisible_in_inventory
