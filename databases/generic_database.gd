@@ -205,7 +205,7 @@ func build_procedural_script():
 					
 					var code_raw = dictionary[key]
 					if(code_raw != null and code_raw.length() > 0):
-						var code = code_raw.split("\n")
+						var code = code_raw.split("\n", -1)
 					
 						for line in code:
 							script_text += "\t" + line + "\n"
@@ -228,7 +228,7 @@ func build_procedural_script():
 	
 static func convert_string_to_vector_2(p_str):
 	if(p_str):
-		var floats = p_str.substr(1, p_str.length()-1).split_floats(",") 
+		var floats = p_str.substr(1, p_str.length()-1).split_floats(",")
 		if(floats.size() == 2):
 			return Vector2(floats[0], floats[1])
 	
@@ -236,7 +236,7 @@ static func convert_string_to_vector_2(p_str):
 	
 static func convert_string_to_vector_3(p_str):
 	if(p_str):
-		var floats = p_str.substr(1, p_str.length()-1).split_floats(",") 
+		var floats = p_str.substr(1, p_str.length()-1).split_floats(",")
 		if(floats.size() == 3):
 			return Vector3(floats[0], floats[1], floats[2])
 	
@@ -244,7 +244,7 @@ static func convert_string_to_vector_3(p_str):
 	
 static func convert_string_to_color(p_str):
 	if(p_str):
-		var floats = p_str.substr(0, p_str.length()).split_floats(",") 
+		var floats = p_str.substr(0, p_str.length()).split_floats(",")
 		if(floats.size() == 4):
 			return Color(floats[0], floats[1], floats[2], floats[3])
 	
