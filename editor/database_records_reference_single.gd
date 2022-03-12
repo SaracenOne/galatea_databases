@@ -1,11 +1,11 @@
+@tool
 extends Control
-tool
 
-export(String) var label = "" setget set_label, get_label
-export(String) var record_name = "" setget set_record_name, get_record_name
+@export var label: String = "": set = set_label, get = get_label
+@export var record_name: String = "": set = set_record_name, get = get_record_name
 
-export(bool) var disabled = false setget set_disabled, get_disabled
-export(bool) var has_clear_button = false setget set_has_clear_button, get_has_clear_button
+@export var disabled = false: set = set_disabled, get = get_disabled
+@export var has_clear_button = false: set = set_has_clear_button, get = get_has_clear_button
 
 signal record_selected(p_record)
 signal record_erased(p_record)
@@ -14,10 +14,10 @@ var database = null
 var record = null
 var rules = []
 
-var label_control = null
-var record_reference_control = null
+var label_control: Label = null
+var record_reference_control: Control = null
 
-var database_list_popup = preload("database_list.tscn").instance()
+var database_list_popup = preload("database_list.tscn").instantiate()
 
 func set_label(p_str):
 	label = p_str
@@ -77,7 +77,7 @@ func _ready():
 		get_node("Container/ClearButton").hide()
 		
 	add_child(database_list_popup)
-	database_list_popup.connect("record_selected", self, "_on_record_selected")
+	database_list_popup.connect("record_selected", Callable(self, "_on_record_selected"))
 	
 func _on_LoadButton_pressed():
 	if(database):

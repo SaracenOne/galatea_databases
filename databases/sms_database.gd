@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const sms_record_const = preload("sms_record.gd")
 
 const DATABASE_IDENT = "SMSD"
 const DATABASE_NAME = "sms_database"
 const DATABASE_NAME_JSON = "sms_database.json"
-const DATABASE_NAME_BINARY = "sms_database.gbd"
 const DATABASE_INLINED_FILENAME = "sms_database_inlined.gd"
 const RECORDS_NAME = "sms_records"
 	
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return sms_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

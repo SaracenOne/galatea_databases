@@ -1,5 +1,5 @@
-extends Reference
-tool
+@tool
+extends Resource
 
 const methods_const = preload("../methods/methods.gd")
 
@@ -21,13 +21,13 @@ const VALUE_TYPE_SVAR = 2
 const VALUE_TYPE_BOOLEAN = 3
 
 class ConditionalItem extends Resource:
-	export(String) var conditional_method = ""
-	export(Array) var arguments = []
-	export(int) var operator = COMPARISON_OPERATOR_EQUALS
-	export(float) var value = 1.0
-	export(int) var value_type = VALUE_TYPE_FLOAT
-	export(int) var subject = CONDITIONAL_SUBJECT_SELF
-	export(bool) var use_or = false
+	@export var conditional_method = ""
+	@export var arguments: Array = []
+	@export var operator: int = self.COMPARISON_OPERATOR_EQUALS
+	@export var value = 1.0
+	@export var value_type: int = self.VALUE_TYPE_FLOAT
+	@export var subject: int = self.CONDITIONAL_SUBJECT_SELF
+	@export var use_or: bool = false
 	
 	func copy(p_conditional_item):
 		conditional_method = p_conditional_item.conditional_method
@@ -38,7 +38,7 @@ class ConditionalItem extends Resource:
 		subject = p_conditional_item.subject
 		use_or = p_conditional_item.use_or
 	
-export(Array) var conditional_items = []
+@export var conditional_items: Array = []
 	
 func compare_vars(p_lvar, p_rvar, p_comparison_operator):
 	if(p_comparison_operator == COMPARISON_OPERATOR_EQUALS):
@@ -56,7 +56,7 @@ func compare_vars(p_lvar, p_rvar, p_comparison_operator):
 		
 func run_conditional_items_for_subject(p_subject, p_global_svar_table):
 	if(p_subject):
-		for i in range(0, conditional_items):
+		for i in range(0, conditional_items.size()):
 			var conditional = conditional_items[i]
 			
 			# Find the valid target

@@ -1,5 +1,5 @@
-tool
-extends "database_panel.gd"
+@tool
+extends "./database_panel.gd"
 
 const actor_record_const = preload("../databases/actor_record.gd")
 const headpart_record_const = preload("../databases/headpart_record.gd")
@@ -8,106 +8,106 @@ var current_body_scaler_key = ""
 var current_head_morph_key = ""
 var current_stamp = null
 
-export(NodePath) var family_name = NodePath()
-export(NodePath) var given_name = NodePath()
-export(NodePath) var nickname = NodePath()
-export(NodePath) var gender = NodePath()
-export(NodePath) var date_of_birth = NodePath()
-export(NodePath) var age = NodePath()
-export(NodePath) var blood_type = NodePath()
-export(NodePath) var actor_groups = NodePath()
-export(NodePath) var traits = NodePath()
+@export var family_name: NodePath = NodePath()
+@export var given_name: NodePath = NodePath()
+@export var nickname: NodePath = NodePath()
+@export var gender: NodePath = NodePath()
+@export var date_of_birth: NodePath = NodePath()
+@export var age: NodePath = NodePath()
+@export var blood_type: NodePath = NodePath()
+@export var actor_groups: NodePath = NodePath()
+@export var traits: NodePath = NodePath()
 
-export(NodePath) var contact_icon_path = NodePath()
-export(NodePath) var contact_icon_texture = NodePath()
+@export var contact_icon_path: NodePath = NodePath()
+@export var contact_icon_texture: NodePath = NodePath()
 
-export(NodePath) var valid_contact = NodePath()
-export(NodePath) var is_storyline_actor = NodePath()
+@export var valid_contact: NodePath = NodePath()
+@export var is_storyline_actor: NodePath = NodePath()
 
-export(NodePath) var head = NodePath()
-export(NodePath) var head_color = NodePath()
-export(NodePath) var eyes = NodePath()
-export(NodePath) var eyes_color = NodePath()
-export(NodePath) var eyebrows = NodePath()
-export(NodePath) var eyebrows_color = NodePath()
-export(NodePath) var mouth = NodePath()
-export(NodePath) var mouth_color = NodePath()
-export(NodePath) var eyelashes = NodePath()
-export(NodePath) var eyelashes_color = NodePath()
+@export var head: NodePath = NodePath()
+@export var head_color: NodePath = NodePath()
+@export var eyes: NodePath = NodePath()
+@export var eyes_color: NodePath = NodePath()
+@export var eyebrows: NodePath = NodePath()
+@export var eyebrows_color: NodePath = NodePath()
+@export var mouth: NodePath = NodePath()
+@export var mouth_color: NodePath = NodePath()
+@export var eyelashes: NodePath = NodePath()
+@export var eyelashes_color: NodePath = NodePath()
 
-export(NodePath) var hair = NodePath()
-export(NodePath) var hair_color = NodePath()
+@export var hair: NodePath = NodePath()
+@export var hair_color: NodePath = NodePath()
 
-export(NodePath) var skin_color = NodePath()
+@export var skin_color: NodePath = NodePath()
 
-export(NodePath) var head_morph_table = NodePath()
-export(NodePath) var head_morph_value = NodePath()
+@export var head_morph_table: NodePath = NodePath()
+@export var head_morph_value: NodePath = NodePath()
 
-export(NodePath) var body_scaler_table = NodePath()
-export(NodePath) var body_scaler_value = NodePath()
+@export var body_scaler_table: NodePath = NodePath()
+@export var body_scaler_value: NodePath = NodePath()
 
-export(NodePath) var stamp_table = NodePath()
-export(NodePath) var stamp_color = NodePath()
+@export var stamp_table: NodePath = NodePath()
+@export var stamp_color: NodePath = NodePath()
 
-export(NodePath) var body = NodePath()
-export(NodePath) var default_clothing_set = NodePath()
+@export var body: NodePath = NodePath()
+@export var default_clothing_set: NodePath = NodePath()
 
-export(NodePath) var height = NodePath()
+@export var height: NodePath = NodePath()
 
-onready var _family_name_control = get_node(family_name)
-onready var _given_name_control = get_node(given_name)
-onready var _nickname_control = get_node(nickname)
-onready var _gender_control = get_node(gender)
+@onready var _family_name_control = get_node(family_name)
+@onready var _given_name_control = get_node(given_name)
+@onready var _nickname_control = get_node(nickname)
+@onready var _gender_control = get_node(gender)
 
-onready var _date_of_birth = get_node(date_of_birth)
+@onready var _date_of_birth = get_node(date_of_birth)
 
-onready var _age_control = get_node(age)
-onready var _blood_type_control = get_node(blood_type)
+@onready var _age_control = get_node(age)
+@onready var _blood_type_control = get_node(blood_type)
 
-onready var _actor_groups_control = get_node(actor_groups)
-onready var _traits_control = get_node(traits)
+@onready var _actor_groups_control = get_node(actor_groups)
+@onready var _traits_control = get_node(traits)
 
-onready var _contact_icon_path_control = get_node(contact_icon_path)
-onready var _contact_icon_texture_control = get_node(contact_icon_texture)
+@onready var _contact_icon_path_control = get_node(contact_icon_path)
+@onready var _contact_icon_texture_control = get_node(contact_icon_texture)
 
-onready var _valid_contact_control = get_node(valid_contact)
-onready var _is_storyline_actor_control = get_node(is_storyline_actor)
+@onready var _valid_contact_control = get_node(valid_contact)
+@onready var _is_storyline_actor_control = get_node(is_storyline_actor)
 
-onready var _head_control = get_node(head)
-onready var _head_color_control = get_node(head_color)
-onready var _eyes_control = get_node(eyes)
-onready var _eyes_color_control = get_node(eyes_color)
-onready var _eyebrows_control = get_node(eyebrows)
-onready var _eyebrows_color_control = get_node(eyebrows_color)
-onready var _mouth_control = get_node(mouth)
-onready var _mouth_color_control = get_node(mouth_color)
-onready var _eyelashes_control = get_node(eyelashes)
-onready var _eyelashes_color_control = get_node(eyelashes_color)
+@onready var _head_control = get_node(head)
+@onready var _head_color_control = get_node(head_color)
+@onready var _eyes_control = get_node(eyes)
+@onready var _eyes_color_control = get_node(eyes_color)
+@onready var _eyebrows_control = get_node(eyebrows)
+@onready var _eyebrows_color_control = get_node(eyebrows_color)
+@onready var _mouth_control = get_node(mouth)
+@onready var _mouth_color_control = get_node(mouth_color)
+@onready var _eyelashes_control = get_node(eyelashes)
+@onready var _eyelashes_color_control = get_node(eyelashes_color)
 
-onready var _hair_control = get_node(hair)
-onready var _hair_color_control = get_node(hair_color)
+@onready var _hair_control = get_node(hair)
+@onready var _hair_color_control = get_node(hair_color)
 
-onready var _skin_color_control = get_node(skin_color)
+@onready var _skin_color_control = get_node(skin_color)
 
-onready var _head_morph_table_control = get_node(head_morph_table)
-onready var _head_morph_value_control = get_node(head_morph_value)
+@onready var _head_morph_table_control = get_node(head_morph_table)
+@onready var _head_morph_value_control = get_node(head_morph_value)
 
-onready var _body_scaler_table_control = get_node(body_scaler_table)
-onready var _body_scaler_value_control = get_node(body_scaler_value)
+@onready var _body_scaler_table_control = get_node(body_scaler_table)
+@onready var _body_scaler_value_control = get_node(body_scaler_value)
 
-onready var _stamp_table_control = get_node(stamp_table)
-onready var _stamp_color_control = get_node(stamp_color)
+@onready var _stamp_table_control = get_node(stamp_table)
+@onready var _stamp_color_control = get_node(stamp_color)
 
-onready var _body_control = get_node(body)
+@onready var _body_control = get_node(body)
 
-onready var _height_control = get_node(height)
-onready var _default_clothing_set_control = get_node(default_clothing_set)
+@onready var _height_control = get_node(height)
+@onready var _default_clothing_set_control = get_node(default_clothing_set)
 
 func _ready():
 	pass
 
 func galatea_databases_assigned():
-	.galatea_databases_assigned()
+	super.galatea_databases_assigned()
 	
 	current_database = galatea_databases.actor_database
 	
@@ -146,7 +146,7 @@ func galatea_databases_assigned():
 		printerr("actor_databases is null")
 
 func set_current_record_callback(p_record):
-	.set_current_record_callback(p_record)
+	super.set_current_record_callback(p_record)
 
 	_family_name_control.set_text(current_record.family_name)
 	_family_name_control.set_editable(true)
@@ -157,7 +157,7 @@ func set_current_record_callback(p_record):
 	_nickname_control.set_text(current_record.nickname)
 	_nickname_control.set_editable(true)
 
-	_gender_control.select(current_record.gender)
+	_gender_control.set_gender(current_record.gender)
 	_gender_control.set_disabled(false)
 
 	_date_of_birth.set_disabled(false)
@@ -168,7 +168,7 @@ func set_current_record_callback(p_record):
 	_age_control.set_step(1)
 	_age_control.set_editable(true)
 
-	_blood_type_control.select(p_record.bloodtype)
+	_blood_type_control.set_blood_type(p_record.bloodtype)
 	_blood_type_control.set_disabled(false)
 
 	_actor_groups_control.set_disabled(false)
@@ -206,8 +206,9 @@ func set_current_record_callback(p_record):
 	_contact_icon_path_control.set_file_path(p_record.contact_icon_path)
 	_contact_icon_texture_control.set_texture(null)
 	var contact_icon_texture = null
-	if(!p_record.contact_icon_path.empty()):
-		contact_icon_texture = load(p_record.contact_icon_path)
+	if(!p_record.contact_icon_path.is_empty()):
+		if ResourceLoader.exists(p_record.contact_icon_path):
+			contact_icon_texture = load(p_record.contact_icon_path)
 	if(contact_icon_texture):
 		if(contact_icon_texture is Texture):
 			_contact_icon_texture_control.set_texture(contact_icon_texture)
@@ -296,9 +297,9 @@ func set_current_record_callback(p_record):
 	
 static func get_valid_body_scaler_key_list(p_record):
 	if(p_record and p_record.body):
-		if(p_record.gender == actor_record_const.GENDER_MALE):
+		if(p_record.gender == Gender.GENDER_MALE):
 			return p_record.body.body_scaler_male_table
-		elif(p_record.gender == actor_record_const.GENDER_FEMALE):
+		elif(p_record.gender == Gender.GENDER_FEMALE):
 			return p_record.body.body_scaler_female_table
 			
 	return []
@@ -322,7 +323,7 @@ func update_body_scalers():
 			else:
 				body_scaler_dictionary[body_scaler.id] = body_scaler.default_value
 				
-			var tree_item = _head_morph_table_control.create_item(root)
+			var tree_item = _body_scaler_table_control.create_item(root)
 			tree_item.set_cell_mode(0, TreeItem.CELL_MODE_STRING)
 			tree_item.set_text(0, body_scaler.id)
 			tree_item.set_metadata(0, body_scaler.id)
@@ -358,144 +359,148 @@ func update_morphs():
 func _on_FamilyNameLineEdit_text_changed( text ):
 	if(current_record):
 		current_record.family_name = text
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_GivenNameLineEdit_text_changed( text ):
 	if(current_record):
 		current_record.given_name = text
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_NicknameLineEdit_text_changed( text ):
 	if(current_record):
 		current_record.nickname = text
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
-func _on_GenderOptionButton_item_selected( ID ):
+func _on_gender_changed(p_gender):
 	if(current_record):
-		current_record.gender = ID
-		current_database.mark_database_as_modified()
+		current_record.gender = p_gender
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		update_body_scalers()
 
 func _on_DateOfBirthOption_day_changed( p_day ):
 	if(current_record):
 		current_record.date_of_birth_day = p_day
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_DateOfBirthOptions_month_changed( p_month ):
 	if(current_record):
 		current_record.date_of_birth_month = p_month + 1
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_AgeSpinbox_value_changed( value ):
 	if(current_record):
 		current_record.age = value
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
-func _on_BloodTypeControl_item_selected( ID ):
+func _on_blood_type_changed(p_blood_type):
 	if(current_record):
-		current_record.bloodtype = ID
-		current_database.mark_database_as_modified()
-
-func _on_ActorGroupsControl_record_erased( p_record ):
+		current_record.bloodtype = p_blood_type
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
+	
+func _on_actor_groups_control_record_erased( p_record ):
 	if(current_record):
 		if(current_record.actor_groups.find(p_record) != -1):
 			current_record.actor_groups.erase(p_record)
 			_actor_groups_control.populate_tree(current_record.actor_groups, null)
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
-func _on_ActorGroupsControl_record_selected( p_record ):
+func _on_actor_groups_control_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		if(current_record.actor_groups.find(p_record) != -1):
 			return
 		else:
 			current_record.actor_groups.append(p_record)
 			_actor_groups_control.populate_tree(current_record.actor_groups, null)
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
-func _on_TraitsControl_record_erased( p_record ):
-	if(current_record):
-		if(current_record.traits.find(p_record) != -1):
-			current_record.traits.erase(p_record)
-			_traits_control.populate_tree(current_record.traits, null)
-			current_database.mark_database_as_modified()
-
-func _on_TraitsControl_record_selected( p_record ):
+func _on_traits_control_record_cell_selected( p_record ):
+	pass
+	
+func _on_traits_control_record_selected(p_record):
 	if(current_record and current_record != p_record):
 		if(current_record.traits.find(p_record) != -1):
 			return
 		else:
 			current_record.traits.append(p_record)
 			_traits_control.populate_tree(current_record.traits, null)
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified
 
-func _on_ContactIconPathControl_file_selected( p_path ):
+func _on_traits_control_record_erased( p_record ):
+	if(current_record):
+		if(current_record.traits.find(p_record) != -1):
+			current_record.traits.erase(p_record)
+			_traits_control.populate_tree(current_record.traits, null)
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
+
+func _on_ContactIconPathControl_file_selected(p_path: String):
 	if(current_record):
 		current_record.contact_icon_path = p_path
 		_contact_icon_texture_control.set_texture(null)
 		var contact_icon_texture = null
-		if(!p_path.empty()):
-			contact_icon_texture = load(p_path)
+		if(!p_path.is_empty()):
+			if ResourceLoader.exists(p_path):
+				contact_icon_texture = load(p_path)
 		if(contact_icon_texture):
 			if(contact_icon_texture is Texture):
 				_contact_icon_texture_control.set_texture(contact_icon_texture)
 
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 
 func _on_ValidContactCheckbox_toggled( pressed ):
 	if(current_record):
 		current_record.is_valid_contact = pressed
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_IsStorylineActorCheckbox_toggled( pressed ):
 	if(current_record):
 		current_record.is_storyline_actor = pressed
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_HeadMeshRecord_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.head = p_record
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_HeadMeshRecord_record_erased( p_record ):
 	current_record.head = null
-	current_database.mark_database_as_modified()
+	current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_EyesMeshRecord_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.eyes = p_record
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_EyesMeshRecord_record_erased( p_record ):
 	current_record.eyes = null
-	current_database.mark_database_as_modified()
+	current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_EyebrowsMeshRecord_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.eyebrows = p_record
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_EyebrowsMeshRecord_record_erased( p_record ):
 	current_record.eyebrows = null
-	current_database.mark_database_as_modified()
+	current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_MouthMeshRecord_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.mouth = p_record
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_MouthMeshRecord_record_erased( p_record ):
 	current_record.mouth = null
-	current_database.mark_database_as_modified()
+	current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_EyelashesMeshRecord_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.eyelashes = p_record
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_EyelashesMeshRecord_record_erased( p_record ):
 	current_record.eyelashes = null
-	current_database.mark_database_as_modified()
+	current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_MorphTableTree_cell_selected():
 	if(current_record):
@@ -525,7 +530,7 @@ func _on_MorphTableSpinBox_value_changed( value ):
 			if(current_head_morph_key != ""):
 				if(current_record.head_morph_table.has(current_head_morph_key) == true):
 					current_record.head_morph_table[current_head_morph_key] = value
-					current_database.mark_database_as_modified()
+					current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_ScalerTableSpinBox_value_changed( value ):
 	if(current_record):
@@ -533,26 +538,26 @@ func _on_ScalerTableSpinBox_value_changed( value ):
 			if(current_body_scaler_key != ""):
 				if(current_record.body_scaler_table.has(current_body_scaler_key) == true):
 					current_record.body_scaler_table[current_body_scaler_key] = value
-					current_database.mark_database_as_modified()
+					current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_HairRecord_record_erased( p_record ):
 	if(current_record):
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_HairRecord_record_selected( p_record ):
 	if(current_record):
 		current_record.hair = p_record
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_HairColorPicker_color_changed( color ):
 	if(current_record):
 		current_record.hair_color = color
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_SkinToneColorPicker_color_changed( color ):
 	if(current_record):
 		current_record.skin_color = color
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_StampColorButton_color_changed( color ):
 	if(current_record):
@@ -560,49 +565,50 @@ func _on_StampColorButton_color_changed( color ):
 			if(current_stamp != null):
 				if(current_record.stamp_table.has(current_stamp) == true):
 					current_record.stamp_table[current_stamp] = color
-					current_database.mark_database_as_modified()
+					current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 					
 func _on_HeadMeshColor_color_changed( color ):
 	if(current_record):
 		if(_head_color_control):
 			current_record.head_color = color
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 			
 func _on_EyesMeshColor_color_changed( color ):
 	if(current_record):
 		if(_eyes_color_control):
 			current_record.eyes_color = color
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 			
 func _on_EyebrowsMeshColo_color_changed( color ):
 	if(current_record):
 		if(_eyebrows_color_control):
 			current_record.eyebrows_color = color
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 			
 func _on_MouthMeshColor_color_changed( color ):
 	if(current_record):
 		if(_mouth_color_control):
 			current_record.mouth_color = color
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 			
 func _on_EyelashesColor_color_changed( color ):
 	if(current_record):
 		if(_eyelashes_color_control):
 			current_record.eyelashes_color = color
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_BodyControl_record_selected( p_record ):
 	if(current_record):
 		current_record.body = p_record
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_BodyControl_record_erased( p_record ):
 	if(current_record):
 		current_record.body = p_record
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
-func _on_StampTabelControl_record_selected( p_record ):
+
+func _on_stamp_tabel_control_record_selected(p_record):
 	if(current_record and current_record != p_record):
 		if(current_record.stamp_table.has(p_record) == true):
 			return
@@ -620,20 +626,9 @@ func _on_StampTabelControl_record_selected( p_record ):
 			_stamp_color_control.set_disabled(false)
 			
 			_stamp_table_control.populate_tree(stamp_records, null)
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
-func _on_StampTabelControl_record_cell_selected( p_record ):
-	if(current_record):
-		current_stamp = p_record
-		if(current_record.stamp_table.has(p_record) == true):
-			_stamp_color_control.set_color(current_record.stamp_table[p_record])
-		else:
-			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
-		_stamp_color_control.set_disabled(false)
-	else:
-		current_stamp = null
-		
-func _on_StampTabelControl_record_erased( p_record ):
+func _on_stamp_tabel_control_record_erased(p_record):
 	if(current_record):
 		if(current_record.stamp_table.has(p_record) == true):
 			current_record.stamp_table.erase(p_record)
@@ -649,19 +644,30 @@ func _on_StampTabelControl_record_erased( p_record ):
 			_stamp_color_control.set_disabled(true)
 			
 			_stamp_table_control.populate_tree(stamp_records, null)
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
+
+func _on_stamp_tabel_control_record_cell_selected(p_record):
+	if(current_record):
+		current_stamp = p_record
+		if(current_record.stamp_table.has(p_record) == true):
+			_stamp_color_control.set_color(current_record.stamp_table[p_record])
+		else:
+			_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
+		_stamp_color_control.set_disabled(false)
+	else:
+		current_stamp = null
 			
 func _on_HeightSpinBox_value_changed( value ):
 	if(current_record):
 		current_record.height = value
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_DefaultClothingSetControl_record_selected( p_record ):
 	if(current_record):
 		current_record.default_clothing_set = p_record
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_DefaultClothingSetControl_record_erased( p_record ):
 	if(current_record):
 		current_record.default_clothing_set = p_record
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)

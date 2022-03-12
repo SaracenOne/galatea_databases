@@ -1,12 +1,13 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
 
 const SVAR_TYPE_INTEGER = 0
 const SVAR_TYPE_FLOAT = 1
 const SVAR_TYPE_STRING = 2
 const SVAR_TYPE_BOOLEAN = 3
 		
-export(int) var type = SVAR_TYPE_INTEGER
-export var value = 0
+@export var type: int = SVAR_TYPE_INTEGER
+@export var value = 0
 
 static func get_array_of_types_as_strings():
 	return ["integer", "float", "string", "boolean"]
@@ -37,7 +38,7 @@ static func string_to_svar_type(p_string):
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 		
 	if(p_dictionary_record.has("type")):
 		type = string_to_svar_type(p_dictionary_record.type)
@@ -53,7 +54,7 @@ func _load_record(p_dictionary_record, p_databases):
 		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.type = svar_type_to_string(type)
 		

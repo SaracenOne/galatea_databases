@@ -1,4 +1,5 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
 const generic_database_const = preload("generic_database.gd")
 const precipitation_record_const = preload("precipitation_record.gd")
@@ -6,7 +7,6 @@ const precipitation_record_const = preload("precipitation_record.gd")
 const DATABASE_IDENT = "PRCP"
 const DATABASE_NAME = "precipitation_database"
 const DATABASE_NAME_JSON = "precipitation_database.json"
-const DATABASE_NAME_BINARY = "precipitation_database.gdb"
 const DATABASE_INLINED_FILENAME = "precipitation_database_inlined.gd"
 const RECORDS_NAME = "precipitation_database_records"
 	
@@ -28,5 +28,5 @@ func save_database():
 func _create_record():
 	return precipitation_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

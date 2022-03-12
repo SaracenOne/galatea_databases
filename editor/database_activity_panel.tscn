@@ -1,370 +1,201 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://bohp78i7wjutw"]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_activity_panel.gd" type="Script" id=1]
-[ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference.tscn" type="PackedScene" id=4]
-
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_activity_panel.gd" id="1"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_records.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_file_path_control.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://v6agd284qhg3" path="res://addons/galatea_databases/editor/database_records_reference.tscn" id="4"]
 
 [node name="ActivityPanel" type="HSplitContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
+mouse_filter = 0
 split_offset = -300
-collapsed = false
 dragger_visibility = 1
-script = ExtResource( 1 )
-_sections_unfolded = [ "Theme" ]
-printed_name_control = NodePath("RightSide/PrintedNameContainer/PrintedNameLineEdit")
-description_control = NodePath("RightSide/DescriptionContainer/DescriptionLineEdit")
-main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPath")
-main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconPreview")
-activity_script_path_control = NodePath("RightSide/ActivityScriptPath")
-valid_locations_control = NodePath("RightSide/ValidLocationsContainer/ValidLocationsRecordsReference")
-selectable_flag_control = NodePath("RightSide/FlagsContainer/SelectableFlagContainer/SelectableFlagCheckBox")
+script = ExtResource( "1" )
+printed_name_control = NodePath("RightSide/ScrollContainer/Container/PrintedNameContainer/PrintedNameLineEdit")
+description_control = NodePath("RightSide/ScrollContainer/Container/DescriptionContainer/DescriptionLineEdit")
+main_icon_path_control = NodePath("RightSide/ScrollContainer/Container/MainIconPathContainer/MainIconPath")
+main_icon_preview_control = NodePath("RightSide/ScrollContainer/Container/MainIconPathContainer/MainIconPanel/MainIconPreview")
+activity_script_path_control = NodePath("RightSide/ScrollContainer/Container/ActivityScriptPath")
+valid_locations_control = NodePath("RightSide/ScrollContainer/Container/ValidLocationsContainer/ValidLocationsRecordsReference")
+selectable_flag_control = NodePath("RightSide/ScrollContainer/Container/FlagsContainer/SelectableFlagContainer/SelectableFlagCheckBox")
 
 [node name="LeftSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 206.0
-margin_bottom = 600.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_right = 206.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
+[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( "2" )]
 
 [node name="RightSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 218.0
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 218.0
+offset_right = 1024.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide"]
+[node name="ScrollContainer" type="ScrollContainer" parent="RightSide"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_scroll_mode = 0
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 30.0
-margin_right = 250.0
-margin_bottom = 72.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
+[node name="Container" type="VBoxContainer" parent="RightSide/ScrollContainer"]
+offset_right = 806.0
+offset_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="PrintedNameLabel" type="Label" parent="RightSide/PrintedNameContainer"]
+[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_right = 806.0
+offset_bottom = 57.0
+__meta__ = {
+"_edit_layout_mode": 0,
+"_edit_use_custom_anchors": false
+}
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 92.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="PrintedNameLabel" type="Label" parent="RightSide/ScrollContainer/Container/PrintedNameContainer"]
+offset_right = 115.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Printed Name:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/PrintedNameContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 240.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/ScrollContainer/Container/PrintedNameContainer"]
+offset_top = 28.0
+offset_right = 806.0
+offset_bottom = 57.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 editable = false
-expand_to_len = false
-focus_mode = 2
-placeholder_alpha = 0.6
-caret_blink = false
-caret_blink_speed = 0.65
-_sections_unfolded = [ "Size Flags", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
-[node name="DescriptionContainer" type="VBoxContainer" parent="RightSide"]
+[node name="DescriptionContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 61.0
+offset_right = 806.0
+offset_bottom = 118.0
+__meta__ = {
+"_edit_layout_mode": 0,
+"_edit_use_custom_anchors": false
+}
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 80.0
-margin_right = 250.0
-margin_bottom = 122.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
-
-[node name="DescriptionLabel" type="Label" parent="RightSide/DescriptionContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 78.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="DescriptionLabel" type="Label" parent="RightSide/ScrollContainer/Container/DescriptionContainer"]
+offset_right = 96.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Description:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="DescriptionLineEdit" type="LineEdit" parent="RightSide/DescriptionContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 240.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="DescriptionLineEdit" type="LineEdit" parent="RightSide/ScrollContainer/Container/DescriptionContainer"]
+offset_top = 28.0
+offset_right = 806.0
+offset_bottom = 57.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 editable = false
-expand_to_len = false
-focus_mode = 2
-placeholder_alpha = 0.6
-caret_blink = false
-caret_blink_speed = 0.65
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="MainIconPathContainer" type="HBoxContainer" parent="RightSide"]
+[node name="MainIconPathContainer" type="HBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 122.0
+offset_right = 806.0
+offset_bottom = 179.0
+__meta__ = {
+"_edit_layout_mode": 0,
+"_edit_use_custom_anchors": false
+}
 
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="MainIconPath" parent="RightSide/ScrollContainer/Container/MainIconPathContainer" instance=ExtResource( "3" )]
 anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 141.0
-margin_right = 342.0
-margin_bottom = 205.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
-
-[node name="MainIconPath" parent="RightSide/MainIconPathContainer" instance=ExtResource( 3 )]
-
-anchor_right = 0.0
-margin_right = 164.0
-margin_bottom = 64.0
+offset_right = 802.0
+offset_bottom = 57.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 1
 label = "Main Icon Path:"
 file_browser_title = "Load Image"
 file_type = "Texture"
 disabled = true
 has_clear_button = true
 
-[node name="MainIconPanel" type="Panel" parent="RightSide/MainIconPathContainer"]
+[node name="MainIconPanel" type="Panel" parent="RightSide/ScrollContainer/Container/MainIconPathContainer"]
+offset_left = 806.0
+offset_right = 806.0
+offset_bottom = 57.0
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 168.0
-margin_right = 232.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 2
-size_flags_vertical = 2
-
-[node name="MainIconPreview" type="TextureRect" parent="RightSide/MainIconPathContainer/MainIconPanel"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="MainIconPreview" type="TextureRect" parent="RightSide/ScrollContainer/Container/MainIconPathContainer/MainIconPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
 size_flags_horizontal = 2
 size_flags_vertical = 2
-expand = true
-stretch_mode = 0
 
-[node name="ActivityScriptPath" parent="RightSide" instance=ExtResource( 3 )]
-
+[node name="ActivityScriptPath" parent="RightSide/ScrollContainer/Container" instance=ExtResource( "3" )]
 anchor_right = 0.0
-margin_left = 10.0
-margin_top = 208.0
-margin_right = 250.0
-margin_bottom = 250.0
+offset_top = 183.0
+offset_right = 806.0
+offset_bottom = 240.0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+__meta__ = {
+"_edit_layout_mode": 0,
+"_edit_use_custom_anchors": false
+}
 label = "Activity Script:"
 file_browser_title = "Load Script"
 file_type = "GDScript"
 disabled = true
 
-[node name="ValidLocationsContainer" type="VBoxContainer" parent="RightSide"]
+[node name="ValidLocationsContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 244.0
+offset_right = 806.0
+offset_bottom = 472.0
+__meta__ = {
+"_edit_layout_mode": 0,
+"_edit_use_custom_anchors": false
+}
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 261.0
-margin_right = 249.0
-margin_bottom = 411.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
-
-[node name="ValidLocationsLabel" type="Label" parent="RightSide/ValidLocationsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 100.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="ValidLocationsLabel" type="Label" parent="RightSide/ScrollContainer/Container/ValidLocationsContainer"]
+offset_right = 124.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Valid Locations:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="ValidLocationsRecordsReference" parent="RightSide/ValidLocationsContainer" instance=ExtResource( 4 )]
-
-margin_top = 18.0
-margin_right = 239.0
-margin_bottom = 150.0
+[node name="ValidLocationsRecordsReference" parent="RightSide/ScrollContainer/Container/ValidLocationsContainer" instance=ExtResource( "4" )]
+minimum_size = Vector2(0, 200)
+offset_top = 28.0
+offset_right = 806.0
+offset_bottom = 228.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-_sections_unfolded = [ "Anchor", "Margin", "Size Flags" ]
 
-[node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
+[node name="FlagsContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 476.0
+offset_right = 806.0
+offset_bottom = 505.0
+__meta__ = {
+"_edit_layout_mode": 0,
+"_edit_use_custom_anchors": false
+}
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 431.0
-margin_right = 256.0
-margin_bottom = 454.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
+[node name="SelectableFlagContainer" type="HBoxContainer" parent="RightSide/ScrollContainer/Container/FlagsContainer"]
+offset_right = 806.0
+offset_bottom = 29.0
 
-[node name="SelectableFlagContainer" type="HBoxContainer" parent="RightSide/FlagsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 92.0
-margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
-
-[node name="SelectableFlagCheckBox" type="CheckBox" parent="RightSide/FlagsContainer/SelectableFlagContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 92.0
-margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="SelectableFlagCheckBox" type="CheckBox" parent="RightSide/ScrollContainer/Container/FlagsContainer/SelectableFlagContainer"]
+offset_right = 112.0
+offset_bottom = 29.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Selectable"
-flat = false
-align = 0
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
-
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
-
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
-
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
-
-[connection signal="text_changed" from="RightSide/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
-
-[connection signal="text_changed" from="RightSide/DescriptionContainer/DescriptionLineEdit" to="." method="_on_DescriptionLineEdit_text_changed"]
-
-[connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPath" to="." method="_on_MainIconPath_file_selected"]
-
-[connection signal="file_selected" from="RightSide/ActivityScriptPath" to="." method="_on_ActivityScriptPath_file_selected"]
-
-[connection signal="record_erased" from="RightSide/ValidLocationsContainer/ValidLocationsRecordsReference" to="." method="_on_ValidLocationsRecordsReference_record_erased"]
-
-[connection signal="record_selected" from="RightSide/ValidLocationsContainer/ValidLocationsRecordsReference" to="." method="_on_ValidLocationsRecordsReference_record_selected"]
-
-[connection signal="toggled" from="RightSide/FlagsContainer/SelectableFlagContainer/SelectableFlagCheckBox" to="." method="_on_SelectableFlagCheckBox_toggled"]
-
-
+[connection signal="text_changed" from="RightSide/ScrollContainer/Container/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
+[connection signal="text_changed" from="RightSide/ScrollContainer/Container/DescriptionContainer/DescriptionLineEdit" to="." method="_on_DescriptionLineEdit_text_changed"]
+[connection signal="file_selected" from="RightSide/ScrollContainer/Container/MainIconPathContainer/MainIconPath" to="." method="_on_MainIconPath_file_selected"]
+[connection signal="file_selected" from="RightSide/ScrollContainer/Container/ActivityScriptPath" to="." method="_on_ActivityScriptPath_file_selected"]
+[connection signal="record_erased" from="RightSide/ScrollContainer/Container/ValidLocationsContainer/ValidLocationsRecordsReference" to="." method="_on_ValidLocationsRecordsReference_record_erased"]
+[connection signal="record_selected" from="RightSide/ScrollContainer/Container/ValidLocationsContainer/ValidLocationsRecordsReference" to="." method="_on_ValidLocationsRecordsReference_record_selected"]
+[connection signal="toggled" from="RightSide/ScrollContainer/Container/FlagsContainer/SelectableFlagContainer/SelectableFlagCheckBox" to="." method="_on_SelectableFlagCheckBox_toggled"]

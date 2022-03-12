@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm4fsxmbyppn6"]
+
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_window.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://4koo8wemopq7" path="res://addons/galatea_databases/editor/database_editor.tscn" id="2"]
+
+[node name="DatabaseWindow" type="Window"]
+title = "Galatea Databases"
+script = ExtResource( "1" )
+
+[node name="DatabaseEditor" parent="." instance=ExtResource( "2" )]
+
+[connection signal="about_to_popup" from="." to="." method="_on_database_window_about_to_popup"]

@@ -1,9 +1,9 @@
+@tool
 extends Control
-tool
 
-var day_option = null
-var month_option = null
-export(bool) var disabled = false setget set_disabled
+var day_option: SpinBox = null
+var month_option: OptionButton = null
+@export var disabled: bool = false: set = set_disabled
 
 signal day_changed(p_day)
 signal month_changed(p_month)
@@ -28,9 +28,15 @@ func month_value_changed(p_month):
 func _ready():
 	day_option = get_node("Day")
 	month_option = get_node("Month")
+	assert(day_option)
+	assert(month_option)
 	
-	day_option.connect("value_changed", self, "day_value_changed")
-	month_option.connect("item_selected", self, "month_value_changed")
+	month_option.clear()
+	for i in range(Time.MONTH_JANUARY, Time.MONTH_DECEMBER + 1):
+		month_option.add_item(DateAndTime.get_string_from_month(i))
+	
+	assert(day_option.connect("value_changed", Callable(self, "day_value_changed")) == OK)
+	assert(month_option.connect("item_selected", Callable(self, "month_value_changed")) == OK)
 	
 	set_disabled(disabled)
 	

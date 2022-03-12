@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const status_effect_record_const = preload("status_effect_record.gd")
 
 const DATABASE_IDENT = "SEFC"
 const DATABASE_NAME = "status_effect_database"
 const DATABASE_NAME_JSON = "status_effect_database.json"
-const DATABASE_NAME_BINARY = "status_effect_database.gbd"
 const DATABASE_INLINED_FILENAME = "status_effect_database_inlined.gd"
 const RECORDS_NAME = "status_effect_records"
 
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return status_effect_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

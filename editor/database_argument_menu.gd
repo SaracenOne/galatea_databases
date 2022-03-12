@@ -1,20 +1,20 @@
-tool
-extends Control
+@tool
+extends Popup
 
-var argument_tree = null
-var method_arguments = []
-var template_arguments = []
+var argument_tree: Tree = null
+var method_arguments: Array = []
+var template_arguments: Array = []
 
-var id = -1
+var id: int = -1
 
 const methods_const = preload("../methods/methods.gd")
 
 var databases = null
-var database_list = preload("database_list.tscn").instance()
-var database_numerical_menu = preload("database_numerical_menu.tscn").instance()
-var database_text_input_menu = preload("database_text_input_menu.tscn").instance()
-var database_enum_menu = preload("database_enum_menu.tscn").instance()
-var database_boolean_menu = preload("database_boolean_menu.tscn").instance()
+var database_list = preload("database_list.tscn").instantiate()
+var database_numerical_menu = preload("database_numerical_menu.tscn").instantiate()
+var database_text_input_menu = preload("database_text_input_menu.tscn").instantiate()
+var database_enum_menu = preload("database_enum_menu.tscn").instantiate()
+var database_boolean_menu = preload("database_boolean_menu.tscn").instantiate()
 
 signal menu_dismissed
 
@@ -67,11 +67,11 @@ func _ready():
 	
 	argument_tree.set_select_mode(Tree.SELECT_SINGLE)
 	
-	database_enum_menu.connect("enum_selected", self, "confirm_argument_selection")
-	database_numerical_menu.connect("value_selected", self, "confirm_argument_selection")
-	database_text_input_menu.connect("text_selected", self, "confirm_argument_selection")
-	database_boolean_menu.connect("boolean_selected", self, "confirm_argument_selection")
-	database_list.connect("record_selected", self, "confirm_argument_selection")
+	database_enum_menu.connect("enum_selected", Callable(self, "confirm_argument_selection"))
+	database_numerical_menu.connect("value_selected", Callable(self, "confirm_argument_selection"))
+	database_text_input_menu.connect("text_selected", Callable(self, "confirm_argument_selection"))
+	database_boolean_menu.connect("boolean_selected", Callable(self, "confirm_argument_selection"))
+	database_list.connect("record_selected", Callable(self, "confirm_argument_selection"))
 	
 	add_child(database_list)
 	add_child(database_numerical_menu)

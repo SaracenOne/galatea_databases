@@ -1,19 +1,21 @@
+@tool
 extends Control
-tool
 
 signal record_selected(p_record)
 
-export(String) var label = "" setget set_label, get_label
-export(String) var record_name = "" setget set_record_name, get_record_name
+@export var label: String = "": set = set_label, get = get_label
+@export var record_name: String = "": set = set_record_name, get = get_record_name
 
-export(bool) var disabled = false setget set_disabled, get_disabled
+@export var disabled: bool = false:
+	set = set_disabled,
+	get = get_disabled
 
 var database = null
 
-var label_control = null
-var record_selection_path_control = null
+var label_control: Label = null
+var record_selection_path_control: Control = null
 
-var database_list_popup = preload("database_list.tscn").instance()
+var database_list_popup = preload("database_list.tscn").instantiate()
 
 func set_label(p_str):
 	label = p_str
@@ -54,7 +56,7 @@ func _ready():
 	
 	add_child(database_list_popup)
 
-	database_list_popup.connect("record_selected", self, "_on_record_selected")
+	database_list_popup.connect("record_selected", Callable(self, "_on_record_selected"))
 	
 func _on_record_selected(p_record):
 	set_record_name(p_record.id)

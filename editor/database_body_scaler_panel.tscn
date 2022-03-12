@@ -1,23 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dbug54c05k1xx"]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_body_scaler_panel.gd" type="Script" id=1]
-[ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_body_scaler_panel.gd" id="1"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_records.tscn" id="2"]
 
 [node name="BodyScalerPanel" type="HSplitContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
+mouse_filter = 0
 split_offset = -300
-collapsed = false
 dragger_visibility = 1
-script = ExtResource( 1 )
+script = ExtResource( "1" )
 vector_control_x = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/XVectorContainer/XVectorSpinBox")
 vector_control_y = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/YVectorContainer/YVectorSpinBox")
 vector_control_z = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/ZVectorContainer/ZVectorSpinBox")
@@ -32,821 +26,327 @@ printed_name_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/Com
 default_value_nodepath = NodePath("RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/DefaultValueContainer/DefaultValueSpinbox")
 
 [node name="LeftSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 294.0
-margin_bottom = 800.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_right = 206.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
+[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( "2" )]
 
 [node name="RightSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 306.0
-margin_right = 1200.0
-margin_bottom = 800.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 218.0
+offset_right = 1024.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="BoneScalerArea" type="HBoxContainer" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
 size_flags_horizontal = 2
 size_flags_vertical = 2
-alignment = 0
 
 [node name="BonesContainer" type="VBoxContainer" parent="RightSide/BoneScalerArea"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 445.0
-margin_bottom = 800.0
-rect_min_size = Vector2( 300, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_right = 401.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
 [node name="BonesLabel" type="Label" parent="RightSide/BoneScalerArea/BonesContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 44.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+offset_right = 53.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Bones:"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="BonesTree" type="Tree" parent="RightSide/BoneScalerArea/BonesContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 445.0
-margin_bottom = 776.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+offset_top = 28.0
+offset_right = 401.0
+offset_bottom = 567.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="BonesButtonContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/BonesContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 780.0
-margin_right = 445.0
-margin_bottom = 800.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_top = 571.0
+offset_right = 401.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
 [node name="AddBoneButton" type="Button" parent="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 145.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_right = 131.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Add"
-flat = false
 
 [node name="EraseBoneButton" type="Button" parent="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 149.0
-margin_right = 294.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 135.0
+offset_right = 266.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Erase"
-flat = false
 
 [node name="RenameBoneButton" type="Button" parent="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 298.0
-margin_right = 445.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 270.0
+offset_right = 401.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Rename"
-flat = false
 
 [node name="CommandsContainer" type="VBoxContainer" parent="RightSide/BoneScalerArea"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 449.0
-margin_right = 894.0
-margin_bottom = 800.0
-rect_min_size = Vector2( 300, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_left = 405.0
+offset_right = 806.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 0
 
 [node name="CommandsLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 76.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+offset_right = 97.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Commands:"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="CommandsTree" type="Tree" parent="RightSide/BoneScalerArea/CommandsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 445.0
-margin_bottom = 395.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+offset_top = 28.0
+offset_right = 401.0
+offset_bottom = 181.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CommandsButtonContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 399.0
-margin_right = 445.0
-margin_bottom = 419.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_top = 185.0
+offset_right = 401.0
+offset_bottom = 214.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
 [node name="AddCommandButton" type="Button" parent="RightSide/BoneScalerArea/CommandsContainer/CommandsButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 220.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_right = 198.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Add"
-flat = false
 
 [node name="EraseCommandButton" type="Button" parent="RightSide/BoneScalerArea/CommandsContainer/CommandsButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 224.0
-margin_right = 445.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 202.0
+offset_right = 401.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Erase"
-flat = false
 
 [node name="CommandControlsContainer" type="VBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 423.0
-margin_right = 445.0
-margin_bottom = 800.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_top = 218.0
+offset_right = 401.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 0
 
 [node name="CommandTypeMenuButton" type="MenuButton" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 445.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_right = 401.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 toggle_mode = false
-action_mode = 0
-enabled_focus_mode = 0
-shortcut = null
-group = null
 flat = false
-items = [ "Scale", null, false, false, false, 0, 0, null, "", false, "Position", null, false, false, false, 1, 0, null, "", false ]
-_sections_unfolded = [ "Size Flags" ]
 
 [node name="XVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 36.0
-margin_right = 445.0
-margin_bottom = 60.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_top = 33.0
+offset_right = 401.0
+offset_bottom = 62.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-alignment = 0
 
 [node name="XVectorLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/XVectorContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 12.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+offset_right = 15.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "X:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="XVectorSpinBox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/XVectorContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 224.0
-margin_right = 445.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 202.0
+offset_right = 401.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 min_value = -1007.0
 max_value = 1007.0
 step = 0.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
-editable = true
-prefix = ""
-suffix = ""
 
 [node name="YVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 72.0
-margin_right = 445.0
-margin_bottom = 96.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_top = 66.0
+offset_right = 401.0
+offset_bottom = 95.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-alignment = 0
 
 [node name="YVectorLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/YVectorContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 11.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+offset_right = 14.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Y:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="YVectorSpinBox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/YVectorContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 224.0
-margin_right = 445.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 202.0
+offset_right = 401.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 min_value = -1007.0
 max_value = 1007.0
-step = 1.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
-editable = true
-prefix = ""
-suffix = ""
 
 [node name="ZVectorContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 108.0
-margin_right = 445.0
-margin_bottom = 132.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_top = 99.0
+offset_right = 401.0
+offset_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-alignment = 0
 
 [node name="ZVectorLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/ZVectorContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 12.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+offset_right = 15.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Z:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="ZVectorSpinBox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/ZVectorContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 224.0
-margin_right = 445.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 202.0
+offset_right = 401.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 min_value = -1007.0
 max_value = 1007.0
-step = 1.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
-editable = true
-prefix = ""
-suffix = ""
 
 [node name="InverseCheckBox" type="CheckBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 144.0
-margin_right = 74.0
-margin_bottom = 167.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_top = 132.0
+offset_right = 84.0
+offset_bottom = 161.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Inverse"
-flat = false
-align = 0
 
 [node name="MinContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 180.0
-margin_right = 445.0
-margin_bottom = 204.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_top = 165.0
+offset_right = 401.0
+offset_bottom = 194.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-alignment = 0
 
 [node name="MinLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MinContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 28.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+offset_right = 34.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Min:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="MinSpinbox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MinContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 224.0
-margin_right = 445.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 202.0
+offset_right = 401.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 min_value = -1007.0
 max_value = 1007.0
 step = 0.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
-editable = true
-prefix = ""
-suffix = ""
 
 [node name="MaxContainer" type="HBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 216.0
-margin_right = 445.0
-margin_bottom = 240.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_top = 198.0
+offset_right = 401.0
+offset_bottom = 227.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-alignment = 0
 
 [node name="MaxLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MaxContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 30.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+offset_right = 37.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Max:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="MaxSpinbox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MaxContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 224.0
-margin_right = 445.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 202.0
+offset_right = 401.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 min_value = -1007.0
 max_value = 1007.0
 step = 0.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
-editable = true
-prefix = ""
-suffix = ""
 
 [node name="CharacterCreatorCheckBox" type="CheckBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 252.0
-margin_right = 214.0
-margin_bottom = 275.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_top = 231.0
+offset_right = 265.0
+offset_bottom = 260.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Available in Character Creator"
-flat = false
-align = 0
 
 [node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 288.0
-margin_right = 92.0
-margin_bottom = 330.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
+offset_top = 264.0
+offset_right = 401.0
+offset_bottom = 321.0
 
 [node name="PrintedNameLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/PrintedNameContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 92.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+offset_right = 115.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Printed Name:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/PrintedNameContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 58.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 2
-size_flags_vertical = 2
+offset_top = 28.0
+offset_right = 401.0
+offset_bottom = 57.0
 editable = false
-expand_to_len = false
-focus_mode = 2
-placeholder_alpha = 0.6
-caret_blink = false
-caret_blink_speed = 0.65
 
 [node name="DefaultValueContainer" type="VBoxContainer" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 334.0
-margin_right = 89.0
-margin_bottom = 376.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
+offset_top = 325.0
+offset_right = 401.0
+offset_bottom = 382.0
 
 [node name="DefaultValueLabel" type="Label" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/DefaultValueContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 89.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-size_flags_horizontal = 2
-size_flags_vertical = 0
+offset_right = 401.0
+offset_bottom = 24.0
 text = "Default Value:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="DefaultValueSpinbox" type="SpinBox" parent="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/DefaultValueContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 89.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 3
-size_flags_vertical = 2
-min_value = 0.0
+offset_top = 28.0
+offset_right = 401.0
+offset_bottom = 57.0
 max_value = 255.0
-step = 1.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
-
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
-
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
-
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
-
 [connection signal="cell_selected" from="RightSide/BoneScalerArea/BonesContainer/BonesTree" to="." method="_on_BonesTree_cell_selected"]
-
 [connection signal="pressed" from="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer/AddBoneButton" to="." method="_on_AddBoneButton_pressed"]
-
 [connection signal="pressed" from="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer/EraseBoneButton" to="." method="_on_EraseBoneButton_pressed"]
-
 [connection signal="pressed" from="RightSide/BoneScalerArea/BonesContainer/BonesButtonContainer/RenameBoneButton" to="." method="_on_RenameBoneButton_pressed"]
-
 [connection signal="cell_selected" from="RightSide/BoneScalerArea/CommandsContainer/CommandsTree" to="." method="_on_CommandsTree_cell_selected"]
-
 [connection signal="pressed" from="RightSide/BoneScalerArea/CommandsContainer/CommandsButtonContainer/AddCommandButton" to="." method="_on_AddCommandButton_pressed"]
-
 [connection signal="pressed" from="RightSide/BoneScalerArea/CommandsContainer/CommandsButtonContainer/EraseCommandButton" to="." method="_on_EraseCommandButton_pressed"]
-
 [connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/XVectorContainer/XVectorSpinBox" to="." method="_on_XVectorSpinBox_value_changed"]
-
 [connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/YVectorContainer/YVectorSpinBox" to="." method="_on_YVectorSpinBox_value_changed"]
-
 [connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/ZVectorContainer/ZVectorSpinBox" to="." method="_on_ZVectorSpinBox_value_changed"]
-
 [connection signal="toggled" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/InverseCheckBox" to="." method="_on_InverseCheckBox_toggled"]
-
 [connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MinContainer/MinSpinbox" to="." method="_on_MinSpinbox_value_changed"]
-
 [connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/MaxContainer/MaxSpinbox" to="." method="_on_MaxSpinbox_value_changed"]
-
 [connection signal="toggled" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
-
 [connection signal="text_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
-
 [connection signal="value_changed" from="RightSide/BoneScalerArea/CommandsContainer/CommandControlsContainer/DefaultValueContainer/DefaultValueSpinbox" to="." method="_on_DefaultValueSpinbox_value_changed"]
-
-

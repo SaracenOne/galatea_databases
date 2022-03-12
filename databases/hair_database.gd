@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const hair_record_const = preload("hair_record.gd")
 
 const DATABASE_IDENT = "HAIR"
 const DATABASE_NAME = "hair_database"
 const DATABASE_NAME_JSON = "hair_database.json"
-const DATABASE_NAME_BINARY = "hair_database.gbd"
 const DATABASE_INLINED_FILENAME = "hair_database_inlined.gd"
 const RECORDS_NAME = "hair_records"
 
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return hair_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

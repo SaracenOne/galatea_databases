@@ -1,13 +1,13 @@
-tool
-extends "database_panel.gd"
+@tool
+extends "./database_panel.gd"
 
-const climate_record_const = preload("res://addons/galatea_databases/databases/climate_record.gd")
+const climate_record_const = preload("../databases/climate_record.gd")
 
 func _ready():
 	pass
 
 func galatea_databases_assigned():
-	.galatea_databases_assigned()
+	super.galatea_databases_assigned()
 	
 	current_database = galatea_databases.climate_database
 	if(current_database != null):
@@ -16,4 +16,4 @@ func galatea_databases_assigned():
 		printerr("climate_database is null")
 
 func set_current_record_callback(p_record):
-	.set_current_record_callback(p_record)
+	super.set_current_record_callback(p_record)

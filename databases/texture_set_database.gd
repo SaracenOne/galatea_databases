@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const texture_set_record_const = preload("texture_set_record.gd")
 
 const DATABASE_IDENT = "TEXS"
 const DATABASE_NAME = "texture_set_database"
 const DATABASE_NAME_JSON = "texture_set_database.json"
-const DATABASE_NAME_BINARY = "texture_set_database.gdb"
 const DATABASE_INLINED_FILENAME = "texture_set_database_inlined.gd"
 const RECORDS_NAME = "texture_set_database_records"
 	
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return texture_set_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

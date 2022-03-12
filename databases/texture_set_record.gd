@@ -1,10 +1,11 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
 
-export(Dictionary) var textures = {"diffuse":"", "normal":""}
+@export var textures: Dictionary = {"diffuse":"", "normal":""}
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 	
 	textures = {"diffuse":"", "normal":""}
 	if(p_dictionary_record.has("textures")):
@@ -13,6 +14,6 @@ func _load_record(p_dictionary_record, p_databases):
 		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.textures = textures

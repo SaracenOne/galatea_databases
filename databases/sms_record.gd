@@ -1,12 +1,13 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
 
-export(Resource) var actor = null
-export(bool) var is_reply = false
-export(String) var message_body = ""
+@export var actor: Resource = null
+@export var is_reply: bool = false
+@export var message_body: String = ""
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 	
 	if(p_dictionary_record.has("actor")):
 		var new_actor = p_databases.actor_database.find_record_by_name(p_dictionary_record.actor)
@@ -20,7 +21,8 @@ func _load_record(p_dictionary_record, p_databases):
 		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
+	
 	if(actor):
 		p_dictionary_record.actor = actor.id
 	else:

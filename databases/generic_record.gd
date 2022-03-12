@@ -1,10 +1,11 @@
+@tool
 extends Resource
 
 const MAX_ID_SIZE = 32
-export(String) var id = ""
+@export var id: String = ""
 
 func get_raw_id():
-	var raw_id = id.to_ascii()
+	var raw_id = id.to_ascii_buffer()
 	raw_id.resize(MAX_ID_SIZE)
 	return raw_id
 		

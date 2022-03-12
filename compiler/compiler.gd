@@ -1,7 +1,7 @@
 # Special script to scrape the associated scene files of the location records and extract useful
 # information from
+@tool
 extends Node
-tool
 
 const record_instance_const = preload("../instances/record_instance_node.gd")
 const actor_instance_const = preload("../instances/actor_instance_node.gd")
@@ -14,18 +14,18 @@ static func decode_packed_scene(p_packed_scene):
 	var actor_dictionary = {}
 	var item_dictionary = {}
 	
-	if p_packed_scene is PackedScene and p_packed_scene.can_instance():
+	if p_packed_scene is PackedScene and p_packed_scene.can_instantiate():
 		var valid_nodes = []
 		var scene_state = p_packed_scene.get_state()
 		
 		for i in range(0, scene_state.get_node_count()):
 			var script = null
-			var transform = Transform()
+			var transform = Transform3D()
 			var id = ""
 			
 			for j in range(0, scene_state.get_node_property_count(i)): 
 				if(scene_state.get_node_property_name(i, j) == "transform"):
-					if typeof(scene_state.get_node_property_value(i, j)) == TYPE_TRANSFORM:
+					if typeof(scene_state.get_node_property_value(i, j)) == TYPE_TRANSFORM3D:
 						transform = scene_state.get_node_property_value(i, j)
 						
 				if(scene_state.get_node_property_name(i, j) == "id"):
@@ -48,7 +48,7 @@ static func compile_record_location(p_record):
 	var location_dictionary = {"actors":{}, "items":{}}
 	if ResourceLoader.has(p_record.scene_path):
 		var packed_scene = ResourceLoader.load(p_record.scene_path)
-		if packed_scene is PackedScene and packed_scene.can_instance():
+		if packed_scene is PackedScene and packed_scene.can_instantiate():
 			location_dictionary = decode_packed_scene(packed_scene)
 			
 	return location_dictionary
@@ -81,7 +81,8 @@ static func save_data_file(p_path, p_dictionary):
 		return file_error
 	file.seek(0)
 	
-	var json_string = to_json(p_dictionary)
+	var json = JSON.new()
+	var json_string = json.stringify(p_dictionary)
 	file.store_string(json_string)
 	file.close()
 				
@@ -102,7 +103,8 @@ static func load_data_file(p_path):
 		var file_buffer_string = file.get_as_text()
 		file.close()
 		
-		var dictionary = parse_json(file_buffer_string)
+		var json = JSON.new()
+		var dictionary = json.parse(file_buffer_string)
 		if typeof(dictionary) == TYPE_DICTIONARY:
 			return dictionary
 	

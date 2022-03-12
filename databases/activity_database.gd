@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const activity_record_const = preload("activity_record.gd")
 
 const DATABASE_IDENT = "ACTV"
 const DATABASE_NAME = "activity_database"
 const DATABASE_NAME_JSON = "activity_database.json"
-const DATABASE_NAME_BINARY = "activity_database.gbd"
 const DATABASE_INLINED_FILENAME = "activity_database_inlined.gd"
 const RECORDS_NAME = "activity_records"
 	
@@ -28,6 +27,6 @@ func save_database():
 func _create_record():
 	return activity_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)
 	

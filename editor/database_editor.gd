@@ -1,4 +1,4 @@
-tool
+@tool
 extends Control
 
 var galatea_databases = null
@@ -6,6 +6,9 @@ var editor_plugin = null
 
 func set_galatea_databases(p_galatea_database):
 	galatea_databases = p_galatea_database
+	for child in get_children():
+		if(child.has_method("set_galatea_databases")):
+			child.call("set_galatea_databases", galatea_databases)
 	
 func set_editor_plugin(p_editor_plugin):
 	editor_plugin = p_editor_plugin
@@ -28,8 +31,8 @@ func _on_ReloadButton_pressed():
 		galatea_databases.load_all_databases()
 		database_interface_assign_databases(self)
 		
-func database_interface_assign_databases(p_control):
-	for child in p_control.get_children():
+func database_interface_assign_databases(p_node: Node) -> void:
+	for child in p_node.get_children():
 		if(child.has_method("set_galatea_databases")):
 			child.call("set_galatea_databases", galatea_databases)
-		#database_interface_assign_databases(child)
+		database_interface_assign_databases(child)

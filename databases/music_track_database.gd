@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const music_track_record_const = preload("music_track_record.gd")
 
 const DATABASE_IDENT = "MUTK"
 const DATABASE_NAME = "music_track_database"
 const DATABASE_NAME_JSON = "music_track_database.json"
-const DATABASE_NAME_BINARY = "music_track_database.gbd"
 const DATABASE_INLINED_FILENAME = "music_track_database_inlined.gd"
 const RECORDS_NAME = "music_track_records"
 
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return music_track_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

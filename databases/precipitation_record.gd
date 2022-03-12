@@ -1,19 +1,20 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
 
-const generic_database_const = preload("generic_database.gd")
+const conversion_const = preload("../data/conversion.gd")
 
-export(String) var texture_path = ""
-export(String) var shader_path = ""
-export(int) var sub_texture_count_xy = 1
-export(float) var box_size = 5.0
-export(float) var particle_density = 1.0
-export(float) var particle_rotation_velocity = 0.0
-export(Vector2) var particle_size = Vector2(1.0, 1.0)
-export(float) var wind_multiplier = 0.0
+@export var texture_path: String = ""
+@export var shader_path: String = ""
+@export var sub_texture_count_xy: int = 1
+@export var box_size: float = 5.0
+@export var particle_density: float = 1.0
+@export var particle_rotation_velocity: float = 0.0
+@export var particle_size: Vector2 = Vector2(1.0, 1.0)
+@export var wind_multiplier: float = 0.0
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 	
 	if(p_dictionary_record.has("texture_path")):
 		texture_path = p_dictionary_record.texture_path
@@ -34,14 +35,14 @@ func _load_record(p_dictionary_record, p_databases):
 		particle_rotation_velocity = p_dictionary_record.particle_rotation_velocity
 		
 	if(p_dictionary_record.has("particle_size")):
-		particle_size = generic_database_const.convert_string_to_vector_2(p_dictionary_record.particle_size)
+		particle_size = conversion_const.convert_string_to_vector_2(p_dictionary_record.particle_size)
 		
 	if(p_dictionary_record.has("wind_multiplier")):
 		wind_multiplier = p_dictionary_record.wind_multiplier
 	
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.texture_path = texture_path
 	p_dictionary_record.shader_path = shader_path

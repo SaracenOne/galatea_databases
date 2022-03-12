@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_conditional_item_editor_window.gd" type="Script" id=1]
 
 
-[node name="WindowDialog" type="WindowDialog"]
+[node name="ConditionalItemEditor" type="Popup"]
 
 anchor_left = 0.0
 anchor_top = 0.0

@@ -1,17 +1,17 @@
-tool
+@tool
 extends Control
 
-var record_tree = null
-var database = null
-var rules = []
+var record_tree: Tree = null
+var database: RefCounted = null
+var rules: Array = []
 
-var database_list_popup = preload("database_list.tscn").instance()
+var database_list_popup = preload("database_list.tscn").instantiate()
 
 signal record_selected(p_record)
 signal record_erased(p_record)
 signal record_cell_selected(p_record)
 
-export(bool) var disabled = false setget set_disabled, get_disabled
+@export var disabled: bool = false: set = set_disabled, get = get_disabled
 
 func set_disabled(p_bool):
 	disabled = p_bool
@@ -58,7 +58,7 @@ func _ready():
 	record_tree.set_select_mode(Tree.SELECT_SINGLE)
 	
 	add_child(database_list_popup)
-	database_list_popup.connect("record_selected", self, "_on_record_selected")
+	database_list_popup.connect("record_selected", Callable(self, "_on_record_selected"))
 	
 func _on_RecordTree_item_selected():
 	pass

@@ -1,7 +1,7 @@
-tool
-extends Control
+@tool
+extends Popup
 
-var record_tree = null
+var record_tree: Tree = null
 
 var database_new_edit_record_popup = null
 var error_dialog = null

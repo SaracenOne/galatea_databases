@@ -1,89 +1,63 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://dswex5diqlf2o"]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_precipitation_panel.gd" type="Script" id=1]
-[ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
-
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_precipitation_panel.gd" id="1"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_records.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_file_path_control.tscn" id="3"]
 
 [node name="PrecipitationPanel" type="HSplitContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
+mouse_filter = 0
 split_offset = -300
-collapsed = false
 dragger_visibility = 1
-script = ExtResource( 1 )
-texture_path = NodePath("RightSide/TexturePathContainer/TexturePathControl")
-texture_path_texture = NodePath("RightSide/TexturePathContainer/TexturePathTextureFrame/TexturePathTexture")
-shader_path = NodePath("RightSide/ShaderPath/ShaderPathControl")
-sub_texture_count_xy = NodePath("RightSide/SubTextureCountContainer/SubTextureCountXYControl")
-box_size = NodePath("RightSide/BoxSizeContainer/BoxSizeControl")
-wind_multiplier = NodePath("RightSide/WindMultiplerContainer/WindMultiplierControl")
-particle_density = NodePath("RightSide/ParticleDensityContainer/ParticleDensityControl")
-particle_rotation_velocity = NodePath("RightSide/ParticleRotationVelocityContainer/ParticleRotationVelocityControl")
-particle_size_x = NodePath("RightSide/ParticleSizeContainer/ParticleSizeControlX")
-particle_size_y = NodePath("RightSide/ParticleSizeContainer/ParticleSizeControlY")
+script = ExtResource( "1" )
+texture_path = NodePath("RightSide/ScrollContainer/Container/TexturePathContainer/TexturePathControl")
+texture_path_texture = NodePath("RightSide/ScrollContainer/Container/TexturePathContainer/TexturePathTextureFrame/TexturePathTexture")
+shader_path = NodePath("RightSide/ScrollContainer/Container/ShaderPath/ShaderPathControl")
+sub_texture_count_xy = NodePath("RightSide/ScrollContainer/Container/SubTextureCountContainer/SubTextureCountXYControl")
+box_size = NodePath("RightSide/ScrollContainer/Container/BoxSizeContainer/BoxSizeControl")
+wind_multiplier = NodePath("RightSide/ScrollContainer/Container/WindMultiplerContainer/WindMultiplierControl")
+particle_density = NodePath("RightSide/ScrollContainer/Container/ParticleDensityContainer/ParticleDensityControl")
+particle_rotation_velocity = NodePath("RightSide/ScrollContainer/Container/ParticleRotationVelocityContainer/ParticleRotationVelocityControl")
+particle_size_x = NodePath("RightSide/ScrollContainer/Container/ParticleSizeContainer/ParticleSizeControlX")
+particle_size_y = NodePath("RightSide/ScrollContainer/Container/ParticleSizeContainer/ParticleSizeControlY")
 
 [node name="LeftSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 206.0
-margin_bottom = 600.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_right = 206.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
+[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( "2" )]
 
 [node name="RightSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 218.0
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 218.0
+offset_right = 1024.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TexturePathContainer" type="HBoxContainer" parent="RightSide"]
+[node name="ScrollContainer" type="ScrollContainer" parent="RightSide"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_scroll_mode = 0
 
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="Container" type="VBoxContainer" parent="RightSide/ScrollContainer"]
+offset_right = 806.0
+offset_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TexturePathContainer" type="HBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_right = 806.0
+offset_bottom = 57.0
+
+[node name="TexturePathControl" parent="RightSide/ScrollContainer/Container/TexturePathContainer" instance=ExtResource( "3" )]
 anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 20.0
-margin_right = 521.0
-margin_bottom = 84.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
-
-[node name="TexturePathControl" parent="RightSide/TexturePathContainer" instance=ExtResource( 3 )]
-
-anchor_right = 0.0
-margin_right = 253.0
-margin_bottom = 64.0
+offset_right = 401.0
+offset_bottom = 57.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 label = "Texture Path"
@@ -92,59 +66,27 @@ file_type = "Texture"
 disabled = true
 has_clear_button = true
 
-[node name="TexturePathTextureFrame" type="Panel" parent="RightSide/TexturePathContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 257.0
-margin_right = 321.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="TexturePathTextureFrame" type="Panel" parent="RightSide/ScrollContainer/Container/TexturePathContainer"]
+offset_left = 405.0
+offset_right = 405.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="TexturePathTexture" type="TextureRect" parent="RightSide/TexturePathContainer/TexturePathTextureFrame"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="TexturePathTexture" type="TextureRect" parent="RightSide/ScrollContainer/Container/TexturePathContainer/TexturePathTextureFrame"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 64, 64 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
 size_flags_horizontal = 2
 size_flags_vertical = 2
-expand = true
-stretch_mode = 0
 
-[node name="ShaderPath" type="HBoxContainer" parent="RightSide"]
+[node name="ShaderPath" type="HBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 61.0
+offset_right = 806.0
+offset_bottom = 118.0
 
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="ShaderPathControl" parent="RightSide/ScrollContainer/Container/ShaderPath" instance=ExtResource( "3" )]
 anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 80.0
-margin_right = 521.0
-margin_bottom = 144.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
-
-[node name="ShaderPathControl" parent="RightSide/ShaderPath" instance=ExtResource( 3 )]
-
-anchor_right = 0.0
-margin_right = 511.0
-margin_bottom = 64.0
+offset_right = 806.0
+offset_bottom = 57.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 label = "Shader Path"
@@ -153,434 +95,181 @@ file_type = "Shader"
 disabled = true
 has_clear_button = true
 
-[node name="SubTextureCountContainer" type="VBoxContainer" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 150.0
-margin_right = 162.0
-margin_bottom = 192.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="SubTextureCountContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 122.0
+offset_right = 806.0
+offset_bottom = 179.0
 alignment = 1
 
-[node name="SubTextureCountXYLabel" type="Label" parent="RightSide/SubTextureCountContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 135.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="SubTextureCountXYLabel" type="Label" parent="RightSide/ScrollContainer/Container/SubTextureCountContainer"]
+offset_right = 171.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "SubTexture Count XY:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="SubTextureCountXYControl" type="SpinBox" parent="RightSide/SubTextureCountContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 74.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="SubTextureCountXYControl" type="SpinBox" parent="RightSide/ScrollContainer/Container/SubTextureCountContainer"]
+offset_top = 28.0
+offset_right = 83.1875
+offset_bottom = 57.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 min_value = 1.0
 max_value = 64.0
 step = 0.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
-[node name="BoxSizeContainer" type="VBoxContainer" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 180.0
-margin_top = 150.0
-margin_right = 332.0
-margin_bottom = 192.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="BoxSizeContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 183.0
+offset_right = 806.0
+offset_bottom = 240.0
 alignment = 1
 
-[node name="BoxSizeLabel" type="Label" parent="RightSide/BoxSizeContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 58.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="BoxSizeLabel" type="Label" parent="RightSide/ScrollContainer/Container/BoxSizeContainer"]
+offset_right = 70.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Box Size:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="BoxSizeControl" type="SpinBox" parent="RightSide/BoxSizeContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 74.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="BoxSizeControl" type="SpinBox" parent="RightSide/ScrollContainer/Container/BoxSizeContainer"]
+offset_top = 28.0
+offset_right = 83.1875
+offset_bottom = 57.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-min_value = 0.0
 max_value = 2096.0
 step = 0.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
-[node name="WindMultiplerContainer" type="VBoxContainer" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 180.0
-margin_top = 200.0
-margin_right = 332.0
-margin_bottom = 242.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="WindMultiplerContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 244.0
+offset_right = 806.0
+offset_bottom = 301.0
 alignment = 1
 
-[node name="WindMultiplerLabel" type="Label" parent="RightSide/WindMultiplerContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 103.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="WindMultiplerLabel" type="Label" parent="RightSide/ScrollContainer/Container/WindMultiplerContainer"]
+offset_right = 127.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Wind Multiplier:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="WindMultiplierControl" type="SpinBox" parent="RightSide/WindMultiplerContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 74.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="WindMultiplierControl" type="SpinBox" parent="RightSide/ScrollContainer/Container/WindMultiplerContainer"]
+offset_top = 28.0
+offset_right = 83.1875
+offset_bottom = 57.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-min_value = 0.0
 max_value = 2096.0
 step = 0.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
-[node name="ParticleDensityContainer" type="VBoxContainer" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 200.0
-margin_right = 162.0
-margin_bottom = 242.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="ParticleDensityContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 305.0
+offset_right = 806.0
+offset_bottom = 362.0
 alignment = 1
 
-[node name="ParticleDensityLabel" type="Label" parent="RightSide/ParticleDensityContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 105.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="ParticleDensityLabel" type="Label" parent="RightSide/ScrollContainer/Container/ParticleDensityContainer"]
+offset_right = 128.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Particle Density:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="ParticleDensityControl" type="SpinBox" parent="RightSide/ParticleDensityContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 74.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="ParticleDensityControl" type="SpinBox" parent="RightSide/ScrollContainer/Container/ParticleDensityContainer"]
+offset_top = 28.0
+offset_right = 83.1875
+offset_bottom = 57.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-min_value = 0.0
 max_value = 2096.0
 step = 0.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
-[node name="ParticleRotationVelocityContainer" type="VBoxContainer" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 180.0
-margin_top = 250.0
-margin_right = 332.0
-margin_bottom = 292.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="ParticleRotationVelocityContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 366.0
+offset_right = 806.0
+offset_bottom = 423.0
 alignment = 1
 
-[node name="ParticleRotationVelocityLabel" type="Label" parent="RightSide/ParticleRotationVelocityContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 164.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="ParticleRotationVelocityLabel" type="Label" parent="RightSide/ScrollContainer/Container/ParticleRotationVelocityContainer"]
+offset_right = 205.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Particle Rotation Velocity:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="ParticleRotationVelocityControl" type="SpinBox" parent="RightSide/ParticleRotationVelocityContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 74.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="ParticleRotationVelocityControl" type="SpinBox" parent="RightSide/ScrollContainer/Container/ParticleRotationVelocityContainer"]
+offset_top = 28.0
+offset_right = 83.1875
+offset_bottom = 57.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 min_value = -2096.0
 max_value = 2096.0
 step = 0.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
-[node name="ParticleSizeContainer" type="VBoxContainer" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 260.0
-margin_right = 162.0
-margin_bottom = 348.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="ParticleSizeContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 427.0
+offset_right = 806.0
+offset_bottom = 545.0
 alignment = 1
 
-[node name="ParticleSizeLabelX" type="Label" parent="RightSide/ParticleSizeContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 94.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="ParticleSizeLabelX" type="Label" parent="RightSide/ScrollContainer/Container/ParticleSizeContainer"]
+offset_right = 116.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Particle Size X:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="ParticleSizeControlX" type="SpinBox" parent="RightSide/ParticleSizeContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 74.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="ParticleSizeControlX" type="SpinBox" parent="RightSide/ScrollContainer/Container/ParticleSizeContainer"]
+offset_top = 28.0
+offset_right = 83.1875
+offset_bottom = 57.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-min_value = 0.0
 max_value = 2096.0
 step = 0.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
-[node name="ParticleSizeLabelY" type="Label" parent="RightSide/ParticleSizeContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 46.0
-margin_right = 93.0
-margin_bottom = 60.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="ParticleSizeLabelY" type="Label" parent="RightSide/ScrollContainer/Container/ParticleSizeContainer"]
+offset_top = 61.0
+offset_right = 115.0
+offset_bottom = 85.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Particle Size Y:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="ParticleSizeControlY" type="SpinBox" parent="RightSide/ParticleSizeContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 64.0
-margin_right = 74.0
-margin_bottom = 88.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="ParticleSizeControlY" type="SpinBox" parent="RightSide/ScrollContainer/Container/ParticleSizeContainer"]
+offset_top = 89.0
+offset_right = 83.1875
+offset_bottom = 118.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-min_value = 0.0
 max_value = 2096.0
 step = 0.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
-
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
-
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
-
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
-
-[connection signal="file_selected" from="RightSide/TexturePathContainer/TexturePathControl" to="." method="_on_TexturePathControl_file_selected"]
-
-[connection signal="file_selected" from="RightSide/ShaderPath/ShaderPathControl" to="." method="_on_ShaderPathControl_file_selected"]
-
-[connection signal="value_changed" from="RightSide/SubTextureCountContainer/SubTextureCountXYControl" to="." method="_on_SubTextureCountXYControl_value_changed"]
-
-[connection signal="value_changed" from="RightSide/BoxSizeContainer/BoxSizeControl" to="." method="_on_BoxSizeControl_value_changed"]
-
-[connection signal="value_changed" from="RightSide/WindMultiplerContainer/WindMultiplierControl" to="." method="_on_WindMultiplierControl_value_changed"]
-
-[connection signal="value_changed" from="RightSide/ParticleDensityContainer/ParticleDensityControl" to="." method="_on_ParticleDensityControl_value_changed"]
-
-[connection signal="value_changed" from="RightSide/ParticleRotationVelocityContainer/ParticleRotationVelocityControl" to="." method="_on_ParticleRotationVelocityControl_value_changed"]
-
-[connection signal="value_changed" from="RightSide/ParticleSizeContainer/ParticleSizeControlX" to="." method="_on_ParticleSizeControlX_value_changed"]
-
-[connection signal="value_changed" from="RightSide/ParticleSizeContainer/ParticleSizeControlY" to="." method="_on_ParticleSizeControlY_value_changed"]
-
-
+[connection signal="file_selected" from="RightSide/ScrollContainer/Container/TexturePathContainer/TexturePathControl" to="." method="_on_TexturePathControl_file_selected"]
+[connection signal="file_selected" from="RightSide/ScrollContainer/Container/ShaderPath/ShaderPathControl" to="." method="_on_ShaderPathControl_file_selected"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/SubTextureCountContainer/SubTextureCountXYControl" to="." method="_on_SubTextureCountXYControl_value_changed"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/BoxSizeContainer/BoxSizeControl" to="." method="_on_BoxSizeControl_value_changed"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/WindMultiplerContainer/WindMultiplierControl" to="." method="_on_WindMultiplierControl_value_changed"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/ParticleDensityContainer/ParticleDensityControl" to="." method="_on_ParticleDensityControl_value_changed"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/ParticleRotationVelocityContainer/ParticleRotationVelocityControl" to="." method="_on_ParticleRotationVelocityControl_value_changed"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/ParticleSizeContainer/ParticleSizeControlX" to="." method="_on_ParticleSizeControlX_value_changed"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/ParticleSizeContainer/ParticleSizeControlY" to="." method="_on_ParticleSizeControlY_value_changed"]

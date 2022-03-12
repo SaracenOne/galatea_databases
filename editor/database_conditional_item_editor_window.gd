@@ -1,49 +1,49 @@
-extends Control
-tool
+@tool
+extends Popup
 
 const methods_const = preload("../methods/methods.gd")
-var master_method_dict = null
+var master_method_dict: Dictionary = {}
 
 const conditionals_const = preload("../conditionals/conditionals.gd")
-var conditional_item = null
+var conditional_item: RefCounted = null
 
-var databases = null
+var databases: RefCounted = null
 
-var svar_database_list = preload("database_list.tscn").instance()
-var generic_list_popup = preload("database_generic_list.tscn").instance()
-var database_argument_menu = preload("database_argument_menu.tscn").instance()
+var svar_database_list = preload("database_list.tscn").instantiate()
+var generic_list_popup = preload("database_generic_list.tscn").instantiate()
+var database_argument_menu = preload("database_argument_menu.tscn").instantiate()
 
-export(NodePath) var method_selection = NodePath()
-export(NodePath) var arguments_selection = NodePath()
-export(NodePath) var operator_selection = NodePath()
+@export var method_selection: NodePath  = NodePath()
+@export var arguments_selection: NodePath  = NodePath()
+@export var operator_selection: NodePath  = NodePath()
 
-export(NodePath) var value_type_selection = NodePath()
+@export var value_type_selection: NodePath  = NodePath()
 
-export(NodePath) var value_spinbox = NodePath()
-export(NodePath) var value_button = NodePath()
-export(NodePath) var value_line_edit = NodePath()
-export(NodePath) var value_checkbox = NodePath()
+@export var value_spinbox: NodePath  = NodePath()
+@export var value_button: NodePath  = NodePath()
+@export var value_line_edit: NodePath  = NodePath()
+@export var value_checkbox: NodePath  = NodePath()
 
-export(NodePath) var subject_selection = NodePath()
-export(NodePath) var source_button = NodePath()
+@export var subject_selection: NodePath  = NodePath()
+@export var source_button: NodePath  = NodePath()
 
-export(NodePath) var or_checkbox = NodePath()
+@export var or_checkbox: NodePath  = NodePath()
 
-onready var _method_selection_node = get_node(method_selection)
-onready var _arguments_selection_node = get_node(arguments_selection)
-onready var _operator_selection_node = get_node(operator_selection)
+@onready var _method_selection_node = get_node(method_selection)
+@onready var _arguments_selection_node = get_node(arguments_selection)
+@onready var _operator_selection_node = get_node(operator_selection)
 
-onready var _value_type_selection_node = get_node(value_type_selection)
+@onready var _value_type_selection_node = get_node(value_type_selection)
 
-onready var _value_spinbox_node = get_node(value_spinbox)
-onready var _value_button_node = get_node(value_button)
-onready var _value_line_edit_node = get_node(value_line_edit)
-onready var _value_checkbox_node = get_node(value_checkbox)
+@onready var _value_spinbox_node = get_node(value_spinbox)
+@onready var _value_button_node = get_node(value_button)
+@onready var _value_line_edit_node = get_node(value_line_edit)
+@onready var _value_checkbox_node = get_node(value_checkbox)
 
-onready var _subject_selection_node = get_node(subject_selection)
-onready var _source_button_node = get_node(source_button)
+@onready var _subject_selection_node = get_node(subject_selection)
+@onready var _source_button_node = get_node(source_button)
 
-onready var _or_checkbox_node = get_node(or_checkbox)
+@onready var _or_checkbox_node = get_node(or_checkbox)
 
 var method_selection_id = -1
 var valid_method_list = []
@@ -64,41 +64,41 @@ func _svar_button_pressed():
 
 func setup_controls():
 	if(_method_selection_node):
-		if(_method_selection_node.is_connected("pressed", self, "method_selection_pressed")):
-			_method_selection_node.disconnect("pressed", self, "method_selection_pressed")
-		_method_selection_node.connect("pressed", self, "method_selection_pressed")
+		if(_method_selection_node.is_connected("pressed", Callable(self, "method_selection_pressed"))):
+			_method_selection_node.disconnect("pressed", Callable(self, "method_selection_pressed"))
+		assert(_method_selection_node.connect("pressed", Callable(self, "method_selection_pressed")) == OK)
 		
 	if(_arguments_selection_node):
-		if(_arguments_selection_node.is_connected("pressed", self, "argument_selection_pressed")):
-			_arguments_selection_node.disconnect("pressed", self, "argument_selection_pressed")
-		_arguments_selection_node.connect("pressed", self, "argument_selection_pressed")
+		if(_arguments_selection_node.is_connected("pressed", Callable(self, "argument_selection_pressed"))):
+			_arguments_selection_node.disconnect("pressed", Callable(self, "argument_selection_pressed"))
+		assert(_arguments_selection_node.connect("pressed", Callable(self, "argument_selection_pressed")) == OK)
 		
 	if(_operator_selection_node):
 		var operator_popup = _operator_selection_node.get_popup()
 		operator_popup.clear()
-		if(operator_popup.is_connected("id_pressed", self, "operator_type_selected")):
-			operator_popup.disconnect("id_pressed", self, "operator_type_selected")
-		operator_popup.connect("id_pressed", self, "operator_type_selected")
+		if(operator_popup.is_connected("id_pressed", Callable(self, "operator_type_selected"))):
+			operator_popup.disconnect("id_pressed", Callable(self, "operator_type_selected"))
+		operator_popup.connect("id_pressed", Callable(self, "operator_type_selected"))
 		var operator_string_array = conditionals_const.get_array_of_operator_strings()
 		
 		for i in range(0, operator_string_array.size()):
 			operator_popup.add_item(operator_string_array[i], i)
 			
 	if(_value_button_node):
-		_value_button_node.connect("pressed", self, "_svar_button_pressed")
+		assert(_value_button_node.connect("pressed", Callable(self, "_svar_button_pressed")) == OK)
 			
 	if(_value_spinbox_node):
-		_value_spinbox_node.connect("value_changed", self, "_spinbox_value_changed")
+		assert(_value_spinbox_node.connect("value_changed", Callable(self, "_spinbox_value_changed")) == OK)
 		
 	if(_value_checkbox_node):
-		_value_checkbox_node.connect("toggled", self, "_checkbox_value_changed")
+		assert(_value_checkbox_node.connect("toggled", Callable(self, "_checkbox_value_changed")) == OK)
 			
 	if(_value_type_selection_node):
 		var value_type_popup = _value_type_selection_node.get_popup()
 		value_type_popup.clear()
-		if(value_type_popup.is_connected("id_pressed", self, "value_type_selected")):
-			value_type_popup.disconnet("id_pressed", self, "value_type_selected")
-		value_type_popup.connect("id_pressed", self, "value_type_selected")
+		if(value_type_popup.is_connected("id_pressed", Callable(self, "value_type_selected"))):
+			value_type_popup.disconnet("id_pressed", Callable(self, "value_type_selected"))
+		value_type_popup.connect("id_pressed", Callable(self, "value_type_selected"))
 		var value_type_string_array = conditionals_const.get_array_of_value_type_strings()
 		
 		for i in range(0, value_type_string_array.size()):
@@ -106,9 +106,9 @@ func setup_controls():
 			
 	if(_subject_selection_node):
 		var subject_selection_popup = _subject_selection_node.get_popup()
-		if(subject_selection_popup.is_connected("id_pressed", self, "subject_selected")):
-			subject_selection_popup.disconnect("id_pressed", self, "subject_selected")
-		subject_selection_popup.connect("id_pressed", self, "subject_selected")
+		if(subject_selection_popup.is_connected("id_pressed", Callable(self, "subject_selected"))):
+			subject_selection_popup.disconnect("id_pressed", Callable(self, "subject_selected"))
+		subject_selection_popup.connect("id_pressed", Callable(self, "subject_selected"))
 		var subject_string_array = conditionals_const.get_array_of_subjects()
 		
 		subject_selection_popup.clear()
@@ -116,9 +116,9 @@ func setup_controls():
 			subject_selection_popup.add_item(subject_string_array[i], i)
 		
 	if(_or_checkbox_node):
-		if(_or_checkbox_node.is_connected("toggled", self, "or_checkbox_toggled")):
-			_or_checkbox_node.disconnect("toggled", self, "or_checkbox_toggled")
-		_or_checkbox_node.connect("toggled", self, "or_checkbox_toggled")
+		if(_or_checkbox_node.is_connected("toggled", Callable(self, "or_checkbox_toggled"))):
+			_or_checkbox_node.disconnect("toggled", Callable(self, "or_checkbox_toggled"))
+		assert(_or_checkbox_node.connect("toggled", Callable(self, "or_checkbox_toggled"))  == OK)
 
 func set_value_type(p_value_type):
 	if(conditional_item):
@@ -207,7 +207,7 @@ func _ready():
 	setup_controls()
 	master_method_dict = methods_const.get_master_method_dict()
 	
-	svar_database_list.connect("record_selected", self, "confirm_svar_selection")
+	svar_database_list.connect("record_selected", Callable(self, "confirm_svar_selection"))
 	
 	add_child(generic_list_popup)
 	add_child(database_argument_menu)
@@ -222,8 +222,8 @@ func method_selection_pressed():
 		method_list.append(method)
 		
 	if(method_list.size() > 0):
-		generic_list_popup.connect("popup_hide", self, "_method_selection_hidden")
-		generic_list_popup.connect("list_item_selected", self, "_on_method_selected")
+		generic_list_popup.connect("close_requested", Callable(self, "_method_selection_hidden"))
+		generic_list_popup.connect("list_item_selected", Callable(self, "_on_method_selected"))
 	
 		generic_list_popup.populate_tree(method_list)
 		generic_list_popup.popup_centered_ratio()
@@ -263,7 +263,7 @@ func _on_method_selected(p_method):
 	if(conditional_item):
 		conditional_item.conditional_method = p_method
 		
-		var method_item = master_method_dict[conditional_item.conditional_method]
+		var method_item: RefCounted = master_method_dict[conditional_item.conditional_method]
 		conditional_item.arguments = []
 		conditional_item.arguments.resize(method_item.arguments.size())
 		
@@ -289,14 +289,14 @@ func _on_method_selected(p_method):
 		_arguments_selection_node.set_text(get_arguments_string(method_item))
 	
 func _method_selection_hidden():
-	if(generic_list_popup.is_connected("popup_hide", self, "_method_selection_hidden")):
-		generic_list_popup.disconnect("popup_hide", self, "_method_selection_hidden")
+	if(generic_list_popup.is_connected("popup_hide", Callable(self, "_method_selection_hidden"))):
+		generic_list_popup.disconnect("popup_hide", Callable(self, "_method_selection_hidden"))
 	
-	if(generic_list_popup.is_connected("list_item_selected", self, "_on_method_selected")):
-		generic_list_popup.disconnect("list_item_selected", self, "_on_method_selected")
+	if(generic_list_popup.is_connected("list_item_selected", Callable(self, "_on_method_selected"))):
+		generic_list_popup.disconnect("list_item_selected", Callable(self, "_on_method_selected"))
 		
 func argument_menu_dismissed():
-	database_argument_menu.disconnect("menu_dismissed", self, "argument_menu_dismissed")
+	database_argument_menu.disconnect("menu_dismissed", Callable(self, "argument_menu_dismissed"))
 	
 	if(conditional_item):
 		var method_item = master_method_dict[conditional_item.conditional_method]
@@ -304,12 +304,12 @@ func argument_menu_dismissed():
 
 func argument_selection_pressed():
 	if(conditional_item and conditional_item.conditional_method):
-		var method_item = master_method_dict[conditional_item.conditional_method]
+		var method_item: RefCounted = master_method_dict[conditional_item.conditional_method]
 		if(method_item.arguments.size() > 0):
 			database_argument_menu.set_arguments(conditional_item.arguments, method_item.arguments)
 			database_argument_menu.assign_databases(databases)
-			if(!database_argument_menu.is_connected("menu_dismissed", self, "argument_menu_dismissed")):
-				database_argument_menu.connect("menu_dismissed", self, "argument_menu_dismissed")
+			if(!database_argument_menu.is_connected("menu_dismissed", Callable(self, "argument_menu_dismissed"))):
+				database_argument_menu.connect("menu_dismissed", Callable(self, "argument_menu_dismissed"))
 			database_argument_menu.popup_centered_ratio()
 	
 func operator_type_selected(p_id):

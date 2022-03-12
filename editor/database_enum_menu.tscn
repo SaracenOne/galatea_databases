@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_enum_menu.gd" type="Script" id=1]
 
 
-[node name="EnumList" type="WindowDialog"]
+[node name="EnumList" type="Popup"]
 
 anchor_left = 0.0
 anchor_top = 0.0

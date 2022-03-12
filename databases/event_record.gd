@@ -1,15 +1,16 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
 
 const conditionals_const = preload("../conditionals/conditionals.gd")
 
-export(String) var adv_label = ""
-export(int) var priority = 0
-export(bool) var manual = false
-export(Resource) var conditionals = conditionals_const.new()
+@export var adv_label: String = ""
+@export var priority: int = 0
+@export var manual: bool = false
+@export var conditionals: Resource = conditionals_const.new()
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 
 	if(p_dictionary_record.has("adv_label")):
 		adv_label = p_dictionary_record.adv_label
@@ -22,7 +23,7 @@ func _load_record(p_dictionary_record, p_databases):
 
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 
 	p_dictionary_record.adv_label = adv_label
 	p_dictionary_record.priority = priority

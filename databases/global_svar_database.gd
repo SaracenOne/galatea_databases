@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const global_svar_record_const = preload("global_svar_record.gd")
 
 const DATABASE_IDENT = "SVAR"
 const DATABASE_NAME = "global_svar_database"
 const DATABASE_NAME_JSON = "global_svar_database.json"
-const DATABASE_NAME_BINARY = "global_svar_database.gdb"
 const DATABASE_INLINED_FILENAME = "global_svar_database_inlined.gd"
 const RECORDS_NAME = "global_svar_records"
 	
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return global_svar_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

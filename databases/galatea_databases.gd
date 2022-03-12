@@ -1,3 +1,4 @@
+@tool
 const activity_database_const = preload("activity_database.gd")
 const ai_package_database_const = preload("ai_package_database.gd")
 const actor_database_const = preload("actor_database.gd")
@@ -72,8 +73,6 @@ const STAT_STAMINA = 7
 const STAT_LUCK = 8
 const STAT_REPUTATION = 9
 const STAT_MONEY = 10
-
-const DATABASE_NAME_BINARY = "databases.gbd"
 
 var database_list = {}
 var database_dirty_list = []

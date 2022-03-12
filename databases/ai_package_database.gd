@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const ai_package_record_const = preload("ai_package_record.gd")
 
 const DATABASE_IDENT = "AIPK"
 const DATABASE_NAME = "ai_package_database"
 const DATABASE_NAME_JSON = "ai_package_database.json"
-const DATABASE_NAME_BINARY = "ai_package_database.gbd"
 const DATABASE_INLINED_FILENAME = "ai_package_database_inlined.gd"
 const RECORDS_NAME = "ai_package_records"
 	
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return ai_package_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

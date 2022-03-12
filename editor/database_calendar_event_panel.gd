@@ -1,27 +1,27 @@
-tool
-extends "database_panel.gd"
+@tool
+extends "./database_panel.gd"
 
-export(NodePath) var printed_name_control = NodePath()
-export(NodePath) var calendar_icon_path_control = NodePath()
-export(NodePath) var calendar_icon_preview_control = NodePath()
-export(NodePath) var date_start_control = NodePath()
-export(NodePath) var date_end_control = NodePath()
-export(NodePath) var is_school_holiday_control = NodePath()
-export(NodePath) var is_hidden_control = NodePath()
+@export var printed_name_control: NodePath  = NodePath()
+@export var calendar_icon_path_control: NodePath  = NodePath()
+@export var calendar_icon_preview_control: NodePath  = NodePath()
+@export var date_start_control: NodePath  = NodePath()
+@export var date_end_control: NodePath  = NodePath()
+@export var is_school_holiday_control: NodePath  = NodePath()
+@export var is_hidden_control: NodePath  = NodePath()
 
-onready var _printed_name_control_node = get_node(printed_name_control)
-onready var _calendar_icon_path_control_node = get_node(calendar_icon_path_control)
-onready var _calendar_icon_preview_control_node = get_node(calendar_icon_preview_control)
-onready var _date_start_control_node = get_node(date_start_control)
-onready var _date_end_control_node = get_node(date_end_control)
-onready var _is_school_holiday_control_node = get_node(is_school_holiday_control)
-onready var _is_hidden_control_node = get_node(is_hidden_control)
+@onready var _printed_name_control_node = get_node(printed_name_control)
+@onready var _calendar_icon_path_control_node = get_node(calendar_icon_path_control)
+@onready var _calendar_icon_preview_control_node = get_node(calendar_icon_preview_control)
+@onready var _date_start_control_node = get_node(date_start_control)
+@onready var _date_end_control_node = get_node(date_end_control)
+@onready var _is_school_holiday_control_node = get_node(is_school_holiday_control)
+@onready var _is_hidden_control_node = get_node(is_hidden_control)
 
 func _ready():
 	pass
 
 func galatea_databases_assigned():
-	.galatea_databases_assigned()
+	super.galatea_databases_assigned()
 	
 	current_database = galatea_databases.calendar_event_database
 	if(current_database != null):
@@ -30,7 +30,7 @@ func galatea_databases_assigned():
 		printerr("calendar_event_database is null")
 
 func set_current_record_callback(p_record):
-	.set_current_record_callback(p_record)
+	super.set_current_record_callback(p_record)
 	
 	_printed_name_control_node.set_text(current_record.printed_name)
 	_printed_name_control_node.set_editable(true)
@@ -40,7 +40,7 @@ func set_current_record_callback(p_record):
 	
 	_calendar_icon_preview_control_node.set_texture(null)
 	var calendar_icon_texture = null
-	if(!p_record.calendar_icon_path.empty()):
+	if(!p_record.calendar_icon_path.is_empty()):
 		calendar_icon_texture = load(p_record.calendar_icon_path)
 	if(calendar_icon_texture):
 		if(calendar_icon_texture is Texture):
@@ -64,7 +64,7 @@ func set_current_record_callback(p_record):
 func _on_PrintedNameLineEdit_text_changed( text ):
 	if(current_record):
 		current_record.printed_name = text
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_CalendarIconFilePath_file_selected( p_path ):
 	if(current_record):
@@ -72,40 +72,40 @@ func _on_CalendarIconFilePath_file_selected( p_path ):
 		
 		_calendar_icon_preview_control_node.set_texture(null)
 		var calendar_icon_texture = null
-		if(!p_path.empty()):
+		if(!p_path.is_empty()):
 			calendar_icon_texture = load(p_path)
 		if(calendar_icon_texture):
 			if(calendar_icon_texture is Texture):
 				_calendar_icon_preview_control_node.set_texture(calendar_icon_texture)
 			
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_StartDateOption_day_changed( p_day ):
 	if(current_record):
 		current_record.start_date_day = p_day
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_StartDateOption_month_changed( p_month ):
 	if(current_record):
 		current_record.start_date_month = p_month + 1
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_EndDateOption_day_changed( p_day ):
 	if(current_record):
 		current_record.end_date_day = p_day
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_EndDateOption_month_changed( p_month ):
 	if(current_record):
 		current_record.end_date_month = p_month + 1
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_IsSchoolHolidayCheckBox_toggled( pressed ):
 	if(current_record):
 		current_record.is_school_holiday = pressed
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_IsHiddenCheckBox_toggled( pressed ):
 	if(current_record):
 		current_record.is_hidden = pressed
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)

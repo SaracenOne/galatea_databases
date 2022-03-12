@@ -1,7 +1,7 @@
-tool
-extends Control
+@tool
+extends Popup
 
-var check_button = null
+var check_button: CheckButton = null
 
 signal boolean_selected(p_bool)
 

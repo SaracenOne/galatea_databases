@@ -1,6 +1,7 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
 
-const generic_database_const = preload("generic_database.gd")
+const conversion_const = preload("../data/conversion.gd")
 
 enum biped_enum {
 	BIPED_HEAD = 1 >> 1,
@@ -19,18 +20,18 @@ enum biped_enum {
 
 const biped_name_array = ["Head", "Upper Body", "Lower Body", "Hands", "Feet", "Upper Underwear", "Lower Underwear", "Socks", "Glasses", "Hat"]
 
-export(String) var printed_name = ""
-export(Array) var clothing_parts = []
-export(int) var biped_flags = 0
+@export var printed_name: String = ""
+@export var clothing_parts: Array = []
+@export var biped_flags: int = 0
 
-export(Dictionary) var male_stamp_table = {}
-export(Dictionary) var female_stamp_table = {}
+@export var male_stamp_table: Dictionary = {}
+@export var female_stamp_table: Dictionary = {}
 
-export(int) var depth = 0
+@export var depth: int = 0
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 	
 	if(p_dictionary_record.has("printed_name")):
 		printed_name = p_dictionary_record.printed_name
@@ -48,20 +49,20 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("male_stamp_table")):
 		for key in p_dictionary_record.male_stamp_table.keys():
 			var stamp = p_databases.stamp_database.find_record_by_name(key)
-			male_stamp_table[stamp] = generic_database_const.convert_string_to_color(p_dictionary_record.male_stamp_table[key])
+			male_stamp_table[stamp] = conversion_const.convert_string_to_color(p_dictionary_record.male_stamp_table[key])
 	
 	female_stamp_table = {}
 	if(p_dictionary_record.has("female_stamp_table")):
 		for key in p_dictionary_record.female_stamp_table.keys():
 			var stamp = p_databases.stamp_database.find_record_by_name(key)
-			female_stamp_table[stamp] = generic_database_const.convert_string_to_color(p_dictionary_record.female_stamp_table[key])
+			female_stamp_table[stamp] = conversion_const.convert_string_to_color(p_dictionary_record.female_stamp_table[key])
 	
 	if(p_dictionary_record.has("depth")):
 		depth = p_dictionary_record.depth
 	
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.printed_name = printed_name
 	

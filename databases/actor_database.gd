@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const actor_record_const = preload("actor_record.gd")
 
 const DATABASE_IDENT = "ACTR"
 const DATABASE_NAME = "actor_database"
 const DATABASE_NAME_JSON = "actor_database.json"
-const DATABASE_NAME_BINARY = "actor_database.gbd"
 const DATABASE_INLINED_FILENAME = "actor_database_inlined.gd"
 const RECORDS_NAME = "actor_records"
 	
@@ -32,5 +31,5 @@ func get_record_inlined_code(p_database_record):
 	var dict = {}
 	return dict
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

@@ -1,6 +1,5 @@
-extends "generic_record.gd"
-
-const generic_database_const = preload("generic_database.gd")
+@tool
+extends "./generic_record.gd"
 
 enum {HEADPART_HEAD,
  HEADPART_EYES,
@@ -9,12 +8,12 @@ enum {HEADPART_HEAD,
  HEADPART_EYELASHES,
  HEADPART_MAX}
 
-export(int) var headpart_type = HEADPART_HEAD
-export(Resource) var meshpart = null
-export(Resource) var stamp = null
-export(String) var main_icon_path = ""
-export(bool) var character_creator = false
-export(bool) var use_hair_color = false
+@export var headpart_type: int = HEADPART_HEAD
+@export var meshpart: Resource = null
+@export var stamp: Resource = null
+@export var main_icon_path: String = ""
+@export var character_creator: bool = false
+@export var use_hair_color: bool = false
 
 static func get_headpart_from_string(p_string):
 	var lower_string = p_string.to_lower()
@@ -48,7 +47,7 @@ static func get_string_from_headpart(p_headpart_type):
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 	
 	if(p_dictionary_record.has("headpart_type")):
 		headpart_type = get_headpart_from_string(p_dictionary_record.headpart_type)
@@ -72,7 +71,7 @@ func _load_record(p_dictionary_record, p_databases):
 	
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.headpart_type = get_string_from_headpart(headpart_type)
 	if(meshpart):

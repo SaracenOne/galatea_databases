@@ -1,497 +1,242 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://dtu4w6epq65cw"]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_item_panel.gd" type="Script" id=1]
-[ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=3]
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_item_panel.gd" id="1"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_records.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_file_path_control.tscn" id="3"]
 
-[node name="ItemPanel" type="HSplitContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="ItemPanel" type="HSplitContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
+mouse_filter = 0
 split_offset = -300
-collapsed = false
 dragger_visibility = 1
-script = ExtResource( 1 )
-printed_name_control = NodePath("RightSide/Container/PrintedNameContainer/PrintedNameLineEdit")
-description_control = NodePath("RightSide/Container/DescriptionContainer/DescriptionTextEdit")
-value_control = NodePath("RightSide/Container/ValueContainer/ValueSpinBox")
-item_type_control = NodePath("RightSide/Container/ItemTypeContainer/ItemTypeOptionButton")
-icon_file_control = NodePath("RightSide/Container/IconFilePathControl")
-pickup_sfx_control = NodePath("RightSide/Container/PickupSFXPathControl")
-putdown_sfx_control = NodePath("RightSide/Container/PutdownSFXPathControl")
-can_gift_control = NodePath("RightSide/Container/FlagsContainer/CanGiftContainer/CanGiftCheckBox")
-invisible_in_inventory_control = NodePath("RightSide/Container/FlagsContainer/InvisibleInInventory/InvisibleInInventoryCheckbox")
+script = ExtResource( "1" )
+printed_name_control = NodePath("RightSide/ScrollContainer/Container/PrintedNameContainer/PrintedNameLineEdit")
+description_control = NodePath("RightSide/ScrollContainer/Container/DescriptionContainer/DescriptionTextEdit")
+value_control = NodePath("RightSide/ScrollContainer/Container/ValueContainer/ValueSpinBox")
+item_type_control = NodePath("RightSide/ScrollContainer/Container/ItemTypeContainer/ItemTypeOptionButton")
+icon_file_control = NodePath("RightSide/ScrollContainer/Container/IconFilePathControl")
+pickup_sfx_control = NodePath("RightSide/ScrollContainer/Container/PickupSFXPathControl")
+putdown_sfx_control = NodePath("RightSide/ScrollContainer/Container/PutdownSFXPathControl")
+can_gift_control = NodePath("RightSide/ScrollContainer/Container/FlagsContainer/CanGiftContainer/CanGiftCheckBox")
+invisible_in_inventory_control = NodePath("RightSide/ScrollContainer/Container/FlagsContainer/InvisibleInInventory/InvisibleInInventoryCheckbox")
 
-[node name="LeftSide" type="Control" parent="." index="0"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 294.0
-margin_bottom = 800.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+[node name="LeftSide" type="Control" parent="."]
+offset_right = 206.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DatabaseRecords" parent="LeftSide" index="0" instance=ExtResource( 2 )]
+[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( "2" )]
 
-[node name="RightSide" type="Control" parent="." index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 306.0
-margin_right = 1200.0
-margin_bottom = 800.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+[node name="RightSide" type="Control" parent="."]
+offset_left = 218.0
+offset_right = 1024.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Container" type="VBoxContainer" parent="RightSide" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="ScrollContainer" type="ScrollContainer" parent="RightSide"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
+horizontal_scroll_mode = 0
 
-[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide/Container" index="0"]
+[node name="Container" type="VBoxContainer" parent="RightSide/ScrollContainer"]
+offset_right = 798.0
+offset_bottom = 627.0
+size_flags_horizontal = 3
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 894.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+[node name="PrintedNameContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_right = 798.0
+offset_bottom = 57.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="PrintedNameLabel" type="Label" parent="RightSide/Container/PrintedNameContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 92.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
+[node name="PrintedNameLabel" type="Label" parent="RightSide/ScrollContainer/Container/PrintedNameContainer"]
+offset_right = 115.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Printed Name:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/Container/PrintedNameContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 894.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+[node name="PrintedNameLineEdit" type="LineEdit" parent="RightSide/ScrollContainer/Container/PrintedNameContainer"]
+offset_top = 28.0
+offset_right = 798.0
+offset_bottom = 57.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-focus_mode = 2
-placeholder_alpha = 0.6
-caret_blink = false
-caret_blink_speed = 0.65
-context_menu_enabled = true
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="DescriptionContainer" type="VBoxContainer" parent="RightSide/Container" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 46.0
-margin_right = 894.0
-margin_bottom = 546.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+[node name="DescriptionContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 61.0
+offset_right = 798.0
+offset_bottom = 289.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="DescriptionLabel" type="Label" parent="RightSide/Container/DescriptionContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 78.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
+[node name="DescriptionLabel" type="Label" parent="RightSide/ScrollContainer/Container/DescriptionContainer"]
+offset_right = 96.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Description:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="DescriptionTextEdit" type="TextEdit" parent="RightSide/Container/DescriptionContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 894.0
-margin_bottom = 500.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+[node name="DescriptionTextEdit" type="TextEdit" parent="RightSide/ScrollContainer/Container/DescriptionContainer"]
+minimum_size = Vector2(0, 200)
+offset_top = 28.0
+offset_right = 798.0
+offset_bottom = 228.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = ""
-readonly = false
-highlight_current_line = false
-syntax_highlighting = false
-show_line_numbers = false
-highlight_all_occurrences = false
-override_selected_font_color = false
-context_menu_enabled = true
-smooth_scrolling = false
-v_scroll_speed = 80.0
-hiding_enabled = 0
-caret_block_mode = false
-caret_blink = false
-caret_blink_speed = 0.65
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="ValueContainer" type="VBoxContainer" parent="RightSide/Container" index="2"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 550.0
-margin_right = 894.0
-margin_bottom = 592.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+[node name="ValueContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 293.0
+offset_right = 798.0
+offset_bottom = 350.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="ValueLabel" type="Label" parent="RightSide/Container/ValueContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 39.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
+[node name="ValueLabel" type="Label" parent="RightSide/ScrollContainer/Container/ValueContainer"]
+offset_right = 48.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Value:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="ValueSpinBox" type="SpinBox" parent="RightSide/Container/ValueContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 74.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+[node name="ValueSpinBox" type="SpinBox" parent="RightSide/ScrollContainer/Container/ValueContainer"]
+offset_top = 28.0
+offset_right = 83.1875
+offset_bottom = 57.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-min_value = 0.0
 max_value = 1.21575e+09
 step = 0.0
-page = 0.0
-value = 0.0
-exp_edit = false
 rounded = true
-editable = true
-prefix = ""
-suffix = ""
 
-[node name="ItemTypeContainer" type="VBoxContainer" parent="RightSide/Container" index="3"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 596.0
-margin_right = 894.0
-margin_bottom = 634.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+[node name="ItemTypeContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 354.0
+offset_right = 798.0
+offset_bottom = 411.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="ItemTypeLabel" type="Label" parent="RightSide/Container/ItemTypeContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 69.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
+[node name="ItemTypeLabel" type="Label" parent="RightSide/ScrollContainer/Container/ItemTypeContainer"]
+offset_right = 83.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Item Type:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="ItemTypeOptionButton" type="OptionButton" parent="RightSide/Container/ItemTypeContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 69.0
-margin_bottom = 38.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+[node name="ItemTypeOptionButton" type="OptionButton" parent="RightSide/ScrollContainer/Container/ItemTypeContainer"]
+offset_top = 28.0
+offset_right = 79.0
+offset_bottom = 57.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 disabled = true
 toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Misc"
-flat = false
-align = 0
-selected = 0
-items = [ "Misc", null, false, 1, null, "Key", null, false, 2, null, "Consumable", null, false, 3, null ]
 
-[node name="IconFilePathControl" parent="RightSide/Container" index="4" instance=ExtResource( 3 )]
-
+[node name="IconFilePathControl" parent="RightSide/ScrollContainer/Container" instance=ExtResource( "3" )]
 anchor_right = 0.0
-margin_top = 638.0
-margin_right = 894.0
-margin_bottom = 680.0
+offset_top = 415.0
+offset_right = 798.0
+offset_bottom = 472.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-_sections_unfolded = [ "Margin", "Size Flags" ]
 label = "Icon File:"
 file_browser_title = "Open Image"
 file_type = "Texture"
 disabled = true
 has_clear_button = true
 
-[node name="PickupSFXPathControl" parent="RightSide/Container" index="5" instance=ExtResource( 3 )]
-
+[node name="PickupSFXPathControl" parent="RightSide/ScrollContainer/Container" instance=ExtResource( "3" )]
 anchor_right = 0.0
-margin_top = 684.0
-margin_right = 894.0
-margin_bottom = 726.0
+offset_top = 476.0
+offset_right = 798.0
+offset_bottom = 533.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-_sections_unfolded = [ "Margin", "Size Flags" ]
 label = "Pickup SFX:"
 file_browser_title = "Open Sample"
 file_type = "AudioStreamSample"
 disabled = true
 has_clear_button = true
 
-[node name="PutdownSFXPathControl" parent="RightSide/Container" index="6" instance=ExtResource( 3 )]
-
+[node name="PutdownSFXPathControl" parent="RightSide/ScrollContainer/Container" instance=ExtResource( "3" )]
 anchor_right = 0.0
-margin_top = 730.0
-margin_right = 894.0
-margin_bottom = 772.0
+offset_top = 537.0
+offset_right = 798.0
+offset_bottom = 594.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-_sections_unfolded = [ "Margin", "Size Flags" ]
 label = "Putdown SFX:"
 file_browser_title = "Open Sample"
 file_type = "AudioStreamSample"
 disabled = true
 has_clear_button = true
 
-[node name="FlagsContainer" type="HBoxContainer" parent="RightSide/Container" index="7"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 776.0
-margin_right = 254.0
-margin_bottom = 800.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+[node name="FlagsContainer" type="HBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 598.0
+offset_right = 295.0
+offset_bottom = 627.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="CanGiftContainer" type="HBoxContainer" parent="RightSide/Container/FlagsContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 82.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+[node name="CanGiftContainer" type="HBoxContainer" parent="RightSide/ScrollContainer/Container/FlagsContainer"]
+offset_right = 96.0
+offset_bottom = 29.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="CanGiftLabel" type="Label" parent="RightSide/Container/FlagsContainer/CanGiftContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 54.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
+[node name="CanGiftLabel" type="Label" parent="RightSide/ScrollContainer/Container/FlagsContainer/CanGiftContainer"]
+offset_right = 68.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Can Gift:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="CanGiftCheckBox" type="CheckBox" parent="RightSide/Container/FlagsContainer/CanGiftContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 58.0
-margin_right = 82.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+[node name="CanGiftCheckBox" type="CheckBox" parent="RightSide/ScrollContainer/Container/FlagsContainer/CanGiftContainer"]
+offset_left = 72.0
+offset_right = 96.0
+offset_bottom = 29.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
-flat = false
-align = 0
 
-[node name="InvisibleInInventory" type="HBoxContainer" parent="RightSide/Container/FlagsContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 86.0
-margin_right = 254.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+[node name="InvisibleInInventory" type="HBoxContainer" parent="RightSide/ScrollContainer/Container/FlagsContainer"]
+offset_left = 100.0
+offset_right = 295.0
+offset_bottom = 29.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="InvisibleInInventoryLabel" type="Label" parent="RightSide/Container/FlagsContainer/InvisibleInInventory" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 140.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
+[node name="InvisibleInInventoryLabel" type="Label" parent="RightSide/ScrollContainer/Container/FlagsContainer/InvisibleInInventory"]
+offset_right = 167.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Invisible in Inventory:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="InvisibleInInventoryCheckbox" type="CheckBox" parent="RightSide/Container/FlagsContainer/InvisibleInInventory" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 144.0
-margin_right = 168.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+[node name="InvisibleInInventoryCheckbox" type="CheckBox" parent="RightSide/ScrollContainer/Container/FlagsContainer/InvisibleInInventory"]
+offset_left = 171.0
+offset_right = 195.0
+offset_bottom = 29.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
-flat = false
-align = 0
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
-
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
-
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
-
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
-
-[connection signal="text_changed" from="RightSide/Container/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
-
-[connection signal="text_changed" from="RightSide/Container/DescriptionContainer/DescriptionTextEdit" to="." method="_on_DescriptionTextEdit_text_changed"]
-
-[connection signal="value_changed" from="RightSide/Container/ValueContainer/ValueSpinBox" to="." method="_on_ValueSpinBox_value_changed"]
-
-[connection signal="item_selected" from="RightSide/Container/ItemTypeContainer/ItemTypeOptionButton" to="." method="_on_ItemTypeOptionButton_item_selected"]
-
-[connection signal="file_selected" from="RightSide/Container/IconFilePathControl" to="." method="_on_IconFilePathControl_file_selected"]
-
-[connection signal="file_selected" from="RightSide/Container/PickupSFXPathControl" to="." method="_on_PickupSFXPathControl_file_selected"]
-
-[connection signal="file_selected" from="RightSide/Container/PutdownSFXPathControl" to="." method="_on_PutdownSFXPathControl_file_selected"]
-
-[connection signal="toggled" from="RightSide/Container/FlagsContainer/CanGiftContainer/CanGiftCheckBox" to="." method="_on_CanGiftCheckBox_toggled"]
-
-[connection signal="toggled" from="RightSide/Container/FlagsContainer/InvisibleInInventory/InvisibleInInventoryCheckbox" to="." method="_on_InvisibleInInventoryCheckbox_toggled"]
-
-
+[connection signal="text_changed" from="RightSide/ScrollContainer/Container/PrintedNameContainer/PrintedNameLineEdit" to="." method="_on_PrintedNameLineEdit_text_changed"]
+[connection signal="text_changed" from="RightSide/ScrollContainer/Container/DescriptionContainer/DescriptionTextEdit" to="." method="_on_DescriptionTextEdit_text_changed"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/ValueContainer/ValueSpinBox" to="." method="_on_ValueSpinBox_value_changed"]
+[connection signal="item_selected" from="RightSide/ScrollContainer/Container/ItemTypeContainer/ItemTypeOptionButton" to="." method="_on_ItemTypeOptionButton_item_selected"]
+[connection signal="file_selected" from="RightSide/ScrollContainer/Container/IconFilePathControl" to="." method="_on_IconFilePathControl_file_selected"]
+[connection signal="file_selected" from="RightSide/ScrollContainer/Container/PickupSFXPathControl" to="." method="_on_PickupSFXPathControl_file_selected"]
+[connection signal="file_selected" from="RightSide/ScrollContainer/Container/PutdownSFXPathControl" to="." method="_on_PutdownSFXPathControl_file_selected"]
+[connection signal="toggled" from="RightSide/ScrollContainer/Container/FlagsContainer/CanGiftContainer/CanGiftCheckBox" to="." method="_on_CanGiftCheckBox_toggled"]
+[connection signal="toggled" from="RightSide/ScrollContainer/Container/FlagsContainer/InvisibleInInventory/InvisibleInInventoryCheckbox" to="." method="_on_InvisibleInInventoryCheckbox_toggled"]

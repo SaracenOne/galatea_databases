@@ -1,23 +1,24 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
 	
 enum {ITEM_TYPE_UNKNOWN,
  ITEM_TYPE_MISC,
  ITEM_TYPE_KEY,
  ITEM_TYPE_CONSUMABLE}
 
-export(String) var printed_name = ""
-export(String) var description = ""
-export(int) var value = 0
-export(int) var item_type = ITEM_TYPE_UNKNOWN
-export(String) var icon_path = ""
-export(String) var pickup_sfx = ""
-export(String) var putdown_sfx = ""
-export(bool) var can_gift = false
-export(bool) var invisible_in_inventory = false
+@export var printed_name: String = ""
+@export var description: String = ""
+@export var value: int = 0
+@export var item_type: int = ITEM_TYPE_UNKNOWN
+@export var icon_path: String = ""
+@export var pickup_sfx: String = ""
+@export var putdown_sfx: String = ""
+@export var can_gift: bool = false
+@export var invisible_in_inventory: bool = false
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 	
 	if(p_dictionary_record.has("printed_name")):
 		printed_name = p_dictionary_record.printed_name
@@ -55,7 +56,7 @@ func _load_record(p_dictionary_record, p_databases):
 		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.printed_name = printed_name
 	p_dictionary_record.description = description

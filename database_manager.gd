@@ -2,7 +2,7 @@ extends Node
 	
 const galatea_databases_const = preload("databases/galatea_databases.gd")
 
-var databases_instance = null
+var databases_instance: RefCounted = null
 
 func load_all_databases():
 	return databases_instance.load_all_databases()

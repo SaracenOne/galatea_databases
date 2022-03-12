@@ -1,198 +1,94 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://b8ewqlfjd38x6"]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_sms_panel.gd" type="Script" id=1]
-[ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=3]
-
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_sms_panel.gd" id="1"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_records.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" id="3"]
 
 [node name="SMSPanel" type="HSplitContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
+mouse_filter = 0
 split_offset = -300
-collapsed = false
 dragger_visibility = 1
-script = ExtResource( 1 )
-actor = NodePath("RightSide/ActorContainer/ActorRecordsReference")
-message_body = NodePath("RightSide/MessageBodyContainer/MessageBodyTextEdit")
-is_reply = NodePath("RightSide/FlagsContainer/IsReplyCheckbox")
+script = ExtResource( "1" )
+actor = NodePath("RightSide/ScrollContainer/Container/ActorContainer/ActorRecordsReference")
+message_body = NodePath("RightSide/ScrollContainer/Container/MessageBodyContainer/MessageBodyTextEdit")
+is_reply = NodePath("RightSide/ScrollContainer/Container/FlagsContainer/IsReplyCheckbox")
 
 [node name="LeftSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 206.0
-margin_bottom = 600.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_right = 206.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
+[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( "2" )]
 
 [node name="RightSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 218.0
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 218.0
+offset_right = 1024.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ActorContainer" type="VBoxContainer" parent="RightSide"]
+[node name="ScrollContainer" type="ScrollContainer" parent="RightSide"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_scroll_mode = 0
 
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 135.0
-margin_bottom = 52.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
+[node name="Container" type="VBoxContainer" parent="RightSide/ScrollContainer"]
+offset_right = 806.0
+offset_bottom = 322.0
+size_flags_horizontal = 3
 
-[node name="ActorRecordsReference" parent="RightSide/ActorContainer" instance=ExtResource( 3 )]
+[node name="ActorContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_right = 806.0
+offset_bottom = 57.0
 
-margin_right = 125.0
-margin_bottom = 42.0
+[node name="ActorRecordsReference" parent="RightSide/ScrollContainer/Container/ActorContainer" instance=ExtResource( "3" )]
+offset_right = 806.0
+offset_bottom = 57.0
 size_flags_horizontal = 3
 label = "Actor:"
 disabled = true
 
-[node name="MessageBodyContainer" type="VBoxContainer" parent="RightSide"]
+[node name="MessageBodyContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 61.0
+offset_right = 806.0
+offset_bottom = 289.0
 
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 70.0
-margin_right = 266.0
-margin_bottom = 216.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
-
-[node name="MessageBodyLabel" type="Label" parent="RightSide/MessageBodyContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 96.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="MessageBodyLabel" type="Label" parent="RightSide/ScrollContainer/Container/MessageBodyContainer"]
+offset_right = 117.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Message Body:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="MessageBodyTextEdit" type="TextEdit" parent="RightSide/MessageBodyContainer"]
+[node name="MessageBodyTextEdit" type="TextEdit" parent="RightSide/ScrollContainer/Container/MessageBodyContainer"]
+minimum_size = Vector2(300, 200)
+offset_top = 28.0
+offset_right = 806.0
+offset_bottom = 228.0
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 256.0
-margin_bottom = 146.0
-rect_min_size = Vector2( 256, 128 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="FlagsContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 293.0
+offset_right = 806.0
+offset_bottom = 322.0
+size_flags_vertical = 2
+
+[node name="IsReplyCheckbox" type="CheckBox" parent="RightSide/ScrollContainer/Container/FlagsContainer"]
+offset_right = 90.0
+offset_bottom = 29.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-syntax_highlighting = false
-show_line_numbers = false
-highlight_all_occurrences = false
-smooth_scrolling = false
-v_scroll_speed = 80.0
-caret_block_mode = false
-caret_blink = false
-caret_blink_speed = 0.65
-
-[node name="FlagsContainer" type="VBoxContainer" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 230.0
-margin_right = 87.0
-margin_bottom = 253.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
-
-[node name="IsReplyCheckbox" type="CheckBox" parent="RightSide/FlagsContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 77.0
-margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 2
-size_flags_vertical = 2
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Is Reply"
-flat = false
-align = 0
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
-
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
-
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
-
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
-
-[connection signal="record_erased" from="RightSide/ActorContainer/ActorRecordsReference" to="." method="_on_ActorRecordsReference_record_erased"]
-
-[connection signal="record_selected" from="RightSide/ActorContainer/ActorRecordsReference" to="." method="_on_ActorRecordsReference_record_selected"]
-
-[connection signal="draw" from="RightSide/MessageBodyContainer/MessageBodyTextEdit" to="." method="_on_MessageBodyTextEdit_draw"]
-
-[connection signal="toggled" from="RightSide/FlagsContainer/IsReplyCheckbox" to="." method="_on_IsReplyCheckbox_toggled"]
-
-
+[connection signal="record_erased" from="RightSide/ScrollContainer/Container/ActorContainer/ActorRecordsReference" to="." method="_on_ActorRecordsReference_record_erased"]
+[connection signal="record_selected" from="RightSide/ScrollContainer/Container/ActorContainer/ActorRecordsReference" to="." method="_on_ActorRecordsReference_record_selected"]
+[connection signal="draw" from="RightSide/ScrollContainer/Container/MessageBodyContainer/MessageBodyTextEdit" to="." method="_on_MessageBodyTextEdit_draw"]
+[connection signal="toggled" from="RightSide/ScrollContainer/Container/FlagsContainer/IsReplyCheckbox" to="." method="_on_IsReplyCheckbox_toggled"]

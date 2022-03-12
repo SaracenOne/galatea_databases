@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_numerical_menu.gd" type="Script" id=1]
 
 
-[node name="NumericalMenu" type="WindowDialog"]
+[node name="NumericalMenu" type="Popup"]
 
 anchor_left = 0.0
 anchor_top = 0.0

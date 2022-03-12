@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const clothing_set_record_const = preload("clothing_set_record.gd")
 
 const DATABASE_IDENT = "CLST"
 const DATABASE_NAME = "clothing_set_database"
 const DATABASE_NAME_JSON = "clothing_set_database.json"
-const DATABASE_NAME_BINARY = "clothing_set_database.gbd"
 const DATABASE_INLINED_FILENAME = "clothing_set_database_inlined.gd"
 const RECORDS_NAME = "clothing_set_records"
 	
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return clothing_set_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

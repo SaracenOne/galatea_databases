@@ -1,4 +1,5 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
 
 const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd")
 #
@@ -17,13 +18,13 @@ class Schedule extends Resource:
 	const DAY_FLAG_WEEKDAYS = 62
 	const DAY_FLAG_WEEKENDS = 65
 
-	export(float) var duration = 0.0
+	@export var duration: float = 0.0
 
-	export(int) var start_minutes = -1
-	export(int) var start_hours = -1
+	@export var start_minutes: int = -1
+	@export var start_hours: int = -1
 
-	export(int) var week_month_flag = 0
-	export(int) var days_flag = 0
+	@export var week_month_flag: int = 0
+	@export var days_flag: int = 0
 
 var conditionals = conditionals_const.new()
 var schedule = Schedule.new()
@@ -31,8 +32,8 @@ var flags = 0
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)

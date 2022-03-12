@@ -1,4 +1,5 @@
-extends "record_instance_node.gd"
+@tool
+extends "./record_instance_node.gd"
 
 func get_valid_database():
 	if databases:

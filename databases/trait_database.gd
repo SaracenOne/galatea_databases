@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const trait_record_const = preload("trait_record.gd")
 
 const DATABASE_IDENT = "TRAT"
 const DATABASE_NAME = "trait_database"
 const DATABASE_NAME_JSON = "trait_database.json"
-const DATABASE_NAME_BINARY = "trait_database.gbd"
 const DATABASE_INLINED_FILENAME = "trait_database_inlined.gd"
 const RECORDS_NAME = "trait_records"
 	
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return trait_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

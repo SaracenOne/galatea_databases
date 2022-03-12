@@ -1,11 +1,12 @@
-extends Reference
+@tool
+extends RefCounted
 
-var databases = null
-var cached_dictionary = null
-var database_records = {}
-var database_is_modified = false
+var databases: RefCounted = null
+var cached_dictionary: Dictionary = {}
+var database_records: Dictionary = {}
+var database_is_modified: bool = false
 
-const DATABASE_NAME = "generic_database"
+#const DATABASE_NAME = "generic_database"
 
 func load_database_ids():
 	pass
@@ -24,10 +25,10 @@ func _load_database_values(p_database_path, p_records_name):
 				# Read Data
 				database_record._load_record(dictionary_record, databases)
 					
-			cached_dictionary = null
+			cached_dictionary = {}
 			return OK
 		else:
-			cached_dictionary = null
+			cached_dictionary = {}
 			return FAILED
 	else:
 		return FAILED
@@ -52,22 +53,23 @@ func _save_database(p_filepath, p_records_name):
 	ProjectSettings.save()
 	_save_database_file(p_filepath, dictionary)
 
-func load_database_file(p_filepath, p_records_name):
+func load_database_file(p_filepath, p_records_name) -> Dictionary:
 	var file = File.new()
 	
 	var file_error = file.open(p_filepath, File.READ)#
 	
 	if(!file_error == OK):
-		
 		file_error = file.open(p_filepath, File.WRITE)
 		
 		if(!file_error == OK):
-			printerr("load_database_file(%s) failed to open file: error_code: %u", p_filepath, file_error)
-			return null
+			printerr("load_database_file(%s) failed to open file: error_code: %s" % [p_filepath, str(file_error)])
+			return {}
 		else:
 			var new_dictionary = {}
 			new_dictionary[p_records_name] = []
-			var json_string = json_to_readable_json(to_json(new_dictionary))
+			
+			var json: RefCounted = JSON.new()
+			var json_string = json.stringify(new_dictionary, "\t")
 			
 			file.store_string(json_string)
 			
@@ -80,17 +82,23 @@ func load_database_file(p_filepath, p_records_name):
 	
 	if(file_buffer_string.length() == 0):
 		printerr("load_database_file(%s) failed file buffer string length == 0", p_filepath)
-		return null
+		return {}
 		
-	var dictionary = parse_json(file_buffer_string)
-	
-	if(typeof(dictionary) == TYPE_DICTIONARY):
-		return dictionary
+	var json: JSON = JSON.new()
+	var err: int = json.parse(file_buffer_string)
+	if err == OK:
+		var dictionary = json.get_data()
+		
+		if(typeof(dictionary) == TYPE_DICTIONARY):
+			return dictionary
+		else:
+			printerr("load_database_file(%s) failed to parse json", p_filepath)
+			return {}
 	else:
 		printerr("load_database_file(%s) failed to parse json", p_filepath)
-		return null
+		return {}
 		
-func _save_database_file(p_filepath, p_dictionary):
+func _save_database_file(p_filepath, p_dictionary) -> int:
 	var file = File.new()
 	
 	var file_error = file.open(p_filepath, File.WRITE)
@@ -101,7 +109,8 @@ func _save_database_file(p_filepath, p_dictionary):
 		
 	file.seek(0)
 	
-	var json_string = json_to_readable_json(to_json(p_dictionary))
+	var json: RefCounted = JSON.new()
+	var json_string = json.stringify(p_dictionary, "\t")
 	file.store_string(json_string)
 	
 	file.close()
@@ -126,25 +135,26 @@ func get_dictionary_records_array(p_dictionary, p_database_path, p_records_name)
 	
 func _load_database_ids(p_database_path, p_records_name):
 	cached_dictionary = load_database_file(p_database_path, p_records_name)
-	var dictionary_records = get_dictionary_records_array(cached_dictionary, p_database_path, p_records_name)
-	if(typeof(dictionary_records) == TYPE_ARRAY):
-		for i in range(0, dictionary_records.size()):
-			var new_record = _create_record()
-			assert(new_record)
-			
-			if(dictionary_records[i].has("id")):
-				new_record.id = dictionary_records[i].id
-			else:
-				printerr("Database " + p_records_name + " entry " + i + " does not have id!")
-				return FAILED
+	if !cached_dictionary.is_empty():
+		var dictionary_records = get_dictionary_records_array(cached_dictionary, p_database_path, p_records_name)
+		if(typeof(dictionary_records) == TYPE_ARRAY):
+			for i in range(0, dictionary_records.size()):
+				var new_record = call("_create_record")
+				assert(new_record)
 				
-			_insert_record(new_record)
-		return OK
-	else:
-		return FAILED
+				if(dictionary_records[i].has("id")):
+					new_record.id = dictionary_records[i].id
+				else:
+					printerr("Database " + p_records_name + " entry " + i + " does not have id!")
+					return FAILED
+					
+				_insert_record(new_record)
+			return OK
+		else:
+			return FAILED
 		
-func mark_database_as_modified():
-	print("Database " + DATABASE_NAME + " marked as modified...")
+func mark_database_as_modified(p_database_name: String):
+	print("Database " + p_database_name + " marked as modified...")
 	database_is_modified = true
 		
 func check_database_modified():
@@ -163,10 +173,10 @@ func _insert_record(p_record):
 	database_records[p_record.id] = p_record
 	databases.global_records_list[p_record.id] = p_record
 
-func create_new_record(p_id):
-	if(!p_id.empty()):
+func create_new_record(p_id: String):
+	if(!p_id.is_empty()):
 		if(!databases.global_records_list.has(p_id)):
-			var new_record = _create_record()
+			var new_record = call("_create_record")
 			new_record.id = p_id
 			
 			_insert_record(new_record)
@@ -177,8 +187,8 @@ func create_new_record(p_id):
 	else:
 		return null
 		
-func rename_record(p_from, p_to):
-	if(!p_from.empty() and !p_to.empty()):
+func rename_record(p_from: String, p_to: String):
+	if(!p_from.is_empty() and !p_to.is_empty()):
 		if(database_records.has(p_from) and databases.global_records_list.has(p_from)):
 			var record = database_records[p_from]
 			record.id = p_to
@@ -188,8 +198,8 @@ func rename_record(p_from, p_to):
 			return record
 	return null
 	
-func erase_record(p_name):
-	if(!p_name.empty()):
+func erase_record(p_name: String) -> void:
+	if(!p_name.is_empty()):
 		database_records.erase(p_name)
 		databases.global_records_list.erase(p_name)
 				
@@ -201,7 +211,7 @@ func build_procedural_script():
 			var dictionary = call("get_record_inlined_code", database_record)
 			if(dictionary != null):
 				for key in dictionary.keys():
-					script_text += "func " + get_database_name() + "_" + database_record.id + "_" + key + "():\n"
+					script_text += "func " + call("get_database_name") + "_" + database_record.id + "_" + key + "():\n"
 					
 					var code_raw = dictionary[key]
 					if(code_raw != null and code_raw.length() > 0):
@@ -222,61 +232,6 @@ func build_procedural_script():
 				return null
 			
 	var f = File.new()
-	f.open("res://assets/scripts/inline/" + get_inlined_filename(), File.WRITE)
+	f.open("res://assets/scripts/inline/" + call("get_inlined_filename"), File.WRITE)
 	f.store_string(script_text)
 	f.close()
-	
-static func convert_string_to_vector_2(p_str):
-	if(p_str):
-		var floats = p_str.substr(1, p_str.length()-1).split_floats(",")
-		if(floats.size() == 2):
-			return Vector2(floats[0], floats[1])
-	
-	return Vector2(0.0, 0.0)
-	
-static func convert_string_to_vector_3(p_str):
-	if(p_str):
-		var floats = p_str.substr(1, p_str.length()-1).split_floats(",")
-		if(floats.size() == 3):
-			return Vector3(floats[0], floats[1], floats[2])
-	
-	return Vector3(0.0, 0.0, 0.0)
-	
-static func convert_string_to_color(p_str):
-	if(p_str):
-		var floats = p_str.substr(0, p_str.length()).split_floats(",")
-		if(floats.size() == 4):
-			return Color(floats[0], floats[1], floats[2], floats[3])
-	
-	return Color(1.0, 1.0, 1.0, 1.0)
-	
-static func json_to_readable_json(json):
-	var tabs = 0;
-	var out = "";
-	var quoting = false;
-	var c = "";
-	var p = "";
-
-	for i in range(json.length()):
-		p = c;
-		c = json[i];
-	
-		out += c;
-		if c == "\"" and p != "\\" : quoting = not quoting;
-		if quoting : continue;
-		
-		if c == "," :
-			out+="\n"
-			for t in range(tabs): 
-				out += "\t";
-		elif c == "{": 
-			tabs += 1
-			out += "\n"
-			for t in range(tabs):
-				out += "\t"
-		elif c == "}": 
-			tabs-=1
-			out+="\n"
-			for t in range(tabs): 
-				out += "\t"
-	return out;

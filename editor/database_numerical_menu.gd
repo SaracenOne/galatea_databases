@@ -1,7 +1,7 @@
-tool
-extends Control
+@tool
+extends Popup
 
-var spinbox = null
+var spinbox: SpinBox = null
 
 signal value_selected(p_value)
 

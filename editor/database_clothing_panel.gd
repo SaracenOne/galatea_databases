@@ -1,37 +1,37 @@
-tool
-extends "database_panel.gd"
+@tool
+extends "./database_panel.gd"
 
-const clothing_record_const = preload("res://addons/galatea_databases/databases/clothing_record.gd")
+const clothing_record_const = preload("../databases/clothing_record.gd")
 
 var current_male_stamp_key = null
 var current_female_stamp_key = null
 
-export(NodePath) var printed_name = NodePath()
-export(NodePath) var clothing_parts = NodePath()
+@export var printed_name: NodePath  = NodePath()
+@export var clothing_parts: NodePath  = NodePath()
 
-export(NodePath) var male_stamp_table = NodePath()
-export(NodePath) var male_stamp_color = NodePath()
+@export var male_stamp_table: NodePath  = NodePath()
+@export var male_stamp_color: NodePath  = NodePath()
 
-export(NodePath) var female_stamp_table = NodePath()
-export(NodePath) var female_stamp_color = NodePath()
+@export var female_stamp_table: NodePath  = NodePath()
+@export var female_stamp_color: NodePath  = NodePath()
 
-export(NodePath) var biped = NodePath()
-export(NodePath) var depth = NodePath()
+@export var biped: NodePath  = NodePath()
+@export var depth: NodePath  = NodePath()
 
-onready var _printed_name_control = get_node(printed_name)
-onready var _clothing_parts_control = get_node(clothing_parts)
+@onready var _printed_name_control = get_node(printed_name)
+@onready var _clothing_parts_control = get_node(clothing_parts)
 
-onready var _male_stamp_table_control = get_node(male_stamp_table)
-onready var _male_stamp_color_control = get_node(male_stamp_color)
+@onready var _male_stamp_table_control = get_node(male_stamp_table)
+@onready var _male_stamp_color_control = get_node(male_stamp_color)
 
-onready var _female_stamp_table_control = get_node(female_stamp_table)
-onready var _female_stamp_color_control = get_node(female_stamp_color)
+@onready var _female_stamp_table_control = get_node(female_stamp_table)
+@onready var _female_stamp_color_control = get_node(female_stamp_color)
 
-onready var _biped_control = get_node(biped)
-onready var _depth_control = get_node(depth)
+@onready var _biped_control = get_node(biped)
+@onready var _depth_control = get_node(depth)
 
 func galatea_databases_assigned():
-	.galatea_databases_assigned()
+	super.galatea_databases_assigned()
 	
 	current_database = galatea_databases.clothing_database
 
@@ -45,7 +45,7 @@ func galatea_databases_assigned():
 		printerr("clothing_database is null")
 		
 func set_current_record_callback(p_record):
-	.set_current_record_callback(p_record)
+	super.set_current_record_callback(p_record)
 	
 	_printed_name_control.set_text(current_record.printed_name)
 	_printed_name_control.set_editable(true)
@@ -59,7 +59,7 @@ func set_current_record_callback(p_record):
 			
 	_male_stamp_table_control.set_disabled(false)
 	_male_stamp_table_control.populate_tree(male_stamp_records, null)
-	_male_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
+	_male_stamp_color_control.set_pick_color(Color(1.0, 1.0, 1.0))
 	_male_stamp_color_control.set_disabled(true)
 	current_male_stamp_key = null
 			
@@ -69,7 +69,7 @@ func set_current_record_callback(p_record):
 			
 	_female_stamp_table_control.set_disabled(false)
 	_female_stamp_table_control.populate_tree(female_stamp_records, null)
-	_female_stamp_color_control.set_color(Color(1.0, 1.0, 1.0))
+	_female_stamp_color_control.set_pick_color(Color(1.0, 1.0, 1.0))
 	_female_stamp_color_control.set_disabled(true)
 	current_female_stamp_key = null
 	
@@ -89,14 +89,14 @@ func set_current_record_callback(p_record):
 func _on_PrintedNameLineEdit_text_changed( text ):
 	if(current_record):
 		current_record.printed_name = text
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_ClothingPartsControl_record_erased( p_record ):
 	if(current_record):
 		if(current_record.clothing_parts.find(p_record) != -1):
 			current_record.clothing_parts.erase(p_record)
 			_clothing_parts_control.populate_tree(current_record.clothing_parts, null)
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 			
 func _on_ClothingPartsControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
@@ -105,7 +105,7 @@ func _on_ClothingPartsControl_record_selected( p_record ):
 		else:
 			current_record.clothing_parts.append(p_record)
 			_clothing_parts_control.populate_tree(current_record.clothing_parts, null)
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 			
 func _on_MaleStampTableControl_record_cell_selected( p_record ):
 	if(current_record):
@@ -133,7 +133,7 @@ func _on_MaleStampTableControl_record_erased( p_record ):
 			_male_stamp_color_control.set_disabled(true)
 			
 			_male_stamp_table_control.populate_tree(stamp_records, null)
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 			
 func _on_MaleStampTableControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
@@ -151,7 +151,7 @@ func _on_MaleStampTableControl_record_selected( p_record ):
 			_male_stamp_color_control.set_disabled(false)
 			
 			_male_stamp_table_control.populate_tree(stamp_records, null)
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_MaleStampColorButton_color_changed( color ):
 	if(current_record):
@@ -159,7 +159,7 @@ func _on_MaleStampColorButton_color_changed( color ):
 			if(current_male_stamp_key != null):
 				current_record.male_stamp_table[current_male_stamp_key] = color
 				
-				current_database.mark_database_as_modified()
+				current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_FemaleStampTableControl_record_cell_selected( p_record ):
 	if(current_record):
@@ -187,7 +187,7 @@ func _on_FemaleStampTableControl_record_erased( p_record ):
 			_female_stamp_color_control.set_disabled(true)
 			
 			_female_stamp_table_control.populate_tree(stamp_records, null)
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_FemaleStampTableControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
@@ -205,7 +205,7 @@ func _on_FemaleStampTableControl_record_selected( p_record ):
 			_female_stamp_color_control.set_disabled(false)
 			
 			_female_stamp_table_control.populate_tree(stamp_records, null)
-			current_database.mark_database_as_modified()
+			current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_FemaleStampColorButton_color_changed( color ):
 	if(current_record):
@@ -213,7 +213,7 @@ func _on_FemaleStampColorButton_color_changed( color ):
 			if(current_female_stamp_key != null):
 				current_record.female_stamp_table[current_female_stamp_key] = color
 				
-				current_database.mark_database_as_modified()
+				current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 					
 func _on_BipedTree_item_edited():
 	if(current_record):

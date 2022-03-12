@@ -1,11 +1,11 @@
-tool
-extends "database_panel.gd"
+@tool
+extends "./database_panel.gd"
 
 func _ready():
 	pass
 
 func galatea_databases_assigned():
-	.galatea_databases_assigned()
+	super.galatea_databases_assigned()
 	
 	current_database = galatea_databases.material_type_database
 	if(current_database != null):
@@ -14,4 +14,4 @@ func galatea_databases_assigned():
 		printerr("material_type_database is null")
 #
 func set_current_record_callback(p_record):
-	.set_current_record_callback(p_record)
+	super.set_current_record_callback(p_record)

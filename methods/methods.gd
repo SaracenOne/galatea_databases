@@ -1,3 +1,4 @@
+@tool
 const actor_record_const = preload("../databases/actor_record.gd")
 const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd")
 
@@ -9,26 +10,26 @@ const ARGUMENT_TYPE_STRING = 5
 const ARGUMENT_TYPE_OBJECT = 6
 
 class ArgumentOption extends Resource:
-	export(String) var option_name
-	export var option_value = 0
+	@export var option_name: String
+	@export var option_value: int = 0
 	
 	func _init(p_option_name, p_option_value):
 		option_name = p_option_name
 		option_value = p_option_value
 
 class ArgumentItem extends Resource:
-	export(String) var name = ""
-	export(int) var type = ARGUMENT_TYPE_ENUM
-	export(Array) var options = []
+	@export var name: String = ""
+	@export var type: int = self.ARGUMENT_TYPE_ENUM
+	@export var options: Array = []
 	
-	func _init(p_name, p_type = ARGUMENT_TYPE_ENUM, p_options = []):
+	func _init(p_name, p_type = self.ARGUMENT_TYPE_ENUM, p_options = []):
 		name = p_name
 		type = p_type
 		options = p_options
 
 class MethodItem extends Resource:
-	export(Array) var arguments = []
-	export(String) var category = ""
+	@export var arguments: Array = []
+	@export var category: String = ""
 	
 	func _init(p_arguments = [], p_category = ""):
 		arguments = p_arguments
@@ -41,15 +42,16 @@ static func get_master_method_dict():
 	dict["is_in_actor_group"] = MethodItem.new([ArgumentItem.new("p_actor_group", ARGUMENT_TYPE_STRING)])
 	
 	dict["has_bloodtype"] = MethodItem.new([ArgumentItem.new("p_bloodtype", ARGUMENT_TYPE_ENUM, {"enums":[
-		ArgumentOption.new("A", actor_record_const.BLOODTYPE_A),
-		ArgumentOption.new("B", actor_record_const.BLOODTYPE_B),
-		ArgumentOption.new("AB", actor_record_const.BLOODTYPE_AB),
-		ArgumentOption.new("O", actor_record_const.BLOODTYPE_O),
+		ArgumentOption.new("A", BloodType.BLOODTYPE_A),
+		ArgumentOption.new("B", BloodType.BLOODTYPE_B),
+		ArgumentOption.new("AB", BloodType.BLOODTYPE_AB),
+		ArgumentOption.new("O", BloodType.BLOODTYPE_O),
 		]})])
 		
 	dict["is_gender"] = MethodItem.new([ArgumentItem.new("p_gender", ARGUMENT_TYPE_ENUM, {"enums":[
-		ArgumentOption.new("Male", actor_record_const.GENDER_MALE),
-		ArgumentOption.new("Female", actor_record_const.GENDER_FEMALE),
+		ArgumentOption.new("Male", Gender.GENDER_MALE),
+		ArgumentOption.new("Female", Gender.GENDER_FEMALE),
+		ArgumentOption.new("Other", Gender.GENDER_OTHER),
 		]})])
 		
 	dict["is_given_name"] = MethodItem.new([ArgumentItem.new("p_given_name", ARGUMENT_TYPE_STRING)])

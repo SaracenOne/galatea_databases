@@ -1,25 +1,25 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
 
 const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd")
-const generic_database_const = preload("generic_database.gd")
 
-export(String) var skeleton_male_path = ""
-export(String) var skeleton_female_path = ""
+@export var skeleton_male_path: String = ""
+@export var skeleton_female_path: String = ""
 
-export(String) var physics_male_path = ""
-export(String) var physics_female_path = ""
+@export var physics_male_path: String = ""
+@export var physics_female_path: String = ""
 
-export(Resource) var naked_clothing_set = null
+@export var naked_clothing_set: Resource = null
 
-export(Resource) var male_skin_stamp = null
-export(Resource) var female_skin_stamp = null
+@export var male_skin_stamp: Resource = null
+@export var female_skin_stamp: Resource = null
 
-export(Array) var body_scaler_male_table = []
-export(Array) var body_scaler_female_table = []
+@export var body_scaler_male_table: Array = []
+@export var body_scaler_female_table: Array = []
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 	
 	if(p_dictionary_record.has("skeleton_male_path")):
 		skeleton_male_path = p_dictionary_record.skeleton_male_path
@@ -62,7 +62,7 @@ func _load_record(p_dictionary_record, p_databases):
 		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 	
 	if(skeleton_male_path):
 		p_dictionary_record.skeleton_male_path = skeleton_male_path

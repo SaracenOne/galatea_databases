@@ -1,5 +1,12 @@
+@tool
 # Core of an AI package for determining an AI routine
-const ai_porcedure_const = preload("ai_procedure.gd")
+enum ai_procedure_type {
+	PROCEDURE_TYPE_NONE = 0,
+	PROCEDURE_TYPE_TRAVEL,
+	PROCEDURE_TYPE_WAIT,
+	PROCEDURE_TYPE_WANDER,
+	PROCEDURE_TYPE_ACTIVATE_OBJECT
+}
 
 class ProcedureTreeNode:
 	var parent = null
@@ -19,7 +26,7 @@ class ProcedureTreeBranchNode:
 class ProcedureTreeProcedureNode:
 	extends ProcedureTreeNode
 	
-	var procedure_type = ai_porcedure_const.PROCEDURE_TYPE_WAIT
+	var procedure_type = self.ai_procedure_type.PROCEDURE_TYPE_WAIT
 
 var root = []
 

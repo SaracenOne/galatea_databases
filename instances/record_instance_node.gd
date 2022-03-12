@@ -1,12 +1,12 @@
-tool
-extends Spatial
+@tool
+extends Node
 
-var databases = null
-export(String) var id = "" setget set_id
+var databases: RefCounted = null
+@export var id: String = "": set = set_id
 
 func set_id(p_id):
 	id = p_id
-	property_list_changed_notify()
+	notify_property_list_changed()
 
 func get_valid_database():
 	return null

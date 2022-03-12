@@ -1,71 +1,26 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cnalt8s4hqa7m"]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_date_option.gd" type="Script" id=1]
-
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_date_option.gd" id="1"]
 
 [node name="DateOption" type="HBoxContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 244.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
 size_flags_horizontal = 2
 size_flags_vertical = 2
-alignment = 0
-script = ExtResource( 1 )
-disabled = false
+script = ExtResource( "1" )
 
 [node name="Day" type="SpinBox" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 120.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_right = 83.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 min_value = 1.0
 max_value = 31.0
-step = 1.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
-editable = true
-prefix = ""
-suffix = ""
 
 [node name="Month" type="OptionButton" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 124.0
-margin_right = 244.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 87.0
+offset_right = 194.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "January"
-flat = false
-align = 0
-selected = 0
-items = [ "January", null, false, 1, null, "February", null, false, 2, null, "March", null, false, 3, null, "April", null, false, 4, null, "May", null, false, 5, null, "June", null, false, 6, null, "July", null, false, 7, null, "August", null, false, 8, null, "September", null, false, 9, null, "October", null, false, 10, null, "November", null, false, 11, null, "December", null, false, 12, null ]
-
-

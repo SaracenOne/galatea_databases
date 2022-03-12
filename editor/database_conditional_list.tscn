@@ -1,23 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cqsv2q672l2hv"]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_conditional_list.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_conditional_list.gd" id="1"]
 
-
-[node name="DatabaseConditionalList" type="Control"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 727.0
-margin_bottom = 213.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="DatabaseConditionalList" type="ScrollContainer"]
+offset_bottom = 41.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-script = ExtResource( 1 )
-is_disabled = false
+vertical_scroll_mode = 0
+script = ExtResource( "1" )
 add_button = NodePath("DatabaseConditionalList/ButtonContainer/AddButton")
 edit_button = NodePath("DatabaseConditionalList/ButtonContainer/EditButton")
 duplicate_button = NodePath("DatabaseConditionalList/ButtonContainer/DuplicateButton")
@@ -26,208 +16,89 @@ move_up_button = NodePath("DatabaseConditionalList/ButtonContainer/MoveUpButton"
 move_down_button = NodePath("DatabaseConditionalList/ButtonContainer/MoveDownButton")
 
 [node name="DatabaseConditionalList" type="VBoxContainer" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_right = 449.0
+offset_bottom = 33.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
 [node name="ListTree" type="Tree" parent="DatabaseConditionalList"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 727.0
-margin_bottom = 189.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
+offset_right = 449.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-_sections_unfolded = [ "Size Flags" ]
+column_titles_visible = true
 
 [node name="ButtonContainer" type="HBoxContainer" parent="DatabaseConditionalList"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 193.0
-margin_right = 727.0
-margin_bottom = 213.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+offset_top = 4.0
+offset_right = 449.0
+offset_bottom = 33.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 alignment = 1
-_sections_unfolded = [ "Size Flags" ]
 
 [node name="AddButton" type="Button" parent="DatabaseConditionalList/ButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 100.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_right = 42.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Add"
-flat = false
 
 [node name="EditButton" type="Button" parent="DatabaseConditionalList/ButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 104.0
-margin_right = 204.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 46.0
+offset_right = 87.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Edit"
-flat = false
 
 [node name="DuplicateButton" type="Button" parent="DatabaseConditionalList/ButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 208.0
-margin_right = 308.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 91.0
+offset_right = 176.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Duplicate"
-flat = false
 
 [node name="RemoveButton" type="Button" parent="DatabaseConditionalList/ButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 312.0
-margin_right = 412.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 180.0
+offset_right = 253.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Remove"
-flat = false
 
 [node name="VSeparator" type="VSeparator" parent="DatabaseConditionalList/ButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 416.0
-margin_right = 419.0
-margin_bottom = 4.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 257.0
+offset_right = 261.0
+offset_bottom = 3.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
 [node name="MoveUpButton" type="Button" parent="DatabaseConditionalList/ButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 520.0
-margin_right = 620.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 265.0
+offset_right = 343.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Move Up"
-flat = false
 
 [node name="MoveDownButton" type="Button" parent="DatabaseConditionalList/ButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 624.0
-margin_right = 727.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 347.0
+offset_right = 449.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Move Down"
-flat = false
 
 [connection signal="cell_selected" from="DatabaseConditionalList/ListTree" to="." method="_on_ListTree_cell_selected"]
-
 [connection signal="pressed" from="DatabaseConditionalList/ButtonContainer/AddButton" to="." method="_on_AddButton_pressed"]
-
 [connection signal="pressed" from="DatabaseConditionalList/ButtonContainer/EditButton" to="." method="_on_EditButton_pressed"]
-
 [connection signal="pressed" from="DatabaseConditionalList/ButtonContainer/DuplicateButton" to="." method="_on_DuplicateButton_pressed"]
-
 [connection signal="pressed" from="DatabaseConditionalList/ButtonContainer/RemoveButton" to="." method="_on_RemoveButton_pressed"]
-
 [connection signal="pressed" from="DatabaseConditionalList/ButtonContainer/MoveUpButton" to="." method="_on_MoveUp_pressed"]
-
 [connection signal="pressed" from="DatabaseConditionalList/ButtonContainer/MoveDownButton" to="." method="_on_MoveDown_pressed"]
-
-

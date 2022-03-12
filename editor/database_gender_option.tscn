@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://byqmkl6ok03ya"]
+
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_gender_option.gd" id="1_laytr"]
+
+[node name="GenderVBoxContainer" type="VBoxContainer"]
+offset_top = 183.0
+offset_right = 215.0
+offset_bottom = 240.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 1
+script = ExtResource( "1_laytr" )
+
+[node name="GenderDescription" type="Label" parent="."]
+offset_right = 62.0
+offset_bottom = 24.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Gender:"
+
+[node name="GenderOptionButton" type="OptionButton" parent="."]
+offset_top = 28.0
+offset_right = 215.0
+offset_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+disabled = true
+toggle_mode = false
+text = "Male"
+
+[node name="@@73594" type="PopupMenu" parent="GenderOptionButton"]
+
+[node name="@@73589" type="MarginContainer" parent="GenderOptionButton/@@73594"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="@@73590" type="ScrollContainer" parent="GenderOptionButton/@@73594/@@73589"]
+offset_right = 1024.0
+offset_bottom = 600.0
+
+[node name="@@73591" type="Control" parent="GenderOptionButton/@@73594/@@73589/@@73590"]
+offset_right = 1024.0
+offset_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="_h_scroll" type="HScrollBar" parent="GenderOptionButton/@@73594/@@73589/@@73590"]
+offset_right = 16.0
+offset_bottom = 8.0
+
+[node name="_v_scroll" type="VScrollBar" parent="GenderOptionButton/@@73594/@@73589/@@73590"]
+offset_right = 8.0
+offset_bottom = 16.0
+
+[node name="@@73592" type="Timer" parent="GenderOptionButton/@@73594"]
+wait_time = 0.3
+one_shot = true
+
+[node name="@@73593" type="Timer" parent="GenderOptionButton/@@73594"]
+wait_time = 0.3
+one_shot = true

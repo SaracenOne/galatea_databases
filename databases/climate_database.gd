@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const climate_record_const = preload("climate_record.gd")
 
 const DATABASE_IDENT = "CLIM"
 const DATABASE_NAME = "climate_database"
 const DATABASE_NAME_JSON = "climate_database.json"
-const DATABASE_NAME_BINARY = "climate_database.gbd"
 const DATABASE_INLINED_FILENAME = "climate_database_inlined.gd"
 const RECORDS_NAME = "climate_set_records"
 	
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return climate_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

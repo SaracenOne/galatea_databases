@@ -1,12 +1,12 @@
-extends "generic_record.gd"
+extends "./generic_record.gd"
 
-export(String) var printed_name = ""
-export(Array) var clothes = []
-export(bool) var precache_stamps = false
+@export var printed_name: String = ""
+@export var clothes: Array = []
+@export var precache_stamps: bool = false
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 	
 	if(p_dictionary_record.has("printed_name")):
 		printed_name = p_dictionary_record.printed_name
@@ -22,7 +22,7 @@ func _load_record(p_dictionary_record, p_databases):
 	
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.printed_name = printed_name
 	

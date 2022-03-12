@@ -1,35 +1,35 @@
-tool
-extends "database_panel.gd"
+@tool
+extends "./database_panel.gd"
 
 const headpart_record_const = preload("../databases/headpart_record.gd")
 
-export(NodePath) var mesh_file_control = NodePath()
-export(NodePath) var gen_morph_file_control = NodePath()
+@export var mesh_file_control: NodePath  = NodePath()
+@export var gen_morph_file_control: NodePath  = NodePath()
 
-export(NodePath) var target_min_x_control = NodePath()
-export(NodePath) var target_min_y_control = NodePath()
-export(NodePath) var target_max_x_control = NodePath()
-export(NodePath) var target_max_y_control = NodePath()
+@export var target_min_x_control: NodePath  = NodePath()
+@export var target_min_y_control: NodePath  = NodePath()
+@export var target_max_x_control: NodePath  = NodePath()
+@export var target_max_y_control: NodePath  = NodePath()
 
-export(NodePath) var scene_preview = NodePath()
-export(NodePath) var capture_button = NodePath()
+@export var scene_preview: NodePath  = NodePath()
+@export var capture_button: NodePath  = NodePath()
 
-onready var _mesh_file_control_node = get_node(mesh_file_control)
-onready var _gen_morph_file_control_node = get_node(gen_morph_file_control)
+@onready var _mesh_file_control_node = get_node(mesh_file_control)
+@onready var _gen_morph_file_control_node = get_node(gen_morph_file_control)
 
-onready var _target_min_x_control_node = get_node(target_min_x_control)
-onready var _target_min_y_control_node = get_node(target_min_y_control)
-onready var _target_max_x_control_node = get_node(target_max_x_control)
-onready var _target_max_y_control_node = get_node(target_max_y_control)
+@onready var _target_min_x_control_node = get_node(target_min_x_control)
+@onready var _target_min_y_control_node = get_node(target_min_y_control)
+@onready var _target_max_x_control_node = get_node(target_max_x_control)
+@onready var _target_max_y_control_node = get_node(target_max_y_control)
 
-onready var _scene_preview_node = get_node(scene_preview)
-onready var _capture_button_node = get_node(capture_button)
+@onready var _scene_preview_node = get_node(scene_preview)
+@onready var _capture_button_node = get_node(capture_button)
 
 func _ready():
 	pass
 
 func galatea_databases_assigned():
-	.galatea_databases_assigned()
+	super.galatea_databases_assigned()
 	
 	current_database = galatea_databases.meshpart_database
 
@@ -44,7 +44,7 @@ func orient_scene_preview():
 	_scene_preview_node._update_rotation()
 
 func set_current_record_callback(p_record):
-	.set_current_record_callback(p_record)
+	super.set_current_record_callback(p_record)
 
 	_mesh_file_control_node.set_file_path(p_record.mesh_path)
 	_mesh_file_control_node.set_disabled(false)
@@ -79,32 +79,32 @@ func _on_MeshFileMainContainer_file_selected( p_path ):
 	if(current_record):
 		current_record.mesh_path = p_path
 		setup_scene_preview()
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_GenMorphFileMainContainer_file_selected( p_path ):
 	if(current_record):
 		current_record.gen_morph_path = p_path
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_TargetMinXSpinbox_value_changed( value ):
 	if(current_record):
 		current_record.target_min.x = float(value)
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_TargetMinYSpinbox_value_changed( value ):
 	if(current_record):
 		current_record.target_min.y = float(value)
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_TargetMaxXSpinbox_value_changed( value ):
 	if(current_record):
 		current_record.target_max.x = float(value)
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_TargetMaxYSpinbox_value_changed( value ):
 	if(current_record):
 		current_record.target_max.y = float(value)
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func setup_scene_preview():
 	if(current_record.mesh_path != ""):

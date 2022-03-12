@@ -1,40 +1,40 @@
-tool
+@tool
 extends Control
 
 const methods_const = preload("../methods/methods.gd")
 
-var list_tree = null
-var master_method_dict = null
+var list_tree: Tree = null
+var master_method_dict: Dictionary = {}
 
-var database_new_edit_record_popup = null
-var error_dialog = null
+var database_new_edit_record_popup: Control = null
+var error_dialog: Control = null
 
-var databases = null
+var databases: RefCounted = null
 var conditionals = null
 var selected = null
 
-func set_disabled(p_disabled):
+func set_disabled(p_disabled: bool) -> void:
 	is_disabled = p_disabled
 	update_button_states()
 
-export(bool) var is_disabled = false setget set_disabled
+@export var is_disabled = false: set = set_disabled
 
 const conditionals_const = preload("../conditionals/conditionals.gd")
-var conditional_item_editor_window = preload("database_conditional_item_editor_window.tscn").instance()
+var conditional_item_editor_window = preload("database_conditional_item_editor_window.tscn").instantiate()
 
-export(NodePath) var add_button = NodePath("ButtonPanel/ButtonContainer/AddButton")
-export(NodePath) var edit_button = NodePath("ButtonPanel/ButtonContainer/EditButton")
-export(NodePath) var duplicate_button = NodePath("ButtonPanel/ButtonContainer/DuplicateButton")
-export(NodePath) var remove_button = NodePath("ButtonPanel/ButtonContainer/RemoveButton")
-export(NodePath) var move_up_button = NodePath("ButtonPanel/ButtonContainer/MoveUpButton")
-export(NodePath) var move_down_button = NodePath("ButtonPanel/ButtonContainer/MoveDownButton")
+@export var add_button: NodePath  = NodePath("ButtonPanel/ButtonContainer/AddButton")
+@export var edit_button: NodePath  = NodePath("ButtonPanel/ButtonContainer/EditButton")
+@export var duplicate_button: NodePath  = NodePath("ButtonPanel/ButtonContainer/DuplicateButton")
+@export var remove_button: NodePath  = NodePath("ButtonPanel/ButtonContainer/RemoveButton")
+@export var move_up_button: NodePath  = NodePath("ButtonPanel/ButtonContainer/MoveUpButton")
+@export var move_down_button: NodePath  = NodePath("ButtonPanel/ButtonContainer/MoveDownButton")
 
-onready var _add_button_node = get_node(add_button)
-onready var _edit_button_node = get_node(edit_button)
-onready var _duplicate_button_node = get_node(duplicate_button)
-onready var _remove_button_node = get_node(remove_button)
-onready var _move_up_button_node = get_node(move_up_button)
-onready var _move_down_button_node = get_node(move_down_button)
+@onready var _add_button_node = get_node(add_button)
+@onready var _edit_button_node = get_node(edit_button)
+@onready var _duplicate_button_node = get_node(duplicate_button)
+@onready var _remove_button_node = get_node(remove_button)
+@onready var _move_up_button_node = get_node(move_up_button)
+@onready var _move_down_button_node = get_node(move_down_button)
 
 signal conditionals_changed(p_conditionals)
 
@@ -175,17 +175,17 @@ func _on_add_item_confirmed(p_conditional_item):
 		emit_signal("conditionals_changed", conditionals)
 	
 func _on_add_item_hidden():
-	if(conditional_item_editor_window.is_connected("confirmed", self, "_on_add_item_confirmed")):
-		conditional_item_editor_window.disconnect("confirmed", self, "_on_add_item_confirmed")
+	if(conditional_item_editor_window.is_connected("confirmed", Callable(self, "_on_add_item_confirmed"))):
+		conditional_item_editor_window.disconnect("confirmed", Callable(self, "_on_add_item_confirmed"))
 		
-	if(conditional_item_editor_window.is_connected("popup_hide", self, "_on_add_item_hidden")):
-		conditional_item_editor_window.disconnect("popup_hide", self, "_on_add_item_hidden")
+	if(conditional_item_editor_window.is_connected("popup_hide", Callable(self, "_on_add_item_hidden"))):
+		conditional_item_editor_window.disconnect("popup_hide", Callable(self, "_on_add_item_hidden"))
 
 func _on_AddButton_pressed():
 	var conditional_item = conditionals_const.ConditionalItem.new()
 		
-	conditional_item_editor_window.connect("confirmed", self, "_on_add_item_confirmed")
-	conditional_item_editor_window.connect("popup_hide", self, "_on_add_item_hidden")
+	conditional_item_editor_window.connect("confirmed", Callable(self, "_on_add_item_confirmed"))
+	conditional_item_editor_window.connect("popup_hide", Callable(self, "_on_add_item_hidden"))
 	
 	conditional_item_editor_window.assign_conditional_item(conditional_item, databases)
 	conditional_item_editor_window.popup_centered()
@@ -198,18 +198,18 @@ func _on_edit_item_confirmed(p_conditional_item):
 		emit_signal("conditionals_changed", conditionals)
 	
 func _on_edit_item_hidden():
-	if(conditional_item_editor_window.is_connected("confirmed", self, "_on_edit_item_confirmed")):
-		conditional_item_editor_window.disconnect("confirmed", self, "_on_edit_item_confirmed")
+	if(conditional_item_editor_window.is_connected("confirmed", Callable(self, "_on_edit_item_confirmed"))):
+		conditional_item_editor_window.disconnect("confirmed", Callable(self, "_on_edit_item_confirmed"))
 		
-	if(conditional_item_editor_window.is_connected("popup_hide", self, "_on_edit_item_hidden")):
-		conditional_item_editor_window.disconnect("popup_hide", self, "_on_edit_item_hidden")
+	if(conditional_item_editor_window.is_connected("popup_hide", Callable(self, "_on_edit_item_hidden"))):
+		conditional_item_editor_window.disconnect("popup_hide", Callable(self, "_on_edit_item_hidden"))
 
 func _on_EditButton_pressed():
 	if(selected):
 		var conditional_item = selected.get_metadata(0)
 		if(conditional_item):
-			conditional_item_editor_window.connect("confirmed", self, "_on_edit_item_confirmed")
-			conditional_item_editor_window.connect("popup_hide", self, "_on_edit_item_hidden")
+			conditional_item_editor_window.connect("confirmed", Callable(self, "_on_edit_item_confirmed"))
+			conditional_item_editor_window.connect("popup_hide", Callable(self, "_on_edit_item_hidden"))
 			
 			conditional_item_editor_window.assign_conditional_item(conditional_item, databases)
 			conditional_item_editor_window.popup_centered()
@@ -237,7 +237,7 @@ func _on_RemoveButton_pressed():
 			else:
 				selected = null
 				
-			conditionals.conditional_items.remove(conditionals.conditional_items.find(conditional_item))
+			conditionals.conditional_items.remove_at(conditionals.conditional_items.find(conditional_item))
 			populate_tree(conditionals.conditional_items)
 			update_button_states()
 			
@@ -249,7 +249,7 @@ func _on_MoveUp_pressed():
 		if(conditional_item):
 			var index = conditionals.conditional_items.find(conditional_item)
 			if(index > 0):
-				conditionals.conditional_items.remove(index)
+				conditionals.conditional_items.remove_at(index)
 				conditionals.conditional_items.insert(index - 1, conditional_item)
 				
 				populate_tree(conditionals.conditional_items)
@@ -263,7 +263,7 @@ func _on_MoveDown_pressed():
 		if(conditional_item):
 			var index = conditionals.conditional_items.find(conditional_item)
 			if(index != -1 and index < conditionals.conditional_items.size()-1):
-				conditionals.conditional_items.remove(index)
+				conditionals.conditional_items.remove_at(index)
 				conditionals.conditional_items.insert(index + 1, conditional_item)
 				
 				populate_tree(conditionals.conditional_items)

@@ -1,7 +1,7 @@
-tool
-extends Control
+@tool
+extends Popup
 
-var enum_tree = null
+var enum_tree: Tree = null
 var enum_names = []
 
 signal enum_selected(p_enum)

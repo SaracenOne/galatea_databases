@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const actor_group_record_const = preload("actor_group_record.gd")
 
 const DATABASE_IDENT = "AGRP"
 const DATABASE_NAME = "actor_group_database"
 const DATABASE_NAME_JSON = "actor_group_database.json"
-const DATABASE_NAME_BINARY = "actor_group_database.gbd"
 const DATABASE_INLINED_FILENAME = "actor_group_database_inlined.gd"
 const RECORDS_NAME = "actor_group_records"
 	
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return actor_group_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

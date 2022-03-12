@@ -1,11 +1,11 @@
-tool
+@tool
 extends Control
 
-var database_records = null
-var galatea_databases = null
-var editor_plugin = null
-var current_database = null
-var current_record = null
+var database_records: Node = null
+var galatea_databases: RefCounted = null
+var editor_plugin: EditorPlugin = null
+var current_database: RefCounted = null
+var current_record: RefCounted = null
 ##
 signal new_record_duplicate()
 
@@ -26,17 +26,17 @@ func galatea_databases_assigned():
 	database_records = get_node("LeftSide/DatabaseRecords")
 	assert(database_records)
 	
-	if not(is_connected("new_record_duplicate", database_records, "new_record_duplicate_callback")):
-		connect("new_record_duplicate", database_records, "new_record_duplicate_callback")
+	if not(is_connected("new_record_duplicate", Callable(database_records, "new_record_duplicate_callback"))):
+		assert(connect("new_record_duplicate", Callable(database_records, "new_record_duplicate_callback")) == OK)
 		
-	if not(is_connected("new_record_add_successful", database_records, "new_record_add_successful_callback")):
-		connect("new_record_add_successful", database_records, "new_record_add_successful_callback")
+	if not(is_connected("new_record_add_successful", Callable(database_records, "new_record_add_successful_callback"))):
+		assert(connect("new_record_add_successful", Callable(database_records, "new_record_add_successful_callback")) == OK)
 		
-	if not(is_connected("rename_record_successful", database_records, "rename_record_successful_callback")):
-		connect("rename_record_successful", database_records, "rename_record_successful_callback")
+	if not(is_connected("rename_record_successful", Callable(database_records, "rename_record_successful_callback"))):
+		assert(connect("rename_record_successful", Callable(database_records, "rename_record_successful_callback")) == OK)
 		
-	if not(is_connected("erase_record_successful", database_records, "erase_record_successful_callback")):
-		connect("erase_record_successful", database_records, "erase_record_successful_callback")
+	if not(is_connected("erase_record_successful", Callable(database_records, "erase_record_successful_callback"))):
+		assert(connect("erase_record_successful", Callable(database_records, "erase_record_successful_callback")) == OK)
 	
 func set_galatea_databases(p_databases):
 	galatea_databases = p_databases
@@ -56,7 +56,7 @@ func submit_new_record_callback(p_name):
 			else:
 				var record = current_database.create_new_record(p_name)
 				emit_signal("new_record_add_successful", current_database, record)
-				current_database.mark_database_as_modified()
+				current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		else:
 			printerr("current_database is null")
 	else:
@@ -73,7 +73,7 @@ func submit_renamed_record_callback(p_from, p_to):
 		else:
 			printerr("current_database is null")
 		
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 	else:
 		printerr("galatea_databases is null")
 		
@@ -85,7 +85,7 @@ func submit_erase_record_callback(p_name):
 		else:
 			printerr("current_database is null")
 		
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 	else:
 		printerr("galatea_databases is null")
 		

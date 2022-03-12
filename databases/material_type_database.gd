@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const material_type_record_const = preload("material_type_record.gd")
 
 const DATABASE_IDENT = "MATT"
 const DATABASE_NAME = "material_type_database"
 const DATABASE_NAME_JSON = "material_type_database.json"
-const DATABASE_NAME_BINARY = "material_type_database.gbd"
 const DATABASE_INLINED_FILENAME = "material_type_database_inlined.gd"
 const RECORDS_NAME = "material_type_records"
 	
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return material_type_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

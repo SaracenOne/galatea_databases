@@ -1,4 +1,5 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
 
 const conditionals_const = preload("../conditionals/conditionals.gd")
 
@@ -22,18 +23,18 @@ static func get_string_from_track_type(p_track_type):
 	else:
 		""
 
-export(String) var track_title = ""
-export(String) var track_artist = ""
-export(int) var track_type = TRACK_TYPE_SINGLE_TRACK
-export(bool) var contains_loop = false
-export(float) var loop_start = 0.0
-export(String) var track_path = ""
-export(bool) var playable_on_music_player = false
-export(Resource) var conditionals = conditionals_const.new()
+@export var track_title: String = ""
+@export var track_artist: String = ""
+@export var track_type: int = TRACK_TYPE_SINGLE_TRACK
+@export var contains_loop: bool = false
+@export var loop_start: float = 0.0
+@export var track_path: String = ""
+@export var playable_on_music_player: bool = false
+@export var conditionals: Resource = conditionals_const.new()
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 	
 	if(p_dictionary_record.has("track_title")):
 		track_title = p_dictionary_record.track_title
@@ -52,7 +53,7 @@ func _load_record(p_dictionary_record, p_databases):
 
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.track_title = track_title
 	p_dictionary_record.track_artist = track_artist

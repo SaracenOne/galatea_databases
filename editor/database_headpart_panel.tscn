@@ -1,168 +1,94 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://hdkcgu1hl7c"]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_headpart_panel.gd" type="Script" id=1]
-[ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/galatea_databases/editor/database_file_path_control.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/galatea_databases/editor/database_editor_3d_preview.tscn" type="PackedScene" id=5]
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_headpart_panel.gd" id="1"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_records.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_file_path_control.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://nye8trui3pp3" path="res://addons/galatea_databases/editor/database_editor_3d_preview.tscn" id="5"]
 
 [node name="HeadpartPanel" type="HSplitContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
+mouse_filter = 0
 split_offset = -300
-collapsed = false
 dragger_visibility = 1
-script = ExtResource( 1 )
-headpart_type_control = NodePath("RightSide/HeadpartTypeContainer/HeadpartTypeMenuButton")
-meshpart_control = NodePath("RightSide/MeshpartControl")
-stamp_control = NodePath("RightSide/StampControl")
-main_icon_path_control = NodePath("RightSide/MainIconPathContainer/MainIconPathContainer")
-main_icon_preview_control = NodePath("RightSide/MainIconPathContainer/MainIconPanel/MainIconTexture")
-character_creator_enabled_control = NodePath("RightSide/CharacterCreatorCheckBox")
-use_hair_color_control = NodePath("RightSide/UseHairColorCheckBox")
-scene_preview = NodePath("RightSide/PreviewContainer/ScenePreview")
-capture_button = NodePath("RightSide/PreviewContainer/ButtonContainer/CreateIconButton")
+script = ExtResource( "1" )
+headpart_type_control = NodePath("RightSide/Container/HeadpartTypeContainer/HeadpartTypeMenuButton")
+meshpart_control = NodePath("RightSide/Container/MeshpartControl")
+stamp_control = NodePath("RightSide/Container/StampControl")
+main_icon_path_control = NodePath("RightSide/Container/MainIconPathContainer/MainIconPathContainer")
+main_icon_preview_control = NodePath("RightSide/Container/MainIconPathContainer/MainIconPanel/MainIconTexture")
+character_creator_enabled_control = NodePath("RightSide/Container/CharacterCreatorCheckBox")
+use_hair_color_control = NodePath("RightSide/Container/UseHairColorCheckBox")
+scene_preview = NodePath("RightSide/Container/PreviewContainer/ScenePreview")
+capture_button = NodePath("RightSide/Container/PreviewContainer/ButtonContainer/CreateIconButton")
 
 [node name="LeftSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 206.0
-margin_bottom = 600.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_right = 206.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
+[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( "2" )]
 
 [node name="RightSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 218.0
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 218.0
+offset_right = 1024.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HeadpartTypeContainer" type="VBoxContainer" parent="RightSide"]
+[node name="Container" type="VBoxContainer" parent="RightSide"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 164.0
-margin_bottom = 50.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
+[node name="HeadpartTypeContainer" type="VBoxContainer" parent="RightSide/Container"]
+offset_right = 806.0
+offset_bottom = 57.0
 
-[node name="HeadpartTypeLabel" type="Label" parent="RightSide/HeadpartTypeContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 96.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-size_flags_horizontal = 2
-size_flags_vertical = 0
+[node name="HeadpartTypeLabel" type="Label" parent="RightSide/Container/HeadpartTypeContainer"]
+offset_right = 806.0
+offset_bottom = 24.0
 text = "Headpart Type:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="HeadpartTypeMenuButton" type="MenuButton" parent="RightSide/HeadpartTypeContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 12.0
-margin_bottom = 38.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="HeadpartTypeMenuButton" type="MenuButton" parent="RightSide/Container/HeadpartTypeContainer"]
+offset_top = 28.0
+offset_right = 806.0
+offset_bottom = 57.0
 disabled = true
 toggle_mode = false
-action_mode = 0
-enabled_focus_mode = 0
-shortcut = null
-group = null
 flat = false
-items = [  ]
 
-[node name="MeshpartControl" parent="RightSide" instance=ExtResource( 3 )]
-
-margin_left = 10.0
-margin_top = 70.0
-margin_right = 532.0
-margin_bottom = 112.0
+[node name="MeshpartControl" parent="RightSide/Container" instance=ExtResource( "3" )]
+offset_top = 61.0
+offset_right = 806.0
+offset_bottom = 118.0
+size_flags_horizontal = 1
 label = "Meshpart:"
 disabled = true
 has_clear_button = true
 
-[node name="StampControl" parent="RightSide" instance=ExtResource( 3 )]
-
-margin_left = 10.0
-margin_top = 120.0
-margin_right = 532.0
-margin_bottom = 162.0
+[node name="StampControl" parent="RightSide/Container" instance=ExtResource( "3" )]
+offset_top = 179.0
+offset_right = 806.0
+offset_bottom = 236.0
+size_flags_horizontal = 1
 label = "Stamp:"
 disabled = true
 has_clear_button = true
 
-[node name="MainIconPathContainer" type="HBoxContainer" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 170.0
-margin_right = 533.0
-margin_bottom = 234.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
+[node name="MainIconPathContainer" type="HBoxContainer" parent="RightSide/Container"]
+offset_top = 297.0
+offset_right = 806.0
+offset_bottom = 354.0
 size_flags_vertical = 2
-alignment = 0
 
-[node name="MainIconPathContainer" parent="RightSide/MainIconPathContainer" instance=ExtResource( 4 )]
-
+[node name="MainIconPathContainer" parent="RightSide/Container/MainIconPathContainer" instance=ExtResource( "4" )]
 anchor_right = 0.0
-margin_right = 259.0
-margin_bottom = 64.0
+offset_right = 401.0
+offset_bottom = 57.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 label = "Icon Path:"
@@ -171,186 +97,74 @@ file_type = "Texture"
 disabled = true
 has_clear_button = true
 
-[node name="MainIconPanel" type="Panel" parent="RightSide/MainIconPathContainer"]
+[node name="MainIconPanel" type="Panel" parent="RightSide/Container/MainIconPathContainer"]
+offset_left = 405.0
+offset_right = 806.0
+offset_bottom = 57.0
+size_flags_horizontal = 3
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 263.0
-margin_right = 327.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 2
-size_flags_vertical = 2
-
-[node name="MainIconTexture" type="TextureRect" parent="RightSide/MainIconPathContainer/MainIconPanel"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="MainIconTexture" type="TextureRect" parent="RightSide/Container/MainIconPathContainer/MainIconPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
 size_flags_horizontal = 2
 size_flags_vertical = 2
-stretch_mode = 0
 
-[node name="CharacterCreatorCheckBox" type="CheckBox" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 239.0
-margin_right = 224.0
-margin_bottom = 262.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 2
+[node name="CharacterCreatorCheckBox" type="CheckBox" parent="RightSide/Container"]
+offset_top = 415.0
+offset_right = 806.0
+offset_bottom = 444.0
 size_flags_vertical = 2
 disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Avaliable in Character Creator"
-flat = false
-align = 0
 
-[node name="UseHairColorCheckBox" type="CheckBox" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 269.0
-margin_right = 224.0
-margin_bottom = 292.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="UseHairColorCheckBox" type="CheckBox" parent="RightSide/Container"]
+offset_top = 534.0
+offset_right = 806.0
+offset_bottom = 563.0
 disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Uses Hair Color"
-flat = false
-align = 0
 
-[node name="PreviewContainer" type="VBoxContainer" parent="RightSide"]
+[node name="PreviewContainer" type="VBoxContainer" parent="RightSide/Container"]
+offset_top = 567.0
+offset_right = 806.0
+offset_bottom = 600.0
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 549.0
-margin_top = 11.0
-margin_right = 691.0
-margin_bottom = 185.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 0
-
-[node name="ScenePreview" parent="RightSide/PreviewContainer" instance=ExtResource( 5 )]
-
+[node name="ScenePreview" parent="RightSide/Container/PreviewContainer" instance=ExtResource( "5" )]
 default_capture_filename = "icon.png"
 
-[node name="ButtonContainer" type="HBoxContainer" parent="RightSide/PreviewContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 260.0
-margin_right = 142.0
-margin_bottom = 280.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+[node name="ButtonContainer" type="HBoxContainer" parent="RightSide/Container/PreviewContainer"]
+offset_top = 4.0
+offset_right = 162.0
+offset_bottom = 33.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-alignment = 0
 
-[node name="CreateIconButton" type="Button" parent="RightSide/PreviewContainer/ButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 85.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="CreateIconButton" type="Button" parent="RightSide/Container/PreviewContainer/ButtonContainer"]
+offset_right = 99.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Create Icon"
-flat = false
 
-[node name="OrientButton" type="Button" parent="RightSide/PreviewContainer/ButtonContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 89.0
-margin_right = 142.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="OrientButton" type="Button" parent="RightSide/Container/PreviewContainer/ButtonContainer"]
+offset_left = 103.0
+offset_right = 162.0
+offset_bottom = 29.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Orient"
-flat = false
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
-
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
-
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
-
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
-
-[connection signal="record_erased" from="RightSide/MeshpartControl" to="." method="_on_MeshpartControl_record_erased"]
-
-[connection signal="record_selected" from="RightSide/MeshpartControl" to="." method="_on_MeshpartControl_record_selected"]
-
-[connection signal="record_erased" from="RightSide/StampControl" to="." method="_on_StampControl_record_erased"]
-
-[connection signal="record_selected" from="RightSide/StampControl" to="." method="_on_StampControl_record_selected"]
-
-[connection signal="file_selected" from="RightSide/MainIconPathContainer/MainIconPathContainer" to="." method="_on_MainIconPathContainer_file_selected"]
-
-[connection signal="toggled" from="RightSide/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
-
-[connection signal="toggled" from="RightSide/UseHairColorCheckBox" to="." method="_on_UseHairColorCheckBox_toggled"]
-
-[connection signal="pressed" from="RightSide/PreviewContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
-
-[connection signal="pressed" from="RightSide/PreviewContainer/ButtonContainer/OrientButton" to="." method="_on_OrientButton_pressed"]
-
-
+[connection signal="record_erased" from="RightSide/Container/MeshpartControl" to="." method="_on_MeshpartControl_record_erased"]
+[connection signal="record_selected" from="RightSide/Container/MeshpartControl" to="." method="_on_MeshpartControl_record_selected"]
+[connection signal="record_erased" from="RightSide/Container/StampControl" to="." method="_on_StampControl_record_erased"]
+[connection signal="record_selected" from="RightSide/Container/StampControl" to="." method="_on_StampControl_record_selected"]
+[connection signal="file_selected" from="RightSide/Container/MainIconPathContainer/MainIconPathContainer" to="." method="_on_MainIconPathContainer_file_selected"]
+[connection signal="toggled" from="RightSide/Container/CharacterCreatorCheckBox" to="." method="_on_CharacterCreatorCheckBox_toggled"]
+[connection signal="toggled" from="RightSide/Container/UseHairColorCheckBox" to="." method="_on_UseHairColorCheckBox_toggled"]
+[connection signal="pressed" from="RightSide/Container/PreviewContainer/ButtonContainer/CreateIconButton" to="." method="_on_CreateIconButton_pressed"]
+[connection signal="pressed" from="RightSide/Container/PreviewContainer/ButtonContainer/OrientButton" to="." method="_on_OrientButton_pressed"]

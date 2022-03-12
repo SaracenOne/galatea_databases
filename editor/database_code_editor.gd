@@ -1,9 +1,9 @@
-tool
+@tool
 extends Control
 
 const generic_database_const = preload("../databases/generic_database.gd")
 
-var editor_plugin = null
+var editor_plugin: EditorPlugin = null
 var editor_settings = null
 
 func get_text_edit():

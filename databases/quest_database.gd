@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const quest_record_const = preload("quest_record.gd")
 
 const DATABASE_IDENT = "QUST"
 const DATABASE_NAME = "quest_database"
 const DATABASE_NAME_JSON = "quest_database.json"
-const DATABASE_NAME_BINARY = "quest_database.gbd"
 const DATABASE_INLINED_FILENAME = "quest_database_inlined.gd"
 const RECORDS_NAME = "quest_records"
 	
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return quest_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

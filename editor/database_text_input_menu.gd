@@ -1,7 +1,7 @@
-tool
-extends Control
+@tool
+extends Popup
 
-var line_edit = null
+var line_edit: LineEdit = null
 
 signal text_selected(p_text)
 

@@ -1,19 +1,19 @@
-tool
-extends "database_panel.gd"
+@tool
+extends "./database_panel.gd"
 
-export(NodePath) var actor = NodePath()
-export(NodePath) var message_body = NodePath()
-export(NodePath) var is_reply = NodePath()
+@export var actor: NodePath  = NodePath()
+@export var message_body: NodePath  = NodePath()
+@export var is_reply: NodePath  = NodePath()
 
-onready var _actor_control = get_node(actor)
-onready var _message_body_control = get_node(message_body)
-onready var _is_reply_control = get_node(is_reply)
+@onready var _actor_control = get_node(actor)
+@onready var _message_body_control = get_node(message_body)
+@onready var _is_reply_control = get_node(is_reply)
 
 func _ready():
 	pass
 
 func galatea_databases_assigned():
-	.galatea_databases_assigned()
+	super.galatea_databases_assigned()
 	
 	current_database = galatea_databases.sms_database
 	if(current_database != null):
@@ -23,7 +23,7 @@ func galatea_databases_assigned():
 		printerr("sms_database is null")
 
 func set_current_record_callback(p_record):
-	.set_current_record_callback(p_record)
+	super.set_current_record_callback(p_record)
 
 	if(p_record.actor):
 		_actor_control.set_record_name(p_record.actor.id)
@@ -39,19 +39,19 @@ func set_current_record_callback(p_record):
 func _on_ActorRecordsReference_record_selected( p_record ):
 	if(current_record):
 		current_record.actor = p_record
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_ActorRecordsReference_record_erased( p_record ):
 	if(current_record):
 		current_record.actor = null
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_MessageBodyTextEdit_draw():
 	if(current_record):
 		current_record.message_body = _message_body_control.get_text()
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_IsReplyCheckbox_toggled( pressed ):
 	if(current_record):
 		current_record.is_reply = pressed
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)

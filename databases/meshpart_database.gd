@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const headpart_record_const = preload("meshpart_record.gd")
 
 const DATABASE_IDENT = "MPRT"
 const DATABASE_NAME = "meshpart_database"
 const DATABASE_NAME_JSON = "meshpart_database.json"
-const DATABASE_NAME_BINARY = "meshpart_database.gbd"
 const DATABASE_INLINED_FILENAME = "meshpart_database_inlined.gd"
 const RECORDS_NAME = "meshpart_records"
 
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return headpart_record_const.new()
 
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

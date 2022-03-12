@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/galatea_databases/editor/database_generic_list.gd" type="Script" id=1]
 
 
-[node name="DatabaseList" type="WindowDialog"]
+[node name="DatabaseList" type="Popup"]
 
 anchor_left = 0.0
 anchor_top = 0.0

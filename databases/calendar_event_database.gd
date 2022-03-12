@@ -1,12 +1,11 @@
-extends "generic_database.gd"
+@tool
+extends "./generic_database.gd"
 
-const generic_database_const = preload("generic_database.gd")
 const calendar_event_record_const = preload("calendar_event_record.gd")
 
 const DATABASE_IDENT = "CALE"
 const DATABASE_NAME = "calendar_event_database"
 const DATABASE_NAME_JSON = "calendar_event_database.json"
-const DATABASE_NAME_BINARY = "calendar_event_database.gbd"
 const DATABASE_INLINED_FILENAME = "calendar_event_database_inlined.gd"
 const RECORDS_NAME = "calendar_event_records"
 	
@@ -28,5 +27,5 @@ func save_database():
 func _create_record():
 	return calendar_event_record_const.new()
 	
-func _init(p_databases).(p_databases):
-	pass
+func _init(p_databases):
+	super._init(p_databases)

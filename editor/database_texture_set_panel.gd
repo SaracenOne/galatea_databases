@@ -1,15 +1,15 @@
-tool
-extends "database_panel.gd"
+@tool
+extends "./database_panel.gd"
 
 var currently_selected_texture = ""
 
-export(NodePath) var texture_path = NodePath()
-export(NodePath) var texture_tree = NodePath()
-export(NodePath) var texture_preview = NodePath()
+@export var texture_path: NodePath  = NodePath()
+@export var texture_tree: NodePath  = NodePath()
+@export var texture_preview: NodePath  = NodePath()
 
-onready var _texture_path_control = get_node(texture_path)
-onready var _texture_tree_control = get_node(texture_tree)
-onready var _texture_preview_control = get_node(texture_preview)
+@onready var _texture_path_control = get_node(texture_path)
+@onready var _texture_tree_control = get_node(texture_tree)
+@onready var _texture_preview_control = get_node(texture_preview)
 
 
 func _ready():
@@ -22,7 +22,7 @@ func _ready():
 	_texture_preview_control = get_node(texture_preview)
 
 func galatea_databases_assigned():
-	.galatea_databases_assigned()
+	super.galatea_databases_assigned()
 	
 	current_database = galatea_databases.texture_set_database
 	if(current_database != null):
@@ -61,7 +61,7 @@ func update_preview():
 		_texture_preview_control.set_texture(null)
 
 func set_current_record_callback(p_record):
-	.set_current_record_callback(p_record)
+	super.set_current_record_callback(p_record)
 	
 	currently_selected_texture = ""
 	_texture_path_control.set_file_path("")
@@ -88,4 +88,4 @@ func _on_TexturesPathControl_file_selected( p_path ):
 		update_preview()
 		update_tree_data(true)
 		
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)

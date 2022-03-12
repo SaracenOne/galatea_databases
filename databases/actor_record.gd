@@ -1,123 +1,61 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
+class_name GalActorRecord
 
+const conversion_const = preload("../data/conversion.gd")
 const date_and_time_const = preload("res://addons/date_and_time/date_and_time.gd")
-const generic_database_const = preload("generic_database.gd")
 
-enum {GENDER_MALE,
- GENDER_FEMALE}
+@export var gender: int = Gender.GENDER_MALE
 
-enum {BLOODTYPE_A,
- BLOODTYPE_B,
- BLOODTYPE_AB,
- BLOODTYPE_O}
+@export var age: int = 0
+@export var bloodtype: int = BloodType.BLOODTYPE_A
 
-export(int) var gender = GENDER_MALE
+@export var date_of_birth_day: int = 0
+@export var date_of_birth_month: int = 0
 
-export(int) var age = 0
-export(int) var bloodtype = BLOODTYPE_A
+@export var given_name: String = ""
+@export var family_name: String = ""
+@export var nickname: String = ""
 
-export(int) var date_of_birth_day = 0
-export(int) var date_of_birth_month = 0
+@export var is_valid_contact: bool = false
+@export var is_storyline_actor: bool = false
 
-export(String) var given_name= ""
-export(String) var family_name = ""
-export(String) var nickname = ""
+@export var contact_icon_path: String = ""
 
-export(bool) var is_valid_contact = false
-export(bool) var is_storyline_actor = false
+@export var actor_groups: Array = []
+@export var traits: Array = []
+@export var ai_packages: Array = []
 
-export(String) var contact_icon_path = ""
-
-export(Array) var actor_groups = []
-export(Array) var traits = []
-export(Array) var ai_packages = []
-
-export(Dictionary) var stats = {}
+@export var stats: Dictionary = {}
 
 # Appearence
-export(Resource) var head = null
-export(Color) var head_color = Color(1.0, 1.0, 1.0, 1.0)
-export(Resource) var eyes = null
-export(Color) var eyes_color = Color(1.0, 1.0, 1.0, 1.0)
-export(Resource) var eyebrows = null
-export(Color) var eyebrows_color = Color(1.0, 1.0, 1.0, 1.0)
-export(Resource) var mouth = null
-export(Color) var mouth_color = Color(1.0, 1.0, 1.0, 1.0)
-export(Resource) var eyelashes = null
-export(Color) var eyelashes_color = Color(1.0, 1.0, 1.0, 1.0)
+@export var head: Resource = null
+@export var head_color: Color = Color(1.0, 1.0, 1.0, 1.0)
+@export var eyes: Resource = null
+@export var eyes_color: Color = Color(1.0, 1.0, 1.0, 1.0)
+@export var eyebrows: Resource = null
+@export var eyebrows_color: Color = Color(1.0, 1.0, 1.0, 1.0)
+@export var mouth: Resource = null
+@export var mouth_color: Color = Color(1.0, 1.0, 1.0, 1.0)
+@export var eyelashes: Resource = null
+@export var eyelashes_color: Color = Color(1.0, 1.0, 1.0, 1.0)
 
-export(Color) var skin_color = Color(1.0, 1.0, 1.0, 1.0)
+@export var skin_color: Color = Color(1.0, 1.0, 1.0, 1.0)
 
-export(Resource) var hair = null
-export(Color) var hair_color = Color(1.0, 1.0, 1.0, 1.0)
+@export var hair: Resource = null
+@export var hair_color: Color = Color(1.0, 1.0, 1.0, 1.0)
 
-export(Resource) var body = null
-export(Resource) var default_clothing_set = null
+@export var body: Resource = null
+@export var default_clothing_set: Resource = null
 
-export(float) var height = 1.0
-export(Dictionary) var body_scaler_table = {}
-export(Dictionary) var head_morph_table = {}
-export(Dictionary) var stamp_table = {}
-
-static func get_bloodtype_from_string(p_string):
-	var upper_string = p_string.to_upper()
-	
-	if(upper_string == "A"):
-		return BLOODTYPE_A
-	elif(upper_string == "B"):
-		return BLOODTYPE_B
-	elif(upper_string == "AB"):
-		return BLOODTYPE_AB
-	elif(upper_string == "O"):
-		return BLOODTYPE_O
-	else:
-		return -1
+@export var height: float = 1.0
+@export var body_scaler_table: Dictionary = {}
+@export var head_morph_table: Dictionary = {}
+@export var stamp_table: Dictionary = {}
 		
-static func get_string_from_bloodtype(p_bloodtype):
-	if(p_bloodtype == BLOODTYPE_A):
-		return "A"
-	elif(p_bloodtype == BLOODTYPE_B):
-		return "B"
-	elif(p_bloodtype == BLOODTYPE_AB):
-		return "AB"
-	elif(p_bloodtype == BLOODTYPE_O):
-		return "O"
-	else:
-		""
-		
-static func get_emoji_from_bloodtype(p_bloodtype):
-	if(p_bloodtype == BLOODTYPE_A):
-		return " "
-	elif(p_bloodtype == BLOODTYPE_B):
-		return " "
-	elif(p_bloodtype == BLOODTYPE_AB):
-		return " "
-	elif(p_bloodtype == BLOODTYPE_O):
-		return " ️"
-	else:
-		""
-		
-static func get_gender_from_string(p_string):
-	var lower_string = p_string.to_lower()
-	
-	if(lower_string == "male"):
-		return GENDER_MALE
-	elif(lower_string == "female"):
-		return GENDER_FEMALE
-	else:
-		return -1
-		
-static func get_string_from_gender(p_gender):
-	if(p_gender == GENDER_MALE):
-		return "male"
-	elif(p_gender == GENDER_FEMALE):
-		return "female"
-	else:
-		""
-
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 	
 	if(p_dictionary_record.has("family_name")):
 		family_name = p_dictionary_record.family_name
@@ -127,11 +65,11 @@ func _load_record(p_dictionary_record, p_databases):
 		nickname = p_dictionary_record.nickname
 	
 	if(p_dictionary_record.has("gender")):
-		gender = get_gender_from_string(p_dictionary_record.gender)
+		gender = Gender.get_gender_from_string(p_dictionary_record.gender)
 	if(p_dictionary_record.has("age")):
 		age = p_dictionary_record.age
 	if(p_dictionary_record.has("bloodtype")):
-		bloodtype = get_bloodtype_from_string(p_dictionary_record.bloodtype)
+		bloodtype = BloodType.get_bloodtype_from_string(p_dictionary_record.bloodtype)
 	if(p_dictionary_record.has("date_of_birth_day")):
 		date_of_birth_day = p_dictionary_record.date_of_birth_day
 	if(p_dictionary_record.has("date_of_birth_month")):
@@ -154,22 +92,22 @@ func _load_record(p_dictionary_record, p_databases):
 				
 	if(p_dictionary_record.has("traits")):
 		for trait_name in p_dictionary_record.traits:
-			var trait = p_databases.trait_database.find_record_by_name(trait_name)
-			if(trait != null):
-				traits.append(trait)
+			var trait_record = p_databases.trait_database.find_record_by_name(trait_name)
+			if(trait_record != null):
+				traits.append(trait_record)
 				
 	if(p_dictionary_record.has("ai_packages")):
 		for ai_package_name in p_dictionary_record.ai_packages:
-			var ai_package = p_databases.ai_package_database.find_record_by_name(ai_package_name)
-			if(ai_package != null):
-				ai_packages.append(ai_package)
+			var ai_package_record = p_databases.ai_package_database.find_record_by_name(ai_package_name)
+			if(ai_package_record != null):
+				ai_packages.append(ai_package_record)
 	
 	if(p_dictionary_record.has("head")):
 		head = p_databases.headpart_database.find_record_by_name(p_dictionary_record.head)
 	else:
 		head = null
 	if(p_dictionary_record.has("head_color")):
-		head_color = generic_database_const.convert_string_to_color(p_dictionary_record.head_color)
+		head_color = conversion_const.convert_string_to_color(p_dictionary_record.head_color)
 	else:
 		head_color = Color(1.0, 1.0, 1.0, 1.0)
 		
@@ -178,7 +116,7 @@ func _load_record(p_dictionary_record, p_databases):
 	else:
 		eyes = null
 	if(p_dictionary_record.has("eyes_color")):
-		eyes_color = generic_database_const.convert_string_to_color(p_dictionary_record.eyes_color)
+		eyes_color = conversion_const.convert_string_to_color(p_dictionary_record.eyes_color)
 	else:
 		eyes_color = Color(1.0, 1.0, 1.0, 1.0)
 		
@@ -187,7 +125,7 @@ func _load_record(p_dictionary_record, p_databases):
 	else:
 		eyebrows = null
 	if(p_dictionary_record.has("eyebrows_color")):
-		eyebrows_color = generic_database_const.convert_string_to_color(p_dictionary_record.eyebrows_color)
+		eyebrows_color = conversion_const.convert_string_to_color(p_dictionary_record.eyebrows_color)
 	else:
 		eyebrows_color = Color(1.0, 1.0, 1.0, 1.0)
 		
@@ -196,7 +134,7 @@ func _load_record(p_dictionary_record, p_databases):
 	else:
 		mouth = null
 	if(p_dictionary_record.has("mouth_color")):
-		mouth_color = generic_database_const.convert_string_to_color(p_dictionary_record.mouth_color)
+		mouth_color = conversion_const.convert_string_to_color(p_dictionary_record.mouth_color)
 	else:
 		mouth_color = Color(1.0, 1.0, 1.0, 1.0)
 		
@@ -205,7 +143,7 @@ func _load_record(p_dictionary_record, p_databases):
 	else:
 		eyelashes = null
 	if(p_dictionary_record.has("eyelashes_color")):
-		eyelashes_color = generic_database_const.convert_string_to_color(p_dictionary_record.eyelashes_color)
+		eyelashes_color = conversion_const.convert_string_to_color(p_dictionary_record.eyelashes_color)
 	else:
 		eyelashes_color = Color(1.0, 1.0, 1.0, 1.0)
 		
@@ -213,13 +151,13 @@ func _load_record(p_dictionary_record, p_databases):
 		stats = p_dictionary_record.stats
 		
 	if(p_dictionary_record.has("skin_color")):
-		skin_color = generic_database_const.convert_string_to_color(p_dictionary_record.skin_color)
+		skin_color = conversion_const.convert_string_to_color(p_dictionary_record.skin_color)
 		
 	if(p_dictionary_record.has("hair")):
 		hair = p_databases.hair_database.find_record_by_name(p_dictionary_record.hair)
 		
 	if(p_dictionary_record.has("hair_color")):
-		hair_color = generic_database_const.convert_string_to_color(p_dictionary_record.hair_color)
+		hair_color = conversion_const.convert_string_to_color(p_dictionary_record.hair_color)
 		
 	if(p_dictionary_record.has("body")):
 		body = p_databases.body_database.find_record_by_name(p_dictionary_record.body)
@@ -238,19 +176,19 @@ func _load_record(p_dictionary_record, p_databases):
 	if(p_dictionary_record.has("stamp_table")):
 		for stamp in p_dictionary_record.stamp_table.keys():
 			var stamp_record = p_databases.stamp_database.find_record_by_name(stamp)
-			stamp_table[stamp_record] = generic_database_const.convert_string_to_color(p_dictionary_record.stamp_table[stamp])
+			stamp_table[stamp_record] = conversion_const.convert_string_to_color(p_dictionary_record.stamp_table[stamp])
 		
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.family_name = family_name
 	p_dictionary_record.given_name = given_name
 	p_dictionary_record.nickname = nickname
 	
-	p_dictionary_record.gender = get_string_from_gender(gender)
+	p_dictionary_record.gender = Gender.get_string_from_gender(gender)
 	p_dictionary_record.age = age
-	p_dictionary_record.bloodtype = get_string_from_bloodtype(bloodtype)
+	p_dictionary_record.bloodtype = BloodType.get_string_from_bloodtype(bloodtype)
 	
 	p_dictionary_record.date_of_birth_day = date_of_birth_day
 	p_dictionary_record.date_of_birth_month = date_and_time_const.get_string_from_month(date_of_birth_month)
@@ -267,12 +205,12 @@ func _save_record(p_dictionary_record, p_databases):
 		p_dictionary_record.actor_groups.append(actor_group.id)
 		
 	p_dictionary_record.traits = []
-	for trait in traits:
-		p_dictionary_record.traits.append(trait.id)
+	for trait_record in traits:
+		p_dictionary_record.traits.append(trait_record.id)
 		
 	p_dictionary_record.ai_packages = []
-	for ai_package in ai_packages:
-		p_dictionary_record.ai_packages.append(ai_package.id)
+	for ai_package_record in ai_packages:
+		p_dictionary_record.ai_packages.append(ai_package_record.id)
 	
 	p_dictionary_record.stats = stats
 	

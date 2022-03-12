@@ -1,17 +1,18 @@
-extends "generic_record.gd"
+@tool
+extends "./generic_record.gd"
 
-export(String) var male_model_path = ""
-export(String) var female_model_path = ""
+@export var male_model_path: String = ""
+@export var female_model_path: String = ""
 
-export(Array) var male_model_materials = []
-export(Array) var female_model_materials = []
+@export var male_model_materials: Array = []
+@export var female_model_materials: Array = []
 
-export(bool) var is_attachment = false
-export(String) var bone_attachment_name = ""
+@export var is_attachment: bool = false
+@export var bone_attachment_name: String = ""
 
 func _load_record(p_dictionary_record, p_databases):
 	# Read Data
-	._load_record(p_dictionary_record, p_databases)
+	super._load_record(p_dictionary_record, p_databases)
 	
 	if(p_dictionary_record.has("male_model_path")):
 		male_model_path = p_dictionary_record.male_model_path
@@ -35,7 +36,7 @@ func _load_record(p_dictionary_record, p_databases):
 
 func _save_record(p_dictionary_record, p_databases):
 	# Write Data
-	._save_record(p_dictionary_record, p_databases)
+	super._save_record(p_dictionary_record, p_databases)
 	
 	p_dictionary_record.male_model_path = male_model_path
 	p_dictionary_record.female_model_path = female_model_path

@@ -1,35 +1,35 @@
-tool
-extends "database_panel.gd"
+@tool
+extends "./database_panel.gd"
 
 const headpart_record_const = preload("../databases/headpart_record.gd")
 
-export(NodePath) var headpart_type_control = NodePath()
-export(NodePath) var meshpart_control = NodePath()
-export(NodePath) var stamp_control = NodePath()
-export(NodePath) var main_icon_path_control = NodePath()
-export(NodePath) var main_icon_preview_control = NodePath()
-export(NodePath) var character_creator_enabled_control = NodePath()
-export(NodePath) var use_hair_color_control = NodePath()
+@export var headpart_type_control: NodePath  = NodePath()
+@export var meshpart_control: NodePath  = NodePath()
+@export var stamp_control: NodePath  = NodePath()
+@export var main_icon_path_control: NodePath  = NodePath()
+@export var main_icon_preview_control: NodePath  = NodePath()
+@export var character_creator_enabled_control: NodePath  = NodePath()
+@export var use_hair_color_control: NodePath  = NodePath()
 
-export(NodePath) var scene_preview = NodePath()
-export(NodePath) var capture_button = NodePath()
+@export var scene_preview: NodePath  = NodePath()
+@export var capture_button: NodePath  = NodePath()
 
-onready var _headpart_type_control_node = get_node(headpart_type_control)
-onready var _meshpart_control_node = get_node(meshpart_control)
-onready var _stamp_control_node = get_node(stamp_control)
-onready var _main_icon_path_control_node = get_node(main_icon_path_control)
-onready var _main_icon_preview_control_node = get_node(main_icon_preview_control)
-onready var _character_creator_enabled_control_node = get_node(character_creator_enabled_control)
-onready var _use_hair_color_control_node = get_node(use_hair_color_control)
+@onready var _headpart_type_control_node = get_node(headpart_type_control)
+@onready var _meshpart_control_node = get_node(meshpart_control)
+@onready var _stamp_control_node = get_node(stamp_control)
+@onready var _main_icon_path_control_node = get_node(main_icon_path_control)
+@onready var _main_icon_preview_control_node = get_node(main_icon_preview_control)
+@onready var _character_creator_enabled_control_node = get_node(character_creator_enabled_control)
+@onready var _use_hair_color_control_node = get_node(use_hair_color_control)
 
-onready var _scene_preview_node = get_node(scene_preview)
-onready var _capture_button_node = get_node(capture_button)
+@onready var _scene_preview_node = get_node(scene_preview)
+@onready var _capture_button_node = get_node(capture_button)
 
 func _ready():
 	pass
 
 func galatea_databases_assigned():
-	.galatea_databases_assigned()
+	super.galatea_databases_assigned()
 	
 	current_database = galatea_databases.headpart_database
 	
@@ -38,8 +38,8 @@ func galatea_databases_assigned():
 	headpart_type_popup.clear()
 	for i in range(0, headpart_record_const.HEADPART_MAX):
 		headpart_type_popup.add_item(headpart_record_const.get_string_from_headpart(i), i) 
-	if(!headpart_type_popup.is_connected("id_pressed", self, "_on_headpart_type_selected")):
-		headpart_type_popup.connect("id_pressed", self, "_on_headpart_type_selected")
+	if(!headpart_type_popup.is_connected("id_pressed", Callable(self, "_on_headpart_type_selected"))):
+		headpart_type_popup.connect("id_pressed", Callable(self, "_on_headpart_type_selected"))
 	
 	_meshpart_control_node.assign_database(galatea_databases.meshpart_database)
 	_stamp_control_node.assign_database(galatea_databases.stamp_database)
@@ -50,7 +50,7 @@ func galatea_databases_assigned():
 		printerr("headpart_database is null")
 
 func set_current_record_callback(p_record):
-	.set_current_record_callback(p_record)
+	super.set_current_record_callback(p_record)
 	
 	_headpart_type_control_node.set_text(headpart_record_const.get_string_from_headpart(p_record.headpart_type))
 	_headpart_type_control_node.set_disabled(false)
@@ -73,7 +73,7 @@ func set_current_record_callback(p_record):
 	
 	_main_icon_preview_control_node.set_texture(null)
 	var main_icon_texture = null
-	if(!p_record.main_icon_path.empty()):
+	if(!p_record.main_icon_path.is_empty()):
 		main_icon_texture = load(p_record.main_icon_path)
 	if(main_icon_texture):
 		if(main_icon_texture is Texture):
@@ -97,19 +97,19 @@ func _on_headpart_type_selected( p_id ):
 	if(current_record):
 		current_record.headpart_type = p_id
 		_headpart_type_control_node.set_text(headpart_record_const.get_string_from_headpart(current_record.headpart_type))
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 func _on_StampControl_record_selected( p_record ):
 	if(current_record):
 		current_record.stamp = p_record
 		setup_scene_preview()
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_StampControl_record_erased( p_record ):
 	if(current_record):
 		current_record.stamp = p_record
 		setup_scene_preview()
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 
 func setup_scene_preview():
@@ -124,8 +124,8 @@ func setup_scene_preview():
 					preview_texture = load(current_record.stamp.texture_set.textures["diffuse"])
 			
 			if(preview_texture and preview_texture is Texture):
-				preview_material = SpatialMaterial.new()
-				preview_material.set_albedo(preview_texture)
+				preview_material = StandardMaterial3D.new()
+				preview_material.set_albedo_texture(preview_texture)
 
 			if(_scene_preview_node):
 				_scene_preview_node.set_mesh(preview_mesh)
@@ -143,37 +143,38 @@ func _on_MeshpartControl_record_selected( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.meshpart = p_record
 		setup_scene_preview()
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_MeshpartControl_record_erased( p_record ):
 	if(current_record and current_record != p_record):
 		current_record.meshpart = p_record
 		setup_scene_preview()
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_CharacterCreatorCheckBox_toggled( pressed ):
 	if(current_record):
 		current_record.character_creator = pressed
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_UseHairColorCheckBox_toggled( pressed ):
 	if(current_record):
 		current_record.use_hair_color = pressed
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
-func _on_MainIconPathContainer_file_selected( p_path ):
+func _on_MainIconPathContainer_file_selected(p_path: String):
 	if(current_record):
 		current_record.main_icon_path = p_path
 		
 		_main_icon_preview_control_node.set_texture(null)
 		var main_icon_texture = null
-		if(!p_path.empty()):
-			main_icon_texture = load(p_path)
+		if(!p_path.is_empty()):
+			if ResourceLoader.exists(p_path):
+				main_icon_texture = load(p_path)
 		if(main_icon_texture):
 			if(main_icon_texture is Texture):
 				_main_icon_preview_control_node.set_texture(main_icon_texture)
 			
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 
 
 func _on_CreateIconButton_pressed():

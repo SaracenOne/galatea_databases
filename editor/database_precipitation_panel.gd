@@ -1,33 +1,33 @@
-tool
-extends "database_panel.gd"
+@tool
+extends "./database_panel.gd"
 
-export(NodePath) var texture_path = NodePath()
-export(NodePath) var texture_path_texture = NodePath()
-export(NodePath) var shader_path = NodePath()
-export(NodePath) var sub_texture_count_xy = NodePath()
-export(NodePath) var box_size = NodePath()
-export(NodePath) var wind_multiplier = NodePath()
-export(NodePath) var particle_density = NodePath()
-export(NodePath) var particle_rotation_velocity = NodePath()
-export(NodePath) var particle_size_x = NodePath()
-export(NodePath) var particle_size_y = NodePath()
+@export var texture_path: NodePath  = NodePath()
+@export var texture_path_texture: NodePath  = NodePath()
+@export var shader_path: NodePath  = NodePath()
+@export var sub_texture_count_xy: NodePath  = NodePath()
+@export var box_size: NodePath  = NodePath()
+@export var wind_multiplier: NodePath  = NodePath()
+@export var particle_density: NodePath  = NodePath()
+@export var particle_rotation_velocity: NodePath  = NodePath()
+@export var particle_size_x: NodePath  = NodePath()
+@export var particle_size_y: NodePath  = NodePath()
 
-onready var _texture_path_control = get_node(texture_path)
-onready var _texture_path_texture_control = get_node(texture_path_texture)
-onready var _shader_path_control = get_node(shader_path)
-onready var _sub_texture_count_xy_control = get_node(sub_texture_count_xy)
-onready var _box_size_control = get_node(box_size)
-onready var _wind_multiplier_control = get_node(wind_multiplier)
-onready var _particle_density_control = get_node(particle_density)
-onready var _particle_rotation_velocity_control = get_node(particle_rotation_velocity)
-onready var _particle_size_x_control = get_node(particle_size_x)
-onready var _particle_size_y_control = get_node(particle_size_y)
+@onready var _texture_path_control = get_node(texture_path)
+@onready var _texture_path_texture_control = get_node(texture_path_texture)
+@onready var _shader_path_control = get_node(shader_path)
+@onready var _sub_texture_count_xy_control = get_node(sub_texture_count_xy)
+@onready var _box_size_control = get_node(box_size)
+@onready var _wind_multiplier_control = get_node(wind_multiplier)
+@onready var _particle_density_control = get_node(particle_density)
+@onready var _particle_rotation_velocity_control = get_node(particle_rotation_velocity)
+@onready var _particle_size_x_control = get_node(particle_size_x)
+@onready var _particle_size_y_control = get_node(particle_size_y)
 
 func _ready():
 	pass
 	
 func galatea_databases_assigned():
-	.galatea_databases_assigned()
+	super.galatea_databases_assigned()
 	
 	current_database = galatea_databases.precipitation_database
 	
@@ -37,13 +37,13 @@ func galatea_databases_assigned():
 		printerr("precipitation_databases is null")
 
 func set_current_record_callback(p_record):
-	.set_current_record_callback(p_record)
+	super.set_current_record_callback(p_record)
 	
 	_texture_path_control.set_disabled(false)
 	_texture_path_control.set_file_path(p_record.texture_path)
 	_texture_path_texture_control.set_texture(null)
 	var particle_texture = null
-	if(!p_record.texture_path.empty()):
+	if(!p_record.texture_path.is_empty()):
 		particle_texture = load(p_record.texture_path)
 	if(particle_texture):
 		if(particle_texture is Texture):
@@ -80,13 +80,13 @@ func set_current_record_callback(p_record):
 	_particle_size_y_control.set_value(p_record.particle_size.y)
 	_particle_size_y_control.set_step(0.000001)
 
-func _on_TexturePathControl_file_selected( p_path ):
+func _on_TexturePathControl_file_selected(p_path: String):
 	if(current_record):
 		current_record.texture_path = p_path
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 		var particle_texture = null
-		if(!current_record.texture_path.empty()):
+		if(!current_record.texture_path.is_empty()):
 			particle_texture = load(current_record.texture_path)
 		if(particle_texture):
 			if(particle_texture is Texture):
@@ -95,39 +95,39 @@ func _on_TexturePathControl_file_selected( p_path ):
 func _on_ShaderPathControl_file_selected( p_path ):
 	if(current_record):
 		current_record.shader_path = p_path
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_SubTextureCountXYControl_value_changed( value ):
 	if(current_record):
 		current_record.sub_texture_count_xy = value
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_BoxSizeControl_value_changed( value ):
 	if(current_record):
 		current_record.box_size = value
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_WindMultiplierControl_value_changed( value ):
 	if(current_record):
 		current_record.wind_multiplier = value
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_ParticleDensityControl_value_changed( value ):
 	if(current_record):
 		current_record.particle_density = value
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_ParticleRotationVelocityControl_value_changed( value ):
 	if(current_record):
 		current_record.particle_rotation_velocity = value
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_ParticleSizeControlX_value_changed( value ):
 	if(current_record):
 		current_record.particle_size.x = value
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)
 		
 func _on_ParticleSizeControlY_value_changed( value ):
 	if(current_record):
 		current_record.particle_size.y = value
-		current_database.mark_database_as_modified()
+		current_database.mark_database_as_modified(current_database.DATABASE_NAME)

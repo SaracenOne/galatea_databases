@@ -1,20 +1,20 @@
-tool
+@tool
 extends Control
 
 const generic_record_const = preload("../databases/generic_record.gd")
 
-var record_tree = null
+var record_tree: Tree = null
 
-var database_new_edit_record_popup = null
-var error_dialog = null
+var database_new_edit_record_popup: ConfirmationDialog = null
+var error_dialog: AcceptDialog = null
 
 signal submit_new_record(p_name)
 signal submit_renamed_record(p_from, p_to)
 signal submit_erase_record(p_name)
 signal set_current_record(p_record)
 
-func _init():
-	database_new_edit_record_popup = preload("database_new_edit_record_popup.tscn").instance()
+func _init() -> void:
+	database_new_edit_record_popup = preload("database_new_edit_record_popup.tscn").instantiate()
 	database_new_edit_record_popup.set_hide_on_ok(false)
 	add_child(database_new_edit_record_popup)
 	
@@ -23,33 +23,33 @@ func _init():
 	add_child(error_dialog)
 	pass
 	
-func new_record_duplicate_callback():
+func new_record_duplicate_callback() -> void:
 	error_dialog.set_text("A record of this name already exists...")
-	error_dialog.get_label().set_align(Label.ALIGN_CENTER)
-	error_dialog.popup_centered_minsize(Vector2(200, 100))
+	error_dialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	error_dialog.popup_centered()
 
-func new_record_add_successful_callback(p_database, p_record):
+func new_record_add_successful_callback(p_database, p_record) -> void:
 	add_record_dismissed_callback()
 	database_new_edit_record_popup.hide()
 	populate_tree(p_database, p_record)
 	
-func add_record_dismissed_callback():
-	database_new_edit_record_popup.disconnect("name_entry_commit", self, "add_record_name_received")
-	database_new_edit_record_popup.disconnect("popup_hide", self, "add_record_dismissed_callback")
+func add_record_dismissed_callback() -> void:
+	database_new_edit_record_popup.disconnect("name_entry_commit", Callable(self, "add_record_name_received"))
+	database_new_edit_record_popup.disconnect("close_requested", Callable(self, "add_record_dismissed_callback"))
 	
-func add_record_name_received(p_string):
-	var ascii_string = p_string.to_ascii()
+func add_record_name_received(p_string: String) -> void:
+	var ascii_buffer: PackedByteArray = p_string.to_ascii_buffer()
 	
-	if(ascii_string.size() == 0):
+	if(ascii_buffer.size() == 0):
 		error_dialog.set_text("Please input a valid name...")
-		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
-		error_dialog.popup_centered_minsize(Vector2(200, 100))
-	elif(ascii_string.size() > generic_record_const.MAX_ID_SIZE):
+		error_dialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		error_dialog.popup_centered()
+	elif(ascii_buffer.size() > generic_record_const.MAX_ID_SIZE):
 		error_dialog.set_text("Record name exeeds maximum string length!")
-		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
-		error_dialog.popup_centered_minsize(Vector2(200, 100))
+		error_dialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		error_dialog.popup_centered()
 	else:
-		emit_signal("submit_new_record", p_string)
+		emit_signal("submit_new_record", ascii_buffer.get_string_from_ascii())
 		
 func rename_record_successful_callback(p_database, p_record):
 	rename_record_dismissed_callback()
@@ -57,20 +57,20 @@ func rename_record_successful_callback(p_database, p_record):
 	populate_tree(p_database, p_record)
 	
 func rename_record_dismissed_callback():
-	database_new_edit_record_popup.disconnect("name_entry_commit", self, "rename_record_name_received")
-	database_new_edit_record_popup.disconnect("popup_hide", self, "rename_record_dismissed_callback")
+	database_new_edit_record_popup.disconnect("name_entry_commit", Callable(self, "rename_record_name_received"))
+	database_new_edit_record_popup.disconnect("close_requested", Callable(self, "rename_record_dismissed_callback"))
 		
 func rename_record_name_received(p_string):
 	var ascii_string = p_string.to_ascii()
 	
 	if(ascii_string.size() == 0):
 		error_dialog.set_text("Please input a valid id...")
-		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
-		error_dialog.popup_centered_minsize(Vector2(200, 100))
+		error_dialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		error_dialog.popup_centered()
 	elif(ascii_string.size() > generic_record_const.MAX_ID_SIZE):
 		error_dialog.set_text("Record name exeeds maximum string length!")
-		error_dialog.get_label().set_align(Label.ALIGN_CENTER)
-		error_dialog.popup_centered_minsize(Vector2(200, 100))
+		error_dialog.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		error_dialog.popup_centered()
 	else:
 		var tree_item = record_tree.get_selected()
 		var record = tree_item.get_metadata(0)
@@ -83,8 +83,8 @@ func erase_record_successful_callback(p_database):
 func _on_AddButton_pressed():
 	database_new_edit_record_popup.set_instructions_text("Please give an id for the new record...")
 	
-	database_new_edit_record_popup.connect("name_entry_commit", self, "add_record_name_received")
-	database_new_edit_record_popup.connect("popup_hide", self, "add_record_dismissed_callback")
+	database_new_edit_record_popup.connect("name_entry_commit", Callable(self, "add_record_name_received"))
+	database_new_edit_record_popup.connect("close_requested", Callable(self, "add_record_dismissed_callback"))
 	
 	database_new_edit_record_popup.popup_centered()
 
@@ -98,8 +98,8 @@ func _on_RenameButton_pressed():
 	var tree_item = record_tree.get_selected()
 	if(tree_item):
 		database_new_edit_record_popup.set_instructions_text(str("Please give a new id for the record '%s'...") % (tree_item.get_text(0)))
-		database_new_edit_record_popup.connect("name_entry_commit", self, "rename_record_name_received")
-		database_new_edit_record_popup.connect("popup_hide", self, "rename_record_dismissed_callback")
+		assert(database_new_edit_record_popup.connect("name_entry_commit", Callable(self, "rename_record_name_received")) == OK)
+		assert(database_new_edit_record_popup.connect("close_requested", Callable(self, "rename_record_dismissed_callback")) == OK)
 		
 		database_new_edit_record_popup.popup_centered()
 
@@ -138,3 +138,7 @@ func _on_RecordTree_cell_selected():
 	get_node("DatabaseRecordsContainer/ButtonContainer/RenameButton").set_disabled(false)
 	
 	emit_signal("set_current_record", record)
+
+
+func _on_database_records_set_current_record(p_record):
+	pass # Replace with function body.

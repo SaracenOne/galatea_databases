@@ -1,16 +1,16 @@
-tool
+@tool
 extends TabContainer
 
-export(bool) var is_root = false
-var last_selected_tab = -1
+@export var is_root: bool = false
+var last_selected_tab: int = -1
 
 var galatea_databases = null
 var editor_plugin = null
 
 func setup():
 	last_selected_tab = get_current_tab()
-	if not(is_connected("tab_changed", self, "tab_changed")):
-		connect("tab_changed", self, "tab_changed")
+	if not(is_connected("tab_changed", Callable(self, "tab_changed"))):
+		assert(connect("tab_changed", Callable(self, "tab_changed")) == OK)
 		if(is_root):
 			create_tab()
 
@@ -41,3 +41,4 @@ func set_galatea_databases(p_databases):
 	for child in get_children():
 		if(child.has_method("set_galatea_databases")):
 			child.call("set_galatea_databases", galatea_databases)
+			

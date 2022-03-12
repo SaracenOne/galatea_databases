@@ -1,436 +1,193 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://20hwhbtssfw4"]
 
-[ext_resource path="res://addons/galatea_databases/editor/database_stamp_panel.gd" type="Script" id=1]
-[ext_resource path="res://addons/galatea_databases/editor/database_records.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" type="PackedScene" id=3]
-
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_stamp_panel.gd" id="1"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_records.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_records_reference_single.tscn" id="3"]
 
 [node name="StampPanel" type="HSplitContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
+mouse_filter = 0
 split_offset = -300
-collapsed = false
 dragger_visibility = 1
-script = ExtResource( 1 )
-texture_reference_control = NodePath("RightSide/TextureSetContainer/TextureSetReference")
-target_min_x_control = NodePath("RightSide/TargetMinContainer/TargetMinHContainer/TargetMinXSpinbox")
-target_min_y_control = NodePath("RightSide/TargetMinContainer/TargetMinHContainer/TargetMinYSpinbox")
-target_max_x_control = NodePath("RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxXSpinbox")
-target_max_y_control = NodePath("RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxYSpinbox")
-uses_alpha_control = NodePath("RightSide/UsesAlphaCheckBox")
-invert_alpha_control = NodePath("RightSide/InvertAlphaCheckBox")
+script = ExtResource( "1" )
+texture_reference_control = NodePath("RightSide/ScrollContainer/Container/TextureSetContainer/TextureSetReference")
+target_min_x_control = NodePath("RightSide/ScrollContainer/Container/TargetMinContainer/TargetMinHContainer/TargetMinXSpinbox")
+target_min_y_control = NodePath("RightSide/ScrollContainer/Container/TargetMinContainer/TargetMinHContainer/TargetMinYSpinbox")
+target_max_x_control = NodePath("RightSide/ScrollContainer/Container/TargetMaxContainer/TargetMaxHContainer/TargetMaxXSpinbox")
+target_max_y_control = NodePath("RightSide/ScrollContainer/Container/TargetMaxContainer/TargetMaxHContainer/TargetMaxYSpinbox")
+uses_alpha_control = NodePath("RightSide/ScrollContainer/Container/UsesAlphaCheckBox")
+invert_alpha_control = NodePath("RightSide/ScrollContainer/Container/InvertAlphaCheckBox")
 
 [node name="LeftSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 206.0
-margin_bottom = 600.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_right = 206.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( 2 )]
+[node name="DatabaseRecords" parent="LeftSide" instance=ExtResource( "2" )]
 
 [node name="RightSide" type="Control" parent="."]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 218.0
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+offset_left = 218.0
+offset_right = 1024.0
+offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureSetContainer" type="HBoxContainer" parent="RightSide"]
+[node name="ScrollContainer" type="ScrollContainer" parent="RightSide"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 15.0
-margin_right = 600.0
-margin_bottom = 79.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
+[node name="Container" type="VBoxContainer" parent="RightSide/ScrollContainer"]
+offset_right = 806.0
+offset_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="TextureSetReference" parent="RightSide/TextureSetContainer" instance=ExtResource( 3 )]
+[node name="TextureSetContainer" type="HBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_right = 806.0
+offset_bottom = 57.0
 
-margin_right = 590.0
-margin_bottom = 42.0
+[node name="TextureSetReference" parent="RightSide/ScrollContainer/Container/TextureSetContainer" instance=ExtResource( "3" )]
+offset_right = 806.0
+offset_bottom = 57.0
 size_flags_horizontal = 3
 label = "Texture Set:"
 disabled = true
 
-[node name="TargetMinContainer" type="VBoxContainer" parent="RightSide"]
+[node name="TargetMinContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 61.0
+offset_right = 806.0
+offset_bottom = 118.0
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 100.0
-margin_right = 260.0
-margin_bottom = 142.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
-
-[node name="TargetMinLabel" type="Label" parent="RightSide/TargetMinContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 71.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="TargetMinLabel" type="Label" parent="RightSide/ScrollContainer/Container/TargetMinContainer"]
+offset_right = 89.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Target Min:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="TargetMinHContainer" type="HBoxContainer" parent="RightSide/TargetMinContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 183.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+[node name="TargetMinHContainer" type="HBoxContainer" parent="RightSide/ScrollContainer/Container/TargetMinContainer"]
+offset_top = 28.0
+offset_right = 207.0
+offset_bottom = 57.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-alignment = 0
 
-[node name="TargetMinXSpinboxLabel" type="Label" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 12.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="TargetMinXSpinboxLabel" type="Label" parent="RightSide/ScrollContainer/Container/TargetMinContainer/TargetMinHContainer"]
+offset_right = 15.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "X:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="TargetMinXSpinbox" type="SpinBox" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 16.0
-margin_right = 90.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="TargetMinXSpinbox" type="SpinBox" parent="RightSide/ScrollContainer/Container/TargetMinContainer/TargetMinHContainer"]
+offset_left = 19.0
+offset_right = 102.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-min_value = 0.0
 max_value = 1.0
 step = 0.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
-[node name="TargetMinYSpinboxLabel" type="Label" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 94.0
-margin_right = 105.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="TargetMinYSpinboxLabel" type="Label" parent="RightSide/ScrollContainer/Container/TargetMinContainer/TargetMinHContainer"]
+offset_left = 106.0
+offset_right = 120.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Y:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="TargetMinYSpinbox" type="SpinBox" parent="RightSide/TargetMinContainer/TargetMinHContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 109.0
-margin_right = 183.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="TargetMinYSpinbox" type="SpinBox" parent="RightSide/ScrollContainer/Container/TargetMinContainer/TargetMinHContainer"]
+offset_left = 124.0
+offset_right = 207.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-min_value = 0.0
 max_value = 1.0
 step = 0.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
-[node name="TargetMaxContainer" type="VBoxContainer" parent="RightSide"]
+[node name="TargetMaxContainer" type="VBoxContainer" parent="RightSide/ScrollContainer/Container"]
+offset_top = 122.0
+offset_right = 806.0
+offset_bottom = 179.0
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 160.0
-margin_right = 260.0
-margin_bottom = 202.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 2
-size_flags_vertical = 2
-alignment = 0
-
-[node name="TargetMaxLabel" type="Label" parent="RightSide/TargetMaxContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 73.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="TargetMaxLabel" type="Label" parent="RightSide/ScrollContainer/Container/TargetMaxContainer"]
+offset_right = 92.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Target Max:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="TargetMaxHContainer" type="HBoxContainer" parent="RightSide/TargetMaxContainer"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 183.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
+[node name="TargetMaxHContainer" type="HBoxContainer" parent="RightSide/ScrollContainer/Container/TargetMaxContainer"]
+offset_top = 28.0
+offset_right = 207.0
+offset_bottom = 57.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-alignment = 0
 
-[node name="TargetMaxXSpinboxLabel" type="Label" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 12.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="TargetMaxXSpinboxLabel" type="Label" parent="RightSide/ScrollContainer/Container/TargetMaxContainer/TargetMaxHContainer"]
+offset_right = 15.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "X:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="TargetMaxXSpinbox" type="SpinBox" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 16.0
-margin_right = 90.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="TargetMaxXSpinbox" type="SpinBox" parent="RightSide/ScrollContainer/Container/TargetMaxContainer/TargetMaxHContainer"]
+offset_left = 19.0
+offset_right = 102.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-min_value = 0.0
 max_value = 1.0
 step = 0.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
-[node name="TargetMaxYSpinboxLabel" type="Label" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 94.0
-margin_right = 105.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
+[node name="TargetMaxYSpinboxLabel" type="Label" parent="RightSide/ScrollContainer/Container/TargetMaxContainer/TargetMaxHContainer"]
+offset_left = 106.0
+offset_right = 120.0
+offset_bottom = 24.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Y:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="TargetMaxYSpinbox" type="SpinBox" parent="RightSide/TargetMaxContainer/TargetMaxHContainer"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 109.0
-margin_right = 183.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+[node name="TargetMaxYSpinbox" type="SpinBox" parent="RightSide/ScrollContainer/Container/TargetMaxContainer/TargetMaxHContainer"]
+offset_left = 124.0
+offset_right = 207.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
-min_value = 0.0
 max_value = 1.0
 step = 0.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
 editable = false
-prefix = ""
-suffix = ""
 
-[node name="UsesAlphaCheckBox" type="CheckBox" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 220.0
-margin_right = 108.0
-margin_bottom = 243.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="UsesAlphaCheckBox" type="CheckBox" parent="RightSide/ScrollContainer/Container"]
+offset_top = 183.0
+offset_right = 806.0
+offset_bottom = 212.0
 disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Uses Alpha"
-flat = false
-align = 0
 
-[node name="InvertAlphaCheckBox" type="CheckBox" parent="RightSide"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 250.0
-margin_right = 108.0
-margin_bottom = 273.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="InvertAlphaCheckBox" type="CheckBox" parent="RightSide/ScrollContainer/Container"]
+offset_top = 216.0
+offset_right = 806.0
+offset_bottom = 245.0
 disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Invert Alpha"
-flat = false
-align = 0
 
 [connection signal="set_current_record" from="LeftSide/DatabaseRecords" to="." method="set_current_record_callback"]
-
 [connection signal="submit_erase_record" from="LeftSide/DatabaseRecords" to="." method="submit_erase_record_callback"]
-
 [connection signal="submit_new_record" from="LeftSide/DatabaseRecords" to="." method="submit_new_record_callback"]
-
 [connection signal="submit_renamed_record" from="LeftSide/DatabaseRecords" to="." method="submit_renamed_record_callback"]
-
-[connection signal="record_erased" from="RightSide/TextureSetContainer/TextureSetReference" to="." method="_on_TextureSetReference_record_erased"]
-
-[connection signal="record_selected" from="RightSide/TextureSetContainer/TextureSetReference" to="." method="_on_TextureSetReference_record_selected"]
-
-[connection signal="value_changed" from="RightSide/TargetMinContainer/TargetMinHContainer/TargetMinXSpinbox" to="." method="_on_TargetMinXSpinbox_value_changed"]
-
-[connection signal="value_changed" from="RightSide/TargetMinContainer/TargetMinHContainer/TargetMinYSpinbox" to="." method="_on_TargetMinYSpinbox_value_changed"]
-
-[connection signal="value_changed" from="RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxXSpinbox" to="." method="_on_TargetMaxXSpinbox_value_changed"]
-
-[connection signal="value_changed" from="RightSide/TargetMaxContainer/TargetMaxHContainer/TargetMaxYSpinbox" to="." method="_on_TargetMaxYSpinbox_value_changed"]
-
-[connection signal="toggled" from="RightSide/UsesAlphaCheckBox" to="." method="_on_UsesAlphaCheckBox_toggled"]
-
-[connection signal="toggled" from="RightSide/InvertAlphaCheckBox" to="." method="_on_InvertAlphaCheckBox_toggled"]
-
-
+[connection signal="record_erased" from="RightSide/ScrollContainer/Container/TextureSetContainer/TextureSetReference" to="." method="_on_TextureSetReference_record_erased"]
+[connection signal="record_selected" from="RightSide/ScrollContainer/Container/TextureSetContainer/TextureSetReference" to="." method="_on_TextureSetReference_record_selected"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/TargetMinContainer/TargetMinHContainer/TargetMinXSpinbox" to="." method="_on_TargetMinXSpinbox_value_changed"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/TargetMinContainer/TargetMinHContainer/TargetMinYSpinbox" to="." method="_on_TargetMinYSpinbox_value_changed"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/TargetMaxContainer/TargetMaxHContainer/TargetMaxXSpinbox" to="." method="_on_TargetMaxXSpinbox_value_changed"]
+[connection signal="value_changed" from="RightSide/ScrollContainer/Container/TargetMaxContainer/TargetMaxHContainer/TargetMaxYSpinbox" to="." method="_on_TargetMaxYSpinbox_value_changed"]
+[connection signal="toggled" from="RightSide/ScrollContainer/Container/UsesAlphaCheckBox" to="." method="_on_UsesAlphaCheckBox_toggled"]
+[connection signal="toggled" from="RightSide/ScrollContainer/Container/InvertAlphaCheckBox" to="." method="_on_InvertAlphaCheckBox_toggled"]

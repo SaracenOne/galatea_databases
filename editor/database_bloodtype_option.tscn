@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cudxui66vo01"]
+
+[ext_resource type="Script" path="res://addons/galatea_databases/editor/database_bloodtype_option.gd" id="1_acwp0"]
+
+[node name="BloodTypeOption" type="VBoxContainer"]
+offset_top = -0.125946
+offset_right = 215.0
+offset_bottom = 56.8741
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 1
+script = ExtResource( "1_acwp0" )
+
+[node name="BloodTypeDescription" type="Label" parent="."]
+offset_right = 89.0
+offset_bottom = 24.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Blood Type"
+
+[node name="BloodTypeControl" type="OptionButton" parent="."]
+offset_top = 28.0
+offset_right = 215.0
+offset_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = false
+text = "null"
+item_count = 1
+selected = 0
+popup/item_0/text = "null"
+popup/item_0/id = 0
