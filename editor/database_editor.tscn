@@ -3,37 +3,36 @@
 [ext_resource type="Script" path="res://addons/galatea_databases/editor/database_editor.gd" id="1"]
 [ext_resource type="Script" path="res://addons/galatea_databases/editor/database_master_dynamic_tab.gd" id="2"]
 [ext_resource type="Script" path="res://addons/galatea_databases/editor/database_dynamic_tab.gd" id="3"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_music_track_panel.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://b1kojracv01pb" path="res://addons/galatea_databases/editor/database_music_track_panel.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://och01r08x3ey" path="res://addons/galatea_databases/editor/database_actor_panel.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_actor_group_panel.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_ai_package_panel.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_body_panel.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_body_scaler_panel.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://dbug54c05k1xx" path="res://addons/galatea_databases/editor/database_body_scaler_panel.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_clothing_panel.tscn" id="10"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_clothing_part_panel.tscn" id="11"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_clothing_set_panel.tscn" id="12"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_headpart_panel.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://bbh2hhu8ta2us" path="res://addons/galatea_databases/editor/database_clothing_part_panel.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://da07a7ve26kf6" path="res://addons/galatea_databases/editor/database_clothing_set_panel.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://hdkcgu1hl7c" path="res://addons/galatea_databases/editor/database_headpart_panel.tscn" id="13"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_hair_panel.tscn" id="14"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_status_effect_panel.tscn" id="15"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_trait_panel.tscn" id="16"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_activity_panel.tscn" id="17"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_calendar_event_panel.tscn" id="18"]
+[ext_resource type="PackedScene" uid="uid://3gdoek7p2l12" path="res://addons/galatea_databases/editor/database_trait_panel.tscn" id="16"]
+[ext_resource type="PackedScene" uid="uid://bohp78i7wjutw" path="res://addons/galatea_databases/editor/database_activity_panel.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://cadoupvp1rpu7" path="res://addons/galatea_databases/editor/database_calendar_event_panel.tscn" id="18"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_event_panel.tscn" id="19"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_quest_panel.tscn" id="20"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_school_lesson_panel.tscn" id="21"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_meshpart_panel.tscn" id="22"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_material_type_panel.tscn" id="23"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_stamp_panel.tscn" id="24"]
+[ext_resource type="PackedScene" uid="uid://20hwhbtssfw4" path="res://addons/galatea_databases/editor/database_stamp_panel.tscn" id="24"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_texture_set_panel.tscn" id="25"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_global_svars.tscn" id="26"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_item_panel.tscn" id="27"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_sms_panel.tscn" id="28"]
+[ext_resource type="PackedScene" uid="uid://dtu4w6epq65cw" path="res://addons/galatea_databases/editor/database_item_panel.tscn" id="27"]
+[ext_resource type="PackedScene" uid="uid://b8ewqlfjd38x6" path="res://addons/galatea_databases/editor/database_sms_panel.tscn" id="28"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_location_panel.tscn" id="29"]
-[ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_precipitation_panel.tscn" id="30"]
+[ext_resource type="PackedScene" uid="uid://dswex5diqlf2o" path="res://addons/galatea_databases/editor/database_precipitation_panel.tscn" id="30"]
 [ext_resource type="PackedScene" path="res://addons/galatea_databases/editor/database_weather_panel.tscn" id="31"]
 
 [node name="DatabaseEditor" type="Panel" groups=["database_editor_root"]]
-rect_min_size = Vector2(1024, 600)
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 2
@@ -46,6 +45,7 @@ anchor_bottom = 1.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 mouse_filter = 0
+tab_alignment = 1
 script = ExtResource( "2" )
 is_root = true
 
@@ -56,6 +56,7 @@ offset_top = 29.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 mouse_filter = 0
+tab_alignment = 1
 script = ExtResource( "2" )
 
 [node name="Music Tracks" type="Control" parent="DatabaseEditorTabs/Audio"]
@@ -74,6 +75,7 @@ anchor_bottom = 1.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 mouse_filter = 0
+tab_alignment = 1
 script = ExtResource( "2" )
 
 [node name="Actors" type="Control" parent="DatabaseEditorTabs/Characters"]
@@ -191,6 +193,7 @@ anchor_bottom = 1.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 mouse_filter = 0
+tab_alignment = 1
 script = ExtResource( "2" )
 
 [node name="Activities" type="Control" parent="DatabaseEditorTabs/Game Logic"]
@@ -245,6 +248,7 @@ anchor_bottom = 1.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 mouse_filter = 0
+tab_alignment = 1
 script = ExtResource( "2" )
 
 [node name="Meshparts" type="Control" parent="DatabaseEditorTabs/Graphics"]
@@ -290,6 +294,7 @@ anchor_bottom = 1.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 mouse_filter = 0
+tab_alignment = 1
 script = ExtResource( "2" )
 
 [node name="Global SVars" type="Control" parent="DatabaseEditorTabs/Miscellaneous"]
@@ -326,6 +331,7 @@ anchor_bottom = 1.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 mouse_filter = 0
+tab_alignment = 1
 script = ExtResource( "2" )
 
 [node name="Locations" type="Control" parent="DatabaseEditorTabs/World"]
