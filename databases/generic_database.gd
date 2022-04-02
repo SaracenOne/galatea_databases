@@ -8,6 +8,17 @@ var database_is_modified: bool = false
 
 #const DATABASE_NAME = "generic_database"
 
+func create_directory_if_missing(p_path: String) -> int:
+	if p_path.is_empty():
+		return FAILED
+	
+	var dir: Directory = Directory.new()
+	if dir.open(p_path) == OK:
+		return OK
+	else:
+		return dir.make_dir_recursive(p_path)
+
+
 func load_database_ids():
 	pass
 	
@@ -56,7 +67,12 @@ func _save_database(p_filepath, p_records_name):
 func load_database_file(p_filepath, p_records_name) -> Dictionary:
 	var file = File.new()
 	
-	var file_error = file.open(p_filepath, File.READ)#
+	var dir_err: int = create_directory_if_missing(p_filepath.get_base_dir())
+	if dir_err != OK:
+		printerr("load_database_file(%s) failed to set up directory. error_code: %s" % [p_filepath, str(dir_err)])
+		return {}
+	
+	var file_error: int = file.open(p_filepath, File.READ)#
 	
 	if(!file_error == OK):
 		file_error = file.open(p_filepath, File.WRITE)
@@ -101,10 +117,15 @@ func load_database_file(p_filepath, p_records_name) -> Dictionary:
 func _save_database_file(p_filepath, p_dictionary) -> int:
 	var file = File.new()
 	
+	var dir_err: int = create_directory_if_missing(p_filepath.get_base_dir())
+	if dir_err != OK:
+		printerr("_save_database_file(%s) failed to set up directory. error_code: %s" % [p_filepath, str(dir_err)])
+		return FAILED
+	
 	var file_error = file.open(p_filepath, File.WRITE)
 	
 	if(!file_error == OK):
-		printerr("save_database_file(%s) failed to open file: error_code: %u", p_filepath, file_error)
+		printerr("_save_database_file(%s) failed to open file: error_code: %s" % [p_filepath, file_error])
 		return FAILED
 		
 	file.seek(0)

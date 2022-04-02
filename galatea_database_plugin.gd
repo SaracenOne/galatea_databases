@@ -118,7 +118,6 @@ func _exit_tree():
 func database_interface_assign_databases(p_node: Node) -> void:
 	for child in p_node.get_children():
 		if(child.has_method("set_galatea_databases")):
-			print("oxMxiaom")
 			child.call("set_galatea_databases", galatea_databases)
 		database_interface_assign_databases(child)
 		
